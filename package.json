@@ -12,6 +12,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/node": "^12.7.3",
     "babel-preset-gatsby-package": "^0.2.3",
     "typescript": "^3.5.3"
   }
