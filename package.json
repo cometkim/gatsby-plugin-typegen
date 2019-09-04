@@ -5,6 +5,11 @@
   "repository": "https://github.com/cometkim/gatsby-plugin-typegen.git",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "typescript"
+  ],
   "engines": {
     "node": ">=10.0.0"
   },
