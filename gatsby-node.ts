@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
 import chokidar from 'chokidar';
+import debounce from 'lodash.debounce';
 import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import { loadDocuments, loadSchema } from 'graphql-toolkit';
@@ -35,34 +36,34 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }) 
   const documents = await loadDocuments(resolve('src/**/*.{ts,tsx}'));
   log('Documents have been loaded');
 
-  const writeTypeDefinition = async () => {
-    const config = {
-      schemaAst,
-      documents,
-      plugins: [{
-        typescript: {
-          avoidOptionals: true,
-          maybeValue: 'T',
-          namingConvention: {
-            enumValues: 'keep',
-            transformUnderscore: false,
-          },
+  const config = {
+    schemaAst,
+    documents,
+    plugins: [{
+      typescript: {
+        avoidOptionals: true,
+        maybeValue: 'T',
+        namingConvention: {
+          enumValues: 'keep',
+          transformUnderscore: false,
         },
-      }],
-      pluginMap: {
-        typescript: typescriptPlugin,
       },
-      // Not really necessary
-      filename: '',
-      config: {},
-    }
+    }],
+    pluginMap: {
+      typescript: typescriptPlugin,
+    },
+    // Not really necessary
+    filename: '',
+    config: {},
+  }
+
+  const writeTypeDefinition = debounce(async () => {
     // @ts-ignore
     const output = await codegen(config);
     await fs.promises.mkdir(resolve('generated/types'), { recursive: true });
     await fs.promises.writeFile(resolve('generated/types/gatsby.ts'), output, 'utf-8');
     log('Type definitions have been generated');
-  };
-
+  }, 1000);
 
   const watcher = chokidar.watch([
     schemaOutputPath,
