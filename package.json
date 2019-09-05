@@ -19,7 +19,8 @@
   },
   "files": [
     "index.js",
-    "gatsby-node.js"
+    "gatsby-node.js",
+    "types.ts"
   ],
   "peerDependencies": {
     "gatsby": ">=2.0.0",

@@ -4,7 +4,7 @@ Watch changes, Automatically generates TypeScript definitions.
 
 - [x] Schema extraction
 - [x] Generates code using graphql-codegen
-- [ ] Options to customize inputs/outputs (More plugins, Schema-JSON/SDL output option, Type definitions, etc)
+- [x] Options to customize paths
 - [ ] Auto-fixing codes using `<StaticQuery>` and `useStaticQuery()` with generated type parameters.
 
 ## Requirements
@@ -28,9 +28,36 @@ yarn add gatsby-plugin-typegen
 plugins: [`gatsby-plugin-typegen`]
 ```
 
+Also you can customize output path of generated files
+
+```ts
+// Example of type-safe usage (optional)
+import { PluginOptions as TypegenPluginOptions } from 'gatsby-plugin-typegen';
+
+type Plugin = (
+  | string
+  | { resolve: string, options: any }
+  | { resolve: `gatsby-plugin-typegen` options: TypegenPluginOptions }
+);
+
+const plugins: Plugin[] = {
+  resolve: `gatsby-plugin-typegen`,
+  options: {
+    schemaOutputPath: `${__dirname}/.cache/caches/gatsby-plugin-typegen/schema.json`,
+    typeDefsOutputPath: `${__dirname}/node_modules/generated/types/gatsby.ts`,
+  },
+};
+
+module.exports = {
+  plugins,
+};
+```
+
 ## Available options
 
-TODO
+- `schemaOutputPath`: (`string?`) Path to where the schema file is being generated.
+
+- `typeDefsOutputPath`: (`string?`) Path to where the type definition file is being generated.
 
 ## Acknowledgements
 

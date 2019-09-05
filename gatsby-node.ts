@@ -6,16 +6,24 @@ import debounce from 'lodash.debounce';
 import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import { loadDocuments, loadSchema } from 'graphql-toolkit';
-
 import { GatsbyNode } from 'gatsby';
 // @ts-ignore
 import { graphql, introspectionQuery } from 'gatsby/graphql';
 
+import { PluginOptions } from './types';
+
 const resolve = (...paths: string[]) => path.resolve(process.cwd(), ...paths);
 const log = (message: string) => console.log(`[gatsby-plugin-typegen] ${message}`);
-const schemaOutputPath = resolve('.cache/caches/gatsby-plugin-typegen/schema.json');
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }) => {
+const DEFAULT_SCHEMA_OUTPUT_PATH = resolve('.cache/caches/gatsby-plugin-typegen/schema.json');
+const DEFAULT_TYPE_DEFS_OUTPUT_PATH = resolve('node_modules/generated/types/gatsby.ts');
+
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, options) => {
+  const {
+    schemaOutputPath = DEFAULT_SCHEMA_OUTPUT_PATH,
+    typeDefsOutputPath = DEFAULT_TYPE_DEFS_OUTPUT_PATH,
+  } = options as PluginOptions;
+
   let cache = '';
 
   const extractSchema = async () => {
@@ -60,8 +68,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }) 
   const writeTypeDefinition = debounce(async () => {
     // @ts-ignore
     const output = await codegen(config);
-    await fs.promises.mkdir(resolve('generated/types'), { recursive: true });
-    await fs.promises.writeFile(resolve('generated/types/gatsby.ts'), output, 'utf-8');
+    await fs.promises.mkdir(path.dirname(typeDefsOutputPath), { recursive: true });
+    await fs.promises.writeFile(typeDefsOutputPath, output, 'utf-8');
     log('Type definitions have been generated');
   }, 1000);
 
