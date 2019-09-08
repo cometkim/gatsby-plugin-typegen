@@ -7,7 +7,7 @@ Watch changes, Automatically generates TypeScript definitions.
 - [x] Options to customize paths
 - [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` with generated type name.
 
-![Demonstration auto-fixing](recording-20190909.gif)
+![Demonstration auto-fixing](images/recording-20190909.gif)
 
 ## Requirements
 
