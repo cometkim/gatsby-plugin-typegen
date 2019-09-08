@@ -63,6 +63,28 @@ module.exports = {
 
 - `autoFix`: (`boolean?`) Enable auto-fixing static queries with generated types.
 
+## ESLint
+
+You can use the extracted schema file for [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql)!
+
+```js
+// In a file called .eslintrc.js
+module.exports = {
+  rules: {
+    'graphql/template-strings': ['error', {
+      env: 'relay',
+      schemaJsonFilepath: `${__dirname}/.cache/caches/gatsby-plugin-typegen/schema.json`,
+      tagName: 'graphql',
+    }],
+  },
+  plugins: [
+    'graphql'
+  ]
+};
+```
+
+You may get error for first time because schema is not extracted in your `.cache` dir yet.
+
 ## Acknowledgements
 
 - [gatsby-plugin-extract-code](https://github.com/NickyMeuleman/gatsby-plugin-extract-schema)
