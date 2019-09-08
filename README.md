@@ -42,13 +42,15 @@ type Plugin = (
   | { resolve: `gatsby-plugin-typegen` options: TypegenPluginOptions }
 );
 
-const plugins: Plugin[] = {
-  resolve: `gatsby-plugin-typegen`,
-  options: {
-    schemaOutputPath: `${__dirname}/.cache/caches/gatsby-plugin-typegen/schema.json`,
-    typeDefsOutputPath: `${__dirname}/node_modules/generated/types/gatsby.ts`,
+const plugins: Plugin[] = [
+  {
+    resolve: `gatsby-plugin-typegen`,
+    options: {
+      schemaOutputPath: `${__dirname}/.cache/caches/gatsby-plugin-typegen/schema.json`,
+      typeDefsOutputPath: `${__dirname}/node_modules/generated/types/gatsby.ts`,
+    },
   },
-};
+];
 
 module.exports = {
   plugins,
