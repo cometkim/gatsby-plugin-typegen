@@ -10,4 +10,10 @@ export type PluginOptions = {
    * @default `${CWD}/node_modules/generated/types/gatsby.ts`
    */
   typeDefsOutputPath?: string,
+
+  /**
+   * Enable auto-fixing `useStaticQuery()` & `<StaticQuery>` with generated types.
+   * @default true
+   */
+  autoFix?: boolean,
 };

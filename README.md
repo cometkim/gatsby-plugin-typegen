@@ -5,7 +5,9 @@ Watch changes, Automatically generates TypeScript definitions.
 - [x] Schema extraction
 - [x] Generates code using graphql-codegen
 - [x] Options to customize paths
-- [ ] Auto-fixing codes using `<StaticQuery>` and `useStaticQuery()` with generated type parameters.
+- [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` with generated type name.
+
+![Demonstration auto-fixing](recording-20190909.gif)
 
 ## Requirements
 
@@ -28,7 +30,7 @@ yarn add gatsby-plugin-typegen
 plugins: [`gatsby-plugin-typegen`]
 ```
 
-Also you can customize output path of generated files
+Also you can customize output path of generated files.
 
 ```ts
 // Example of type-safe usage (optional)
@@ -58,6 +60,8 @@ module.exports = {
 - `schemaOutputPath`: (`string?`) Path to where the schema file is being generated.
 
 - `typeDefsOutputPath`: (`string?`) Path to where the type definition file is being generated.
+
+- `autoFix`: (`boolean?`) Enable auto-fixing static queries with generated types.
 
 ## Acknowledgements
 
