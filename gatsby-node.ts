@@ -3,6 +3,7 @@ import fs from 'fs';
 import crypto from 'crypto';
 import chokidar from 'chokidar';
 import debounce from 'lodash.debounce';
+import { promisify } from 'util';
 import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import * as typescriptOperationsPlugin from '@graphql-codegen/typescript-operations';
@@ -13,6 +14,8 @@ import { GatsbyNode } from 'gatsby';
 import { graphql, introspectionQuery } from 'gatsby/graphql';
 
 import { PluginOptions } from './types';
+
+const writeFilePromise = promisify(fs.writeFile);
 
 const resolve = (...paths: string[]) => path.resolve(process.cwd(), ...paths);
 const log = (message: string) => console.log(`[gatsby-plugin-typegen] ${message}`);
@@ -83,7 +86,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     const sha1sum = crypto.createHash('sha1').update(output).digest('hex');
     if (cache !== sha1sum) {
       cache = sha1sum;
-      await fs.promises.writeFile(schemaOutputPath, output, 'utf-8');
+      await writeFilePromise(schemaOutputPath, output, 'utf-8');
       log(`Schema file extracted to ${schemaOutputPath}!`);
     }
   };
