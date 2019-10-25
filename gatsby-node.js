@@ -41,6 +41,8 @@ var _graphql = require("gatsby/graphql");
 
 function _wrapRegExp(re, groups) { _wrapRegExp = function (re, groups) { return new BabelRegExp(re, undefined, groups); }; var _RegExp = (0, _wrapNativeSuper2.default)(RegExp); var _super = RegExp.prototype; var _groups = new WeakMap(); function BabelRegExp(re, flags, groups) { var _this = _RegExp.call(this, re, flags); _groups.set(_this, groups || _groups.get(re)); return _this; } (0, _inherits2.default)(BabelRegExp, _RegExp); BabelRegExp.prototype.exec = function (str) { var result = _super.exec.call(this, str); if (result) result.groups = buildGroups(result, this); return result; }; BabelRegExp.prototype[Symbol.replace] = function (str, substitution) { if (typeof substitution === "string") { var groups = _groups.get(this); return _super[Symbol.replace].call(this, str, substitution.replace(/\$<([^>]+)>/g, function (_, name) { return "$" + groups[name]; })); } else if (typeof substitution === "function") { var _this = this; return _super[Symbol.replace].call(this, str, function () { var args = []; args.push.apply(args, arguments); if (typeof args[args.length - 1] !== "object") { args.push(buildGroups(args, _this)); } return substitution.apply(this, args); }); } else { return _super[Symbol.replace].call(this, str, substitution); } }; function buildGroups(result, re) { var g = _groups.get(re); return Object.keys(g).reduce(function (groups, name) { groups[name] = result[g[name]]; return groups; }, Object.create(null)); } return _wrapRegExp.apply(this, arguments); }
 
+const mkdirPromise = (0, _util.promisify)(_fs.default.mkdir);
+const readFilePromise = (0, _util.promisify)(_fs.default.readFile);
 const writeFilePromise = (0, _util.promisify)(_fs.default.writeFile);
 
 const resolve = (...paths) => _path.default.resolve(process.cwd(), ...paths);
@@ -185,19 +187,19 @@ const onPostBootstrap = async ({
     const output = await (0, _core.codegen)({ ...config,
       documents
     });
-    await _fs.default.promises.mkdir(_path.default.dirname(typeDefsOutputPath), {
+    await mkdirPromise(_path.default.dirname(typeDefsOutputPath), {
       recursive: true
     });
-    await _fs.default.promises.writeFile(typeDefsOutputPath, output, 'utf-8');
+    await writeFilePromise(typeDefsOutputPath, output, 'utf-8');
     log(`Type definitions are generated into ${typeDefsOutputPath}`);
   }, 1000);
 
   const fixDocuments = async filePath => {
-    const code = await _fs.default.promises.readFile(filePath, 'utf-8');
+    const code = await readFilePromise(filePath, 'utf-8');
     const fixed = code.replace(STATIC_QUERY_HOOK_REGEXP, STATIC_QUERY_HOOK_REPLACER).replace(STATIC_QUERY_COMPONENT_REGEXP, STATIC_QUERY_COMPONENT_REPLACER);
 
     if (code !== fixed) {
-      _fs.default.promises.writeFile(filePath, fixed, 'utf-8');
+      await writeFilePromise(filePath, fixed, 'utf-8');
     }
   };
 
@@ -211,7 +213,7 @@ const onPostBootstrap = async ({
     writeTypeDefinition();
 
     if (autoFix && filePath !== schemaOutputPath) {
-      fixDocuments(filePath);
+      await fixDocuments(filePath);
     }
   };
 
