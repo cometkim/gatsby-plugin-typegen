@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce';
 import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import * as typescriptOperationsPlugin from '@graphql-codegen/typescript-operations';
+import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers';
 import { loadDocuments, loadSchema } from 'graphql-toolkit';
 import { GatsbyNode } from 'gatsby';
 // @ts-ignore
@@ -99,18 +100,23 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     plugins: [
       { typescript: {} },
       { typescriptOperations: {} },
+      { typescriptResolvers: {} },
     ],
     pluginMap: {
       typescript: typescriptPlugin,
       typescriptOperations: typescriptOperationsPlugin,
+      typescriptResolvers: typescriptResolversPlugin,
     },
     config: {
       avoidOptionals: true,
       maybeValue: 'T',
       namingConvention: {
+        typeNames: 'keep',
         enumValues: 'keep',
         transformUnderscore: false,
       },
+      addUnderscoreToArgsType: true,
+      skipTypename: true,
     },
   };
 
