@@ -15,6 +15,8 @@ import { graphql, introspectionQuery } from 'gatsby/graphql';
 
 import { PluginOptions } from './types';
 
+const mkdirPromise = promisify(fs.mkdir);
+const readFilePromise = promisify(fs.readFile);
 const writeFilePromise = promisify(fs.writeFile);
 
 const resolve = (...paths: string[]) => path.resolve(process.cwd(), ...paths);
@@ -129,19 +131,19 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
       ...config,
       documents,
     });
-    await fs.promises.mkdir(path.dirname(typeDefsOutputPath), { recursive: true });
-    await fs.promises.writeFile(typeDefsOutputPath, output, 'utf-8');
+    await mkdirPromise(path.dirname(typeDefsOutputPath), { recursive: true });
+    await writeFilePromise(typeDefsOutputPath, output, 'utf-8');
     log(`Type definitions are generated into ${typeDefsOutputPath}`);
   }, 1000);
 
   const fixDocuments = async (filePath: string) => {
-    const code = await fs.promises.readFile(filePath, 'utf-8');
+    const code = await readFilePromise(filePath, 'utf-8');
     const fixed = code
       .replace(STATIC_QUERY_HOOK_REGEXP, STATIC_QUERY_HOOK_REPLACER)
       .replace(STATIC_QUERY_COMPONENT_REGEXP, STATIC_QUERY_COMPONENT_REPLACER);
 
     if (code !== fixed) {
-      fs.promises.writeFile(filePath, fixed, 'utf-8');
+      await writeFilePromise(filePath, fixed, 'utf-8');
     }
   };
 
@@ -153,7 +155,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     writeTypeDefinition();
 
     if (autoFix && filePath !== schemaOutputPath) {
-      fixDocuments(filePath);
+      await fixDocuments(filePath);
     }
   };
 
