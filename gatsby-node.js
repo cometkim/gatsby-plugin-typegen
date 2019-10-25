@@ -25,6 +25,8 @@ var _chokidar = _interopRequireDefault(require("chokidar"));
 
 var _lodash = _interopRequireDefault(require("lodash.debounce"));
 
+var _util = require("util");
+
 var _core = require("@graphql-codegen/core");
 
 var typescriptPlugin = _interopRequireWildcard(require("@graphql-codegen/typescript"));
@@ -38,6 +40,8 @@ var _graphqlToolkit = require("graphql-toolkit");
 var _graphql = require("gatsby/graphql");
 
 function _wrapRegExp(re, groups) { _wrapRegExp = function (re, groups) { return new BabelRegExp(re, undefined, groups); }; var _RegExp = (0, _wrapNativeSuper2.default)(RegExp); var _super = RegExp.prototype; var _groups = new WeakMap(); function BabelRegExp(re, flags, groups) { var _this = _RegExp.call(this, re, flags); _groups.set(_this, groups || _groups.get(re)); return _this; } (0, _inherits2.default)(BabelRegExp, _RegExp); BabelRegExp.prototype.exec = function (str) { var result = _super.exec.call(this, str); if (result) result.groups = buildGroups(result, this); return result; }; BabelRegExp.prototype[Symbol.replace] = function (str, substitution) { if (typeof substitution === "string") { var groups = _groups.get(this); return _super[Symbol.replace].call(this, str, substitution.replace(/\$<([^>]+)>/g, function (_, name) { return "$" + groups[name]; })); } else if (typeof substitution === "function") { var _this = this; return _super[Symbol.replace].call(this, str, function () { var args = []; args.push.apply(args, arguments); if (typeof args[args.length - 1] !== "object") { args.push(buildGroups(args, _this)); } return substitution.apply(this, args); }); } else { return _super[Symbol.replace].call(this, str, substitution); } }; function buildGroups(result, re) { var g = _groups.get(re); return Object.keys(g).reduce(function (groups, name) { groups[name] = result[g[name]]; return groups; }, Object.create(null)); } return _wrapRegExp.apply(this, arguments); }
+
+const writeFilePromise = (0, _util.promisify)(_fs.default.writeFile);
 
 const resolve = (...paths) => _path.default.resolve(process.cwd(), ...paths);
 
@@ -139,7 +143,7 @@ const onPostBootstrap = async ({
 
     if (cache !== sha1sum) {
       cache = sha1sum;
-      await _fs.default.promises.writeFile(schemaOutputPath, output, 'utf-8');
+      await writeFilePromise(schemaOutputPath, output, 'utf-8');
       log(`Schema file extracted to ${schemaOutputPath}!`);
     }
   }; // Wait for first extraction
