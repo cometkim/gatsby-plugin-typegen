@@ -8,12 +8,13 @@ import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import * as typescriptOperationsPlugin from '@graphql-codegen/typescript-operations';
 import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers';
-import { loadDocuments, loadSchema } from 'graphql-toolkit';
+import { loadDocuments, loadSchema, DocumentFile } from 'graphql-toolkit';
 import { GatsbyNode } from 'gatsby';
 // @ts-ignore
 import { graphql, introspectionQuery } from 'gatsby/graphql';
 
 import { PluginOptions } from './types';
+import { GraphQLSchema } from 'graphql';
 
 const mkdirPromise = promisify(fs.mkdir);
 const readFilePromise = promisify(fs.readFile);
@@ -79,28 +80,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     autoFix = true,
   } = options as PluginOptions;
 
-  let cache = '';
-
-  const extractSchema = async () => {
-    const { schema } = store.getState();
-    const { data: fullSchema } = await graphql(schema, introspectionQuery);
-    const output = JSON.stringify(fullSchema, null, 2);
-    const sha1sum = crypto.createHash('sha1').update(output).digest('hex');
-    if (cache !== sha1sum) {
-      cache = sha1sum;
-      await writeFilePromise(schemaOutputPath, output, 'utf-8');
-      log(`Schema file extracted to ${schemaOutputPath}!`);
-    }
-  };
-
-  // Wait for first extraction
-  await extractSchema();
-  const schemaAst = await loadSchema(schemaOutputPath);
-  const documents = await loadDocuments(resolve(DOCUMENTS_GLOB));
-  log('Documents are loaded');
-
   const config = {
-    schemaAst,
+    schemaAst: {} as GraphQLSchema,
     filename: typeDefsOutputPath,
     plugins: [
       { typescript: {} },
@@ -125,7 +106,20 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     },
   };
 
-  const writeTypeDefinition = debounce(async () => {
+  const watcher = chokidar.watch([
+    schemaOutputPath,
+    DOCUMENTS_GLOB,
+  ], {
+    ignored: [
+      typeDefsOutputPath
+    ] 
+  });
+
+  let cache = '';
+  let documents: DocumentFile[];
+  let firstRun = true;
+
+  const writeTypeDefinition = async () => {
     // @ts-ignore
     const output = await codegen({
       ...config,
@@ -134,7 +128,34 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     await mkdirPromise(path.dirname(typeDefsOutputPath), { recursive: true });
     await writeFilePromise(typeDefsOutputPath, output, 'utf-8');
     log(`Type definitions are generated into ${typeDefsOutputPath}`);
-  }, 1000);
+  };
+
+
+  const extractSchema = async () => {
+    const { schema } = store.getState();
+    const { data: fullSchema } = await graphql(schema, introspectionQuery);
+    const output = JSON.stringify(fullSchema, null, 2);
+    const sha1sum = crypto.createHash('sha1').update(output).digest('hex');
+    if (cache !== sha1sum) {
+      cache = sha1sum;      
+      await writeFilePromise(schemaOutputPath, output, 'utf-8');
+      log(`Schema file extracted to ${schemaOutputPath}!`);
+      config.schemaAst = await loadSchema(schemaOutputPath);
+
+      if (firstRun) {
+        documents = await loadDocuments(resolve(DOCUMENTS_GLOB));
+        log('Documents are loaded');
+
+        await writeTypeDefinition();
+
+        // Register document watcher
+        watcher
+          .on('add', onWatch)
+          .on('change', onWatch)
+        ;
+      }
+    }
+  };
 
   const fixDocuments = async (filePath: string) => {
     const code = await readFilePromise(filePath, 'utf-8');
@@ -147,27 +168,20 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     }
   };
 
-  const onWatch = async (filePath: string) => {
+  const onWatch = debounce(async (filePath: string) => {
     const changed = documents.findIndex(document => document.filePath === filePath)
     if (changed !== -1) {
       documents[changed] = (await loadDocuments(filePath))[0];
     }
-    writeTypeDefinition();
+    await extractSchema();
+    await writeTypeDefinition();
 
     if (autoFix && filePath !== schemaOutputPath) {
       await fixDocuments(filePath);
     }
-  };
+  }, 1000);
 
-  const watcher = chokidar.watch([
-    schemaOutputPath,
-    DOCUMENTS_GLOB,
-  ]);
 
-  watcher
-    .on('add', onWatch)
-    .on('change', onWatch)
-  ;
-
-  store.subscribe(extractSchema);
+  // Wait for first extraction
+  await extractSchema();
 };
