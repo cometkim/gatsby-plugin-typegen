@@ -10,6 +10,13 @@ import { loadDocuments, loadSchema } from 'graphql-toolkit';
 import { GatsbyNode } from 'gatsby';
 // @ts-ignore
 import { graphql, introspectionQuery } from 'gatsby/graphql';
+// @ts-ignore
+import getGatsbyDependents from "gatsby/dist/utils/gatsby-dependents.js"
+// @ts-ignore
+import report from "gatsby-cli/lib/reporter"
+import glob from "glob"
+import normalize from "normalize-path"
+import _ from "lodash"
 
 import { PluginOptions } from './types';
 
@@ -87,11 +94,95 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     }
   };
 
+  const findFiles = async () => {
+    // Copied from gatsby/packages/gatsby/src/query/query-compiler.js
+
+    const resolveThemes = (themes = []) =>
+      themes.reduce((merged, theme) => {
+        // @ts-ignore
+        merged.push(theme.themeDir)
+        return merged
+      }, []);
+
+    // copied from export default
+    const { program, themes, flattenedPlugins } = store.getState();
+
+    const base = program.directory
+    const additional = resolveThemes(
+      themes.themes
+        ? themes.themes
+        : flattenedPlugins.map((plugin: any) => {
+            return {
+              themeDir: plugin.pluginFilepath,
+            }
+          })
+    );
+
+    const filesRegex = `*.+(t|j)s?(x)`;
+    // Pattern that will be appended to searched directories.
+    // It will match any .js, .jsx, .ts, and .tsx files, that are not
+    // inside <searched_directory>/node_modules.
+    const pathRegex = `/{${filesRegex},!(node_modules)/**/${filesRegex}}`;
+
+    const modulesThatUseGatsby = await getGatsbyDependents();
+
+    let files: string[] = [
+      path.join(base, `src`),
+      /*
+      Copy note:
+       this code locates the source files .cache/fragments/*.js was copied from
+       the original query-compiler.js handles duplicates more gracefully, codegen generates duplicate types
+      */
+      // path.join(base, `.cache`, `fragments`),
+      ...additional.map(additional => path.join(additional, `src`)),
+      ...modulesThatUseGatsby.map((module: any) => module.path),
+    ].reduce((merged, folderPath) => {
+      merged.push(
+        ...glob.sync(path.join(folderPath, pathRegex), {
+          nodir: true,
+        })
+      )
+      return merged
+    }, []);
+
+    files = files.filter(d => !d.match(/\.d\.ts$/));
+
+    files = files.map(f => normalize(f));
+
+    // We should be able to remove the following and preliminary tests do suggest
+    // that they aren't needed anymore since we transpile node_modules now
+    // However, there could be some cases (where a page is outside of src for example)
+    // that warrant keeping this and removing later once we have more confidence (and tests)
+
+    // Ensure all page components added as they're not necessarily in the
+    // pages directory e.g. a plugin could add a page component. Plugins
+    // *should* copy their components (if they add a query) to .cache so that
+    // our babel plugin to remove the query on building is active.
+    // Otherwise the component will throw an error in the browser of
+    // "graphql is not defined".
+    files = files.concat(
+      Array.from(store.getState().components.keys(), (c: string) =>
+        normalize(c)
+      )
+    );
+
+    files = _.uniq(files);
+    return files;
+  };
+
   // Wait for first extraction
+  const docLookupActivity = report.activityTimer(
+    `lookup graphql documents for type generation`,
+    {
+      id: `query-codegen-doc-lookup`,
+    }
+  );
+  docLookupActivity.start();
   await extractSchema();
+  const files = await findFiles();
   const schemaAst = await loadSchema(schemaOutputPath);
-  const documents = await loadDocuments(resolve(DOCUMENTS_GLOB));
-  log('Documents are loaded');
+  const documents = await loadDocuments(files);
+  docLookupActivity.end();
 
   const config = {
     schemaAst,
@@ -115,6 +206,13 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
   };
 
   const writeTypeDefinition = debounce(async () => {
+    const generateSchemaActivity = report.activityTimer(
+      `generate graphql typescript`,
+      {
+        id: `query-codegen-schema`,
+      }
+    );
+    generateSchemaActivity.start();
     // @ts-ignore
     const output = await codegen({
       ...config,
@@ -122,6 +220,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     });
     await fs.promises.mkdir(path.dirname(typeDefsOutputPath), { recursive: true });
     await fs.promises.writeFile(typeDefsOutputPath, output, 'utf-8');
+    generateSchemaActivity.end();
     log(`Type definitions are generated into ${typeDefsOutputPath}`);
   }, 1000);
 
