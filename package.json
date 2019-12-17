@@ -32,7 +32,6 @@
     "@graphql-codegen/core": "^1.7.0",
     "@graphql-codegen/typescript": "^1.7.0",
     "@graphql-codegen/typescript-operations": "^1.7.0",
-    "@types/normalize-path": "^3.0.0",
     "chokidar": "^3.0.2",
     "graphql-toolkit": "^0.5.11",
     "lodash": "^4.17.15",
@@ -48,6 +47,7 @@
     "@types/graphql": "^14.5.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/node": "^12.7.3",
+    "@types/normalize-path": "^3.0.0",
     "babel-preset-gatsby-package": "^0.2.3",
     "gatsby": "^2.15.6",
     "typescript": "^3.5.3"

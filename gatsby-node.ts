@@ -11,12 +11,10 @@ import { GatsbyNode } from 'gatsby';
 // @ts-ignore
 import { graphql, introspectionQuery } from 'gatsby/graphql';
 // @ts-ignore
-import getGatsbyDependents from "gatsby/dist/utils/gatsby-dependents.js"
-// @ts-ignore
-import report from "gatsby-cli/lib/reporter"
-import glob from "glob"
-import normalize from "normalize-path"
-import _ from "lodash"
+import getGatsbyDependents from 'gatsby/dist/utils/gatsby-dependents';
+import glob from 'glob';
+import normalize from 'normalize-path';
+import _ from 'lodash';
 
 import { PluginOptions } from './types';
 
@@ -73,7 +71,7 @@ const STATIC_QUERY_COMPONENT_REPLACER = (substring: string, ...args: any[]): str
   return substring.replace(groups['JsxTagOpening'], `<StaticQuery<${groups['QueryName']}Query>`);
 }
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, options) => {
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store, reporter }, options) => {
   const {
     schemaOutputPath = DEFAULT_SCHEMA_OUTPUT_PATH,
     typeDefsOutputPath = DEFAULT_TYPE_DEFS_OUTPUT_PATH,
@@ -171,10 +169,10 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
   };
 
   // Wait for first extraction
-  const docLookupActivity = report.activityTimer(
+  const docLookupActivity = reporter.activityTimer(
     `lookup graphql documents for type generation`,
     {
-      id: `query-codegen-doc-lookup`,
+      parentSpan: {},
     }
   );
   docLookupActivity.start();
@@ -206,10 +204,10 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
   };
 
   const writeTypeDefinition = debounce(async () => {
-    const generateSchemaActivity = report.activityTimer(
+    const generateSchemaActivity = reporter.activityTimer(
       `generate graphql typescript`,
       {
-        id: `query-codegen-schema`,
+        parentSpan: {},
       }
     );
     generateSchemaActivity.start();
