@@ -10,9 +10,6 @@
     "gatsby-plugin",
     "typescript"
   ],
-  "engines": {
-    "node": ">=10.0.0"
-  },
   "scripts": {
     "build": "babel gatsby-* -d . --extensions .ts,.tsx",
     "prepublishOnly": "yarn build"

@@ -16,9 +16,9 @@ import { graphql, introspectionQuery } from 'gatsby/graphql';
 import { PluginOptions } from './types';
 import { GraphQLSchema } from 'graphql';
 
-const mkdirPromise = promisify(fs.mkdir);
-const readFilePromise = promisify(fs.readFile);
-const writeFilePromise = promisify(fs.writeFile);
+const mkdir = promisify(fs.mkdir);
+const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
 
 const resolve = (...paths: string[]) => path.resolve(process.cwd(), ...paths);
 const log = (message: string) => console.log(`[gatsby-plugin-typegen] ${message}`);
@@ -112,7 +112,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
   ], {
     ignored: [
       typeDefsOutputPath
-    ] 
+    ]
   });
 
   let cache = '';
@@ -125,8 +125,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
       ...config,
       documents,
     });
-    await mkdirPromise(path.dirname(typeDefsOutputPath), { recursive: true });
-    await writeFilePromise(typeDefsOutputPath, output, 'utf-8');
+    await mkdir(path.dirname(typeDefsOutputPath), { recursive: true });
+    await writeFile(typeDefsOutputPath, output, 'utf-8');
     log(`Type definitions are generated into ${typeDefsOutputPath}`);
   };
 
@@ -137,8 +137,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
     const output = JSON.stringify(fullSchema, null, 2);
     const sha1sum = crypto.createHash('sha1').update(output).digest('hex');
     if (cache !== sha1sum) {
-      cache = sha1sum;      
-      await writeFilePromise(schemaOutputPath, output, 'utf-8');
+      cache = sha1sum;
+      await writeFile(schemaOutputPath, output, 'utf-8');
       log(`Schema file extracted to ${schemaOutputPath}!`);
       config.schemaAst = await loadSchema(schemaOutputPath);
 
@@ -153,18 +153,20 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }, 
           .on('add', onWatch)
           .on('change', onWatch)
         ;
+
+        firstRun = false;
       }
     }
   };
 
   const fixDocuments = async (filePath: string) => {
-    const code = await readFilePromise(filePath, 'utf-8');
+    const code = await readFile(filePath, 'utf-8');
     const fixed = code
       .replace(STATIC_QUERY_HOOK_REGEXP, STATIC_QUERY_HOOK_REPLACER)
       .replace(STATIC_QUERY_COMPONENT_REGEXP, STATIC_QUERY_COMPONENT_REPLACER);
 
     if (code !== fixed) {
-      await writeFilePromise(filePath, fixed, 'utf-8');
+      await writeFile(filePath, fixed, 'utf-8');
     }
   };
 
