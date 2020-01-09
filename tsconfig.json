@@ -4,6 +4,7 @@
     "strict": true,
     "lib": ["es2015"],
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "downlevelIteration": true
   }
 }

@@ -22,7 +22,6 @@
   ],
   "peerDependencies": {
     "gatsby": ">=2.0.0",
-    "gatsby-cli": ">=2.0.0",
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
@@ -33,7 +32,6 @@
     "@types/normalize-path": "^3.0.0",
     "chokidar": "^3.0.2",
     "graphql-toolkit": "^0.5.11",
-    "lodash": "^4.17.15",
     "lodash.debounce": "^4.0.8",
     "normalize-path": "^3.0.0"
   },

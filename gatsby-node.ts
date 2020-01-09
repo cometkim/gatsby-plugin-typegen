@@ -1,25 +1,25 @@
 import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
+import { promisify } from 'util';
+import glob from 'glob';
 import chokidar from 'chokidar';
 import debounce from 'lodash.debounce';
-import { promisify } from 'util';
+import normalize from 'normalize-path';
+import { GraphQLSchema } from 'graphql';
+
+import { GatsbyNode } from 'gatsby';
+import { graphql, introspectionQuery } from 'gatsby/graphql';
+import getGatsbyDependents from 'gatsby/dist/utils/gatsby-dependents';
+
+import { loadDocuments, loadSchema, DocumentFile } from 'graphql-toolkit';
+
 import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import * as typescriptOperationsPlugin from '@graphql-codegen/typescript-operations';
 import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers';
-import { loadDocuments, loadSchema, DocumentFile } from 'graphql-toolkit';
-import { GatsbyNode } from 'gatsby';
-// @ts-ignore
-import { graphql, introspectionQuery } from 'gatsby/graphql';
-// @ts-ignore
-import getGatsbyDependents from 'gatsby/dist/utils/gatsby-dependents';
-import glob from 'glob';
-import normalize from 'normalize-path';
-import _ from 'lodash';
 
 import { PluginOptions } from './types';
-import { GraphQLSchema } from 'graphql';
 
 const mkdir = promisify(fs.mkdir);
 const readFile = promisify(fs.readFile);
@@ -78,7 +78,10 @@ const STATIC_QUERY_COMPONENT_REPLACER = (substring: string, ...args: any[]): str
   return substring.replace(groups['JsxTagOpening'], `<StaticQuery<${groups['QueryName']}Query>`);
 }
 
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store, reporter }, options) => {
+export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
+  store,
+  reporter,
+}, options) => {
   const {
     schemaOutputPath = DEFAULT_SCHEMA_OUTPUT_PATH,
     typeDefsOutputPath = DEFAULT_TYPE_DEFS_OUTPUT_PATH,
@@ -92,24 +95,24 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store, re
       themes.reduce((merged, theme) => {
         // @ts-ignore
         merged.push(theme.themeDir)
-        return merged
+        return merged;
       }, []);
 
-    // copied from export default
-    const { program, themes, flattenedPlugins } = store.getState();
+    const {
+      program,
+      themes,
+      flattenedPlugins,
+      components,
+    } = store.getState();
 
-    const base = program.directory
-    const additional = resolveThemes(
-      themes.themes
-        ? themes.themes
-        : flattenedPlugins.map((plugin: any) => {
-            return {
-              themeDir: plugin.pluginFilepath,
-            }
-          })
+    const basePath = program.directory;
+    const additionalPaths: string[] = resolveThemes(
+      themes.themes ?? flattenedPlugins.map((plugin: any) => ({
+        themeDir: plugin.pluginFilepath,
+      })),
     );
 
-    const filesRegex = `*.+(t|j)s?(x)`;
+    const filesRegex = '*.+(t|j)s?(x)';
     // Pattern that will be appended to searched directories.
     // It will match any .js, .jsx, .ts, and .tsx files, that are not
     // inside <searched_directory>/node_modules.
@@ -117,48 +120,36 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store, re
 
     const modulesThatUseGatsby = await getGatsbyDependents();
 
-    let files: string[] = [
-      path.join(base, `src`),
-      /*
-      Copy note:
-       this code locates the source files .cache/fragments/*.js was copied from
-       the original query-compiler.js handles duplicates more gracefully, codegen generates duplicate types
-      */
-      // path.join(base, `.cache`, `fragments`),
-      ...additional.map(additional => path.join(additional, `src`)),
-      ...modulesThatUseGatsby.map((module: any) => module.path),
-    ].reduce((merged, folderPath) => {
-      merged.push(
-        ...glob.sync(path.join(folderPath, pathRegex), {
-          nodir: true,
-        })
-      )
-      return merged
-    }, []);
+    const files = [
+      path.join(basePath, 'src'),
+      // Copy note:
+      // this code locates the source files .cache/fragments/*.js was copied from
+      // the original query-compiler.js handles duplicates more gracefully, codegen generates duplicate types
+      ...additionalPaths.map(additional => path.join(additional, 'src')),
+      ...modulesThatUseGatsby.map(module => module.path),
 
-    files = files.filter(d => !d.match(/\.d\.ts$/));
+      // We should be able to remove the following and preliminary tests do suggest
+      // that they aren't needed anymore since we transpile node_modules now
+      // However, there could be some cases (where a page is outside of src for example)
+      // that warrant keeping this and removing later once we have more confidence (and tests)
 
-    files = files.map(f => normalize(f));
+      // Ensure all page components added as they're not necessarily in the
+      // pages directory e.g. a plugin could add a page component. Plugins
+      // *should* copy their components (if they add a query) to .cache so that
+      // our babel plugin to remove the query on building is active.
+      // Otherwise the component will throw an error in the browser of
+      // "graphql is not defined".
+      ...components.keys() as string[],
+    ].reduce((merged, dir) => [
+      ...merged,
+      ...glob.sync(path.join(dir, pathRegex), {
+        nodir: true,
+      }),
+    ], [] as string[])
+    .filter(d => !d.match(/\.d\.ts$/))
+    .map(f => normalize(f));
 
-    // We should be able to remove the following and preliminary tests do suggest
-    // that they aren't needed anymore since we transpile node_modules now
-    // However, there could be some cases (where a page is outside of src for example)
-    // that warrant keeping this and removing later once we have more confidence (and tests)
-
-    // Ensure all page components added as they're not necessarily in the
-    // pages directory e.g. a plugin could add a page component. Plugins
-    // *should* copy their components (if they add a query) to .cache so that
-    // our babel plugin to remove the query on building is active.
-    // Otherwise the component will throw an error in the browser of
-    // "graphql is not defined".
-    files = files.concat(
-      Array.from(store.getState().components.keys(), (c: string) =>
-        normalize(c)
-      )
-    );
-
-    files = _.uniq(files);
-    return files;
+    return [...new Set(files)];
   };
 
   // Wait for first extraction
@@ -204,7 +195,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store, re
   ], {
     ignored: [
       typeDefsOutputPath
-    ]
+    ],
   });
 
   let cache = '';
@@ -216,7 +207,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store, re
       `generate graphql typescript`,
       {
         parentSpan: {},
-      }
+      },
     );
     generateSchemaActivity.start();
     // @ts-ignore
