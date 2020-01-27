@@ -5,6 +5,14 @@
     "lib": ["es2015"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "downlevelIteration": true
-  }
+    "downlevelIteration": true,
+    "declaration": true,
+    "outDir": "."
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

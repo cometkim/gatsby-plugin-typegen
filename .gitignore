@@ -61,4 +61,8 @@ typings/
 .next
 
 # JS artifacts
-/gatsby-node.js
+/*.js
+!/babel.config.js
+!/index.js
+
+/*.d.ts
