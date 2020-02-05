@@ -1,8 +1,20 @@
 import path from 'path';
 import glob from 'glob';
 import normalize from 'normalize-path';
+import {
+  graphql,
+  getIntrospectionQuery,
+  buildClientSchema,
+  GraphQLSchema,
+  IntrospectionQuery,
+} from 'graphql';
+
 import { Store } from 'gatsby';
 import getGatsbyDependents from 'gatsby/dist/utils/gatsby-dependents';
+
+const introspectionQuery = getIntrospectionQuery({
+  descriptions: false,
+});
 
 export type GatsbyTheme = {
   themeDir: string,
@@ -82,4 +94,20 @@ export const loadGatsbyFiles: LoadGatsbySourcesFn = async ({
   .map(file => normalize(file));
 
   return [...new Set(files)];
+};
+
+interface ExtractSchemaFromStoreFn {
+  (props: {
+    store: Store,
+  }): Promise<GraphQLSchema>;
+}
+export const extractSchemaFromStore: ExtractSchemaFromStoreFn = async ({
+  store,
+}) => {
+  const { schema } = store.getState();
+  const { data: introspection, errors } = await graphql<IntrospectionQuery>(schema, introspectionQuery);
+  if (!introspection) {
+    throw errors;
+  }
+  return buildClientSchema(introspection);
 };

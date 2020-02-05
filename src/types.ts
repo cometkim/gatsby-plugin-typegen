@@ -1,3 +1,5 @@
+import { GraphQLResolveInfo, GraphQLOutputType } from 'graphql';
+
 export type PluginOptions = {
 
   /**
@@ -21,9 +23,9 @@ export type PluginOptions = {
 
   /**
    * If you use [schema customization](https://www.gatsbyjs.org/docs/schema-customization/),
-   * you might need types for custom resolvers.
+   * you might want types for custom resolvers.
    *
-   * By default, the plugin only generate types for query data.
+   * By default, the plugin only generate types for query data for your components.
    *
    * If set this true, the plugin also generate types for all possible resolver signatures.
    *
@@ -87,4 +89,14 @@ export type DeprecatedPluginOptions = {
    * @default `${CWD}/node_modules/generated/types/gatsby.ts`
    */
   typeDefsOutputPath?: string,
+};
+
+/**
+ * Type definition for https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/schema/context.js
+ *
+ * @todo Provide correct type definition.
+ */
+export type GatsbyResolverContext = {
+  defaultFieldResolvers: any,
+  nodeModel: any,
 };
