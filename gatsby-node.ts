@@ -12,7 +12,10 @@ import { GatsbyNode } from 'gatsby';
 import { graphql, introspectionQuery } from 'gatsby/graphql';
 import getGatsbyDependents from 'gatsby/dist/utils/gatsby-dependents';
 
-import { loadDocuments, loadSchema, DocumentFile } from 'graphql-toolkit';
+import { loadDocuments, loadSchema } from '@graphql-toolkit/core';
+import { CodeFileLoader } from '@graphql-toolkit/code-file-loader';
+import { JsonFileLoader } from '@graphql-toolkit/json-file-loader';
+import { Source } from '@graphql-toolkit/common';
 
 import { codegen } from '@graphql-codegen/core';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
@@ -27,6 +30,13 @@ const writeFile = promisify(fs.writeFile);
 
 const resolve = (...paths: string[]) => path.resolve(process.cwd(), ...paths);
 const log = (message: string) => console.log(`[gatsby-plugin-typegen] ${message}`);
+
+const loadDocumentsWithConfig = (pointers: string | string[]) => loadDocuments(pointers, {
+  loaders: [new CodeFileLoader()]
+})
+const loadSchemaWithConfig = (pointers: string | string[]) => loadSchema(pointers, {
+  loaders: [new JsonFileLoader()]
+})
 
 const DOCUMENTS_GLOB = resolve('src/**/*.{ts,tsx}');
 const DEFAULT_SCHEMA_OUTPUT_PATH = resolve('.cache/caches/gatsby-plugin-typegen/schema.json');
@@ -199,7 +209,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   });
 
   let cache = '';
-  let documents: DocumentFile[];
+  let documents: Source[];
   let firstRun = true;
 
   const writeTypeDefinition = async () => {
@@ -231,10 +241,10 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
       cache = sha1sum;
       await writeFile(schemaOutputPath, output, 'utf-8');
       log(`Schema file extracted to ${schemaOutputPath}!`);
-      config.schemaAst = await loadSchema(schemaOutputPath);
+      config.schemaAst = await loadSchemaWithConfig(schemaOutputPath);
 
       if (firstRun) {
-        documents = await loadDocuments(files);
+        documents = await loadDocumentsWithConfig(files);
         log('Documents are loaded');
 
         await writeTypeDefinition();
@@ -262,9 +272,9 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   };
 
   const onWatch = debounce(async (filePath: string) => {
-    const changed = documents.findIndex(document => document.filePath === filePath)
+    const changed = documents.findIndex(document => document.location === filePath)
     if (changed !== -1) {
-      documents[changed] = (await loadDocuments(filePath))[0];
+      documents[changed] = (await loadDocumentsWithConfig(filePath))[0];
     }
     await extractSchema();
     await writeTypeDefinition();
