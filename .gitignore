@@ -62,7 +62,7 @@ typings/
 
 # JS artifacts
 /*.js
+/*.d.ts
+/workers
 !/babel.config.js
 !/index.js
-
-/*.d.ts

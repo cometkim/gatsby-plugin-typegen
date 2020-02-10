@@ -1,23 +1,33 @@
+import path from 'path';
 import { Required } from 'utility-types';
-import { Reporter } from 'gatsby';
+import { Store, Reporter } from 'gatsby';
 import checkHasYarn from 'has-yarn';
 
 import { PluginOptions, DeprecatedPluginOptions } from './types';
+import { formatLanguage } from './common';
+
+export type RequiredPluginOptions = Required<Omit<PluginOptions, keyof DeprecatedPluginOptions>>;
 
 interface RequirePluginOptionsFn {
   (
     options: unknown,
     props: {
       reporter: Reporter,
+      store: Store,
     },
-  ): Required<Omit<PluginOptions, keyof DeprecatedPluginOptions>>;
+  ): RequiredPluginOptions;
 }
-
 export const requirePluginOptions: RequirePluginOptionsFn = (
   options,
-  { reporter },
+  {
+    store,
+    reporter,
+  },
 ) => {
   const hasYarn = checkHasYarn();
+
+  const { program } = store.getState();
+  const basePath = program.directory as string;
 
   // There are no required properties (yet), so must be compatible.
   const pluginOptions = options as PluginOptions;
@@ -28,7 +38,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     quiet = false,
     autoFix = true,
     emitSchema = {},
-    ignorePatterns: extraIgnorePatterns,
+    ignorePatterns: extraIgnorePatterns = [],
     schemaOutputPath,
     typeDefsOutputPath,
   } = pluginOptions;
@@ -46,15 +56,18 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
 
   const outputPath = pluginOptions.outputPath || typeDefsOutputPath || (
     language === 'typescript'
-    ? 'src/__generated__/gatsby-types.ts'
-    : 'src/__generated__/gatsby-types.js'
+    ? path.resolve(basePath, 'src/__generated__/gatsby-types.ts')
+    : path.resolve(basePath, 'src/__generated__/gatsby-types.js')
   );
 
   if ((language === 'typescript') !== (outputPath.endsWith('ts'))) {
-    reporter.warn(`The language you specified is not match to file extension.
-language: ${language}
-outputPath: ${outputPath}
-`);
+    reporter.warn(
+      reporter.stripIndent(
+      `The language you specified is not match to file extension.
+        - language: ${formatLanguage(language)}
+        - outputPath: ${outputPath}
+      `),
+    );
   }
 
   if (includeResolvers && language === 'typescript') {
@@ -62,12 +75,14 @@ outputPath: ${outputPath}
       require('@graphql-codegen/typescript-resolvers');
     } catch (err) {
       reporter.panic(
-        'You set `includeResolvers: true`, but could not found required plugin. \nRun '
-        + hasYarn
+        reporter.stripIndent(
+        `You set \`includeResolvers: true\`, but could not found required plugin.
+        Run ${hasYarn
           ? '`yarn add @graphql-codegen/typescript-resolvers`'
           : '`npm install --save @graphql-codegen/typescript-resolvers`'
-        + ' and try again.'
-        , err);
+        } and try again.`),
+        err,
+      );
     }
   }
   if (includeResolvers && language === 'flow') {
@@ -75,18 +90,23 @@ outputPath: ${outputPath}
       require('@graphql-codegen/flow-resolvers');
     } catch (err) {
       reporter.panic(
-        'You set `includeResolvers: true`, but could not found required plugin. \nRun '
-        + hasYarn
+        reporter.stripIndent(
+        `You set \`includeResolvers: true\`, but could not found required plugin.
+        Run ${hasYarn
           ? '`yarn add @graphql-codegen/flow-resolvers`'
           : '`npm install --save @graphql-codegen/flow-resolvers`'
-        + ' and try again.'
-        , err);
+        } and try again.`),
+        err,
+      );
     }
   }
 
   const ignorePatterns = [
     // Do not watch generated file
     outputPath,
+
+    // Do not watch dts files
+    '**/*.d.ts',
 
     // Do not watch emitted schema files
     ...Object.keys(emitSchema),
