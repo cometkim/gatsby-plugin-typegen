@@ -34,7 +34,7 @@ export type PluginOptions = {
    * @see https://graphql-code-generator.com/docs/plugins/typescript-resolvers
    * @see https://graphql-code-generator.com/docs/plugins/flow-resolvers
    */
-  useResolvers?: boolean,
+  includeResolvers?: boolean,
 
 
   /**
