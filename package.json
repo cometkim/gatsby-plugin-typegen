@@ -28,7 +28,6 @@
     "@graphql-toolkit/json-file-loader": "^0.9.7",
     "async": "^3.1.1",
     "chokidar": "^3.0.2",
-    "graphql": "^14.6.0",
     "has-yarn": "^2.1.0",
     "normalize-path": "^3.0.0"
   },
