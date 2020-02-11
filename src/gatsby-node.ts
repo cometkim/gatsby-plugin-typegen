@@ -68,8 +68,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   const documentCache = new Map<string, Source[] | undefined>();
   for (const file of gatsbyFiles) {
     try {
-    const documents = await loadDocumentsFromFile(file);
-    documentCache.set(file, documents);
+      const documents = await loadDocumentsFromFile(file);
+      documentCache.set(file, documents);
     } catch {
       documentCache.set(file, undefined);
     }
@@ -105,6 +105,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
       ignoreInitial: true,
     });
 
+    // TODO: Do not run task if documents are not changed
     watcher.on('add', async file => {
       const documents = await loadDocumentsFromFile(file);
       documentCache.set(file, documents);
@@ -125,6 +126,4 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
       codegenWorker.push({ documents: getDocuments() });
     });
   }
-
-  return codegenWorker.drain();
 };

@@ -2,9 +2,9 @@ import { GraphQLSchema } from 'graphql';
 import { Reporter } from 'gatsby';
 import { cargo, asyncify, AsyncCargo } from 'async';
 import { codegen } from '@graphql-codegen/core';
+import { Source } from '@graphql-toolkit/common';
 
 import { delay, writeFile, formatLanguage } from '../common';
-import { Source } from '@graphql-toolkit/common';
 
 const CARGO_DELAY = 1000 as const;
 
@@ -85,7 +85,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       }
     }
 
-    reporter.verbose(`[typegen] (re)Generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})`);
+    reporter.verbose(`[typegen] Generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})`);
 
     const result = await codegen(codegenOptions);
     await writeFile(outputPath, result);
