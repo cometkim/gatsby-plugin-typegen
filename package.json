@@ -15,12 +15,6 @@
     "build": "babel src -d . --extensions .ts,.tsx",
     "prepublishOnly": "yarn build && yarn tsc"
   },
-  "files": [
-    "index.js",
-    "gatsby-node.js",
-    "types.ts",
-    "images"
-  ],
   "peerDependencies": {
     "gatsby": ">=2.0.0",
     "graphql": "^0.13.0 || ^14.0.0",

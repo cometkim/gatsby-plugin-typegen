@@ -1,0 +1,8 @@
+/src
+/typings
+
+.editorconfig
+.gitignore
+
+*.config.js
+*.log
