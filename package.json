@@ -22,6 +22,10 @@
   },
   "dependencies": {
     "@graphql-codegen/core": "^1.12.1",
+    "@graphql-codegen/flow": "^1.12.2",
+    "@graphql-codegen/flow-operations": "^1.12.2",
+    "@graphql-codegen/typescript": "^1.12.2",
+    "@graphql-codegen/typescript-operations": "^1.12.2",
     "@graphql-toolkit/code-file-loader": "^0.9.7",
     "@graphql-toolkit/common": "^0.9.7",
     "@graphql-toolkit/core": "^0.9.7",

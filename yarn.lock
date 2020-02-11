@@ -1138,6 +1138,17 @@
     "@graphql-toolkit/schema-merging" "0.9.7"
     tslib "1.10.0"
 
+"@graphql-codegen/flow-operations@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/flow-operations/-/flow-operations-1.12.2.tgz#8237c7ded708f2c1f3d0efd61f4a69829109866e"
+  integrity sha512-PdHUfRUg35mh6l8/vir1ngKoR8D6ZaFBZXHK4eRQniGduq5vE48rx5Vpi9QGMV54cNem/rgtpjGoKc0ghI1CxA==
+  dependencies:
+    "@graphql-codegen/flow" "1.12.2"
+    "@graphql-codegen/plugin-helpers" "1.12.2"
+    "@graphql-codegen/visitor-plugin-common" "1.12.2"
+    auto-bind "4.0.0"
+    tslib "1.10.0"
+
 "@graphql-codegen/flow-resolvers@^1.12.2":
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/flow-resolvers/-/flow-resolvers-1.12.2.tgz#b723a0db37accb72859a9df4f957df20449e04c1"
@@ -1150,7 +1161,7 @@
     auto-bind "4.0.0"
     tslib "1.10.0"
 
-"@graphql-codegen/flow@1.12.2":
+"@graphql-codegen/flow@1.12.2", "@graphql-codegen/flow@^1.12.2":
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/flow/-/flow-1.12.2.tgz#0a473504ba290a0b96a20de2b586d74f94adc5d1"
   integrity sha512-Aie5Hau3vPhz6XB9iAf1VgUi84RynV7pI5SvuNvPpS9d94PjlygsfAXjacyp1DIg5DI0aA1i96J8gLG1ekuJjg==
@@ -1192,6 +1203,17 @@
     tslib "1.10.0"
     upper-case "2.0.1"
 
+"@graphql-codegen/typescript-operations@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-1.12.2.tgz#d5d495f237b1bb93839e28da0ddecc5f4ce9f877"
+  integrity sha512-U4wp9H5sbCP3kWEXI5SbGYeXUyDKidHi2kBRoQochEdsTXugF+6dr5WuUY3IvLIYS9qNKHKq6dm/9nl3DpBD+Q==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.12.2"
+    "@graphql-codegen/typescript" "1.12.2"
+    "@graphql-codegen/visitor-plugin-common" "1.12.2"
+    auto-bind "4.0.0"
+    tslib "1.10.0"
+
 "@graphql-codegen/typescript-resolvers@^1.12.2":
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-resolvers/-/typescript-resolvers-1.12.2.tgz#17ed56be4d249ce961f5e6135d1c1ba5461ccfe9"
@@ -1204,7 +1226,7 @@
     auto-bind "4.0.0"
     tslib "1.10.0"
 
-"@graphql-codegen/typescript@1.12.2":
+"@graphql-codegen/typescript@1.12.2", "@graphql-codegen/typescript@^1.12.2":
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-1.12.2.tgz#4b63ab80dcac7624711459e776201c6a5d0f7373"
   integrity sha512-G2H91ocAEcZ86TFNQWV2HZUdXSR7v/Ntjq0ChqDvz/a7PTJxa5Pe5j4sQ9q13vGR5CedAMbBZkZ8zTKLAqY5sg==
