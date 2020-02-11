@@ -2,7 +2,7 @@ import path from 'path';
 import chokidar from 'chokidar';
 import { printSchema } from 'graphql';
 import { GatsbyNode } from 'gatsby';
-import { loadSingleFile } from '@graphql-toolkit/core';
+import { loadTypedefs } from '@graphql-toolkit/core';
 import { Source } from '@graphql-toolkit/common';
 import { CodeFileLoader } from '@graphql-toolkit/code-file-loader';
 
@@ -12,9 +12,8 @@ import { requirePluginOptions, RequiredPluginOptions } from './plugin-utils';
 import { extractSchemaFromStore, loadGatsbyFiles } from './gatsby-utils';
 
 const codeFileLoader = new CodeFileLoader();
-const loadDocumentFromFile = (file: string) => loadSingleFile(file, {
+const loadDocumentsFromFile = (file: string) => loadTypedefs(file, {
   loaders: [codeFileLoader],
-  cache: {},
 });
 
 let pluginOptions: RequiredPluginOptions;
@@ -66,14 +65,22 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   const gatsbyFiles = await loadGatsbyFiles({ store });
 
   reporter.verbose('[typegen] Load initial documents');
-  const documentCache = new Map<string, Source | undefined>();
+  const documentCache = new Map<string, Source[] | undefined>();
   for (const file of gatsbyFiles) {
-    const document = await loadDocumentFromFile(file);
-    documentCache.set(file, document);
+    try {
+    const documents = await loadDocumentsFromFile(file);
+    documentCache.set(file, documents);
+    } catch {
+      documentCache.set(file, undefined);
+    }
   }
-  const getDocuments = () => [
-    ...documentCache.values()
-  ].filter(Boolean) as Source[];
+  const getDocuments = () => (
+    [...documentCache.values()]
+      .filter(Boolean)
+      // flat
+      // @ts-ignore
+      .reduce((acc, arr) => acc.concat(arr), [])
+  ) as Source[];
 
   const codegenWorker = setupCodegenWorker({
     schemaAst,
@@ -99,21 +106,15 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     });
 
     watcher.on('add', async file => {
-      const cachedDocument = documentCache.get(file);
-      const document = await loadDocumentFromFile(file);
-      if (!cachedDocument || cachedDocument.rawSDL !== document.rawSDL) {
-        documentCache.set(file, document);
-        codegenWorker.push({ documents: getDocuments() });
-      }
+      const documents = await loadDocumentsFromFile(file);
+      documentCache.set(file, documents);
+      codegenWorker.push({ documents: getDocuments() });
     });
 
     watcher.on('change', async file => {
-      const cachedDocument = documentCache.get(file);
-      const document = await loadDocumentFromFile(file);
-      if (!cachedDocument || cachedDocument.rawSDL !== document.rawSDL) {
-        documentCache.set(file, document);
-        codegenWorker.push({ documents: getDocuments() });
-      }
+      const documents = await loadDocumentsFromFile(file);
+      documentCache.set(file, documents);
+      codegenWorker.push({ documents: getDocuments() });
       if (insertTypeWorker) {
         insertTypeWorker.push({ file });
       }
