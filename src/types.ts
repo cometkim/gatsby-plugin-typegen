@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo, GraphQLOutputType } from 'graphql';
+import { GraphQLResolveInfo, GraphQLOutputType } from 'gatsby/graphql';
 
 export type PluginOptions = {
 

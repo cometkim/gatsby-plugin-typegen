@@ -1,6 +1,6 @@
 import path from 'path';
 import chokidar from 'chokidar';
-import { printSchema } from 'graphql';
+import { printSchema } from 'gatsby/graphql';
 import { GatsbyNode } from 'gatsby';
 import { loadTypedefs } from '@graphql-toolkit/core';
 import { Source } from '@graphql-toolkit/common';

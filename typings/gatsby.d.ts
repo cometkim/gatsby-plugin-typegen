@@ -1,5 +1,5 @@
 declare module 'gatsby/graphql' {
-  export { graphql, introspectionQuery } from 'graphql';
+  export * from 'graphql';
 }
 
 declare module 'gatsby/dist/utils/gatsby-dependents' {

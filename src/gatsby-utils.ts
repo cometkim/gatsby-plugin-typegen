@@ -7,7 +7,7 @@ import {
   buildClientSchema,
   GraphQLSchema,
   IntrospectionQuery,
-} from 'graphql';
+} from 'gatsby/graphql';
 
 import { Store } from 'gatsby';
 import getGatsbyDependents from 'gatsby/dist/utils/gatsby-dependents';

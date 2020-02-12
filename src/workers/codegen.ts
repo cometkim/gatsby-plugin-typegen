@@ -1,5 +1,5 @@
-import { GraphQLSchema } from 'graphql';
 import { Reporter } from 'gatsby';
+import { GraphQLSchema } from 'gatsby/graphql';
 import { cargo, asyncify, AsyncCargo } from 'async';
 import { codegen } from '@graphql-codegen/core';
 import { Source } from '@graphql-toolkit/common';
