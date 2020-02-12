@@ -63,3 +63,9 @@ jspm_packages/
 /workers
 !/babel.config.js
 !/index.js
+!/.pnp.js
+
+# Yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml

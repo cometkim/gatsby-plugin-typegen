@@ -1,8 +1,12 @@
 /src
 /typings
+/.yarn
+/.vscode
 
 .editorconfig
 .gitignore
+.yarnrc
+.pnp.js
 
 *.config.js
 *.log
