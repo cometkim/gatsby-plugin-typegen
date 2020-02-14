@@ -1,12 +1,30 @@
 import path from 'path';
 import { Required } from 'utility-types';
 import { Store, Reporter } from 'gatsby';
-import checkHasYarn from 'has-yarn';
 
-import { PluginOptions, DeprecatedPluginOptions } from './types';
+import { PluginOptions, DeprecatedPluginOptions, SchemaOutputOptions } from './types';
 import { formatLanguage } from './common';
 
-export type RequiredPluginOptions = Required<Omit<PluginOptions, keyof DeprecatedPluginOptions>>;
+// No parsing by default, save introspection result file as json format.
+const DEFAULT_SCHEMA_OUTPUT_OPTION = {
+  format: 'introspection',
+  commentDescriptions: true,
+} as const;
+
+type MapTrueToDefault<T> = T extends { [key: string]: infer V }
+  ? V extends true
+  ? { [key: string]: typeof DEFAULT_SCHEMA_OUTPUT_OPTION }
+  : { [key: string]: SchemaOutputOptions }
+  : never;
+
+export type RequiredPluginOptions = Required<
+  Omit<
+    PluginOptions,
+    keyof DeprecatedPluginOptions | 'emitSchema'
+  > & {
+    emitSchema: MapTrueToDefault<PluginOptions['emitSchema']>
+  }
+>;
 
 interface RequirePluginOptionsFn {
   (
@@ -24,8 +42,6 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     reporter,
   },
 ) => {
-  const hasYarn = checkHasYarn();
-
   const { program } = store.getState();
   const basePath = program.directory as string;
 
@@ -35,19 +51,20 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
   const {
     language = 'typescript',
     includeResolvers = false,
-    quiet = false,
     autoFix = true,
-    emitSchema = {},
-    ignorePatterns: extraIgnorePatterns = [],
+    emitSchema: emitSchemaOptionMap = {},
     schemaOutputPath,
     typeDefsOutputPath,
   } = pluginOptions;
 
+  const emitSchema: MapTrueToDefault<typeof emitSchemaOptionMap> = {};
+  for (const [key, options] of Object.entries(emitSchemaOptionMap)) {
+    emitSchema[key] = options === true ? DEFAULT_SCHEMA_OUTPUT_OPTION : options;
+  }
+
   if (schemaOutputPath) {
     reporter.warn('`schemaOutputPath` was deprecated, please use `emitSchema` instead.')
-    emitSchema[schemaOutputPath] = {
-      format: 'json',
-    };
+    emitSchema[schemaOutputPath] = DEFAULT_SCHEMA_OUTPUT_OPTION;
   }
 
   if (typeDefsOutputPath) {
@@ -70,28 +87,10 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     );
   }
 
-  const ignorePatterns = [
-    // Do not watch generated file
-    outputPath,
-
-    // Do not watch dts files
-    '**/*.d.ts',
-
-    // Do not watch emitted schema files
-    ...Object.keys(emitSchema),
-
-    // Do not watch files black-listed by gatsby-config
-    ...extraIgnorePatterns,
-  ];
-
-  // Add future validation & conversion here.
-
   return {
     language,
     outputPath,
     includeResolvers,
-    quiet,
-    ignorePatterns,
     autoFix,
     emitSchema,
   };

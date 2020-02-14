@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo, GraphQLOutputType } from 'gatsby/graphql';
+import { GraphQLResolveInfo, GraphQLOutputType, IntrospectionOptions, BuildSchemaOptions } from 'gatsby/graphql';
 
 export type PluginOptions = {
 
@@ -36,19 +36,6 @@ export type PluginOptions = {
    */
   includeResolvers?: boolean,
 
-
-  /**
-   * If set this true, plugin will print no logs except panic.
-   *
-   * @default false
-   */
-  quiet?: boolean,
-
-  /**
-   *
-   */
-  ignorePatterns?: string[],
-
   /**
    * Enable auto-fixing `useStaticQuery()` & `<StaticQuery>` with generated type names.
    *
@@ -58,17 +45,34 @@ export type PluginOptions = {
 
 
   /**
-   * Emit the extracted Gatsby's schema definition into the filesystem.
+   * Emit the Gatsby's schema into the filesystem.
    *
-   * @default {} // does not emit schema file by default.
+   * Set value as `true` and use default options.
+   *
+   * @see SchemaOutputOptions
    */
   emitSchema?: {
-    [outputPath: string]: SchemaOutputOptions,
+    [outputPath: string]: true | SchemaOutputOptions,
   },
 } & DeprecatedPluginOptions;
 
-type SchemaOutputOptions = {
-  format: 'json' | 'graphql',
+export type SchemaOutputOptions = {
+  /**
+   * Output file format.
+   *
+   * By default, the introspection result is emitted as JSON.
+   * If set `sdl`, introspection will be parsed and printed to GraphQL SDL.
+   *
+   * @default 'introspection'
+   */
+  format: 'introspection' | 'sdl',
+
+  /**
+   * Include comment descriptions
+   *
+   * @default true
+   */
+  commentDescriptions?: boolean,
 };
 
 export type DeprecatedPluginOptions = {
