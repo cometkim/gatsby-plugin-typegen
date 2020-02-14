@@ -13888,10 +13888,10 @@ fsevents@^2.0.6:
   languageName: node
   linkType: hard
 
-"serialize-javascript@npm:^1.7.0":
-  version: 1.9.1
-  resolution: "serialize-javascript@npm:1.9.1"
-  checksum: 2/84293fb87b0884a0ad7b5a4497cf197e3013d928c5b5162a9e199b91ff5ee28b5eba02e636a69a1c3ae22ad5d512775b17ba0950f16181939f510841eb37b5e3
+"serialize-javascript@npm:2.1.1":
+  version: 2.1.1
+  resolution: "serialize-javascript@npm:2.1.1"
+  checksum: 2/c7ebc997389d6870d0d69f27987f7b68f957fc10b8a79226bf195854911534243b71621531daf3c9845f0ab136869ae7e21a09620c37a88df04a0b50c11b7948
   languageName: node
   linkType: hard
 

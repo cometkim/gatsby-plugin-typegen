@@ -16214,10 +16214,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["serialize-javascript", [
-        ["npm:1.9.1", {
-          "packageLocation": "./.yarn/cache/serialize-javascript-npm-1.9.1-b574c6974f-2.zip/node_modules/serialize-javascript/",
+        ["npm:2.1.1", {
+          "packageLocation": "./.yarn/cache/serialize-javascript-npm-2.1.1-8f8af4cb55-2.zip/node_modules/serialize-javascript/",
           "packageDependencies": [
-            ["serialize-javascript", "npm:1.9.1"]
+            ["serialize-javascript", "npm:2.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -17223,7 +17223,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["find-cache-dir", "npm:2.1.0"],
             ["is-wsl", "npm:1.1.0"],
             ["schema-utils", "npm:1.0.0"],
-            ["serialize-javascript", "npm:1.9.1"],
+            ["serialize-javascript", "npm:2.1.1"],
             ["source-map", "npm:0.6.1"],
             ["terser", "npm:4.2.1"],
             ["webpack", "npm:4.39.3"],
@@ -17243,7 +17243,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["find-cache-dir", "npm:2.1.0"],
             ["is-wsl", "npm:1.1.0"],
             ["schema-utils", "npm:1.0.0"],
-            ["serialize-javascript", "npm:1.9.1"],
+            ["serialize-javascript", "npm:2.1.1"],
             ["source-map", "npm:0.6.1"],
             ["terser", "npm:4.2.1"],
             ["webpack", "npm:4.39.3"],
