@@ -70,37 +70,6 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     );
   }
 
-  if (includeResolvers && language === 'typescript') {
-    try {
-      require('@graphql-codegen/typescript-resolvers');
-    } catch (err) {
-      reporter.panic(
-        reporter.stripIndent(
-        `You set \`includeResolvers: true\`, but could not found required plugin.
-        Run ${hasYarn
-          ? '`yarn add @graphql-codegen/typescript-resolvers`'
-          : '`npm install --save @graphql-codegen/typescript-resolvers`'
-        } and try again.`),
-        err,
-      );
-    }
-  }
-  if (includeResolvers && language === 'flow') {
-    try {
-      require('@graphql-codegen/flow-resolvers');
-    } catch (err) {
-      reporter.panic(
-        reporter.stripIndent(
-        `You set \`includeResolvers: true\`, but could not found required plugin.
-        Run ${hasYarn
-          ? '`yarn add @graphql-codegen/flow-resolvers`'
-          : '`npm install --save @graphql-codegen/flow-resolvers`'
-        } and try again.`),
-        err,
-      );
-    }
-  }
-
   const ignorePatterns = [
     // Do not watch generated file
     outputPath,

@@ -7961,11 +7961,6 @@ fsevents@^2.0.6:
     gatsby: ">=2.0.0"
     graphql: ^0.13.0 || ^14.0.0
     react: ^16.4.2
-  dependenciesMeta:
-    "@graphql-codegen/flow-resolvers":
-      optional: true
-    "@graphql-codegen/typescript-resolvers":
-      optional: true
   languageName: unknown
   linkType: soft
 

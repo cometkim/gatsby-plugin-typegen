@@ -24,8 +24,10 @@
     "@graphql-codegen/core": "^1.12.1",
     "@graphql-codegen/flow": "^1.12.2",
     "@graphql-codegen/flow-operations": "^1.12.2",
+    "@graphql-codegen/flow-resolvers": "^1.12.2",
     "@graphql-codegen/typescript": "^1.12.2",
     "@graphql-codegen/typescript-operations": "^1.12.2",
+    "@graphql-codegen/typescript-resolvers": "^1.12.2",
     "@graphql-toolkit/code-file-loader": "^0.9.7",
     "@graphql-toolkit/common": "^0.9.7",
     "@graphql-toolkit/core": "^0.9.7",
@@ -35,10 +37,6 @@
     "glob": "^7.1.6",
     "has-yarn": "^2.1.0",
     "normalize-path": "^3.0.0"
-  },
-  "optionalDependencies": {
-    "@graphql-codegen/flow-resolvers": "^1.12.2",
-    "@graphql-codegen/typescript-resolvers": "^1.12.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
