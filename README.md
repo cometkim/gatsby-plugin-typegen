@@ -1,18 +1,15 @@
 # gatsby-plugin-typegen
 
-Watch changes, Automatically generates TypeScript definitions.
+[![Package version](https://img.shields.io/github/package-json/v/cometkim/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen) ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
+
+Watch your queries and automatically generates TypeScript/Flow definitions.
 
 - [x] Schema extraction
-- [x] Generates code using graphql-codegen
-- [x] Options to customize paths
-- [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` with generated type name.
+- [x] Generates type definitions using [graphql-codegen](https://graphql-code-generator.com/)
+- [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
+- [x] Integrate Gatsby project with GraphQL & TypeSCript ecosystem.
 
-![Demonstration auto-fixing](images/recording-20190909.gif)
-
-## Requirements
-
-- Node v10.0.0 +
-- GatsbyJS v2 +
+![Demonstration of auto-fixing](images/recording-20190909.gif)
 
 ## Install
 
@@ -30,11 +27,10 @@ yarn add gatsby-plugin-typegen
 plugins: [`gatsby-plugin-typegen`]
 ```
 
-Also you can customize output path of generated files.
+### Example of type-safe usage
 
 ```ts
-// Example of type-safe usage (optional)
-import { PluginOptions as TypegenPluginOptions } from 'gatsby-plugin-typegen';
+import { PluginOptions as TypegenPluginOptions } from 'gatsby-plugin-typegen/types';
 
 type Plugin = (
   | string
@@ -46,8 +42,7 @@ const plugins: Plugin[] = [
   {
     resolve: `gatsby-plugin-typegen`,
     options: {
-      schemaOutputPath: `${__dirname}/.cache/caches/gatsby-plugin-typegen/schema.json`,
-      typeDefsOutputPath: `${__dirname}/node_modules/generated/types/gatsby.ts`,
+      // ... customize options here
     },
   },
 ];
@@ -57,37 +52,106 @@ module.exports = {
 };
 ```
 
-## Available options
+### Change the output path
 
-- `schemaOutputPath`: (`string?`) Path to where the schema file is being generated.
+```js
+{
+  options: {
+    outputPath: `src/__generated__/gatsby-types.ts`,
+  },
+}
+```
 
-- `typeDefsOutputPath`: (`string?`) Path to where the type definition file is being generated.
+### Switch to Flow
 
-- `autoFix`: (`boolean?`) Enable auto-fixing static queries with generated types.
+```js
+{
+  options: {
+    language: `flow`,
+    outputPath: `src/__generated__/gatsby-types.flow.js`,
+  },
+}
+```
 
-## ESLint
+### Emit schema into SDL file
+
+```js
+{
+  options: {
+    emitSchema: {
+      `src/__generated__/gatsby-schema.graphql`: {
+        // Default format is introspection JSON
+        format: `sdl`,
+      },
+    },
+  },
+}
+```
+
+![GatsbyJS schema visualized](images/gatsby-schema-visualized.png)
+
+Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
+
+### ESLint
 
 You can use the extracted schema file for [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql)!
 
 ```js
-// In a file called .eslintrc.js
+const path = require('path');
+
 module.exports = {
+  plugins: [
+    'graphql'
+  ],
   rules: {
     'graphql/template-strings': ['error', {
       env: 'relay',
-      schemaJsonFilepath: `${__dirname}/.cache/caches/gatsby-plugin-typegen/schema.json`,
       tagName: 'graphql',
+
+      // gatsby-config example:
+      // {
+      //   resolve: `gatsby-plugin-typegen`,
+      //   options: {
+      //     emitSchema: {
+      //       `src/__generated__/gatsby-introspection.json`: true,
+      //     },
+      //   },
+      // }
+      schemaJsonFilepath: path.resolve(__dirname, 'src/__generated__gatsby-introspection.json'),
     }],
   },
-  plugins: [
-    'graphql'
-  ]
 };
 ```
 
-You may get error for first time because schema is not extracted in your `.cache` dir yet.
+### TypeScript plugin
+
+TODO: Add example
+
+### VSCode extension
+
+TODO: Add example
+
+## Available options
+
+Checkout the full documentation of plugin options from [`src/types.ts`](https://github.com/cometkim/gatsby-plugin-typegen/blob/master/src/types.ts).
+
+## Disclaimer
+
+This plugin is a bit opinionated about how integrate GatsbyJS and codegen.
+
+You cannot customize plugins and its options of graphql-codegen because this plugin is built for **ONLY GatsbyJS**.
+
+If you wanna use codegen with other plugins (e.g. React Apollo), you can use [`@graphql-codegen/cli`](https://www.npmjs.com/package/@graphql-codegen/cli) for it.
+
+Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-graphql-codegen) gives you a more flex options.
 
 ## Acknowledgements
 
-- [gatsby-plugin-extract-code](https://github.com/NickyMeuleman/gatsby-plugin-extract-schema)
-- [graphql-code-generator](https://graphql-code-generator.com/)
+- [graphql-code-generator](https://graphql-code-generator.com/) by [@dotansimha](https://github.com/dotansimha)\
+  This is where the plugin started.
+
+- [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-graphql-codegen) by [@d4rekanguok](https://github.com/d4rekanguok)\
+  has almost same goal, but little bit different how handle GraphQL documents. @d4rekanguok also makes great contribution to this plugin as well!
+
+- [gatsby-plugin-extract-code](https://github.com/NickyMeuleman/gatsby-plugin-extract-schema) by [@NickyMeuleman](https://github.com/NickyMeuleman)\
+  Gives me idea about schema extraction.
