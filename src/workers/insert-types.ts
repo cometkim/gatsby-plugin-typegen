@@ -51,10 +51,12 @@ const STATIC_QUERY_COMPONENT_REPLACER = (substring: string, ...args: any[]): str
   return substring.replace(groups['JsxTagOpening'], `<StaticQuery<${groups['QueryName']}Query>`);
 }
 
-type InsertTypeTaskPayload = {
+export type InsertTypeTask = {
   file: string,
 };
-type InsertTypeWorker = AsyncQueue<InsertTypeTaskPayload>;
+
+export type InsertTypeWorker = AsyncQueue<InsertTypeTask>;
+
 interface SetupInsertTypeWorkerFn {
   (props: {
     reporter: Reporter,
@@ -63,7 +65,7 @@ interface SetupInsertTypeWorkerFn {
 export const setupInsertTypeWorker: SetupInsertTypeWorkerFn = ({
   reporter,
 }) => {
-  const worker = queue<InsertTypeTaskPayload>(asyncify(async (task: InsertTypeTaskPayload) => {
+  const worker = queue<InsertTypeTask>(asyncify(async (task: InsertTypeTask) => {
     const { file } = task;
 
     const content = await readFile(file);
@@ -71,8 +73,8 @@ export const setupInsertTypeWorker: SetupInsertTypeWorkerFn = ({
       .replace(STATIC_QUERY_HOOK_REGEXP, STATIC_QUERY_HOOK_REPLACER)
       .replace(STATIC_QUERY_COMPONENT_REGEXP, STATIC_QUERY_COMPONENT_REPLACER)
 
-    if (content.length !== fixed.length) {
-      reporter.verbose(`[typegen] Insert type definitions to ${file}`);
+    if (content !== fixed) {
+      reporter.verbose(`[typegen] Insert type definitions into ${file}\nbecause documents were changed.`);
       await writeFile(file, fixed);
     }
   }), CONCURRENCY);

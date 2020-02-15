@@ -29,12 +29,14 @@ const DEFAULT_FLOW_CONFIG = {
   useFlowReadOnlyTypes: true,
 } as const;
 
-type CodegenTaskPayload = {
+export type CodegenTask = {
   documents: Source[],
 };
-type CodegenWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: CodegenTaskPayload, cb?: Function): void,
+
+export type CodegenWorker = Omit<AsyncCargo, 'push'> & {
+  push(task: CodegenTask, cb?: Function): void,
 };
+
 interface SetupCodegenWorkerFn {
   (props: {
     schemaAst: GraphQLSchema,
@@ -51,7 +53,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   includeResolvers,
   reporter,
 }) => {
-  const worker = cargo(asyncify(async (tasks: CodegenTaskPayload[]) => {
+  const worker = cargo(asyncify(async (tasks: CodegenTask[]) => {
     const { length: l, [l - 1]: last } = tasks;
     const { documents } = last;
 
@@ -59,7 +61,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
     const codegenOptions: CodegenOptions  = {
       schema: undefined as any,
       schemaAst,
-      documents: documents,
+      documents,
       filename: outputPath,
       config: DEFAULT_SHARED_CONFIG,
       plugins: [],
@@ -87,8 +89,12 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 
     reporter.verbose(`[typegen] Generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})`);
 
-    const result = await codegen(codegenOptions);
-    await writeFile(outputPath, result);
+    try {
+      const result = await codegen(codegenOptions);
+      await writeFile(outputPath, result);
+    } catch (e) {
+      reporter.panicOnBuild('[typegen] An error on codegen', e);
+    }
 
     return delay(CARGO_DELAY);
   }));

@@ -17,3 +17,5 @@ export const delay = (ms: number) => new Promise<void>(res => setTimeout(res, ms
 export const formatLanguage = (lang: 'typescript' | 'flow') => (
   (lang === 'typescript') ? 'TypeScript' : 'Flow'
 );
+
+export type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
