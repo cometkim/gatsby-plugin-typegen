@@ -2,6 +2,7 @@
 /typings
 /.yarn
 /.vscode
+/.vim
 
 .editorconfig
 .gitignore
