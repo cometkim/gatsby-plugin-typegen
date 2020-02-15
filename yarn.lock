@@ -13524,10 +13524,10 @@ resolve@^1.14.2:
   languageName: node
   linkType: hard
 
-"serialize-javascript@npm:2.1.1":
-  version: 2.1.1
-  resolution: "serialize-javascript@npm:2.1.1"
-  checksum: 2/c7ebc997389d6870d0d69f27987f7b68f957fc10b8a79226bf195854911534243b71621531daf3c9845f0ab136869ae7e21a09620c37a88df04a0b50c11b7948
+"serialize-javascript@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "serialize-javascript@npm:2.1.2"
+  checksum: 2/9a4d4da6469e327332203438eed9a408e0618519d18aaba3790c88bf87712df4d577423d8fbd7122753800fa12afe19540cba111178ab0cf1f33c2b5771731bf
   languageName: node
   linkType: hard
 
