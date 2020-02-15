@@ -24,7 +24,7 @@
     "react": "^16.4.2"
   },
   "dependencies": {
-    "@graphql-codegen/core": "^1.12.1",
+    "@graphql-codegen/core": "^1.12.2",
     "@graphql-codegen/flow": "^1.12.2",
     "@graphql-codegen/flow-operations": "^1.12.2",
     "@graphql-codegen/flow-resolvers": "^1.12.2",
@@ -36,20 +36,20 @@
     "async": "^3.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-    "@babel/plugin-transform-named-capturing-groups-regex": "^7.4.5",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-transform-named-capturing-groups-regex": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/async": "^3.0.7",
     "@types/graphql": "^14.5.0",
     "@types/node": "^12.7.3",
     "@yarnpkg/pnpify": "^2.0.0-rc.18",
     "babel-preset-gatsby-package": "^0.2.16",
-    "gatsby": "^2.15.6",
+    "gatsby": "^2.19.17",
     "graphql": "^14.6.0",
-    "typescript": "^3.7.4",
+    "typescript": "^3.7.5",
     "utility-types": "^3.10.0"
   }
 }
