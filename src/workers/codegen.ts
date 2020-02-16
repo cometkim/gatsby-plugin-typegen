@@ -77,7 +77,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers');
         codegenOptions.plugins.push({
           typescriptResolvers: {
-            contextType: 'GatsbyResolverContext#gatsby-plugin-typegen/types',
+            contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
           },
         });
       }
