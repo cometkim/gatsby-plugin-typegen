@@ -9,7 +9,9 @@ Watch your queries and automatically generates TypeScript/Flow definitions.
 - [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
 - [x] Integrate Gatsby project with GraphQL & TypeSCript ecosystem.
 
-![Demonstration of auto-fixing](images/recording-20190909.gif)
+## Demo
+
+![Demonstration of auto-fixing](images/recording-2020-02-17.gif)
 
 ## Install
 
@@ -97,6 +99,26 @@ Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 You can use the extracted schema file for [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql)!
 
 ```js
+// gatsby-config.js
+
+module.exports = {
+  plugins: [
+    // ...
+    {
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        emitSchema: {
+          `src/__generated__/gatsby-introspection.json`: true,
+        },
+      },
+    },
+  ],
+};
+```
+
+```js
+// .eslintrc.js
+
 const path = require('path');
 
 module.exports = {
@@ -107,29 +129,72 @@ module.exports = {
     'graphql/template-strings': ['error', {
       env: 'relay',
       tagName: 'graphql',
-
-      // gatsby-config example:
-      // {
-      //   resolve: `gatsby-plugin-typegen`,
-      //   options: {
-      //     emitSchema: {
-      //       `src/__generated__/gatsby-introspection.json`: true,
-      //     },
-      //   },
-      // }
       schemaJsonFilepath: path.resolve(__dirname, 'src/__generated__gatsby-introspection.json'),
     }],
   },
 };
 ```
 
-### TypeScript plugin
-
-TODO: Add example
-
 ### VSCode extension
 
-TODO: Add example
+I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo) extension.
+
+(YES, even this isn't Apollo project)
+
+1. Install the [extension](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo).
+
+2. Configure plugin to emit schema and plugin documents.
+
+    ```js
+    // gatsby-config.js
+
+    module.exports = {
+      plugins: [
+        // ...
+        {
+          resolve: `gatsby-plugin-typegen`,
+          options: {
+            emitSchema: {
+              `src/__generated__/gatsby-introspection.json`: true,
+            },
+            emitPluginDocuments: {
+              `src/__generated__/gatsby-plugin-documents.graphql`: true,
+            },
+          },
+        },
+      ],
+    };
+    ```
+
+3. Create `apollo.config.js` file in project root.
+
+    ```js
+    // apollo.config.js
+
+    module.exports = {
+      client: {
+        name: 'your-project-name',
+        tagName: 'graphql',
+        includes: [
+          './src/**/*.{ts,tsx}',
+          './src/__generated__/gatsby-plugin-documents.graphql',
+        ],
+        service: {
+          name: 'GatsbyJS',
+          localSchemaFile: './src/__generated__/gatsby-schema.graphql',
+        }
+      },
+    }
+    ```
+
+4. Reload VSCode & Enjoy!\
+  ![VSCode extension preview](images/vscode-extension-preview.png)
+
+### TypeScript plugin
+
+- [ts-graphql-plugin](https://github.com/Quramy/ts-graphql-plugin)
+
+TODO: Add config example
 
 ## Available options
 
