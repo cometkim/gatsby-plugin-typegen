@@ -65,7 +65,10 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
     }
 
     if (extractionResult) {
-      const document = parseGraphQLSDL(componentPath, extractionResult.map(doc => doc.text).join(''), {});
+      const rawSdl = Array.isArray(extractionResult)
+        ? extractionResult.map(result => result.text).join('')
+        : extractionResult.text;
+      const document = parseGraphQLSDL(componentPath, rawSdl, { noLocation: true });
       trackedSource.set(componentPath, document);
     }
   });
