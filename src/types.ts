@@ -58,7 +58,7 @@ export type PluginOptions = {
   /**
    * Emit the GraphQL fragments declared by other plugins into the filesystem.
    */
-  emitPluginDocument?: {
+  emitPluginDocuments?: {
     [outputPath: string]: true,
   },
 } & DeprecatedPluginOptions;

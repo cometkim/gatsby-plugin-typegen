@@ -80,7 +80,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     outputPath,
     includeResolvers,
     emitSchema,
-    emitPluginDocument,
+    emitPluginDocuments,
     autoFix,
   } = pluginOptions;
 
@@ -108,7 +108,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     await writeFile(schemaOutputPath, output);
   }
 
-  const pluginDocuments = Object.values(emitPluginDocument).some(Boolean) && (
+  const pluginDocuments = Object.values(emitPluginDocuments).some(Boolean) && (
     stripIndent(
       Array.from(trackedSource.entries())
         .filter(([componentPath]) => !componentPath.startsWith(path.resolve(basePath, 'src')))
@@ -117,7 +117,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     )
   );
   if (pluginDocuments) {
-    for (const [documentOutputPath, documentOutputOptions] of Object.entries(emitPluginDocument)) {
+    for (const [documentOutputPath, documentOutputOptions] of Object.entries(emitPluginDocuments)) {
       if (!documentOutputOptions) continue;
       reporter.verbose(`[typegen] Emit Gatsby plugin documents into ${documentOutputPath}`);
       await writeFile(path.resolve(basePath, documentOutputPath), pluginDocuments);
