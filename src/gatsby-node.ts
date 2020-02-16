@@ -15,6 +15,18 @@ import { GatsbyKnownAction } from './gatsby-utils';
 // Plugin will track documents what is actually used by Gatsby.
 const trackedSource = new Map<string, Source>();
 
+// Put a dummy fragment.
+// Since the Gatsby watch all files from `src/`,
+// this is required to make Gatsby to not be panic on generated file.
+// See https://github.com/gatsbyjs/gatsby/blob/e1fd083e47/packages/gatsby/src/query/query-compiler.js#L125
+trackedSource.set('DUMMY_FRAGMENT', parseGraphQLSDL('', `
+  fragment ___GATSBY_PLUGIN_TYPEGEN_DUMMY_FRAGMENT___ on Query {
+    site { id }
+  }
+`, {
+  noLocation: true,
+}));
+
 // noop
 const noop = () => {};
 
