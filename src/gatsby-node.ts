@@ -153,12 +153,12 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
       pushCodegenTask();
 
-      if (pluginOptions.language === 'typescript' && componentPath.endsWith('.ts')) {
+      if (pluginOptions.language === 'typescript' && /\.tsx?$/.test(componentPath)) {
         pushInsertTypeTask({ file: componentPath });
       }
 
       // Flow version is bit more slower because should check the `@flow` comment exist.
-      if (pluginOptions.language === 'flow' && componentPath.endsWith('.js')) {
+      if (pluginOptions.language === 'flow' && /\.jsx?$/.test(componentPath)) {
         const content = await readFile(componentPath);
         const hasFlowComment = content.includes('@flow');
         reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment}`);
