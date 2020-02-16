@@ -60,7 +60,15 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
 
   const emitSchema: MapTrueToDefault<typeof emitSchemaOptionMap> = {};
   for (const [key, options] of Object.entries(emitSchemaOptionMap)) {
-    emitSchema[key] = options === true ? DEFAULT_SCHEMA_OUTPUT_OPTION : options;
+    if (options === true) {
+      emitSchema[key] = {
+        ...DEFAULT_SCHEMA_OUTPUT_OPTION,
+        // Infer format option based on filename.
+        format: /\.(gql|graphql)$/.test(key)
+          ? 'sdl'
+          : 'introspection',
+      };
+    }
   }
 
   if (schemaOutputPath) {

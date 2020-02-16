@@ -75,16 +75,13 @@ module.exports = {
 }
 ```
 
-### Emit schema into SDL file
+### Emit schema as GraphQL SDL
 
 ```js
 {
   options: {
     emitSchema: {
-      `src/__generated__/gatsby-schema.graphql`: {
-        // Default format is introspection JSON
-        format: `sdl`,
-      },
+      `src/__generated__/gatsby-schema.graphql`: true,
     },
   },
 }
