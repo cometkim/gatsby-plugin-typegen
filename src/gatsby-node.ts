@@ -7,7 +7,7 @@ import {
 import FileParser from 'gatsby/dist/query/file-parser';
 import { parseGraphQLSDL, Source } from '@graphql-toolkit/common';
 
-import { writeFile, UnwrapPromise, readFile, formatLanguage } from './common';
+import { writeFile, UnwrapPromise, readFile } from './common';
 import { setupCodegenWorker, setupInsertTypeWorker, InsertTypeTask } from './workers';
 import { requirePluginOptions, RequiredPluginOptions } from './plugin-utils';
 import { GatsbyKnownAction } from './gatsby-utils';
