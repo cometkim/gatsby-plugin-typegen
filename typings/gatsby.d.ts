@@ -32,7 +32,7 @@ declare module 'gatsby/dist/query/file-parser' {
 
   export default class FileParser {
     constructor(args: { parentSpan: Span });
-    parseFile(file: string, addError: Function): Promise<QueryExtractionResult[] | null>;
-    parseFiles(files: Array<string>, addError: Function): Promise<QueryExtractionResult[][]>;
+    parseFile(file: string, addError: Function): Promise<QueryExtractionResult | QueryExtractionResult[] | null>;
+    parseFiles(files: Array<string>, addError: Function): Promise<QueryExtractionResult[]>;
   }
 }
