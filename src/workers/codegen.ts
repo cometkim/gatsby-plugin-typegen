@@ -22,6 +22,7 @@ const DEFAULT_SHARED_CONFIG = {
 const DEFAULT_TYPESCRIPT_CONFIG = {
   avoidOptionals: true,
   immutableTypes: true,
+  maybeValue: 'T | undefined',
 } as const;
 
 const DEFAULT_FLOW_CONFIG = {
