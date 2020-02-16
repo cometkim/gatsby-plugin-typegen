@@ -74,8 +74,12 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations');
       codegenOptions.plugins.push({ typescriptOperations: DEFAULT_TYPESCRIPT_CONFIG });
       if (includeResolvers) {
-        codegenOptions.plugins.push({ typescriptResolvers: {} });
         codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers');
+        codegenOptions.plugins.push({
+          typescriptResolvers: {
+            contextType: 'GatsbyResolverContext#gatsby-plugin-typegen/types',
+          },
+        });
       }
     } else /* flow */ {
       codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow');
@@ -84,6 +88,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({ flowOperations: DEFAULT_FLOW_CONFIG });
       if (includeResolvers) {
         codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers');
+        // Where is contextType option????? WHERE
         codegenOptions.plugins.push({ flowResolvers: {} });
       }
     }
