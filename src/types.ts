@@ -5,7 +5,7 @@ export type PluginOptions = {
   /**
    * Prefer TypeScript by default, but you can switch to flow.
    *
-   * @default 'typesciprt'
+   * @default 'typescript'
    */
   language?: 'typescript' | 'flow',
 
