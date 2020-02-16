@@ -1,10 +1,33 @@
 {
   "name": "gatsby-plugin-typegen",
-  "version": "0.3.0-alpha.11",
+  "description": "Gatsby plugin that watch your static/page queries and automatically generates TypeScript/Flow definitions.",
+  "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/cometkim/gatsby-plugin-typegen.git",
-  "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
   "license": "MIT",
+  "author": {
+    "name": "Hyeseong Kim",
+    "email": "cometkim.kr@gmail.com",
+    "url": "https://github.com/cometkim"
+  },
+  "contributors": [
+    {
+      "name": "Derek Nguyen",
+      "url": "https://github.com/d4rekanguok"
+    },
+    {
+      "name": "Richard Sewell",
+      "url": "https://github.com/relefant"
+    }
+  ],
+  "homepage": "https://github.com/cometkim/gatsby-plugin-typegen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cometkim/gatsby-plugin-typegen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cometkim/gatsby-plugin-typegen/issues",
+    "email": "cometkim.kr@gmail.com"
+  },
   "keywords": [
     "gatsby",
     "gatsby-plugin",
