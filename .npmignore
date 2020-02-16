@@ -1,0 +1,13 @@
+/src
+/typings
+/.yarn
+/.vscode
+/.vim
+
+.editorconfig
+.gitignore
+.yarnrc
+.pnp.js
+
+*.config.js
+*.log

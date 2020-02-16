@@ -36,9 +36,6 @@ build/Release
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
-typings/
-
 # Optional npm cache directory
 .npm
 
@@ -61,4 +58,17 @@ typings/
 .next
 
 # JS artifacts
-/gatsby-node.js
+/*.js
+/*.d.ts
+/workers
+!/babel.config.js
+!/index.js
+!/.pnp.js
+
+# Yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+
+# Hack for flow
+/src/types.js

@@ -1,10 +1,19 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "target": "ESNext",
     "strict": true,
-    "lib": ["es2015"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "downlevelIteration": true
-  }
+    "downlevelIteration": true,
+    "declaration": true,
+    "outDir": "."
+  },
+  "include": [
+    "src",
+    "typings"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
 }
