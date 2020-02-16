@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-typegen",
-  "version": "0.3.0-alpha.7",
+  "version": "0.3.0-alpha.8",
   "main": "index.js",
   "repository": "https://github.com/cometkim/gatsby-plugin-typegen.git",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
@@ -12,8 +12,12 @@
   ],
   "scripts": {
     "tsc": "tsc --emitDeclarationOnly --skipLibCheck",
+    "flowtype": "cp -f src/types.ts src/types.js && babel src/types.js -d . --plugins module:@babel/plugin-transform-flow-comments",
     "build": "babel src -d . --extensions .ts,.tsx",
-    "prepublishOnly": "yarn build && yarn tsc"
+    "prepublish": "yarn build && yarn tsc && yarn flowtype"
+  },
+  "resolutions": {
+    "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
   },
   "peerDependencies": {
     "gatsby": ">=2.0.0",
@@ -37,6 +41,7 @@
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-transform-flow-comments": "^7.8.3",
     "@babel/plugin-transform-named-capturing-groups-regex": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@types/async": "^3.0.7",

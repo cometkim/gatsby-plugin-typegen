@@ -1186,6 +1186,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-flow-comments@npm:^7.8.3":
+  version: 7.8.3
+  resolution: "@babel/plugin-transform-flow-comments@npm:7.8.3"
+  dependencies:
+    "@babel/generator": ^7.8.3
+    "@babel/helper-plugin-utils": ^7.8.3
+    "@babel/plugin-syntax-flow": ^7.8.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 2/89f8b8e61bd169238bfbc834b288ade0db32ffef907ab2de9ec4c6724be35a79ec0e9aae0c3eae46eb0f94d0c39e74472c1274dadf73c219277d698d7f712c82
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-flow-strip-types@npm:^7.0.0":
   version: 7.4.4
   resolution: "@babel/plugin-transform-flow-strip-types@npm:7.4.4"
@@ -1367,14 +1380,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-named-capturing-groups-regex@npm:^7.8.3":
-  version: 7.8.3
-  resolution: "@babel/plugin-transform-named-capturing-groups-regex@npm:7.8.3"
+"@babel/plugin-transform-named-capturing-groups-regex@npm:7.4.4":
+  version: 7.4.4
+  resolution: "@babel/plugin-transform-named-capturing-groups-regex@npm:7.4.4"
   dependencies:
-    "@babel/helper-create-regexp-features-plugin": ^7.8.3
+    regexp-tree: ^0.1.0
   peerDependencies:
     "@babel/core": ^7.0.0
-  checksum: 2/ecd54239cc288bdb29c6194459323059c26e21248bac28398055e29e340a623c14fd69a94583886d47b2d062c043bb25d7f1aa00908addf4e5b7194b4aad91db
+  checksum: 2/1b99bf0833f63340e052dc243bbdf76edb961afca1798c32e1d78d5ef4e9016cdceae18b49d22c04d998a0ab9ab7c97c2ae71728a8374d657afcffbf07d2a5c3
   languageName: node
   linkType: hard
 
@@ -7453,6 +7466,7 @@ fsevents@~2.1.1:
     "@babel/core": ^7.8.4
     "@babel/plugin-proposal-nullish-coalescing-operator": ^7.8.3
     "@babel/plugin-proposal-optional-chaining": ^7.8.3
+    "@babel/plugin-transform-flow-comments": ^7.8.3
     "@babel/plugin-transform-named-capturing-groups-regex": ^7.8.3
     "@babel/preset-typescript": ^7.8.3
     "@graphql-codegen/core": ^1.12.2
@@ -12890,6 +12904,15 @@ fsevents@~2.1.1:
     extend-shallow: ^3.0.2
     safe-regex: ^1.1.0
   checksum: 2/3d6d95b4fda3cabe7222b3800876491825a865ae6ca4c90bb10fd0f6442d0c57d180657bb65358b4509bdd1cecad1bd2d23e7d15a69f9c523f501cc4431b950b
+  languageName: node
+  linkType: hard
+
+"regexp-tree@npm:^0.1.0":
+  version: 0.1.19
+  resolution: "regexp-tree@npm:0.1.19"
+  bin:
+    regexp-tree: bin/regexp-tree
+  checksum: 2/50805f1a88564f494b6efc8ecc7ca1272fa26fad041f38cece2d170343ce0f3bd9eb9a0e7e3318063f7b04c9ac34a2e4ecb608b5330541d4f6e629584da146d5
   languageName: node
   linkType: hard
 

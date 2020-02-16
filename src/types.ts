@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo, GraphQLOutputType, IntrospectionOptions, BuildSchemaOptions } from 'gatsby/graphql';
+/* @flow */
 
 export type PluginOptions = {
 
