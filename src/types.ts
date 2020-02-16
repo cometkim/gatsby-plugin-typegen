@@ -54,6 +54,13 @@ export type PluginOptions = {
   emitSchema?: {
     [outputPath: string]: true | SchemaOutputOptions,
   },
+
+  /**
+   * Emit the GraphQL fragments declared by other plugins into the filesystem.
+   */
+  emitPluginDocument?: {
+    [outputPath: string]: true,
+  },
 } & DeprecatedPluginOptions;
 
 export type SchemaOutputOptions = {

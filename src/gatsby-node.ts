@@ -1,3 +1,5 @@
+import path from 'path';
+import { stripIndent } from 'common-tags';
 import { GatsbyNode } from 'gatsby';
 import {
   printSchema,
@@ -78,13 +80,16 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     outputPath,
     includeResolvers,
     emitSchema,
+    emitPluginDocument,
     autoFix,
   } = pluginOptions;
 
   reporter.verbose('[typegen] End-up listening on query extraction.');
   unsubscribeQueryExtraction();
 
-  const schema = store.getState().schema as GraphQLSchema;
+  const { program, schema: _schema } = store.getState();
+  const basePath = program.directory as string;
+  const schema = _schema as GraphQLSchema;
 
   for (const [schemaOutputPath, schemaOutputOptions] of Object.entries(emitSchema)) {
     const { commentDescriptions = true } = schemaOutputOptions;
@@ -101,6 +106,22 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
     reporter.verbose(`[typegen] Emit Gatsby schema into ${schemaOutputPath}`);
     await writeFile(schemaOutputPath, output);
+  }
+
+  const pluginDocuments = Object.values(emitPluginDocument).some(Boolean) && (
+    stripIndent(
+      Array.from(trackedSource.entries())
+        .filter(([componentPath]) => !componentPath.startsWith(path.resolve(basePath, 'src')))
+        .map(([, source]) => source.rawSDL)
+        .join('\n'),
+    )
+  );
+  if (pluginDocuments) {
+    for (const [documentOutputPath, documentOutputOptions] of Object.entries(emitPluginDocument)) {
+      if (!documentOutputOptions) continue;
+      reporter.verbose(`[typegen] Emit Gatsby plugin documents into ${documentOutputPath}`);
+      await writeFile(path.resolve(basePath, documentOutputPath), pluginDocuments);
+    }
   }
 
   const codegenWorker = setupCodegenWorker({

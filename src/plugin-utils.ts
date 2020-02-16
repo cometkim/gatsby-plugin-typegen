@@ -53,6 +53,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     includeResolvers = false,
     autoFix = true,
     emitSchema: emitSchemaOptionMap = {},
+    emitPluginDocument = {},
     schemaOutputPath,
     typeDefsOutputPath,
   } = pluginOptions;
@@ -93,5 +94,6 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     includeResolvers,
     autoFix,
     emitSchema,
+    emitPluginDocument,
   };
 };

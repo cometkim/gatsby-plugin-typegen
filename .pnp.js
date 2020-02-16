@@ -52,11 +52,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-toolkit/common", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:0.9.7"],
             ["@graphql-toolkit/core", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:0.9.7"],
             ["@types/async", "npm:3.0.7"],
+            ["@types/common-tags", "npm:1.8.0"],
             ["@types/graphql", "npm:14.5.0"],
             ["@types/node", "npm:12.7.3"],
             ["@yarnpkg/pnpify", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:2.0.0-rc.18"],
             ["async", "npm:3.1.1"],
             ["babel-preset-gatsby-package", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:0.2.16"],
+            ["common-tags", "npm:1.8.0"],
             ["gatsby", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:2.19.17"],
             ["graphql", "npm:14.6.0"],
             ["react", null],
@@ -3594,6 +3596,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-color-name-npm-1.1.1-00b0925070-2.zip/node_modules/@types/color-name/",
           "packageDependencies": [
             ["@types/color-name", "npm:1.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/common-tags", [
+        ["npm:1.8.0", {
+          "packageLocation": "./.yarn/cache/@types-common-tags-npm-1.8.0-812cad42b1-2.zip/node_modules/@types/common-tags/",
+          "packageDependencies": [
+            ["@types/common-tags", "npm:1.8.0"]
           ],
           "linkType": "HARD",
         }]
@@ -9456,11 +9467,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-toolkit/common", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:0.9.7"],
             ["@graphql-toolkit/core", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:0.9.7"],
             ["@types/async", "npm:3.0.7"],
+            ["@types/common-tags", "npm:1.8.0"],
             ["@types/graphql", "npm:14.5.0"],
             ["@types/node", "npm:12.7.3"],
             ["@yarnpkg/pnpify", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:2.0.0-rc.18"],
             ["async", "npm:3.1.1"],
             ["babel-preset-gatsby-package", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:0.2.16"],
+            ["common-tags", "npm:1.8.0"],
             ["gatsby", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:2.19.17"],
             ["graphql", "npm:14.6.0"],
             ["react", null],

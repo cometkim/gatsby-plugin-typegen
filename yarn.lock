@@ -2364,6 +2364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/common-tags@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "@types/common-tags@npm:1.8.0"
+  checksum: 2/d6dce803763646d3746a64373c3960b69c528bd67f6937e4c39747c97ecad9e633c92a78dd2b47f4668b81a2e5a8792fb4fe02ca5f3d42106acd555e794c788a
+  languageName: node
+  linkType: hard
+
 "@types/configstore@npm:^2.1.1":
   version: 2.1.1
   resolution: "@types/configstore@npm:2.1.1"
@@ -7479,11 +7486,13 @@ fsevents@~2.1.1:
     "@graphql-toolkit/common": ^0.9.7
     "@graphql-toolkit/core": ^0.9.7
     "@types/async": ^3.0.7
+    "@types/common-tags": ^1.8.0
     "@types/graphql": ^14.5.0
     "@types/node": ^12.7.3
     "@yarnpkg/pnpify": ^2.0.0-rc.18
     async: ^3.1.1
     babel-preset-gatsby-package: ^0.2.16
+    common-tags: ^1.8.0
     gatsby: ^2.19.17
     graphql: ^14.6.0
     typescript: ^3.7.5
