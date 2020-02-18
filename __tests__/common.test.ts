@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
 import { visit } from 'graphql';
-import { deduplicateFragmentFromDocuments } from '~/src/common';
+import { deduplicateFragmentFromDocuments } from '../src/common';
 
 const readFile = promisify(fs.readFile);
 

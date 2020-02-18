@@ -8094,7 +8094,6 @@ fsevents@^1.2.7:
     jest: ^25.1.0
     typescript: ^3.7.5
     utility-types: ^3.10.0
-    ~: "link:."
   peerDependencies:
     gatsby: ">=2.0.0"
     graphql: ^0.13.0 || ^14.0.0
@@ -17542,9 +17541,3 @@ typescript@^3.7.5:
   checksum: 2/c5ed06d0147f6455c5ee19ce44364fee0fe75ed674dd36514f6ab0b78e8e94f2d268716340a6ce6a666941aba08cf36e86441b21ae9872a96d2dac9c3af03a31
   languageName: node
   linkType: hard
-
-"~@link:.::locator=gatsby-plugin-typegen%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "~@link:.::locator=gatsby-plugin-typegen%40workspace%3A."
-  languageName: node
-  linkType: soft

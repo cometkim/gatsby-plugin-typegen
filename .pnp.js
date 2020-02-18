@@ -67,8 +67,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.1.0"],
             ["react", null],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"],
-            ["utility-types", "npm:3.10.0"],
-            ["~", "link:.::locator=gatsby-plugin-typegen%40workspace%3A."]
+            ["utility-types", "npm:3.10.0"]
           ],
           "packagePeers": [
             "gatsby",
@@ -10207,8 +10206,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:25.1.0"],
             ["react", null],
             ["typescript", "patch:typescript@npm%3A3.7.5#builtin<compat/typescript>::version=3.7.5&hash=273569"],
-            ["utility-types", "npm:3.10.0"],
-            ["~", "link:.::locator=gatsby-plugin-typegen%40workspace%3A."]
+            ["utility-types", "npm:3.10.0"]
           ],
           "packagePeers": [
             "gatsby",
@@ -20445,16 +20443,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["zen-observable", "npm:0.8.14"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["~", [
-        ["link:.::locator=gatsby-plugin-typegen%40workspace%3A.", {
-          "packageLocation": "./",
-          "packageDependencies": [
-            ["~", "link:.::locator=gatsby-plugin-typegen%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]]
     ]
