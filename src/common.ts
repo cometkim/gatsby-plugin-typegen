@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { dirname } from 'path';
 import { promisify } from 'util';
+import { Source } from '@graphql-toolkit/common';
 
 const _mkdir = promisify(fs.mkdir);
 const _readFile = promisify(fs.readFile);
@@ -19,3 +20,34 @@ export const formatLanguage = (lang: 'typescript' | 'flow') => (
 );
 
 export type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
+
+export function deduplicateFragmentFromDocuments(documents: Source[]) {
+  const existFragmentNames = new Set<string>();
+  return documents.map(source => {
+    const { document } = source;
+
+    // Nothing to do for other sources
+    if (!document) {
+      return source;
+    }
+
+    const uniqDefinitions = document.definitions.filter(def => {
+      // De-dup only cares about fragments
+      if (def.kind !== 'FragmentDefinition') {
+        return true;
+      }
+      const fragmentName = def.name.value;
+      const duplicated = existFragmentNames.has(fragmentName);
+      if (!duplicated) existFragmentNames.add(fragmentName);
+      return !duplicated;
+    });
+
+    return {
+      ...source,
+      document: {
+        ...document,
+        definitions: uniqDefinitions,
+      },
+    };
+  });
+}

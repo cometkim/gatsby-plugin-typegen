@@ -62,6 +62,7 @@ jspm_packages/
 /*.d.ts
 /workers
 !/babel.config.js
+!/jest.config.js
 !/index.js
 !/.pnp.js
 
