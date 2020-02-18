@@ -97,7 +97,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 
     try {
       const result = await codegen(codegenOptions);
-      await writeFile(outputPath, result);
+      await writeFile(outputPath, '// eslint-disable\n\n' + result);
     } catch (e) {
       reporter.panicOnBuild('[typegen] An error on codegen', e);
     }
