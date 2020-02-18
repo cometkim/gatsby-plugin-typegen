@@ -7,7 +7,11 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "declaration": true,
-    "outDir": "."
+    "outDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": [
     "src",

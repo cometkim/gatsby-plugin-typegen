@@ -34,6 +34,7 @@
     "typescript"
   ],
   "scripts": {
+    "test": "jest",
     "tsc": "tsc --emitDeclarationOnly --skipLibCheck",
     "flowtype": "cp -f src/types.ts src/types.js && babel src/types.js -d . --plugins module:@babel/plugin-transform-flow-comments",
     "build": "babel src -d . --extensions .ts,.tsx",
@@ -58,7 +59,8 @@
     "@graphql-toolkit/common": "^0.9.7",
     "@graphql-toolkit/core": "^0.9.7",
     "async": "^3.1.1",
-    "common-tags": "^1.8.0"
+    "common-tags": "^1.8.0",
+    "~": "link:."
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -68,14 +70,18 @@
     "@babel/plugin-transform-flow-comments": "^7.8.3",
     "@babel/plugin-transform-named-capturing-groups-regex": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@babel/runtime": "^7.8.4",
     "@types/async": "^3.0.7",
     "@types/common-tags": "^1.8.0",
     "@types/graphql": "^14.5.0",
-    "@types/node": "^12.7.3",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.1",
     "@yarnpkg/pnpify": "^2.0.0-rc.18",
+    "babel-jest": "^25.1.0",
     "babel-preset-gatsby-package": "^0.2.16",
     "gatsby": "^2.19.17",
     "graphql": "^14.6.0",
+    "jest": "^25.1.0",
     "typescript": "^3.7.5",
     "utility-types": "^3.10.0"
   }
