@@ -7,7 +7,7 @@ Watch your queries and automatically generates TypeScript/Flow definitions.
 - [x] Schema extraction
 - [x] Generates type definitions using [graphql-codegen](https://graphql-code-generator.com/)
 - [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
-- [x] Integrate Gatsby project with GraphQL & TypeSCript ecosystem.
+- [x] Integrate Gatsby project with GraphQL & TypeScript ecosystem.
 
 ## Demo
 
