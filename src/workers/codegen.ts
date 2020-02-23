@@ -72,7 +72,12 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript');
       codegenOptions.plugins.push({ typescript: DEFAULT_TYPESCRIPT_CONFIG });
       codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations');
-      codegenOptions.plugins.push({ typescriptOperations: DEFAULT_TYPESCRIPT_CONFIG });
+      codegenOptions.plugins.push({
+        typescriptOperations: {
+          ...DEFAULT_TYPESCRIPT_CONFIG,
+          exportFragmentSpreadSubTypes: true
+        }
+      });
       if (includeResolvers) {
         codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers');
         codegenOptions.plugins.push({
@@ -85,7 +90,12 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow');
       codegenOptions.plugins.push({ flow: DEFAULT_FLOW_CONFIG });
       codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations');
-      codegenOptions.plugins.push({ flowOperations: DEFAULT_FLOW_CONFIG });
+      codegenOptions.plugins.push({
+        flowOperations: {
+          ...DEFAULT_FLOW_CONFIG,
+          exportFragmentSpreadSubTypes: true
+        }
+      });
       if (includeResolvers) {
         codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers');
         // Where is contextType option????? WHERE
