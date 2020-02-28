@@ -8,6 +8,15 @@ import { delay, writeFile, formatLanguage } from '../common';
 
 const CARGO_DELAY = 1000 as const;
 
+// const TYPEDEF_EXPORT_NODE_REGEXP = /export((.*)(\{|;)($|\s))/g;
+// const TYPEDEF_EXPORT_NODE_REPLACER = 'declare$1';
+
+// const TYPEDEF_MAYBE_NODE_REGEXP = /.*(type Maybe)/;
+// const TYPEDEF_MAYBE_NODE_REPLACER = '$1';
+
+// const TYPEDEF_SCALARS_NODE_REGEXP = /.*(type Scalars)/;
+// const TYPEDEF_SCALARS_NODE_REPLACER = '$1';
+
 // Preset configurations to ensure compatibility with Gatsby.
 const DEFAULT_SHARED_CONFIG = {
   namingConvention: {
@@ -44,6 +53,8 @@ interface SetupCodegenWorkerFn {
     reporter: Reporter,
     outputPath: string,
     language: 'typescript' | 'flow',
+    declarationKind: 'type' | 'interface',
+    declarationScope: 'module' | 'global',
     includeResolvers: boolean,
   }): CodegenWorker;
 }
@@ -51,6 +62,8 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   schemaAst,
   outputPath,
   language,
+  declarationKind,
+  declarationScope,
   includeResolvers,
   reporter,
 }) => {
@@ -70,12 +83,19 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
     };
     if (language === 'typescript') {
       codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript');
-      codegenOptions.plugins.push({ typescript: DEFAULT_TYPESCRIPT_CONFIG });
+      codegenOptions.plugins.push({
+        typescript: {
+          ...DEFAULT_TYPESCRIPT_CONFIG,
+          declarationKind,
+        },
+      });
       codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations');
       codegenOptions.plugins.push({
         typescriptOperations: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
-          exportFragmentSpreadSubTypes: true
+          declarationKind,
+          // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
+          exportFragmentSpreadSubTypes: true,
         }
       });
       if (includeResolvers) {
@@ -83,31 +103,55 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         codegenOptions.plugins.push({
           typescriptResolvers: {
             contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
+            // FIXME: Expected this option exist for this plugin, but it doesn't (shrug)
+            // declarationKind,
           },
         });
       }
     } else /* flow */ {
       codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow');
-      codegenOptions.plugins.push({ flow: DEFAULT_FLOW_CONFIG });
+      codegenOptions.plugins.push({
+        flow: {
+          ...DEFAULT_FLOW_CONFIG,
+          declarationKind,
+        },
+      });
       codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations');
       codegenOptions.plugins.push({
         flowOperations: {
           ...DEFAULT_FLOW_CONFIG,
-          exportFragmentSpreadSubTypes: true
+          declarationKind,
+          // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
+          exportFragmentSpreadSubTypes: true,
         }
       });
       if (includeResolvers) {
         codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers');
         // Where is contextType option????? WHERE
-        codegenOptions.plugins.push({ flowResolvers: {} });
+        codegenOptions.plugins.push({
+          flowResolvers: {
+            declarationKind,
+          },
+        });
       }
     }
 
     reporter.verbose(`[typegen] Generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})`);
 
     try {
-      const result = await codegen(codegenOptions);
-      await writeFile(outputPath, '/* eslint-disable */\n\n' + result);
+      let result = await codegen(codegenOptions);
+
+      result = '/* eslint-disable */\n\n' + result;
+
+      if (declarationScope === 'global') {
+        // TODO:
+        // result = result
+        //   .replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER)
+        //   .replace(TYPEDEF_MAYBE_NODE_REGEXP, TYPEDEF_MAYBE_NODE_REPLACER)
+        //   .replace(TYPEDEF_SCALARS_NODE_REGEXP, TYPEDEF_SCALARS_NODE_REPLACER);
+      }
+
+      await writeFile(outputPath, result);
     } catch (e) {
       reporter.panicOnBuild('[typegen] An error on codegen', e);
     }

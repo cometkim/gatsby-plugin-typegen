@@ -56,6 +56,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     emitPluginDocuments = {},
     schemaOutputPath,
     typeDefsOutputPath,
+    declarationConfig,
   } = pluginOptions;
 
   const emitSchema: MapTrueToDefault<typeof emitSchemaOptionMap> = {};

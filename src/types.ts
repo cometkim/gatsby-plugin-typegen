@@ -1,5 +1,9 @@
 /* @flow */
 
+type GatsbyTypes$Asdf = {
+
+};
+
 export type PluginOptions = {
 
   /**
@@ -8,6 +12,11 @@ export type PluginOptions = {
    * @default 'typescript'
    */
   language?: 'typescript' | 'flow',
+
+  /**
+   *
+   */
+  declarationConfig?: DeclarationConfigOptions;
 
   /**
    * Path to save generated typeDefs file.
@@ -81,6 +90,37 @@ export type SchemaOutputOptions = {
    */
   commentDescriptions?: boolean,
 };
+
+export type DeclarationConfigOptions = {
+  kind: 'type' | 'interface',
+} & (
+  | {
+    scope: 'module',
+
+    /**
+     * @default undefined
+     */
+    prefix?: string;
+  }
+  | {
+    scope: 'namespace',
+
+    /**
+     * @default 'GatsbyTypes'
+     */
+    namespace?: string,
+
+    /**
+     * @default undefined
+     */
+    prefix?: string;
+
+  }
+  | {
+    scope: 'global',
+    prefix: string;
+  }
+);
 
 export type DeprecatedPluginOptions = {
   /**
