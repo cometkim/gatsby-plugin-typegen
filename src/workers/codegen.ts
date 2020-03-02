@@ -5,6 +5,7 @@ import { codegen } from '@graphql-codegen/core';
 import { Source } from '@graphql-toolkit/common';
 
 import { delay, writeFile, formatLanguage } from '../common';
+import { RequiredPluginOptions } from '../plugin-utils';
 
 const CARGO_DELAY = 1000 as const;
 
@@ -52,18 +53,19 @@ interface SetupCodegenWorkerFn {
     schemaAst: GraphQLSchema,
     reporter: Reporter,
     outputPath: string,
-    language: 'typescript' | 'flow',
-    declarationKind: 'type' | 'interface',
-    declarationScope: 'module' | 'global',
+    languageOption: RequiredPluginOptions['languageOption'],
     includeResolvers: boolean,
   }): CodegenWorker;
 }
 export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   schemaAst,
   outputPath,
-  language,
-  declarationKind,
-  declarationScope,
+  languageOption: {
+    language,
+    scope,
+    prefix: typesPrefix,
+    kind: declarationKind,
+  },
   includeResolvers,
   reporter,
 }) => {
@@ -86,6 +88,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({
         typescript: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
+          typesPrefix,
           declarationKind,
         },
       });
@@ -93,6 +96,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({
         typescriptOperations: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
+          typesPrefix,
           declarationKind,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
@@ -103,6 +107,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         codegenOptions.plugins.push({
           typescriptResolvers: {
             contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
+            typesPrefix,
             // FIXME: Expected this option exist for this plugin, but it doesn't (shrug)
             // declarationKind,
           },
@@ -113,6 +118,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({
         flow: {
           ...DEFAULT_FLOW_CONFIG,
+          typesPrefix,
           declarationKind,
         },
       });
@@ -120,6 +126,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({
         flowOperations: {
           ...DEFAULT_FLOW_CONFIG,
+          typesPrefix,
           declarationKind,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
@@ -130,6 +137,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         // Where is contextType option????? WHERE
         codegenOptions.plugins.push({
           flowResolvers: {
+            typesPrefix,
             declarationKind,
           },
         });
@@ -143,13 +151,20 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 
       result = '/* eslint-disable */\n\n' + result;
 
-      if (declarationScope === 'global') {
-        // TODO:
-        // result = result
-        //   .replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER)
-        //   .replace(TYPEDEF_MAYBE_NODE_REGEXP, TYPEDEF_MAYBE_NODE_REPLACER)
-        //   .replace(TYPEDEF_SCALARS_NODE_REGEXP, TYPEDEF_SCALARS_NODE_REPLACER);
+      // TODO: 구현
+      // - global 일 때: export -> declare
+      // - namespace 일 때:
+      //   1. remove export node
+      //   2. create namespace node & wrap
+      switch (scope) {
+        case 'global':
+        case 'namespace':
       }
+
+      // result = result
+      //   .replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER)
+      //   .replace(TYPEDEF_MAYBE_NODE_REGEXP, TYPEDEF_MAYBE_NODE_REPLACER)
+      //   .replace(TYPEDEF_SCALARS_NODE_REGEXP, TYPEDEF_SCALARS_NODE_REPLACER);
 
       await writeFile(outputPath, result);
     } catch (e) {

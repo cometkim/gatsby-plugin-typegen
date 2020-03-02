@@ -1,9 +1,5 @@
 /* @flow */
 
-type GatsbyTypes$Asdf = {
-
-};
-
 export type PluginOptions = {
 
   /**
@@ -11,12 +7,8 @@ export type PluginOptions = {
    *
    * @default 'typescript'
    */
-  language?: 'typescript' | 'flow',
-
-  /**
-   *
-   */
-  declarationConfig?: DeclarationConfigOptions;
+  // language?: LanguageOptions | LanguageOptions['language'],
+  language?: LanguageOptions | 'typescript' | 'flow',
 
   /**
    * Path to save generated typeDefs file.
@@ -91,36 +83,61 @@ export type SchemaOutputOptions = {
   commentDescriptions?: boolean,
 };
 
-export type DeclarationConfigOptions = {
-  kind: 'type' | 'interface',
-} & (
-  | {
-    scope: 'module',
+type ModuleScope = {
+  scope: 'module',
 
-    /**
-     * @default undefined
-     */
-    prefix?: string;
-  }
-  | {
-    scope: 'namespace',
+  /**
+   * @default ''
+   */
+  prefix?: string;
+};
 
-    /**
-     * @default 'GatsbyTypes'
-     */
-    namespace?: string,
+type NamespaceScope = {
+  scope: 'namespace',
 
-    /**
-     * @default undefined
-     */
-    prefix?: string;
+  /**
+   * @default ''
+   */
+  prefix?: string;
 
-  }
-  | {
-    scope: 'global',
-    prefix: string;
-  }
+  /**
+   * @default 'GatsbyTypes'
+   */
+  namespace?: string;
+};
+
+type GlobalScope = {
+  scope: 'global',
+
+  /**
+   * Prefix is required for global scope declaration.
+   * Because there must be name conflict in generated type names.
+   */
+  prefix: string;
+};
+
+type LanguageScopeConfig = (
+  | ModuleScope
+  | NamespaceScope
+  | GlobalScope
 );
+
+export type LanguageOptions = {
+
+  /**
+   * Prefer TypeScript by default, but you can switch to flow.
+   *
+   * @default 'typescript'
+   */
+  language?: 'typescript' | 'flow',
+
+  /**
+   * Can specify the prefer syntax
+   *
+   * @default 'type'
+   */
+  kind?: 'type' | 'interface',
+} & LanguageScopeConfig;
 
 export type DeprecatedPluginOptions = {
   /**

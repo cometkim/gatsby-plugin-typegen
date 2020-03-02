@@ -2,7 +2,12 @@ import path from 'path';
 import { Required } from 'utility-types';
 import { Store, Reporter } from 'gatsby';
 
-import { PluginOptions, DeprecatedPluginOptions, SchemaOutputOptions } from './types';
+import {
+  PluginOptions,
+  LanguageOptions,
+  SchemaOutputOptions,
+  DeprecatedPluginOptions,
+} from './types';
 import { formatLanguage } from './common';
 
 // No parsing by default, save introspection result file as json format.
@@ -11,18 +16,37 @@ const DEFAULT_SCHEMA_OUTPUT_OPTION = {
   commentDescriptions: true,
 } as const;
 
-type MapTrueToDefault<T> = T extends { [key: string]: infer V }
+type MapEmitSchemaOption<T> = T extends { [key: string]: infer V }
   ? V extends true
   ? { [key: string]: typeof DEFAULT_SCHEMA_OUTPUT_OPTION }
   : { [key: string]: SchemaOutputOptions }
   : never;
 
+const DEFAULT_LANGUAGE_OPTION = {
+  kind: 'type',
+  scope: 'module',
+  prefix: '',
+} as const;
+
+type MapLanguageOption<T> = T extends infer TOption
+  ? TOption extends 'typescript'
+  ? { language: 'typescript' } & typeof DEFAULT_LANGUAGE_OPTION
+  : TOption extends 'flow'
+  ? { language: 'flow' } & typeof DEFAULT_LANGUAGE_OPTION
+  : Required<LanguageOptions>
+  : never;
+
 export type RequiredPluginOptions = Required<
   Omit<
     PluginOptions,
-    keyof DeprecatedPluginOptions | 'emitSchema'
+    (
+      | keyof DeprecatedPluginOptions
+      | 'language'
+      | 'emitSchema'
+    )
   > & {
-    emitSchema: MapTrueToDefault<PluginOptions['emitSchema']>
+    languageOption: MapLanguageOption<PluginOptions['language']>
+    emitSchema: MapEmitSchemaOption<PluginOptions['emitSchema']>
   }
 >;
 
@@ -50,16 +74,27 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
 
   const {
     language = 'typescript',
+    emitSchema: emitSchemaOptionMap = {},
     includeResolvers = false,
     autoFix = true,
-    emitSchema: emitSchemaOptionMap = {},
     emitPluginDocuments = {},
     schemaOutputPath,
     typeDefsOutputPath,
-    declarationConfig,
   } = pluginOptions;
 
-  const emitSchema: MapTrueToDefault<typeof emitSchemaOptionMap> = {};
+  const languageOption: MapLanguageOption<typeof language> =
+    typeof language === 'string' ? { language, ...DEFAULT_LANGUAGE_OPTION }
+    : {
+      language: language.language ?? 'typescript',
+      kind: language.kind ?? 'type',
+      scope: language.scope ?? 'module',
+      prefix: language.prefix ?? '',
+      ...language.scope === 'namespace' && {
+        namespace: language.namespace ?? 'GatsbyTypes',
+      },
+    };
+
+  const emitSchema: MapEmitSchemaOption<typeof emitSchemaOptionMap> = {};
   for (const [key, options] of Object.entries(emitSchemaOptionMap)) {
     if (options === true) {
       emitSchema[key] = {
@@ -82,23 +117,33 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
   }
 
   const outputPath = pluginOptions.outputPath || typeDefsOutputPath || (
-    language === 'typescript'
+    languageOption.language === 'typescript'
     ? path.resolve(basePath, 'src/__generated__/gatsby-types.ts')
     : path.resolve(basePath, 'src/__generated__/gatsby-types.js')
   );
 
-  if ((language === 'typescript') !== (outputPath.endsWith('ts'))) {
+  if ((languageOption.language === 'typescript') !== /\.tsx?$/.test(outputPath)) {
     reporter.warn(
       reporter.stripIndent(
       `The language you specified is not match to file extension.
-        - language: ${formatLanguage(language)}
+        - language: ${formatLanguage(languageOption.language)}
         - outputPath: ${outputPath}
       `),
     );
   }
 
+  if (languageOption.scope === 'global' && !languageOption.prefix) {
+    // FIXME: 영작
+    reporter.panicOnBuild('...');
+  }
+
+  if (languageOption.scope !== 'module' && !outputPath.endsWith('.d.ts')) {
+    // FIXME: 영작
+    reporter.warn('...')
+  }
+
   return {
-    language,
+    languageOption,
     outputPath,
     includeResolvers,
     autoFix,

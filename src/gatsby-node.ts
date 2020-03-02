@@ -79,7 +79,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   reporter,
 }) => {
   const {
-    language,
+    languageOption,
+    languageOption: { language },
     outputPath,
     includeResolvers,
     emitSchema,
@@ -129,7 +130,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
   const codegenWorker = setupCodegenWorker({
     schemaAst: schema,
-    language,
+    languageOption,
     outputPath,
     includeResolvers,
     reporter,
@@ -178,12 +179,12 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
       pushCodegenTask();
 
-      if (pluginOptions.language === 'typescript' && /\.tsx?$/.test(componentPath)) {
+      if (language === 'typescript' && /\.tsx?$/.test(componentPath)) {
         pushInsertTypeTask({ file: componentPath });
       }
 
       // Flow version is bit more slower because should check the `@flow` comment exist.
-      if (pluginOptions.language === 'flow' && /\.jsx?$/.test(componentPath)) {
+      if (language === 'flow' && /\.jsx?$/.test(componentPath)) {
         const content = await readFile(componentPath);
         const hasFlowComment = content.includes('@flow');
         reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment}`);
