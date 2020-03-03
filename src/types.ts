@@ -7,8 +7,17 @@ export type PluginOptions = {
    *
    * @default 'typescript'
    */
-  // language?: LanguageOptions | LanguageOptions['language'],
-  language?: LanguageOptions | 'typescript' | 'flow',
+  language?: 'typescript' | 'flow',
+
+  /**
+   * Namespace is required to avoid conflict on generated types and other global declarations.
+   *
+   * Flow will use $ prefix as fallback.
+   * e.g) `type GatsbyTypes$MySiteQuery = ...`
+   *
+   * @default 'GatsbyTypes'
+   */
+  namespace?: string;
 
   /**
    * Path to save generated typeDefs file.
@@ -82,62 +91,6 @@ export type SchemaOutputOptions = {
    */
   commentDescriptions?: boolean,
 };
-
-type ModuleScope = {
-  scope: 'module',
-
-  /**
-   * @default ''
-   */
-  prefix?: string;
-};
-
-type NamespaceScope = {
-  scope: 'namespace',
-
-  /**
-   * @default ''
-   */
-  prefix?: string;
-
-  /**
-   * @default 'GatsbyTypes'
-   */
-  namespace?: string;
-};
-
-type GlobalScope = {
-  scope: 'global',
-
-  /**
-   * Prefix is required for global scope declaration.
-   * Because there must be name conflict in generated type names.
-   */
-  prefix: string;
-};
-
-type LanguageScopeConfig = (
-  | ModuleScope
-  | NamespaceScope
-  | GlobalScope
-);
-
-export type LanguageOptions = {
-
-  /**
-   * Prefer TypeScript by default, but you can switch to flow.
-   *
-   * @default 'typescript'
-   */
-  language?: 'typescript' | 'flow',
-
-  /**
-   * Can specify the prefer syntax
-   *
-   * @default 'type'
-   */
-  kind?: 'type' | 'interface',
-} & LanguageScopeConfig;
 
 export type DeprecatedPluginOptions = {
   /**

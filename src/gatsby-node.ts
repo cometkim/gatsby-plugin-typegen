@@ -79,8 +79,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   reporter,
 }) => {
   const {
-    languageOption,
-    languageOption: { language },
+    language,
+    namespace,
     outputPath,
     includeResolvers,
     emitSchema,
@@ -130,7 +130,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
   const codegenWorker = setupCodegenWorker({
     schemaAst: schema,
-    languageOption,
+    language,
+    namespace,
     outputPath,
     includeResolvers,
     reporter,
@@ -147,7 +148,11 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   if (process.env.NODE_ENV === 'development') {
     reporter.verbose('[typegen][dev] Watching query changes and re-run workers');
 
-    const insertTypeWorker = autoFix && setupInsertTypeWorker({ reporter });
+    const insertTypeWorker = autoFix && setupInsertTypeWorker({
+      language,
+      namespace,
+      reporter,
+    });
     const pushInsertTypeTask = (task: InsertTypeTask) => {
       if (!insertTypeWorker) {
         return;

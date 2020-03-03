@@ -33,6 +33,7 @@ const DEFAULT_TYPESCRIPT_CONFIG = {
   avoidOptionals: true,
   immutableTypes: true,
   maybeValue: 'T | undefined',
+  noExport: true,
 } as const;
 
 const DEFAULT_FLOW_CONFIG = {
@@ -52,20 +53,17 @@ interface SetupCodegenWorkerFn {
   (props: {
     schemaAst: GraphQLSchema,
     reporter: Reporter,
+    language: RequiredPluginOptions['language'],
+    namespace: string,
     outputPath: string,
-    languageOption: RequiredPluginOptions['languageOption'],
     includeResolvers: boolean,
   }): CodegenWorker;
 }
 export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   schemaAst,
   outputPath,
-  languageOption: {
-    language,
-    scope,
-    prefix: typesPrefix,
-    kind: declarationKind,
-  },
+  language,
+  namespace,
   includeResolvers,
   reporter,
 }) => {
@@ -88,16 +86,12 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({
         typescript: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
-          typesPrefix,
-          declarationKind,
         },
       });
       codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations');
       codegenOptions.plugins.push({
         typescriptOperations: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
-          typesPrefix,
-          declarationKind,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
         }
@@ -107,9 +101,6 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         codegenOptions.plugins.push({
           typescriptResolvers: {
             contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
-            typesPrefix,
-            // FIXME: Expected this option exist for this plugin, but it doesn't (shrug)
-            // declarationKind,
           },
         });
       }
@@ -118,18 +109,16 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       codegenOptions.plugins.push({
         flow: {
           ...DEFAULT_FLOW_CONFIG,
-          typesPrefix,
-          declarationKind,
+          typesPrefix: `${namespace}$`,
         },
       });
       codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations');
       codegenOptions.plugins.push({
         flowOperations: {
           ...DEFAULT_FLOW_CONFIG,
-          typesPrefix,
-          declarationKind,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
+          typesPrefix: `${namespace}$`,
         }
       });
       if (includeResolvers) {
@@ -137,8 +126,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         // Where is contextType option????? WHERE
         codegenOptions.plugins.push({
           flowResolvers: {
-            typesPrefix,
-            declarationKind,
+            typesPrefix: `${namespace}$`,
           },
         });
       }
@@ -149,22 +137,11 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
     try {
       let result = await codegen(codegenOptions);
 
-      result = '/* eslint-disable */\n\n' + result;
-
-      // TODO: 구현
-      // - global 일 때: export -> declare
-      // - namespace 일 때:
-      //   1. remove export node
-      //   2. create namespace node & wrap
-      switch (scope) {
-        case 'global':
-        case 'namespace':
+      if (language === 'typescript') {
+        result = `declare namespace ${namespace} {\n${result}\n}`;
       }
 
-      // result = result
-      //   .replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER)
-      //   .replace(TYPEDEF_MAYBE_NODE_REGEXP, TYPEDEF_MAYBE_NODE_REPLACER)
-      //   .replace(TYPEDEF_SCALARS_NODE_REGEXP, TYPEDEF_SCALARS_NODE_REPLACER);
+      result = '/* eslint-disable */\n\n' + result;
 
       await writeFile(outputPath, result);
     } catch (e) {
