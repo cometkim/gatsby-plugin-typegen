@@ -9,14 +9,8 @@ import { RequiredPluginOptions } from '../plugin-utils';
 
 const CARGO_DELAY = 1000 as const;
 
-// const TYPEDEF_EXPORT_NODE_REGEXP = /export((.*)(\{|;)($|\s))/g;
-// const TYPEDEF_EXPORT_NODE_REPLACER = 'declare$1';
-
-// const TYPEDEF_MAYBE_NODE_REGEXP = /.*(type Maybe)/;
-// const TYPEDEF_MAYBE_NODE_REPLACER = '$1';
-
-// const TYPEDEF_SCALARS_NODE_REGEXP = /.*(type Scalars)/;
-// const TYPEDEF_SCALARS_NODE_REPLACER = '$1';
+const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
+const TYPEDEF_EXPORT_NODE_REPLACER = 'declare type $1';
 
 // Preset configurations to ensure compatibility with Gatsby.
 const DEFAULT_SHARED_CONFIG = {
@@ -139,6 +133,8 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 
       if (language === 'typescript') {
         result = `declare namespace ${namespace} {\n${result}\n}`;
+      } else /* flow */ {
+        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER)
       }
 
       result = '/* eslint-disable */\n\n' + result;
