@@ -13,6 +13,7 @@ test('deduplicateFragmentFromDocuments()', async () => {
 
   const fragmentNames = new Set<string>();
   for (const { document } of resultDocuments) {
+    if (!document) continue;
     visit(document, {
       FragmentDefinition(node) {
         const duplicated = fragmentNames.has(node.name.value);

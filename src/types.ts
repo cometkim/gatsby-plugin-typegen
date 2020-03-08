@@ -17,7 +17,7 @@ export type PluginOptions = {
    *
    * @default 'GatsbyTypes'
    */
-  namespace?: string;
+  namespace?: string,
 
   /**
    * Path to save generated typeDefs file.

@@ -11,7 +11,7 @@ export const readFile = async (path: string) => _readFile(path, { encoding: 'utf
 export const writeFile = async (path: string, data: string | Buffer) => {
   await _mkdir(dirname(path), { recursive: true });
   await _writeFile(path, data, { encoding: 'utf-8' });
-}
+};
 
 export const delay = (ms: number) => new Promise<void>(res => setTimeout(res, ms));
 

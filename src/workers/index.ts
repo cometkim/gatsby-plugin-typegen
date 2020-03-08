@@ -1,2 +1,2 @@
 export * from './codegen';
-export * from './insert-types'
+export * from './insert-types';

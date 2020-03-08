@@ -67,6 +67,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 
     type CodegenOptions = Parameters<typeof codegen>[0];
     const codegenOptions: CodegenOptions  = {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       schema: undefined as any,
       schemaAst,
       documents,
@@ -134,7 +135,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       if (language === 'typescript') {
         result = `declare namespace ${namespace} {\n${result}\n}`;
       } else /* flow */ {
-        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER)
+        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER);
       }
 
       result = '/* eslint-disable */\n\n' + result;

@@ -10,14 +10,14 @@ import FileParser from 'gatsby/dist/query/file-parser';
 import { parseGraphQLSDL, Source } from '@graphql-toolkit/common';
 
 import { writeFile, UnwrapPromise, readFile, deduplicateFragmentFromDocuments } from './common';
-import { setupCodegenWorker, setupInsertTypeWorker, InsertTypeTask } from './workers';
+import { setupCodegenWorker, setupInsertTypeWorker } from './workers';
 import { requirePluginOptions, RequiredPluginOptions } from './plugin-utils';
 import { GatsbyKnownAction } from './gatsby-utils';
 
 // Plugin will track documents what is actually used by Gatsby.
 const trackedSource = new Map<string, Source>();
 
-// noop
+/* eslint-disable-next-line @typescript-eslint/no-empty-function */
 const noop = () => {};
 
 let pluginOptions: RequiredPluginOptions;
@@ -175,7 +175,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   if (process.env.NODE_ENV === 'development') {
     reporter.verbose('[typegen][dev] Watching query changes and re-run workers');
 
-    store.subscribe(async () => {
+    store.subscribe(() => {
       const lastAction = store.getState().lastAction as GatsbyKnownAction;
 
       // Listen gatsby actions

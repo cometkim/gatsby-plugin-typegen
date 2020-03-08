@@ -29,7 +29,7 @@ export type RequiredPluginOptions = Required<
       | 'emitSchema'
     )
   > & {
-    emitSchema: MapEmitSchemaOption<PluginOptions['emitSchema']>
+    emitSchema: MapEmitSchemaOption<PluginOptions['emitSchema']>,
   }
 >;
 
@@ -80,7 +80,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
   }
 
   if (schemaOutputPath) {
-    reporter.warn('`schemaOutputPath` was deprecated, please use `emitSchema` instead.')
+    reporter.warn('`schemaOutputPath` was deprecated, please use `emitSchema` instead.');
     emitSchema[schemaOutputPath] = DEFAULT_SCHEMA_OUTPUT_OPTION;
   }
 

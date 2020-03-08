@@ -19,7 +19,7 @@ export type GatsbyQueryExtractedAction = {
   traceId: string | undefined,
   payload: {
     componentPath: string,
-    query: string
+    query: string,
   },
 };
 

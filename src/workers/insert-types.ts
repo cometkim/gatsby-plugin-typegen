@@ -68,14 +68,16 @@ export const setupInsertTypeWorker: SetupInsertTypeWorkerFn = ({
 
     const content = await readFile(file);
     const fixed = content
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .replace(STATIC_QUERY_HOOK_REGEXP, (substring: string, ...args: any[]): string => {
         const { length: l, [l - 1]: groups } = args;
         return substring.replace(groups['CallExpressionName'], `useStaticQuery<${namespace}${accessor}${groups['QueryName']}Query>`);
       })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .replace(STATIC_QUERY_COMPONENT_REGEXP, (substring: string, ...args: any[]): string => {
         const { length: l, [l - 1]: groups } = args;
         return substring.replace(groups['JsxTagOpening'], `<StaticQuery<${namespace}${accessor}${groups['QueryName']}Query>`);
-      })
+      });
 
     if (content !== fixed) {
       reporter.verbose(`[typegen] Insert type definitions into ${file}\nbecause documents were changed.`);
