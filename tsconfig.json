@@ -7,6 +7,7 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "declaration": true,
+    "declarationDir": ".",
     "outDir": ".",
     "baseUrl": ".",
     "paths": {
@@ -15,7 +16,6 @@
   },
   "include": [
     "src",
-    "__tests__",
     "typings"
   ],
   "exclude": [
