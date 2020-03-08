@@ -10,6 +10,16 @@ export type PluginOptions = {
   language?: 'typescript' | 'flow',
 
   /**
+   * Namespace is required to avoid conflict on generated types and other global declarations.
+   *
+   * Flow will use $ prefix as fallback.
+   * e.g) `type GatsbyTypes$MySiteQuery = ...`
+   *
+   * @default 'GatsbyTypes'
+   */
+  namespace?: string;
+
+  /**
    * Path to save generated typeDefs file.
    *
    * Strongly recommend to commit this file to your version control.

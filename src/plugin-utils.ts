@@ -2,7 +2,11 @@ import path from 'path';
 import { Required } from 'utility-types';
 import { Store, Reporter } from 'gatsby';
 
-import { PluginOptions, DeprecatedPluginOptions, SchemaOutputOptions } from './types';
+import {
+  PluginOptions,
+  SchemaOutputOptions,
+  DeprecatedPluginOptions,
+} from './types';
 import { formatLanguage } from './common';
 
 // No parsing by default, save introspection result file as json format.
@@ -11,7 +15,7 @@ const DEFAULT_SCHEMA_OUTPUT_OPTION = {
   commentDescriptions: true,
 } as const;
 
-type MapTrueToDefault<T> = T extends { [key: string]: infer V }
+type MapEmitSchemaOption<T> = T extends { [key: string]: infer V }
   ? V extends true
   ? { [key: string]: typeof DEFAULT_SCHEMA_OUTPUT_OPTION }
   : { [key: string]: SchemaOutputOptions }
@@ -20,9 +24,12 @@ type MapTrueToDefault<T> = T extends { [key: string]: infer V }
 export type RequiredPluginOptions = Required<
   Omit<
     PluginOptions,
-    keyof DeprecatedPluginOptions | 'emitSchema'
+    (
+      | keyof DeprecatedPluginOptions
+      | 'emitSchema'
+    )
   > & {
-    emitSchema: MapTrueToDefault<PluginOptions['emitSchema']>
+    emitSchema: MapEmitSchemaOption<PluginOptions['emitSchema']>
   }
 >;
 
@@ -50,15 +57,16 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
 
   const {
     language = 'typescript',
+    namespace = 'GatsbyTypes',
+    emitSchema: emitSchemaOptionMap = {},
     includeResolvers = false,
     autoFix = true,
-    emitSchema: emitSchemaOptionMap = {},
     emitPluginDocuments = {},
     schemaOutputPath,
     typeDefsOutputPath,
   } = pluginOptions;
 
-  const emitSchema: MapTrueToDefault<typeof emitSchemaOptionMap> = {};
+  const emitSchema: MapEmitSchemaOption<typeof emitSchemaOptionMap> = {};
   for (const [key, options] of Object.entries(emitSchemaOptionMap)) {
     if (options === true) {
       emitSchema[key] = {
@@ -86,7 +94,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     : path.resolve(basePath, 'src/__generated__/gatsby-types.js')
   );
 
-  if ((language === 'typescript') !== (outputPath.endsWith('ts'))) {
+  if ((language === 'typescript') !== /\.tsx?$/.test(outputPath)) {
     reporter.warn(
       reporter.stripIndent(
       `The language you specified is not match to file extension.
@@ -98,6 +106,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
 
   return {
     language,
+    namespace,
     outputPath,
     includeResolvers,
     autoFix,
