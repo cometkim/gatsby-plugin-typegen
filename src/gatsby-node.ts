@@ -136,6 +136,11 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     includeResolvers,
     reporter,
   });
+  const insertTypeWorker = autoFix && setupInsertTypeWorker({
+    language,
+    namespace,
+    reporter,
+  });
 
   const pushCodegenTask = () => {
     codegenWorker.push({
@@ -143,22 +148,32 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     });
   };
 
+  const pushInsertTypeTask = async (componentPath: string) => {
+    if (!insertTypeWorker) {
+      return;
+    }
+
+    if (language === 'typescript' && /\.tsx?$/.test(componentPath)) {
+      insertTypeWorker.push({ file: componentPath });
+    }
+
+    // Flow version is bit more slower because should check the `@flow` comment exist.
+    if (language === 'flow' && /\.jsx?$/.test(componentPath)) {
+      const content = await readFile(componentPath);
+      const hasFlowComment = content.includes('@flow');
+      reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment}`);
+      hasFlowComment && insertTypeWorker.push({ file: componentPath });
+    }
+  };
+
   pushCodegenTask();
+
+  for (const componentPath of trackedSource.keys()) {
+    pushInsertTypeTask(componentPath);
+  }
 
   if (process.env.NODE_ENV === 'development') {
     reporter.verbose('[typegen][dev] Watching query changes and re-run workers');
-
-    const insertTypeWorker = autoFix && setupInsertTypeWorker({
-      language,
-      namespace,
-      reporter,
-    });
-    const pushInsertTypeTask = (task: InsertTypeTask) => {
-      if (!insertTypeWorker) {
-        return;
-      }
-      insertTypeWorker.push(task);
-    };
 
     store.subscribe(async () => {
       const lastAction = store.getState().lastAction as GatsbyKnownAction;
@@ -183,18 +198,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
       trackedSource.set(componentPath, document);
 
       pushCodegenTask();
-
-      if (language === 'typescript' && /\.tsx?$/.test(componentPath)) {
-        pushInsertTypeTask({ file: componentPath });
-      }
-
-      // Flow version is bit more slower because should check the `@flow` comment exist.
-      if (language === 'flow' && /\.jsx?$/.test(componentPath)) {
-        const content = await readFile(componentPath);
-        const hasFlowComment = content.includes('@flow');
-        reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment}`);
-        hasFlowComment && pushInsertTypeTask({ file: componentPath });
-      }
+      pushInsertTypeTask(componentPath);
     });
   }
 };
