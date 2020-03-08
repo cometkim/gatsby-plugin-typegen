@@ -1,17 +1,24 @@
 # gatsby-plugin-typegen
 
-[![Package version](https://img.shields.io/github/package-json/v/cometkim/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen) ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
+[![Package version](https://img.shields.io/github/package-json/v/cometkim/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/cometkim/gatsby-plugin-typegen.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cometkim/gatsby-plugin-typegen/context:javascript)
+![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
 
-Watch your queries and automatically generates TypeScript/Flow definitions.
+Watch your queries and automatically generates TypeScript/Flow definitions out-of-box.
+
+## Features
 
 - [x] Schema extraction
+- [x] Plugin documents extraction
 - [x] Generates type definitions using [graphql-codegen](https://graphql-code-generator.com/)
 - [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
-- [x] Integrate Gatsby project with GraphQL & TypeScript ecosystem.
+- [x] Integrates GatsbyJS project with GraphQL & TypeScript ecosystem.
+- [ ] Provides type definitions for the [schema customization](https://www.gatsbyjs.org/docs/schema-customization/).
+- [ ] Provides utility types for `gatsby-node.js`.
 
 ## Demo
 
-![Demonstration of auto-fixing](images/recording-2020-02-17.gif)
+![Demonstration of auto-fixing](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/auto-fixing-demo.gif)
 
 ## Install
 
@@ -32,11 +39,11 @@ plugins: [`gatsby-plugin-typegen`]
 ### Example of type-safe usage
 
 ```ts
-import { PluginOptions as TypegenPluginOptions } from 'gatsby-plugin-typegen/types';
+import type { PluginOptions as TypegenPluginOptions } from 'gatsby-plugin-typegen/types';
 
 type Plugin = (
   | string
-  | { resolve: string, options: any }
+  | { resolve: string, options: object }
   | { resolve: `gatsby-plugin-typegen` options: TypegenPluginOptions }
 );
 
@@ -59,7 +66,7 @@ module.exports = {
 ```js
 {
   options: {
-    outputPath: `src/__generated__/gatsby-types.ts`,
+    outputPath: `src/__generated__/gatsby-types.d.ts`,
   },
 }
 ```
@@ -73,6 +80,13 @@ module.exports = {
     outputPath: `src/__generated__/gatsby-types.flow.js`,
   },
 }
+```
+
+Add generated typedefs to `.flowconfig`:
+
+```flowconfig
+[lib]
+./src/__generated__/gatsby-types.flow.js
 ```
 
 ### Emit schema as GraphQL SDL
