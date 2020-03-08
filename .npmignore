@@ -1,6 +1,7 @@
 /src
 /__tests__
 /typings
+/images
 /.yarn
 /.vscode
 /.vim
