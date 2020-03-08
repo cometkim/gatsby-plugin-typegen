@@ -212,8 +212,9 @@ Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescr
 ### v2.0.0
 
 - **[BREAKING CHANGE]** Generated types are now using global declaration with a namespace (default is `GatsbyTypes`).
+- Fixed an issue where the insert types function only worked when documents were changed. ([#43](https://github.com/cometkim/gatsby-plugin-typegen/issues/43))
 
-### v1.1.2
+## v1.1.2
 
 - Export inline fragment subtypes. ([#45](https://github.com/cometkim/gatsby-plugin-typegen/issues/45))
 - Insert eslint-disable comment on top of generated file. ([#37](https://github.com/cometkim/gatsby-plugin-typegen/issues/37))

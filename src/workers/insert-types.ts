@@ -4,7 +4,7 @@ import { queue, AsyncQueue, asyncify } from 'async';
 import { readFile, writeFile } from '../common';
 import { RequiredPluginOptions } from '../plugin-utils';
 
-const CONCURRENCY = 2;
+const CONCURRENCY = 4;
 
 /**
  * (?<CallExpressionName>useStaticQuery
