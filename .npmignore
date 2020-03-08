@@ -5,13 +5,13 @@
 /.vscode
 /.vim
 
+renovate.json
+tsconfig.json
 .editorconfig
 .gitignore
 .gitattributes
 .yarnrc
 .pnp.js
-
-renovate.json
-tsconfig.json
+.eslintrc.js
 *.config.js
 *.log

@@ -15,6 +15,7 @@
   },
   "include": [
     "src",
+    "__tests__",
     "typings"
   ],
   "exclude": [

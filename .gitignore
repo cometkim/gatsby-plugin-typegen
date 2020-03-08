@@ -63,6 +63,7 @@ jspm_packages/
 /workers
 !/babel.config.js
 !/jest.config.js
+!/.eslintrc.js
 !/index.js
 !/.pnp.js
 
