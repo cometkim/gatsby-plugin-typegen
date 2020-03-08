@@ -11,7 +11,7 @@ tsconfig.json
 .editorconfig
 .gitignore
 .gitattributes
-.yarnrc
+.yarnrc*
 .pnp.js
 .eslintrc.js
 *.config.js
