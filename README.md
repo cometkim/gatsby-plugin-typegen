@@ -1,6 +1,7 @@
 # gatsby-plugin-typegen
 
 [![Package version](https://img.shields.io/github/package-json/v/cometkim/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen)
+[![Npm downloads](https://img.shields.io/npm/dw/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen)
 [![Actions Status](https://github.com/cometkim/gatsby-plugin-typegen/workflows/CI/badge.svg)](https://github.com/cometkim/gatsby-plugin-typegen/actions)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/cometkim/gatsby-plugin-typegen.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cometkim/gatsby-plugin-typegen/context:javascript)
 ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
