@@ -42,7 +42,7 @@
     "prepublish": "yarn build && yarn tsc && yarn flowtype"
   },
   "resolutions": {
-    "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
+    "@babel/plugin-transform-named-capturing-groups-regex": "7.8.3"
   },
   "peerDependencies": {
     "gatsby": ">=2.0.0",
