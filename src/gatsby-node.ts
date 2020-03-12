@@ -6,13 +6,13 @@ import {
   introspectionFromSchema,
   GraphQLSchema,
 } from 'gatsby/graphql';
-import FileParser from 'gatsby/dist/query/file-parser';
 import { parseGraphQLSDL, Source } from '@graphql-toolkit/common';
 
 import { writeFile, UnwrapPromise, readFile, deduplicateFragmentFromDocuments } from './common';
 import { setupCodegenWorker, setupInsertTypeWorker } from './workers';
 import { requirePluginOptions, RequiredPluginOptions } from './plugin-utils';
 import { GatsbyKnownAction } from './gatsby-utils';
+import { parseFile } from './parser';
 
 // Plugin will track documents what is actually used by Gatsby.
 const trackedSource = new Map<string, Source>();
@@ -42,8 +42,6 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
 }) => {
   reporter.verbose('[typegen] Listen on query extraction');
 
-  const fileParser = new FileParser({ parentSpan: null });
-
   unsubscribeQueryExtraction = store.subscribe(async () => {
     const lastAction = store.getState().lastAction as GatsbyKnownAction;
 
@@ -52,25 +50,19 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
     }
 
     const { componentPath } = lastAction.payload;
-
     if (trackedSource.has(componentPath)) {
       return;
     }
 
-    let extractionResult: UnwrapPromise<ReturnType<typeof fileParser.parseFile>>;
-    try {
-      extractionResult = await fileParser.parseFile(componentPath, noop);
-    } catch {
-      extractionResult = null;
+    reporter.verbose(componentPath);
+
+    const rawSdl = await parseFile(componentPath);
+    if (!rawSdl) {
+      return null;
     }
 
-    if (extractionResult) {
-      const rawSdl = Array.isArray(extractionResult)
-        ? extractionResult.map(result => result.text).join('')
-        : extractionResult.text;
-      const document = parseGraphQLSDL(componentPath, rawSdl, { noLocation: true });
-      trackedSource.set(componentPath, document);
-    }
+    const document = parseGraphQLSDL(componentPath, rawSdl, { noLocation: true });
+    trackedSource.set(componentPath, document);
   });
 };
 
