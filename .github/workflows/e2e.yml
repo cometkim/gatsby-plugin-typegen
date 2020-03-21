@@ -66,7 +66,7 @@ jobs:
 
       - name: Unpack build artifact
         shell: bash
-        run: tar xvzf package.tgz
+        run: tar xvzf package/package.tgz -C .
 
       - name: Get yarn cache
         working-directory: ${{ env.working-directory }}
