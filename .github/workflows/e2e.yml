@@ -1,0 +1,94 @@
+name: E2E
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Use Node.js 13.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.1
+
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache
+        shell: bash
+
+      - run: yarn build
+
+      - run: yarn pack
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: package
+          path: package.tgz
+
+  e2e-typescript:
+    needs: build-package
+    env:
+      working-directory: ./examples/typescript
+    strategy:
+      matrix:
+        node:
+          - 10
+          - 12
+          - 13.1
+        platform:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+    name: '${{matrix.platform}} w/ Node.js ${{matrix.node}}.x'
+    runs-on: ${{matrix.platform}}
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: 'Use Node.js ${{matrix.node}}.x'
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{matrix.node}}.x
+
+      - name: Download the build artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: package
+
+      - name: Unpack build artifact
+        shell: bash
+        run: tar xvzf package.tgz
+
+      - name: Get yarn cache
+        working-directory: ${{ env.working-directory }}
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('examples/typescript/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-:
+
+      - name: Install dependencies
+        working-directory: ${{ env.working-directory }}
+        run: yarn install --check-cache
+        shell: bash
+
+      - name: Build the example project
+        working-directory: ${{ env.working-directory }}
+        run: yarn build --verbose
+
+      - name: Type-checking for the example project
+        working-directory: ${{ env.working-directory }}
+        run: yarn tsc
