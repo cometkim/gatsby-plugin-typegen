@@ -33,7 +33,7 @@ module.exports = {
       options: {
         language: 'typescript',
         emitSchema: {
-          'src/__generated__/gatsby-introspection.json': true,
+          'src/__generated__/gatsby-schema.graphql': true,
         },
         emitPluginDocuments: {
           'src/__generated__/gatsby-plugin-documents.graphql': true,
