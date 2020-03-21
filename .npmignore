@@ -5,6 +5,7 @@
 /.yarn
 /.vscode
 /.vim
+/examples
 
 renovate.json
 tsconfig.json
