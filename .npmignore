@@ -15,5 +15,6 @@ tsconfig.json
 .yarnrc*
 .pnp.js
 .eslintrc.js
+.eslintignore
 *.config.js
 *.log
