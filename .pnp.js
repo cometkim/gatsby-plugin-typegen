@@ -3394,7 +3394,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@cnakazawa/watch", "npm:1.0.4"],
             ["exec-sh", "npm:0.3.4"],
-            ["minimist", "npm:1.2.0"]
+            ["minimist", "npm:1.2.5"]
           ],
           "linkType": "HARD",
         }]
@@ -4877,13 +4877,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["acorn", [
-        ["npm:6.3.0", {
-          "packageLocation": "./.yarn/cache/acorn-npm-6.3.0-7fd6538796-2.zip/node_modules/acorn/",
-          "packageDependencies": [
-            ["acorn", "npm:6.3.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:7.1.0", {
           "packageLocation": "./.yarn/cache/acorn-npm-7.1.0-5216d86691-2.zip/node_modules/acorn/",
           "packageDependencies": [
@@ -4897,7 +4890,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/acorn-globals-npm-4.3.4-0dae130248-2.zip/node_modules/acorn-globals/",
           "packageDependencies": [
             ["acorn-globals", "npm:4.3.4"],
-            ["acorn", "npm:6.3.0"],
+            ["acorn", "npm:7.1.0"],
             ["acorn-walk", "npm:6.2.0"]
           ],
           "linkType": "HARD",
@@ -13627,7 +13620,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/json5-npm-1.0.1-647fc8794b-2.zip/node_modules/json5/",
           "packageDependencies": [
             ["json5", "npm:1.0.1"],
-            ["minimist", "npm:1.2.0"]
+            ["minimist", "npm:1.2.5"]
           ],
           "linkType": "HARD",
         }],
@@ -13635,7 +13628,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/json5-npm-2.1.0-8e9ce80b06-2.zip/node_modules/json5/",
           "packageDependencies": [
             ["json5", "npm:2.1.0"],
-            ["minimist", "npm:1.2.0"]
+            ["minimist", "npm:1.2.5"]
           ],
           "linkType": "HARD",
         }],
@@ -14543,20 +14536,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["minimist", [
-        ["npm:0.0.8", {
-          "packageLocation": "./.yarn/cache/minimist-npm-0.0.8-8139f8b2f5-2.zip/node_modules/minimist/",
-          "packageDependencies": [
-            ["minimist", "npm:0.0.8"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:1.2.0", {
-          "packageLocation": "./.yarn/cache/minimist-npm-1.2.0-214f53c090-2.zip/node_modules/minimist/",
-          "packageDependencies": [
-            ["minimist", "npm:1.2.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:1.2.5", {
           "packageLocation": "./.yarn/cache/minimist-npm-1.2.5-ced0e1f617-2.zip/node_modules/minimist/",
           "packageDependencies": [
@@ -14639,7 +14618,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mkdirp-npm-0.5.1-33a164c39d-2.zip/node_modules/mkdirp/",
           "packageDependencies": [
             ["mkdirp", "npm:0.5.1"],
-            ["minimist", "npm:0.0.8"]
+            ["minimist", "npm:1.2.5"]
           ],
           "linkType": "HARD",
         }]
@@ -17173,7 +17152,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rc", "npm:1.2.8"],
             ["deep-extend", "npm:0.6.0"],
             ["ini", "npm:1.3.5"],
-            ["minimist", "npm:1.2.0"],
+            ["minimist", "npm:1.2.5"],
             ["strip-json-comments", "npm:2.0.1"]
           ],
           "linkType": "HARD",
@@ -18153,7 +18132,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["execa", "npm:1.0.0"],
             ["fb-watchman", "npm:2.0.0"],
             ["micromatch", "npm:3.1.10"],
-            ["minimist", "npm:1.2.0"],
+            ["minimist", "npm:1.2.5"],
             ["walker", "npm:1.0.7"]
           ],
           "linkType": "HARD",
@@ -20544,7 +20523,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@webassemblyjs/helper-module-context", "npm:1.8.5"],
             ["@webassemblyjs/wasm-edit", "npm:1.8.5"],
             ["@webassemblyjs/wasm-parser", "npm:1.8.5"],
-            ["acorn", "npm:6.3.0"],
+            ["acorn", "npm:7.1.0"],
             ["ajv", "npm:6.10.2"],
             ["ajv-keywords", "virtual:16931ca6113325abcf2e16cc189a15555aa30abef4b872a96de2a29f6fa2dac0464f98671aaf425005bd03a45fb9711bf7cca00352591c0d7226877c01c78381#npm:3.4.1"],
             ["chrome-trace-event", "npm:1.0.2"],

@@ -42,6 +42,8 @@
     "prepublish": "yarn build && yarn tsc && yarn flowtype"
   },
   "resolutions": {
+    "acorn": "7.1.0",
+    "minimist": "1.2.5",
     "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
   },
   "peerDependencies": {

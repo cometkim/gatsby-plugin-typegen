@@ -3440,16 +3440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^6.0.1, acorn@npm:^6.2.1":
-  version: 6.3.0
-  resolution: "acorn@npm:6.3.0"
-  bin:
-    acorn: ./bin/acorn
-  checksum: 2/be7b356ef289ff5a0cc47edfcf3dcb9bc9a667ad05f0c2aa190e2983589b860db41087889b6c88777b179f5017b1f60f4027dcaa8709ef9a39337019372d5a9b
-  languageName: node
-  linkType: hard
-
-"acorn@npm:^7.1.0":
+"acorn@npm:7.1.0":
   version: 7.1.0
   resolution: "acorn@npm:7.1.0"
   bin:
@@ -12125,21 +12116,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"minimist@npm:0.0.8":
-  version: 0.0.8
-  resolution: "minimist@npm:0.0.8"
-  checksum: 2/d71c4684bce92f9c0500e103498adb5e45bbda551763132a703306c2dab6f3a1f69eb6448c3ff3ea73fb562285dfd6ee3a354d5c0e5dd52e3d5f3037c82c0935
-  languageName: node
-  linkType: hard
-
-"minimist@npm:^1.1.1, minimist@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "minimist@npm:1.2.0"
-  checksum: 2/80a1a219c0243e870be65b9605e2711eb5ce08639ae4ea8d8bbf8997d4eafe8a6b2af856c3e19c33f51faf40025f23c7668c7b916bca6f72e1bc2cf9189526ff
-  languageName: node
-  linkType: hard
-
-"minimist@npm:^1.2.5":
+"minimist@npm:1.2.5":
   version: 1.2.5
   resolution: "minimist@npm:1.2.5"
   checksum: 2/b77b8590147a4e217ff34266236bc39de23b52e6e33054076991ff674c7397a1380a7bde11111916f16f003a94aaa7e4f3d92595a32189644ff607fabc65a5b6
