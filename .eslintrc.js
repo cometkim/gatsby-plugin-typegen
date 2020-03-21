@@ -4,6 +4,7 @@ module.exports = {
     project: [
       './tsconfig.json',
       './__tests__/tsconfig.json',
+      './examples/typescript/tsconfig.json',
     ],
   },
   plugins: [

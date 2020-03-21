@@ -1,1 +1,2 @@
-/example/typescript-*.js
+/examples/**/gatsby-*.js
+**/__generated__/**
