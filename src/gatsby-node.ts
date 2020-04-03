@@ -112,10 +112,14 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     await writeFile(schemaOutputPath, output);
   }
 
+  // Gatsby component paths have forward slashes.  The following filter
+  // doesn't work properly on Windows if the matched path uses backslashes
+  const srcPath = path.resolve(basePath, 'src').replace(/\\/g, '/');
+
   const pluginDocuments = Object.values(emitPluginDocuments).some(Boolean) && (
     stripIndent(
       Array.from(trackedSource.entries())
-        .filter(([componentPath]) => !componentPath.startsWith(path.resolve(basePath, 'src')))
+        .filter(([componentPath]) => !componentPath.startsWith(srcPath))
         .map(([, source]) => source.rawSDL)
         .join('\n'),
     )
