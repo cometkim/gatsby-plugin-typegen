@@ -1,4 +1,5 @@
 /.yarn/releases/yarn-berry.js    binary linguist-generated
+/.yarn/plugins/**                binary linguist-generated
 /.yarn/cache/**                  linguist-vendored
 /.vscode/pnpify/typescript/bin/* binary linguist-generated
 /.vscode/pnpify/typescript/lib/* binary linguist-generated
