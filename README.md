@@ -5,7 +5,7 @@
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/cometkim/gatsby-plugin-typegen.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cometkim/gatsby-plugin-typegen/context:javascript)
 ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Watch your queries and automatically generates TypeScript/Flow definitions out-of-box.
@@ -251,6 +251,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://specific.solutions.limited"><img src="https://avatars1.githubusercontent.com/u/948178?v=4" width="100px;" alt=""/><br /><sub><b>Vincent Khougaz</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=sdobz" title="Code">💻</a></td>
     <td align="center"><a href="https://0xabcdef.com/"><img src="https://avatars0.githubusercontent.com/u/690661?v=4" width="100px;" alt=""/><br /><sub><b>JongChan Choi</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=disjukr" title="Code">💻</a> <a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=disjukr" title="Documentation">📖</a></td>
     <td align="center"><a href="http://www.johnrom.com"><img src="https://avatars3.githubusercontent.com/u/1881482?v=4" width="100px;" alt=""/><br /><sub><b>John Rom</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=johnrom" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Js-Brecht"><img src="https://avatars3.githubusercontent.com/u/1935258?v=4" width="100px;" alt=""/><br /><sub><b>Jeremy Albright</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=Js-Brecht" title="Code">💻</a></td>
   </tr>
 </table>
 
