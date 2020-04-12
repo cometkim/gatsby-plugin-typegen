@@ -105,7 +105,7 @@ Add generated typedefs to `.flowconfig`:
 }
 ```
 
-![GatsbyJS schema visualized](images/gatsby-schema-visualized.png)
+![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/gatsby-schema-visualized.png)
 
 Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 
@@ -203,7 +203,7 @@ I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?i
     ```
 
 4. Reload VSCode & Enjoy!\
-  ![VSCode extension preview](images/vscode-extension-preview.png)
+  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/vscode-extension-preview.png)
 
 ### TypeScript plugin
 
