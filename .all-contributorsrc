@@ -11,20 +11,20 @@
   "commitConvention": "none",
   "contributors": [
     {
-      "login": "d4rekanguok",
-      "name": "Derek Nguyen",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/3383539?v=4",
-      "profile": "https://github.com/d4rekanguok",
+      "login": "relefant",
+      "name": "Richard Sewell",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/10079653?v=4",
+      "profile": "https://github.com/relefant",
       "contributions": [
         "code",
         "maintenance"
       ]
     },
     {
-      "login": "relefant",
-      "name": "Richard Sewell",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/10079653?v=4",
-      "profile": "https://github.com/relefant",
+      "login": "d4rekanguok",
+      "name": "Derek Nguyen",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3383539?v=4",
+      "profile": "https://github.com/d4rekanguok",
       "contributions": [
         "code",
         "maintenance"
