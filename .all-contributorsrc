@@ -1,0 +1,75 @@
+{
+  "projectName": "gatsby-plugin-typegen",
+  "projectOwner": "cometkim",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "relefant",
+      "name": "Richard Sewell",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/10079653?v=4",
+      "profile": "https://github.com/relefant",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "d4rekanguok",
+      "name": "Derek Nguyen",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3383539?v=4",
+      "profile": "https://github.com/d4rekanguok",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "sdobz",
+      "name": "Vincent Khougaz",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/948178?v=4",
+      "profile": "https://specific.solutions.limited",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "disjukr",
+      "name": "JongChan Choi",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/690661?v=4",
+      "profile": "https://0xabcdef.com/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "johnrom",
+      "name": "John Rom",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1881482?v=4",
+      "profile": "http://www.johnrom.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Js-Brecht",
+      "name": "Jeremy Albright",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1935258?v=4",
+      "profile": "https://github.com/Js-Brecht",
+      "contributions": [
+        "code",
+        "bug",
+        "ideas",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

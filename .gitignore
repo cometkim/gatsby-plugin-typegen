@@ -66,6 +66,7 @@ jspm_packages/
 !/.eslintrc.js
 !/index.js
 !/.pnp.js
+!/.all-contributorsrc
 
 # Yarn v2
 .yarn/unplugged
