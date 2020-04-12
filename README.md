@@ -105,7 +105,7 @@ Add generated typedefs to `.flowconfig`:
 }
 ```
 
-![GatsbyJS schema visualized](images/gatsby-schema-visualized.png)
+![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/gatsby-schema-visualized.png)
 
 Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 
@@ -203,7 +203,7 @@ I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?i
     ```
 
 4. Reload VSCode & Enjoy!\
-  ![VSCode extension preview](images/vscode-extension-preview.png)
+  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/vscode-extension-preview.png)
 
 ### TypeScript plugin
 
@@ -264,10 +264,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## Acknowledgements
 
 - [graphql-code-generator](https://graphql-code-generator.com/) by [@dotansimha](https://github.com/dotansimha)\
-  This is where the plugin started.
+  The where this plugin started from.
 
 - [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-graphql-codegen) by [@d4rekanguok](https://github.com/d4rekanguok)\
-  has almost same goal, but little bit different how handle GraphQL documents. @d4rekanguok also makes great contribution to this plugin as well!
+  Has almost same goal, but little bit different how handle GraphQL documents. @d4rekanguok also makes great contribution to this plugin as well!
 
 - [gatsby-plugin-extract-code](https://github.com/NickyMeuleman/gatsby-plugin-extract-schema) by [@NickyMeuleman](https://github.com/NickyMeuleman)\
-  Gives me idea about schema extraction.
+  Gives me an idea of ESLint integraiton.
