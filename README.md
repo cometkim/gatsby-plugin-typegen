@@ -270,4 +270,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
   Has almost same goal, but little bit different how handle GraphQL documents. @d4rekanguok also makes great contribution to this plugin as well!
 
 - [gatsby-plugin-extract-code](https://github.com/NickyMeuleman/gatsby-plugin-extract-schema) by [@NickyMeuleman](https://github.com/NickyMeuleman)\
-  Gives me an idea about ESLint integraiton.
+  Gives me an idea of ESLint integraiton.
