@@ -9,17 +9,7 @@
     "email": "cometkim.kr@gmail.com",
     "url": "https://github.com/cometkim"
   },
-  "contributors": [
-    {
-      "name": "Derek Nguyen",
-      "url": "https://github.com/d4rekanguok"
-    },
-    {
-      "name": "Richard Sewell",
-      "url": "https://github.com/relefant"
-    }
-  ],
-  "homepage": "https://github.com/cometkim/gatsby-plugin-typegen",
+  "homepage": "https://www.gatsbyjs.org/packages/gatsby-plugin-typegen/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cometkim/gatsby-plugin-typegen.git"
@@ -31,7 +21,9 @@
   "keywords": [
     "gatsby",
     "gatsby-plugin",
-    "typescript"
+    "typescript",
+    "flow",
+    "codegen"
   ],
   "scripts": {
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx",
