@@ -249,7 +249,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/d4rekanguok"><img src="https://avatars2.githubusercontent.com/u/3383539?v=4" width="100px;" alt=""/><br /><sub><b>Derek Nguyen</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=d4rekanguok" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/relefant"><img src="https://avatars0.githubusercontent.com/u/10079653?v=4" width="100px;" alt=""/><br /><sub><b>Richard Sewell</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=relefant" title="Code">💻</a></td>
     <td align="center"><a href="https://specific.solutions.limited"><img src="https://avatars1.githubusercontent.com/u/948178?v=4" width="100px;" alt=""/><br /><sub><b>Vincent Khougaz</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=sdobz" title="Code">💻</a></td>
-    <td align="center"><a href="https://0xabcdef.com/"><img src="https://avatars0.githubusercontent.com/u/690661?v=4" width="100px;" alt=""/><br /><sub><b>JongChan Choi</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=disjukr" title="Code">💻</a></td>
+    <td align="center"><a href="https://0xabcdef.com/"><img src="https://avatars0.githubusercontent.com/u/690661?v=4" width="100px;" alt=""/><br /><sub><b>JongChan Choi</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=disjukr" title="Code">💻</a> <a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=disjukr" title="Documentation">📖</a></td>
   </tr>
 </table>
 
