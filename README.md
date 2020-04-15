@@ -232,6 +232,10 @@ Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescr
 - Use `string` type for the GatsbyJS's `Date` scalar by default.
 - Allow to add type mappings for custom scalars.
 
+### v2.0.1
+
+- Fix multiple query definitions in plugin documents on Windows ([#66](https://github.com/cometkim/gatsby-plugin-typegen/pull/66), original issue: [#44](https://github.com/cometkim/gatsby-plugin-typegen/issues/44))
+
 ### v2.0.0
 
 - **[BREAKING CHANGE]** Generated types are now using global declaration with a namespace (default is `GatsbyTypes`).
