@@ -9,9 +9,6 @@ import { RequiredPluginOptions } from '../plugin-utils';
 
 const CARGO_DELAY = 1000 as const;
 
-const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
-const TYPEDEF_EXPORT_NODE_REPLACER = 'declare type $1';
-
 // Preset configurations to ensure compatibility with Gatsby.
 const DEFAULT_SHARED_CONFIG = {
   namingConvention: {
@@ -152,8 +149,12 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       if (language === 'typescript') {
         result = `declare namespace ${namespace} {\n${result}\n}`;
       } else /* flow */ {
-        result = 'opaque type never = mixed;\n\n' + result;
-        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER);
+        const FLOW_FILE_TOP = '/* @flow */\n\n';
+        const FLOW_FILE_TOP_REGEXP = /\/\*\s*@flow\s*\*\/\s*/;
+        result = result.replace(FLOW_FILE_TOP_REGEXP, FLOW_FILE_TOP + 'opaque type never = mixed;\n\n');
+
+        const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
+        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, 'declare type $1');
       }
 
       result = '/* eslint-disable */\n\n' + result;
