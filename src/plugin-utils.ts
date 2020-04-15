@@ -9,6 +9,7 @@ import {
   DeprecatedPluginOptions,
 } from './types';
 import { formatLanguage } from './common';
+import { gatsbyInternalScalars } from './gatsby-utils';
 
 // No parsing by default, save introspection result file as json format.
 const DEFAULT_SCHEMA_OUTPUT_OPTION = {
@@ -65,6 +66,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     emitPluginDocuments = {},
     schemaOutputPath,
     typeDefsOutputPath,
+    scalars = {},
   } = pluginOptions;
 
   const emitSchema: MapEmitSchemaOption<typeof emitSchemaOptionMap> = {};
@@ -105,6 +107,15 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     );
   }
 
+  for (const type of gatsbyInternalScalars) {
+    if (scalars[type]) {
+      reporter.warn(
+        `[typegen] You couldn't override type for \`${type}\` scalar because it is reserved by Gatsby internal.`,
+      );
+      delete scalars[type];
+    }
+  }
+
   return {
     language,
     namespace,
@@ -113,6 +124,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     autoFix,
     emitSchema,
     emitPluginDocuments,
+    scalars,
   };
 };
 
