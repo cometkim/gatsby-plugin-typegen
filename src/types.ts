@@ -56,8 +56,6 @@ export type PluginOptions = {
   /**
    * Extends or overrides the built-in scalars and custom GraphQL scalars to a custom type.
    *
-   * Type for the `Date` scalar is `string` by default.
-   *
    * @example
    * ```js
    * {
@@ -69,6 +67,23 @@ export type PluginOptions = {
    * }
    * ```
    *
+   * @note You cannot override a few GraphQL/GatsbyJS internal scalars.
+   * - `Boolean`,
+   * - `Buffer`,
+   * - `Date`,
+   * - `Float`,
+   * - `ID`,
+   * - `Int`,
+   * - `Internal`,
+   * - `InternalInput`,
+   * - `JSON`,
+   * - `Json`,
+   * - `Node`,
+   * - `NodeInput`,
+   * - `Query`,
+   * - `String`,
+   *
+   * @see https://github.com/gatsbyjs/gatsby/blob/6b4b7f81ec/packages/gatsby/src/schema/print.js#L33-L48
    */
   scalars?: { [typename: string]: string },
 

@@ -9,6 +9,7 @@ import {
   DeprecatedPluginOptions,
 } from './types';
 import { formatLanguage } from './common';
+import { gatsbyInternalScalars } from './gatsby-utils';
 
 // No parsing by default, save introspection result file as json format.
 const DEFAULT_SCHEMA_OUTPUT_OPTION = {
@@ -104,6 +105,10 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
         - outputPath: ${outputPath}
       `),
     );
+  }
+
+  for (const type of gatsbyInternalScalars) {
+    delete scalars[type];
   }
 
   return {
