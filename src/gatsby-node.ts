@@ -6,19 +6,17 @@ import {
   introspectionFromSchema,
   GraphQLSchema,
 } from 'gatsby/graphql';
-import FileParser from 'gatsby/dist/query/file-parser';
 import { parseGraphQLSDL, Source } from '@graphql-toolkit/common';
+import { gqlPluckFromCodeString } from '@graphql-toolkit/graphql-tag-pluck';
+import { Option } from '@cometjs/core';
 
-import { writeFile, UnwrapPromise, readFile, deduplicateFragmentFromDocuments } from './common';
+import { writeFile, readFile, deduplicateFragmentFromDocuments } from './common';
 import { setupCodegenWorker, setupInsertTypeWorker } from './workers';
-import { requirePluginOptions, RequiredPluginOptions } from './plugin-utils';
+import { requirePluginOptions, RequiredPluginOptions, GRAPHQL_TAG_PLUCK_OPTIONS } from './plugin-utils';
 import { GatsbyKnownAction } from './gatsby-utils';
 
 // Plugin will track documents what is actually used by Gatsby.
 const trackedSource = new Map<string, Source>();
-
-/* eslint-disable-next-line @typescript-eslint/no-empty-function */
-const noop = () => {};
 
 let pluginOptions: RequiredPluginOptions;
 let unsubscribeQueryExtraction: Function;
@@ -42,8 +40,6 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
 }) => {
   reporter.verbose('[typegen] Listen on query extraction');
 
-  const fileParser = new FileParser({ parentSpan: null });
-
   unsubscribeQueryExtraction = store.subscribe(async () => {
     const lastAction = store.getState().lastAction as GatsbyKnownAction;
 
@@ -52,24 +48,19 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
     }
 
     const { componentPath } = lastAction.payload;
-
     if (trackedSource.has(componentPath)) {
       return;
     }
 
-    let extractionResult: UnwrapPromise<ReturnType<typeof fileParser.parseFile>>;
     try {
-      extractionResult = await fileParser.parseFile(componentPath, noop);
-    } catch {
-      extractionResult = null;
-    }
-
-    if (extractionResult) {
-      const rawSdl = Array.isArray(extractionResult)
-        ? extractionResult.map(result => result.text).join('')
-        : extractionResult.text;
-      const document = parseGraphQLSDL(componentPath, rawSdl, { noLocation: true });
-      trackedSource.set(componentPath, document);
+      const code = await readFile(componentPath);
+      const extractedSDL = await gqlPluckFromCodeString(componentPath, code, GRAPHQL_TAG_PLUCK_OPTIONS);
+      if (extractedSDL) {
+        const document = parseGraphQLSDL(componentPath, extractedSDL, { noLocation: true });
+        trackedSource.set(componentPath, document);
+      }
+    } catch (error) {
+      reporter.error(`[typegen] Fail to extract GraphQL documents from ${componentPath}`, error);
     }
   });
 };
@@ -98,7 +89,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   for (const [schemaOutputPath, schemaOutputOptions] of Object.entries(emitSchema)) {
     const { commentDescriptions = true } = schemaOutputOptions;
 
-    let output: string;
+    let output: Option<string>;
     switch (schemaOutputOptions.format) {
       case 'sdl':
         output = printSchema(schema, { commentDescriptions });
@@ -196,9 +187,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
         return;
       }
 
-      const document = parseGraphQLSDL(componentPath, query, {
-        noLocation: true,
-      });
+      const document = parseGraphQLSDL(componentPath, query, { noLocation: true });
       trackedSource.set(componentPath, document);
 
       pushCodegenTask();
