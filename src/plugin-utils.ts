@@ -108,7 +108,12 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
   }
 
   for (const type of gatsbyInternalScalars) {
-    delete scalars[type];
+    if (scalars[type]) {
+      reporter.warn(
+        `[typegen] You couldn't override type for \`${type}\` scalar because it is reserved by Gatsby internal.`,
+      );
+      delete scalars[type];
+    }
   }
 
   return {
