@@ -8678,7 +8678,7 @@ fsevents@^1.2.7:
     utility-types: ^3.10.0
   peerDependencies:
     gatsby: ">=2.0.0"
-    graphql: ^0.13.0 || ^14.0.0
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
     react: ^16.4.2
   languageName: unknown
   linkType: soft
