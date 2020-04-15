@@ -21,6 +21,15 @@ const DEFAULT_SHARED_CONFIG = {
   },
   addUnderscoreToArgsType: true,
   skipTypename: true,
+  scalars: {
+    // A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
+    // representation of dates and times using the Gregorian calendar.
+    Date: 'string',
+
+    // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+    // Note: This will never be used since this is reserved by GatsbyJS internal
+    JSON: 'never',
+  },
 } as const;
 
 const DEFAULT_TYPESCRIPT_CONFIG = {
@@ -51,6 +60,7 @@ interface SetupCodegenWorkerFn {
     namespace: string,
     outputPath: string,
     includeResolvers: boolean,
+    scalarMap: { [typename: string]: string },
   }): CodegenWorker;
 }
 export const setupCodegenWorker: SetupCodegenWorkerFn = ({
@@ -59,6 +69,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   language,
   namespace,
   includeResolvers,
+  scalarMap,
   reporter,
 }) => {
   const worker = cargo(asyncify(async (tasks: CodegenTask[]) => {
@@ -72,7 +83,13 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       schemaAst,
       documents,
       filename: outputPath,
-      config: DEFAULT_SHARED_CONFIG,
+      config: {
+        ...DEFAULT_SHARED_CONFIG,
+        scalars: {
+          ...DEFAULT_SHARED_CONFIG.scalars,
+          ...scalarMap,
+        },
+      },
       plugins: [],
       pluginMap: {},
     };
@@ -135,6 +152,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       if (language === 'typescript') {
         result = `declare namespace ${namespace} {\n${result}\n}`;
       } else /* flow */ {
+        result = 'opaque type never = mixed;\n\n' + result;
         result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, TYPEDEF_EXPORT_NODE_REPLACER);
       }
 

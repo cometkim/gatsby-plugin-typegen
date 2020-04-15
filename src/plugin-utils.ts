@@ -65,6 +65,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     emitPluginDocuments = {},
     schemaOutputPath,
     typeDefsOutputPath,
+    scalars = {},
   } = pluginOptions;
 
   const emitSchema: MapEmitSchemaOption<typeof emitSchemaOptionMap> = {};
@@ -113,6 +114,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     autoFix,
     emitSchema,
     emitPluginDocuments,
+    scalars,
   };
 };
 

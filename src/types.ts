@@ -53,6 +53,25 @@ export type PluginOptions = {
    */
   autoFix?: boolean,
 
+  /**
+   * Extends or overrides the built-in scalars and custom GraphQL scalars to a custom type.
+   *
+   * Type for the `Date` scalar is `string` by default.
+   *
+   * @example
+   * ```js
+   * {
+   *   scalars: {
+   *     EmailAddress: 'string',
+   *     DateTime: 'number',
+   *     URL: 'string',
+   *   },
+   * }
+   * ```
+   *
+   */
+  scalars?: { [typename: string]: string },
+
 
   /**
    * Emit the Gatsby's schema into the filesystem.

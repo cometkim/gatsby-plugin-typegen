@@ -77,6 +77,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     emitSchema,
     emitPluginDocuments,
     autoFix,
+    scalars,
   } = pluginOptions;
 
   reporter.verbose('[typegen] End-up listening on query extraction.');
@@ -130,6 +131,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     outputPath,
     includeResolvers,
     reporter,
+    scalarMap: scalars,
   });
   const insertTypeWorker = autoFix && setupInsertTypeWorker({
     language,
