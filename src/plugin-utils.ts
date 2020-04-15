@@ -1,6 +1,7 @@
 import path from 'path';
 import { Required } from 'utility-types';
 import { Store, Reporter } from 'gatsby';
+import { GraphQLTagPluckOptions } from '@graphql-toolkit/graphql-tag-pluck';
 
 import {
   PluginOptions,
@@ -113,4 +114,14 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
     emitSchema,
     emitPluginDocuments,
   };
+};
+
+export const GRAPHQL_TAG_PLUCK_OPTIONS: GraphQLTagPluckOptions = {
+  modules: [
+    // Allow only GatsbyJS
+    {
+      name: 'gatsby',
+      identifier: 'graphql',
+    },
+  ],
 };

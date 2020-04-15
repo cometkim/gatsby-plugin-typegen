@@ -44,6 +44,7 @@
     "react": "^16.4.2"
   },
   "dependencies": {
+    "@cometjs/core": "^0.0.3",
     "@graphql-codegen/core": "^1.13.1",
     "@graphql-codegen/flow": "^1.13.1",
     "@graphql-codegen/flow-operations": "^1.13.1",
@@ -53,6 +54,7 @@
     "@graphql-codegen/typescript-resolvers": "^1.13.1",
     "@graphql-toolkit/common": "^0.9.9",
     "@graphql-toolkit/core": "^0.9.9",
+    "@graphql-toolkit/graphql-tag-pluck": "^0.10.3",
     "async": "^3.2.0",
     "common-tags": "^1.8.0"
   },
