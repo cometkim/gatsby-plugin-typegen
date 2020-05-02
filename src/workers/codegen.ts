@@ -34,6 +34,7 @@ const DEFAULT_TYPESCRIPT_CONFIG = {
   immutableTypes: true,
   maybeValue: 'T | undefined',
   noExport: true,
+  enumAsTypes: true,
 } as const;
 
 const DEFAULT_FLOW_CONFIG = {
