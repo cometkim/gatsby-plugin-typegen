@@ -10,9 +10,17 @@ import { parseGraphQLSDL, Source } from '@graphql-toolkit/common';
 import { gqlPluckFromCodeString } from '@graphql-toolkit/graphql-tag-pluck';
 import { Option } from '@cometjs/core';
 
-import { writeFile, readFile, deduplicateFragmentFromDocuments } from './common';
+import {
+  writeFile,
+  readFile,
+  deduplicateFragmentFromDocuments,
+} from './common';
 import { setupCodegenWorker, setupInsertTypeWorker } from './workers';
-import { requirePluginOptions, RequiredPluginOptions, GRAPHQL_TAG_PLUCK_OPTIONS } from './plugin-utils';
+import {
+  requirePluginOptions,
+  RequiredPluginOptions,
+  GRAPHQL_TAG_PLUCK_OPTIONS,
+} from './plugin-utils';
 import { GatsbyKnownAction } from './gatsby-utils';
 
 // Plugin will track documents what is actually used by Gatsby.
@@ -30,7 +38,7 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
 
   reporter.verbose(
     '[typegen] Successfully validate your configuration.\n'
-    + JSON.stringify(pluginOptions, null, 2)
+    + JSON.stringify(pluginOptions, null, 2),
   );
 };
 
@@ -54,7 +62,11 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
 
     try {
       const code = await readFile(componentPath);
-      const extractedSDL = await gqlPluckFromCodeString(componentPath, code, GRAPHQL_TAG_PLUCK_OPTIONS);
+      const extractedSDL = await gqlPluckFromCodeString(
+        componentPath,
+        code,
+        GRAPHQL_TAG_PLUCK_OPTIONS,
+      );
       if (extractedSDL) {
         const document = parseGraphQLSDL(componentPath, extractedSDL, { noLocation: true });
         trackedSource.set(componentPath, document);
@@ -96,7 +108,11 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
         output = printSchema(schema, { commentDescriptions });
         break;
       case 'introspection':
-        output = JSON.stringify(introspectionFromSchema(schema, { descriptions: commentDescriptions }), null, 2);
+        output = JSON.stringify(
+          introspectionFromSchema(schema, { descriptions: commentDescriptions }),
+          null,
+          2,
+        );
         break;
     }
 

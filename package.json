@@ -67,6 +67,7 @@
     "@babel/plugin-transform-named-capturing-groups-regex": "^7.8.3",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/runtime": "^7.9.2",
+    "@cometjs/eslint-plugin": "^0.1.0",
     "@types/async": "^3.2.0",
     "@types/common-tags": "^1.8.0",
     "@types/graphql": "^14.5.0",

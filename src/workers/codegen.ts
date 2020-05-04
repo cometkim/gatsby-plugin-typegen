@@ -1,10 +1,14 @@
 import { Reporter } from 'gatsby';
 import { GraphQLSchema } from 'gatsby/graphql';
-import { cargo, asyncify, AsyncCargo } from 'async';
+import {
+ cargo, asyncify, AsyncCargo, 
+} from 'async';
 import { codegen } from '@graphql-codegen/core';
 import { Source } from '@graphql-toolkit/common';
 
-import { delay, writeFile, formatLanguage } from '../common';
+import {
+ delay, writeFile, formatLanguage, 
+} from '../common';
 import { RequiredPluginOptions } from '../plugin-utils';
 
 const CARGO_DELAY = 1000 as const;
@@ -103,7 +107,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
           ...DEFAULT_TYPESCRIPT_CONFIG,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
-        }
+        },
       });
       if (includeResolvers) {
         codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers');
@@ -128,7 +132,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
           typesPrefix: `${namespace}$`,
-        }
+        },
       });
       if (includeResolvers) {
         codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers');

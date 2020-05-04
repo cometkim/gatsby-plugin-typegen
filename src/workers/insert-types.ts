@@ -1,5 +1,7 @@
 import { Reporter } from 'gatsby';
-import { queue, AsyncQueue, asyncify } from 'async';
+import {
+ queue, AsyncQueue, asyncify, 
+} from 'async';
 
 import { readFile, writeFile } from '../common';
 import { RequiredPluginOptions } from '../plugin-utils';
