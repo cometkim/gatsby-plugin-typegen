@@ -1,7 +1,8 @@
+import type { Source } from '@graphql-toolkit/common';
+
 import fs from 'fs';
 import { dirname } from 'path';
 import { promisify } from 'util';
-import { Source } from '@graphql-toolkit/common';
 
 const _mkdir = promisify(fs.mkdir);
 const _readFile = promisify(fs.readFile);

@@ -1,10 +1,9 @@
-import { Reporter } from 'gatsby';
-import {
- queue, AsyncQueue, asyncify, 
-} from 'async';
+import type { Reporter } from 'gatsby';
+import type { AsyncQueue } from 'async';
+import type { RequiredPluginOptions } from '../plugin-utils';
 
+import { queue, asyncify } from 'async';
 import { readFile, writeFile } from '../common';
-import { RequiredPluginOptions } from '../plugin-utils';
 
 const CONCURRENCY = 4;
 

@@ -1,15 +1,17 @@
-import { Reporter } from 'gatsby';
-import { GraphQLSchema } from 'gatsby/graphql';
-import {
- cargo, asyncify, AsyncCargo, 
-} from 'async';
+import type { Reporter } from 'gatsby';
+import type { GraphQLSchema } from 'gatsby/graphql';
+import type { AsyncCargo } from 'async';
+import type { Source } from '@graphql-toolkit/common';
+import type { RequiredPluginOptions } from '../plugin-utils';
+
+import { cargo, asyncify } from 'async';
 import { codegen } from '@graphql-codegen/core';
-import { Source } from '@graphql-toolkit/common';
 
 import {
- delay, writeFile, formatLanguage, 
+  delay,
+  writeFile,
+  formatLanguage,
 } from '../common';
-import { RequiredPluginOptions } from '../plugin-utils';
 
 const CARGO_DELAY = 1000 as const;
 

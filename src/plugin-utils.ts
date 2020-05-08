@@ -1,13 +1,14 @@
-import path from 'path';
-import { Required } from 'utility-types';
-import { Store, Reporter } from 'gatsby';
-import { GraphQLTagPluckOptions } from '@graphql-toolkit/graphql-tag-pluck';
-
-import {
+import type { Required } from 'utility-types';
+import type { Store, Reporter } from 'gatsby';
+import type { GraphQLTagPluckOptions } from '@graphql-toolkit/graphql-tag-pluck';
+import type {
   PluginOptions,
   SchemaOutputOptions,
   DeprecatedPluginOptions,
 } from './types';
+
+import path from 'path';
+
 import { formatLanguage } from './common';
 import { gatsbyInternalScalars } from './gatsby-utils';
 

@@ -1,14 +1,14 @@
+import type { GatsbyNode } from 'gatsby';
+import type { GraphQLSchema } from 'gatsby/graphql';
+import type { Source } from '@graphql-toolkit/common';
+import type { Option } from '@cometjs/core';
+import type { GatsbyKnownAction } from './gatsby-utils';
+
 import path from 'path';
 import { stripIndent } from 'common-tags';
-import { GatsbyNode } from 'gatsby';
-import {
-  printSchema,
-  introspectionFromSchema,
-  GraphQLSchema,
-} from 'gatsby/graphql';
-import { parseGraphQLSDL, Source } from '@graphql-toolkit/common';
+import { printSchema, introspectionFromSchema } from 'gatsby/graphql';
+import { parseGraphQLSDL } from '@graphql-toolkit/common';
 import { gqlPluckFromCodeString } from '@graphql-toolkit/graphql-tag-pluck';
-import { Option } from '@cometjs/core';
 
 import {
   writeFile,
@@ -21,7 +21,6 @@ import {
   RequiredPluginOptions,
   GRAPHQL_TAG_PLUCK_OPTIONS,
 } from './plugin-utils';
-import { GatsbyKnownAction } from './gatsby-utils';
 
 // Plugin will track documents what is actually used by Gatsby.
 const trackedSource = new Map<string, Source>();
