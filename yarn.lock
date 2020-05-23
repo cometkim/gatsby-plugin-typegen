@@ -9511,6 +9511,7 @@ fsevents@^1.2.7:
     "@babel/plugin-proposal-optional-chaining": ^7.9.0
     "@babel/plugin-transform-flow-comments": ^7.8.3
     "@babel/plugin-transform-named-capturing-groups-regex": ^7.8.3
+    "@babel/plugin-transform-typescript": ^7.9.6
     "@babel/preset-typescript": ^7.9.0
     "@babel/runtime": ^7.9.6
     "@cometjs/core": ^0.1.0
