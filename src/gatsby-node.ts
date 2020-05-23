@@ -6,7 +6,6 @@ import type { GatsbyKnownAction } from './gatsby-utils';
 
 import path from 'path';
 import { stripIndent } from 'common-tags';
-import { printSchema, introspectionFromSchema } from 'gatsby/graphql';
 import { parseGraphQLSDL } from '@graphql-toolkit/common';
 import { gqlPluckFromCodeString } from '@graphql-toolkit/graphql-tag-pluck';
 
@@ -15,7 +14,11 @@ import {
   readFile,
   deduplicateFragmentFromDocuments,
 } from './common';
-import { setupCodegenWorker, setupInsertTypeWorker } from './workers';
+import {
+  setupCodegenWorker,
+  setupEmitSchemaWorker,
+  setupInsertTypeWorker,
+} from './workers';
 import {
   requirePluginOptions,
   RequiredPluginOptions,
@@ -94,53 +97,27 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   reporter.verbose('[typegen] End-up listening on query extraction.');
   unsubscribeQueryExtraction();
 
-  const { program, schema: _schema } = store.getState();
-  const basePath = program.directory as string;
-  const schema = _schema as GraphQLSchema;
+  const state = store.getState();
+  const basePath = state.program.directory as string;
+  const pluginState = {
+    schema: state.schema,
+  };
 
-  for (const [schemaOutputPath, schemaOutputOptions] of Object.entries(emitSchema)) {
-    const { commentDescriptions = true } = schemaOutputOptions;
-
-    let output: Option<string>;
-    switch (schemaOutputOptions.format) {
-      case 'sdl':
-        output = printSchema(schema, { commentDescriptions });
-        break;
-      case 'introspection':
-        output = JSON.stringify(
-          introspectionFromSchema(schema, { descriptions: commentDescriptions }),
-          null,
-          2,
-        );
-        break;
+  const emitSchemaEntries = Object.entries(emitSchema);
+  const emitSchemaWorker = emitSchemaEntries.length > 0 && setupEmitSchemaWorker({
+    reporter,
+  });
+  const pushEmitSchemaTask = () => {
+    if (!emitSchemaWorker) {
+      return;
     }
-
-    reporter.verbose(`[typegen] Emit Gatsby schema into ${schemaOutputPath}`);
-    await writeFile(schemaOutputPath, output);
-  }
-
-  // Gatsby component paths have forward slashes.  The following filter
-  // doesn't work properly on Windows if the matched path uses backslashes
-  const srcPath = path.resolve(basePath, 'src').replace(/\\/g, '/');
-
-  const pluginDocuments = Object.values(emitPluginDocuments).some(Boolean) && (
-    stripIndent(
-      Array.from(trackedSource.entries())
-        .filter(([componentPath]) => !componentPath.startsWith(srcPath))
-        .map(([, source]) => source.rawSDL)
-        .join('\n'),
-    )
-  );
-  if (pluginDocuments) {
-    for (const [documentOutputPath, documentOutputOptions] of Object.entries(emitPluginDocuments)) {
-      if (!documentOutputOptions) continue;
-      reporter.verbose(`[typegen] Emit Gatsby plugin documents into ${documentOutputPath}`);
-      await writeFile(path.resolve(basePath, documentOutputPath), pluginDocuments);
-    }
-  }
+    emitSchemaWorker.push({
+      schema: pluginState.schema,
+      entries: emitSchemaEntries
+    });
+  };
 
   const codegenWorker = setupCodegenWorker({
-    schemaAst: schema,
     language,
     namespace,
     outputPath,
@@ -148,18 +125,18 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     reporter,
     scalarMap: scalars,
   });
+  const pushCodegenTask = () => {
+    codegenWorker.push({
+      schema: pluginState.schema,
+      documents: deduplicateFragmentFromDocuments([...trackedSource.values()].filter(Boolean)),
+    });
+  };
+
   const insertTypeWorker = autoFix && setupInsertTypeWorker({
     language,
     namespace,
     reporter,
   });
-
-  const pushCodegenTask = () => {
-    codegenWorker.push({
-      documents: deduplicateFragmentFromDocuments([...trackedSource.values()].filter(Boolean)),
-    });
-  };
-
   const pushInsertTypeTask = async (componentPath: string) => {
     if (!insertTypeWorker) {
       return;
@@ -178,37 +155,73 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     }
   };
 
+  // Task 1. Emit schema
+  pushEmitSchemaTask();
+
+  // Task 2. Emit plugin documents
+  // FIXME: Move this to a seperated service like others.
+  // (not necessarily for now becuase this is one-time job)
+  //
+  // Gatsby component paths have forward slashes.
+  // The following filter doesn't work properly on Windows if the matched path uses backslashes
+  const srcPath = path.resolve(basePath, 'src').replace(/\\/g, '/');
+
+  const pluginDocuments = Object.values(emitPluginDocuments).some(Boolean) && (
+    stripIndent(
+      Array.from(trackedSource.entries())
+        .filter(([componentPath]) => !componentPath.startsWith(srcPath))
+        .map(([, source]) => source.rawSDL)
+        .join('\n'),
+    )
+  );
+  if (pluginDocuments) {
+    for (const [documentOutputPath, documentOutputOptions] of Object.entries(emitPluginDocuments)) {
+      if (!documentOutputOptions) continue;
+      reporter.verbose(`[typegen] Emit Gatsby plugin documents into ${documentOutputPath}`);
+      await writeFile(path.resolve(basePath, documentOutputPath), pluginDocuments);
+    }
+  }
+
+  // Task 3. Codegen
   pushCodegenTask();
 
+  // Task 4. Auto-fixing!
   for (const componentPath of trackedSource.keys()) {
     pushInsertTypeTask(componentPath);
   }
 
+  // Subscribe GatsbyJS store and handle changes in development mode
   if (process.env.NODE_ENV === 'development') {
-    reporter.verbose('[typegen][dev] Watching query changes and re-run workers');
+    reporter.verbose('[typegen] Watching schema/query changes and re-run workers');
 
     store.subscribe(() => {
-      const lastAction = store.getState().lastAction as GatsbyKnownAction;
+      const state = store.getState();
+      const lastAction = state.lastAction as GatsbyKnownAction;
 
       // Listen gatsby actions
+      // - SET_SCHEMA action for schema changing.
       // - QUERY_EXTRACTED action for page queries.
       // - REPLACE_STATIC_QUERY action for static queries.
-      if (lastAction.type !== 'QUERY_EXTRACTED' && lastAction.type !== 'REPLACE_STATIC_QUERY') {
-        return;
+
+      if (lastAction.type === 'SET_SCHEMA') {
+        pluginState.schema = state.schema;
+        pushEmitSchemaTask();
+        pushCodegenTask();
       }
 
-      const { payload: { query, componentPath } } = lastAction;
+      if (lastAction.type === 'QUERY_EXTRACTED' || lastAction.type === 'REPLACE_STATIC_QUERY') {
+        const { payload: { query, componentPath } } = lastAction;
+        const source = trackedSource.get(componentPath);
+        if (source?.rawSDL === query) {
+          return;
+        }
 
-      const source = trackedSource.get(componentPath);
-      if (source?.rawSDL === query) {
-        return;
+        const document = parseGraphQLSDL(componentPath, query, { noLocation: true });
+        trackedSource.set(componentPath, document);
+
+        pushCodegenTask();
+        pushInsertTypeTask(componentPath);
       }
-
-      const document = parseGraphQLSDL(componentPath, query, { noLocation: true });
-      trackedSource.set(componentPath, document);
-
-      pushCodegenTask();
-      pushInsertTypeTask(componentPath);
     });
   }
 };

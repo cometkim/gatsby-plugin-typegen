@@ -1,7 +1,10 @@
+import type { GraphQLSchema } from 'gatsby/graphql';
+
 export type GatsbyKnownAction = (
   | GatsbyQueryExtractedAction
   | GatsbyReplaceStaticQueryAction
   | GatsbyQueryExtractionBabelSuccessAction
+  | GatsbySetSchemaAction
 );
 
 export type GatsbyQueryExtractionBabelSuccessAction = {
@@ -33,6 +36,11 @@ export type GatsbyReplaceStaticQueryAction = {
     query: string,
     hash: number,
   },
+};
+
+export type GatsbySetSchemaAction = {
+  type: 'SET_SCHEMA',
+  playload: GraphQLSchema,
 };
 
 // from https://github.com/gatsbyjs/gatsby/blob/6b4b7f81ec/packages/gatsby/src/schema/print.js#L33-L48

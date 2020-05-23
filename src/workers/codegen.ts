@@ -48,6 +48,7 @@ const DEFAULT_FLOW_CONFIG = {
 } as const;
 
 export type CodegenTask = {
+  schema: GraphQLSchema,
   documents: Source[],
 };
 
@@ -57,7 +58,6 @@ export type CodegenWorker = Omit<AsyncCargo, 'push'> & {
 
 interface SetupCodegenWorkerFn {
   (props: {
-    schemaAst: GraphQLSchema,
     reporter: Reporter,
     language: RequiredPluginOptions['language'],
     namespace: string,
@@ -67,7 +67,6 @@ interface SetupCodegenWorkerFn {
   }): CodegenWorker;
 }
 export const setupCodegenWorker: SetupCodegenWorkerFn = ({
-  schemaAst,
   outputPath,
   language,
   namespace,
@@ -77,7 +76,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 }) => {
   const worker = cargo(asyncify(async (tasks: CodegenTask[]) => {
     const { length: l, [l - 1]: last } = tasks;
-    const { documents } = last;
+    const { schema: schemaAst, documents } = last;
 
     type CodegenOptions = Parameters<typeof codegen>[0];
     const codegenOptions: CodegenOptions  = {
