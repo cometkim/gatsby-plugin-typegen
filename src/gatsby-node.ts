@@ -113,7 +113,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     }
     emitSchemaWorker.push({
       schema: pluginState.schema,
-      entries: emitSchemaEntries
+      entries: emitSchemaEntries,
     });
   };
 

@@ -15,7 +15,7 @@ export type EmitSchemaTask = {
 };
 
 export type EmitSchemaWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: EmitSchemaTask, cb?: Function): void;
+  push(task: EmitSchemaTask, cb?: Function): void,
 };
 
 interface SetupEmitSchemaWorkerFn {
