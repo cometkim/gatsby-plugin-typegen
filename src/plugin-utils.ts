@@ -1,5 +1,5 @@
 import type { Required } from 'utility-types';
-import type { Store, Reporter } from 'gatsby';
+import type { Reporter } from 'gatsby';
 import type { GraphQLTagPluckOptions } from '@graphql-toolkit/graphql-tag-pluck';
 import type { GatsbyStore } from './gatsby-utils';
 import type {

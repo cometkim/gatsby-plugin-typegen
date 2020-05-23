@@ -1,7 +1,7 @@
 import type { GatsbyNode } from 'gatsby';
 import type { Callable } from '@cometjs/core';
 import type { Source } from '@graphql-toolkit/common';
-import type { GatsbyKnownAction, GatsbyStore } from './gatsby-utils';
+import type { GatsbyStore } from './gatsby-utils';
 
 import path from 'path';
 import { stripIndent } from 'common-tags';
