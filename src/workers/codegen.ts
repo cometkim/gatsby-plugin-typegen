@@ -1,6 +1,7 @@
 import type { Reporter } from 'gatsby';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import type { AsyncCargo } from 'async';
+import type { Callable } from '@cometjs/core';
 import type { Source } from '@graphql-toolkit/common';
 import type { RequiredPluginOptions } from '../plugin-utils';
 
@@ -53,7 +54,7 @@ export type CodegenTask = {
 };
 
 export type CodegenWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: CodegenTask, cb?: Function): void,
+  push(task: CodegenTask, cb?: Callable): void,
 };
 
 interface SetupCodegenWorkerFn {
@@ -80,7 +81,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 
     type CodegenOptions = Parameters<typeof codegen>[0];
     const codegenOptions: CodegenOptions  = {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line
       schema: undefined as any,
       schemaAst,
       documents,
@@ -95,14 +96,15 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       plugins: [],
       pluginMap: {},
     };
+    type CodegenPlugin = CodegenOptions['pluginMap'][string];
     if (language === 'typescript') {
-      codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript');
+      codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript') as CodegenPlugin;
       codegenOptions.plugins.push({
         typescript: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
         },
       });
-      codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations');
+      codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations') as CodegenPlugin;
       codegenOptions.plugins.push({
         typescriptOperations: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
@@ -111,7 +113,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         },
       });
       if (includeResolvers) {
-        codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers');
+        codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers') as CodegenPlugin;
         codegenOptions.plugins.push({
           typescriptResolvers: {
             contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
@@ -119,14 +121,14 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         });
       }
     } else /* flow */ {
-      codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow');
+      codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow') as CodegenPlugin;
       codegenOptions.plugins.push({
         flow: {
           ...DEFAULT_FLOW_CONFIG,
           typesPrefix: `${namespace}$`,
         },
       });
-      codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations');
+      codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations') as CodegenPlugin;
       codegenOptions.plugins.push({
         flowOperations: {
           ...DEFAULT_FLOW_CONFIG,
@@ -136,7 +138,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         },
       });
       if (includeResolvers) {
-        codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers');
+        codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers') as CodegenPlugin;
         // Where is contextType option????? WHERE
         codegenOptions.plugins.push({
           flowResolvers: {

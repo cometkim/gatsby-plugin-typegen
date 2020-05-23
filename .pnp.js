@@ -182,6 +182,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:26.0.1"
       ],
       [
+        "redux",
+        "npm:4.0.5"
+      ],
+      [
         "typescript",
         "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=8cac75"
       ],
@@ -235,6 +239,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gatsby", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:2.22.9"],
             ["graphql", "npm:15.0.0"],
             ["jest", "npm:26.0.1"],
+            ["redux", "npm:4.0.5"],
             ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=8cac75"],
             ["utility-types", "npm:3.10.0"]
           ],
@@ -11245,6 +11250,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gatsby", "virtual:114314cf989463acccf2f05844dc95dc00c6bce472ef0a736badd4c3c0fceb18c40257f5574831159ee0324aa80010574f899c4c05301c616b9e1fb9e44fc9a2#npm:2.22.9"],
             ["graphql", "npm:15.0.0"],
             ["jest", "npm:26.0.1"],
+            ["redux", "npm:4.0.5"],
             ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=8cac75"],
             ["utility-types", "npm:3.10.0"]
           ],

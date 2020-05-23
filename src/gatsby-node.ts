@@ -1,8 +1,7 @@
 import type { GatsbyNode } from 'gatsby';
-import type { GraphQLSchema } from 'gatsby/graphql';
+import type { Callable } from '@cometjs/core';
 import type { Source } from '@graphql-toolkit/common';
-import type { Option } from '@cometjs/core';
-import type { GatsbyKnownAction } from './gatsby-utils';
+import type { GatsbyKnownAction, GatsbyStore } from './gatsby-utils';
 
 import path from 'path';
 import { stripIndent } from 'common-tags';
@@ -29,12 +28,14 @@ import {
 const trackedSource = new Map<string, Source>();
 
 let pluginOptions: RequiredPluginOptions;
-let unsubscribeQueryExtraction: Function;
+let unsubscribeQueryExtraction: Callable;
 
 export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
-  store,
+  store: _store,
   reporter,
 }, options) => {
+  const store = _store as GatsbyStore;
+
   // Validate plugin options earlier.
   pluginOptions = requirePluginOptions(options, { store, reporter });
 
@@ -45,13 +46,16 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
 };
 
 export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
-  store,
+  store: _store,
   reporter,
 }) => {
+  const store = _store as GatsbyStore;
+
   reporter.verbose('[typegen] Listen on query extraction');
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   unsubscribeQueryExtraction = store.subscribe(async () => {
-    const lastAction = store.getState().lastAction as GatsbyKnownAction;
+    const lastAction = store.getState().lastAction;
 
     if (lastAction.type !== 'QUERY_EXTRACTION_BABEL_SUCCESS') {
       return;
@@ -76,13 +80,14 @@ export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
     } catch (error) {
       reporter.error(`[typegen] Fail to extract GraphQL documents from ${componentPath}`, error);
     }
-  });
+  }) as Callable;
 };
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
-  store,
+  store: _store,
   reporter,
 }) => {
+  const store = _store as GatsbyStore;
   const {
     language,
     namespace,
@@ -98,7 +103,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
   unsubscribeQueryExtraction();
 
   const state = store.getState();
-  const basePath = state.program.directory as string;
+  const basePath = state.program.directory;
   const pluginState = {
     schema: state.schema,
   };
@@ -150,7 +155,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     if (language === 'flow' && /\.jsx?$/.test(componentPath)) {
       const content = await readFile(componentPath);
       const hasFlowComment = content.includes('@flow');
-      reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment}`);
+      reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment.toString()}`);
       hasFlowComment && insertTypeWorker.push({ file: componentPath });
     }
   };
@@ -187,7 +192,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
   // Task 4. Auto-fixing!
   for (const componentPath of trackedSource.keys()) {
-    pushInsertTypeTask(componentPath);
+    void pushInsertTypeTask(componentPath);
   }
 
   // Subscribe GatsbyJS store and handle changes in development mode
@@ -196,7 +201,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
 
     store.subscribe(() => {
       const state = store.getState();
-      const lastAction = state.lastAction as GatsbyKnownAction;
+      const lastAction = state.lastAction;
 
       // Listen gatsby actions
       // - SET_SCHEMA action for schema changing.
@@ -220,7 +225,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
         trackedSource.set(componentPath, document);
 
         pushCodegenTask();
-        pushInsertTypeTask(componentPath);
+        void pushInsertTypeTask(componentPath);
       }
     });
   }

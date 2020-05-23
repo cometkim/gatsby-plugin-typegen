@@ -1,21 +1,20 @@
 import type { Reporter } from 'gatsby';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import type { AsyncCargo } from 'async';
-import type { Option } from '@cometjs/core';
-import type { RequiredPluginOptions } from '../plugin-utils';
+import type { Option, Callable } from '@cometjs/core';
 import type { SchemaOutputOptions } from '../types';
 
 import { cargo, asyncify } from 'async';
 import { printSchema, introspectionFromSchema } from 'gatsby/graphql';
-import { readFile, writeFile } from '../common';
+import { writeFile } from '../common';
 
 export type EmitSchemaTask = {
   schema: GraphQLSchema,
-  entries: [string, SchemaOutputOptions],
+  entries: Array<[string, SchemaOutputOptions]>,
 };
 
 export type EmitSchemaWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: EmitSchemaTask, cb?: Function): void,
+  push(task: EmitSchemaTask, cb?: Callable): void,
 };
 
 interface SetupEmitSchemaWorkerFn {

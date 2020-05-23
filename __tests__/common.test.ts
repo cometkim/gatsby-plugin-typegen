@@ -1,3 +1,5 @@
+import type { Source } from '@graphql-toolkit/common';
+
 import path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
@@ -8,7 +10,7 @@ const readFile = promisify(fs.readFile);
 
 test('deduplicateFragmentFromDocuments()', async () => {
   const data = await readFile(path.resolve(__dirname, 'data/gh-33.json'), 'utf-8');
-  const documents = JSON.parse(data);
+  const documents = JSON.parse(data) as Source[];
   const resultDocuments = deduplicateFragmentFromDocuments(documents);
 
   const fragmentNames = new Set<string>();

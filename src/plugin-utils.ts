@@ -1,6 +1,7 @@
 import type { Required } from 'utility-types';
 import type { Store, Reporter } from 'gatsby';
 import type { GraphQLTagPluckOptions } from '@graphql-toolkit/graphql-tag-pluck';
+import type { GatsbyStore } from './gatsby-utils';
 import type {
   PluginOptions,
   SchemaOutputOptions,
@@ -8,7 +9,6 @@ import type {
 } from './types';
 
 import path from 'path';
-
 import { formatLanguage } from './common';
 import { gatsbyInternalScalars } from './gatsby-utils';
 
@@ -41,7 +41,7 @@ interface RequirePluginOptionsFn {
     options: unknown,
     props: {
       reporter: Reporter,
-      store: Store,
+      store: GatsbyStore,
     },
   ): RequiredPluginOptions;
 }
@@ -53,7 +53,7 @@ export const requirePluginOptions: RequirePluginOptionsFn = (
   },
 ) => {
   const { program } = store.getState();
-  const basePath = program.directory as string;
+  const basePath = program.directory;
 
   // There are no required properties (yet), so must be compatible.
   const pluginOptions = options as PluginOptions;

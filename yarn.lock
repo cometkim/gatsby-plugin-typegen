@@ -9543,6 +9543,7 @@ fsevents@^1.2.7:
     gatsby: ^2.22.9
     graphql: ^15.0.0
     jest: ^26.0.1
+    redux: ^4.0.5
     typescript: ^3.9.3
     utility-types: ^3.10.0
   peerDependencies:

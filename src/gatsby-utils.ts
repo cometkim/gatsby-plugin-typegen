@@ -1,4 +1,15 @@
+import type { Store } from 'redux';
 import type { GraphQLSchema } from 'gatsby/graphql';
+
+export type GatsbyStore = Store<GatsbyStateKnownShape, GatsbyKnownAction>;
+
+export type GatsbyStateKnownShape = {
+  schema: GraphQLSchema,
+  lastAction: GatsbyKnownAction,
+  program: {
+    directory: string,
+  },
+};
 
 export type GatsbyKnownAction = (
   | GatsbyQueryExtractedAction
