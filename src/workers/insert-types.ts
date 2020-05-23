@@ -1,8 +1,9 @@
-import { Reporter } from 'gatsby';
-import { queue, AsyncQueue, asyncify } from 'async';
+import type { Reporter } from 'gatsby';
+import type { AsyncQueue } from 'async';
+import type { RequiredPluginOptions } from '../plugin-utils';
 
+import { queue, asyncify } from 'async';
 import { readFile, writeFile } from '../common';
-import { RequiredPluginOptions } from '../plugin-utils';
 
 const CONCURRENCY = 4;
 
@@ -71,11 +72,13 @@ export const setupInsertTypeWorker: SetupInsertTypeWorkerFn = ({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .replace(STATIC_QUERY_HOOK_REGEXP, (substring: string, ...args: any[]): string => {
         const { length: l, [l - 1]: groups } = args;
+        // eslint-disable-next-line
         return substring.replace(groups['CallExpressionName'], `useStaticQuery<${namespace}${accessor}${groups['QueryName']}Query>`);
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .replace(STATIC_QUERY_COMPONENT_REGEXP, (substring: string, ...args: any[]): string => {
         const { length: l, [l - 1]: groups } = args;
+        // eslint-disable-next-line
         return substring.replace(groups['JsxTagOpening'], `<StaticQuery<${namespace}${accessor}${groups['QueryName']}Query>`);
       });
 

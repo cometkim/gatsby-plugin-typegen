@@ -1,40 +1,12 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: [
-      './tsconfig.json',
-      './__tests__/tsconfig.json',
-    ],
+  env: {
+    node: true,
   },
   plugins: [
-    '@typescript-eslint',
+    '@cometjs',
   ],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@cometjs/base',
+    'plugin:@cometjs/typescript',
   ],
-  rules: {
-    'semi': 'off',
-    '@typescript-eslint/semi': ['error', 'always'],
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/member-delimiter-style': ['error', {
-      multiline: {
-        delimiter: 'comma',
-        requireLast: true
-      },
-      singleline: {
-          delimiter: 'comma',
-          requireLast: false
-      },
-      overrides: {
-        interface: {
-          multiline: {
-            delimiter: 'semi',
-          }
-        }
-      }
-    }]
-  }
 };

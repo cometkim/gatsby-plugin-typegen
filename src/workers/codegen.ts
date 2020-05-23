@@ -1,11 +1,18 @@
-import { Reporter } from 'gatsby';
-import { GraphQLSchema } from 'gatsby/graphql';
-import { cargo, asyncify, AsyncCargo } from 'async';
-import { codegen } from '@graphql-codegen/core';
-import { Source } from '@graphql-toolkit/common';
+import type { Reporter } from 'gatsby';
+import type { GraphQLSchema } from 'gatsby/graphql';
+import type { AsyncCargo } from 'async';
+import type { Callable } from '@cometjs/core';
+import type { Source } from '@graphql-toolkit/common';
+import type { RequiredPluginOptions } from '../plugin-utils';
 
-import { delay, writeFile, formatLanguage } from '../common';
-import { RequiredPluginOptions } from '../plugin-utils';
+import { cargo, asyncify } from 'async';
+import { codegen } from '@graphql-codegen/core';
+
+import {
+  delay,
+  writeFile,
+  formatLanguage,
+} from '../common';
 
 const CARGO_DELAY = 1000 as const;
 
@@ -42,16 +49,16 @@ const DEFAULT_FLOW_CONFIG = {
 } as const;
 
 export type CodegenTask = {
+  schema: GraphQLSchema,
   documents: Source[],
 };
 
 export type CodegenWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: CodegenTask, cb?: Function): void,
+  push(task: CodegenTask, cb?: Callable): void,
 };
 
 interface SetupCodegenWorkerFn {
   (props: {
-    schemaAst: GraphQLSchema,
     reporter: Reporter,
     language: RequiredPluginOptions['language'],
     namespace: string,
@@ -61,7 +68,6 @@ interface SetupCodegenWorkerFn {
   }): CodegenWorker;
 }
 export const setupCodegenWorker: SetupCodegenWorkerFn = ({
-  schemaAst,
   outputPath,
   language,
   namespace,
@@ -71,11 +77,11 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
 }) => {
   const worker = cargo(asyncify(async (tasks: CodegenTask[]) => {
     const { length: l, [l - 1]: last } = tasks;
-    const { documents } = last;
+    const { schema: schemaAst, documents } = last;
 
     type CodegenOptions = Parameters<typeof codegen>[0];
     const codegenOptions: CodegenOptions  = {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line
       schema: undefined as any,
       schemaAst,
       documents,
@@ -90,23 +96,24 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       plugins: [],
       pluginMap: {},
     };
+    type CodegenPlugin = CodegenOptions['pluginMap'][string];
     if (language === 'typescript') {
-      codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript');
+      codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript') as CodegenPlugin;
       codegenOptions.plugins.push({
         typescript: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
         },
       });
-      codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations');
+      codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations') as CodegenPlugin;
       codegenOptions.plugins.push({
         typescriptOperations: {
           ...DEFAULT_TYPESCRIPT_CONFIG,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
-        }
+        },
       });
       if (includeResolvers) {
-        codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers');
+        codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers') as CodegenPlugin;
         codegenOptions.plugins.push({
           typescriptResolvers: {
             contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
@@ -114,24 +121,24 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
         });
       }
     } else /* flow */ {
-      codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow');
+      codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow') as CodegenPlugin;
       codegenOptions.plugins.push({
         flow: {
           ...DEFAULT_FLOW_CONFIG,
           typesPrefix: `${namespace}$`,
         },
       });
-      codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations');
+      codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations') as CodegenPlugin;
       codegenOptions.plugins.push({
         flowOperations: {
           ...DEFAULT_FLOW_CONFIG,
           // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
           exportFragmentSpreadSubTypes: true,
           typesPrefix: `${namespace}$`,
-        }
+        },
       });
       if (includeResolvers) {
-        codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers');
+        codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers') as CodegenPlugin;
         // Where is contextType option????? WHERE
         codegenOptions.plugins.push({
           flowResolvers: {

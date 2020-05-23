@@ -227,6 +227,11 @@ Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescr
 
 ## Changelog
 
+### v2.2.0
+
+- Use union types instead of enum values ([#78](https://github.com/cometkim/gatsby-plugin-typegen/issue/78))
+- Emit schema when add a new frontmatter field ([#82](https://github.com/cometkim/gatsby-plugin-typegen/issues/82))
+
 ### v2.1.0
 
 - Use `string` type for the GatsbyJS's `Date` scalar by default. ([#73](https://github.com/cometkim/gatsby-plugin-typegen/pull/73))

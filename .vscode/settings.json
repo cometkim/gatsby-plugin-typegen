@@ -1,3 +1,4 @@
 {
-  "typescript.tsdk": ".vscode/pnpify/typescript/lib"
+  "typescript.tsdk": ".vscode/pnpify/typescript/lib",
+  "eslint.nodePath": ".vscode/pnpify"
 }
