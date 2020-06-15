@@ -9,4 +9,7 @@ module.exports = {
     'plugin:@cometjs/base',
     'plugin:@cometjs/typescript',
   ],
+  rules: {
+    '@typescript-eslint/no-var-requires': 'off',
+  },
 };
