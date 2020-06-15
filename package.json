@@ -50,9 +50,8 @@
     "@graphql-codegen/typescript": "^1.14.0",
     "@graphql-codegen/typescript-operations": "^1.14.0",
     "@graphql-codegen/typescript-resolvers": "^1.14.0",
-    "@graphql-toolkit/common": "^0.10.7",
-    "@graphql-toolkit/core": "^0.10.7",
-    "@graphql-toolkit/graphql-tag-pluck": "^0.10.7",
+    "@graphql-tools/graphql-tag-pluck": "^6.0.9",
+    "@graphql-tools/utils": "^6.0.9",
     "async": "^3.2.0",
     "common-tags": "^1.8.0"
   },

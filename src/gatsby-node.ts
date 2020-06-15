@@ -1,12 +1,12 @@
 import type { GatsbyNode } from 'gatsby';
 import type { Callable } from '@cometjs/core';
-import type { Source } from '@graphql-toolkit/common';
+import type { Source } from '@graphql-tools/utils';
 import type { GatsbyStore } from './gatsby-utils';
 
 import path from 'path';
 import { stripIndent } from 'common-tags';
-import { parseGraphQLSDL } from '@graphql-toolkit/common';
-import { gqlPluckFromCodeString } from '@graphql-toolkit/graphql-tag-pluck';
+import { parseGraphQLSDL } from '@graphql-tools/utils';
+import { gqlPluckFromCodeString } from '@graphql-tools/graphql-tag-pluck';
 
 import {
   writeFile,

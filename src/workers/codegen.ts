@@ -2,7 +2,7 @@ import type { Reporter } from 'gatsby';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import type { AsyncCargo } from 'async';
 import type { Callable } from '@cometjs/core';
-import type { Source } from '@graphql-toolkit/common';
+import type { Source } from '@graphql-tools/utils';
 import type { RequiredPluginOptions } from '../plugin-utils';
 
 import { cargo, asyncify } from 'async';
