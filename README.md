@@ -48,7 +48,7 @@ import type { PluginOptions as TypegenPluginOptions } from 'gatsby-plugin-typege
 type Plugin = (
   | string
   | { resolve: string, options: object }
-  | { resolve: `gatsby-plugin-typegen` options: TypegenPluginOptions }
+  | { resolve: `gatsby-plugin-typegen`, options: TypegenPluginOptions }
 );
 
 const plugins: Plugin[] = [
