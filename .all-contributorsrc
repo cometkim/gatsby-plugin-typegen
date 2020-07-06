@@ -69,7 +69,17 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "lfrancke",
+      "name": "Lars Francke",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/122850?v=4",
+      "profile": "http://www.opencore.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
