@@ -227,6 +227,10 @@ Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescr
 
 ## Changelog
 
+### v2.2.1
+
+- Fixes bug caused by upstream behavior change ([#93](https://github.com/cometkim/gatsby-plugin-typegen/issues/93))
+
 ### v2.2.0
 
 - Use union types instead of enum values ([#78](https://github.com/cometkim/gatsby-plugin-typegen/issues/78))
