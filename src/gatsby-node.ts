@@ -43,19 +43,12 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
     '[typegen] Successfully validate your configuration.\n'
     + JSON.stringify(pluginOptions, null, 2),
   );
-};
-
-export const onPreExtractQueries: GatsbyNode['onPreExtractQueries'] = ({
-  store: _store,
-  reporter,
-}) => {
-  const store = _store as GatsbyStore;
 
   reporter.verbose('[typegen] Listen on query extraction');
 
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   unsubscribeQueryExtraction = store.subscribe(async () => {
-    const lastAction = store.getState().lastAction;
+    const { lastAction } = store.getState();
 
     if (lastAction.type !== 'QUERY_EXTRACTION_BABEL_SUCCESS') {
       return;
