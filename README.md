@@ -99,7 +99,7 @@ Add generated typedefs to `.flowconfig`:
 {
   options: {
     emitSchema: {
-      `src/__generated__/gatsby-schema.graphql`: true,
+      'src/__generated__/gatsby-schema.graphql': true,
     },
   },
 }
@@ -123,7 +123,7 @@ module.exports = {
       resolve: `gatsby-plugin-typegen`,
       options: {
         emitSchema: {
-          `src/__generated__/gatsby-introspection.json`: true,
+          'src/__generated__/gatsby-introspection.json': true,
         },
       },
     },
@@ -170,10 +170,10 @@ I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?i
           resolve: `gatsby-plugin-typegen`,
           options: {
             emitSchema: {
-              `src/__generated__/gatsby-introspection.json`: true,
+              'src/__generated__/gatsby-introspection.json': true,
             },
             emitPluginDocuments: {
-              `src/__generated__/gatsby-plugin-documents.graphql`: true,
+              'src/__generated__/gatsby-plugin-documents.graphql': true,
             },
           },
         },
