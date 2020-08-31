@@ -10,6 +10,9 @@
     "tsc:check": "tsc --noEmit",
     "lint": "eslint . --ext ts --ext tsx"
   },
+  "resolutions": {
+    "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
+  },
   "devDependencies": {
     "@cometjs/eslint-plugin": "^0.2.1",
     "@types/jest": "^26.0.10",

@@ -32,9 +32,6 @@
     "build": "babel src -d . --extensions .ts,.tsx",
     "prepublish": "yarn build && yarn tsc:build && yarn flowtype"
   },
-  "resolutions": {
-    "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
-  },
   "peerDependencies": {
     "gatsby": ">=2.0.0",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0",

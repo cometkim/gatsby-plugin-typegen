@@ -1014,14 +1014,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-named-capturing-groups-regex@npm:^7.10.4":
-  version: 7.10.4
-  resolution: "@babel/plugin-transform-named-capturing-groups-regex@npm:7.10.4"
+"@babel/plugin-transform-named-capturing-groups-regex@npm:7.4.4":
+  version: 7.4.4
+  resolution: "@babel/plugin-transform-named-capturing-groups-regex@npm:7.4.4"
   dependencies:
-    "@babel/helper-create-regexp-features-plugin": ^7.10.4
+    regexp-tree: ^0.1.0
   peerDependencies:
     "@babel/core": ^7.0.0
-  checksum: 6b868806fda6cab6ff011990473a424199059f75a9eb12d0e421e01460244e0164f837af8b76e415bc390bf6502d5372ad9d56fd270cd1cfff7e0d19facc237f
+  checksum: 1b99bf0833f63340e052dc243bbdf76edb961afca1798c32e1d78d5ef4e9016cdceae18b49d22c04d998a0ab9ab7c97c2ae71728a8374d657afcffbf07d2a5c3
   languageName: node
   linkType: hard
 
@@ -15717,6 +15717,15 @@ fsevents@^1.2.7:
     extend-shallow: ^3.0.2
     safe-regex: ^1.1.0
   checksum: 3d6d95b4fda3cabe7222b3800876491825a865ae6ca4c90bb10fd0f6442d0c57d180657bb65358b4509bdd1cecad1bd2d23e7d15a69f9c523f501cc4431b950b
+  languageName: node
+  linkType: hard
+
+"regexp-tree@npm:^0.1.0":
+  version: 0.1.21
+  resolution: "regexp-tree@npm:0.1.21"
+  bin:
+    regexp-tree: bin/regexp-tree
+  checksum: b101cb99d4c25e1eb22d7be764464cd414c495d572dcf4c436c05f48942cc885069d46d63cd350523ffd19c667a9be4d0b724ea672769d2602365fa5a917286b
   languageName: node
   linkType: hard
 
