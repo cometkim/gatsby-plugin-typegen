@@ -57,21 +57,7 @@ jspm_packages/
 # next.js build output
 .next
 
-# JS artifacts
-/*.js
-/*.d.ts
-/workers
-!/babel.config.js
-!/jest.config.js
-!/.eslintrc.js
-!/index.js
-!/.pnp.js
-!/.all-contributorsrc
-
 # Yarn v2
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
-
-# Hack for flow
-/src/types.js

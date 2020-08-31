@@ -1,0 +1,13 @@
+# JS artifacts
+/*.js
+/*.d.ts
+/workers
+!/babel.config.js
+!/jest.config.js
+!/.eslintrc.js
+!/index.js
+!/.pnp.js
+!/.all-contributorsrc
+
+# Hack for flow
+/src/types.js
