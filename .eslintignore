@@ -1,0 +1,8 @@
+**/*.d.ts
+**/*.js
+!.eslintrc.js
+!plugin/babel.config.js
+!plugin/jest.config.js
+
+# Hack for flow
+plugin/src/types.js

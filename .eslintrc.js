@@ -2,12 +2,14 @@ module.exports = {
   env: {
     node: true,
   },
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   plugins: [
     '@cometjs',
   ],
   extends: [
-    'plugin:@cometjs/base',
-    'plugin:@cometjs/typescript',
+    'plugin:@cometjs/auto',
   ],
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
