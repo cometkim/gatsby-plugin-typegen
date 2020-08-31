@@ -1,5 +1,6 @@
 {
-  "name": "gatsby-plugin-typegen", "description": "Gatsby plugin that watch your static/page queries and automatically generates TypeScript/Flow definitions.",
+  "name": "gatsby-plugin-typegen",
+  "description": "Gatsby plugin that watch your static/page queries and automatically generates TypeScript/Flow definitions.",
   "version": "2.2.1",
   "main": "index.js",
   "license": "MIT",
