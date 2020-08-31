@@ -178,27 +178,23 @@ module.exports = {
     }
 
     async execute() {
-      const configuration = await core_1.Configuration.find(this.context.cwd, this.context.plugins);
-      const {
-        workspace
-      } = await core_1.Project.find(configuration, this.context.cwd);
-
-      if (!workspace) {
-        throw new Error(`Workspace setting is not found.
-  Please run the command in path where yarn initialized.`);
-      }
-
       if (!plugin_essentials_1.default.commands) {
         throw new Error(`Yarn commands could not be loaded.
   Please upgrade to Yarn 2.`);
       }
 
-      const dependencies = this.getDependencies(workspace);
-      const descriptors = [...dependencies.values()].filter(descriptor => this.resolveFullPackageName(descriptor).match(this.packages.join('|') || '.*')).filter(descriptor => !this.resolveFullPackageName(descriptor).match(this.exclude.join('|') || null));
-      const packageNames = descriptors.map(this.resolveFullPackageName);
-      const cli = clipanion_1.Cli.from(plugin_essentials_1.default.commands);
-      const result = await cli.runExit(['up', ...packageNames], this.context);
-      return result;
+      const configuration = await core_1.Configuration.find(this.context.cwd, this.context.plugins);
+      const {
+        project
+      } = await core_1.Project.find(configuration, this.context.cwd);
+
+      for (const workspace of project.workspaces) {
+        const dependencies = this.getDependencies(workspace);
+        const descriptors = [...dependencies.values()].filter(descriptor => this.resolveFullPackageName(descriptor).match(this.packages.join('|') || '.*')).filter(descriptor => !this.resolveFullPackageName(descriptor).match(this.exclude.join('|') || null));
+        const packageNames = descriptors.map(this.resolveFullPackageName);
+        const cli = clipanion_1.Cli.from(plugin_essentials_1.default.commands);
+        await cli.runExit(['up', ...packageNames], this.context);
+      }
     }
 
   }
