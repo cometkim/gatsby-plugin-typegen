@@ -28,10 +28,10 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx",
     "test": "jest",
-    "tsc": "tsc --emitDeclarationOnly --skipLibCheck",
+    "tsc:build": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "flowtype": "cp -f src/types.ts src/types.js && babel src/types.js -d . --plugins module:@babel/plugin-transform-flow-comments",
     "build": "babel src -d . --extensions .ts,.tsx",
-    "prepublish": "yarn build && yarn tsc && yarn flowtype"
+    "prepublish": "yarn build && yarn tsc:build && yarn flowtype"
   },
   "resolutions": {
     "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
@@ -50,6 +50,7 @@
     "@graphql-codegen/typescript": "^1.16.3",
     "@graphql-codegen/typescript-operations": "^1.16.3",
     "@graphql-codegen/typescript-resolvers": "^1.16.3",
+    "@graphql-toolkit/common": "^0.10.7",
     "@graphql-tools/graphql-tag-pluck": "^6.0.12",
     "@graphql-tools/utils": "^6.0.12",
     "async": "^3.2.0",

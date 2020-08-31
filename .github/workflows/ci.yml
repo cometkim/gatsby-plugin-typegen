@@ -21,6 +21,6 @@ jobs:
 
     - run: yarn workspace gatsby-plugin-typegen lint
 
-    - run: yarn workspace gatsby-plugin-typegen tsc
+    - run: yarn tsc:check
 
     - run: yarn workspace gatsby-plugin-typegen build
