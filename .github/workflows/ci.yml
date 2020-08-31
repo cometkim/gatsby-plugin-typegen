@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: 14.x
 
-    - run: yarn workspace gatsby-plugin-typegen lint
+    - run: yarn lint
 
     - run: yarn tsc:check
 

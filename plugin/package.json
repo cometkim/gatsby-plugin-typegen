@@ -26,7 +26,6 @@
     "codegen"
   ],
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx",
     "test": "jest",
     "tsc:build": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "flowtype": "cp -f src/types.ts src/types.js && babel src/types.js -d . --plugins module:@babel/plugin-transform-flow-comments",
