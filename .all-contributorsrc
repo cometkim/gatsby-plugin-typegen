@@ -12,6 +12,20 @@
   "commitConvention": "none",
   "contributors": [
     {
+      "login": "cometkim",
+      "name": "Hyeseong Kim",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9696352?v=4",
+      "profile": "https://blog.cometkim.kr/",
+      "contributions": [
+        "maintenance",
+        "code",
+        "doc",
+        "bug",
+        "ideas",
+        "review"
+      ]
+    },
+    {
       "login": "relefant",
       "name": "Richard Sewell",
       "avatar_url": "https://avatars0.githubusercontent.com/u/10079653?v=4",

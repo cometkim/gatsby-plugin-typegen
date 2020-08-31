@@ -8,7 +8,9 @@
   ],
   "scripts": {
     "tsc:check": "tsc --noEmit",
-    "lint": "eslint . --ext ts --ext tsx"
+    "lint": "eslint . --ext ts --ext tsx",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "resolutions": {
     "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
