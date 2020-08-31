@@ -1,4 +1,4 @@
-import type { Source } from '@graphql-toolkit/common';
+import type { Source } from '@graphql-tools/utils';
 
 import path from 'path';
 import fs from 'fs';
