@@ -19,6 +19,10 @@ jobs:
       with:
         node-version: 14.x
 
+    - name: Check dependencies
+      run: yarn install --immutable --immutable-cache
+      shell: bash
+
     - run: yarn lint
 
     - run: yarn tsc:check
