@@ -197,9 +197,39 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
       const lastAction = state.lastAction;
 
       // Listen gatsby actions
+      // - QUERY_EXTRACTION_BABEL_SUCCESS action for pre-exisitng static queries.
       // - SET_SCHEMA action for schema changing.
       // - QUERY_EXTRACTED action for page queries.
       // - REPLACE_STATIC_QUERY action for static queries.
+
+      if (lastAction.type === 'QUERY_EXTRACTION_BABEL_SUCCESS') {
+        const { componentPath } = lastAction.payload;
+
+        if (trackedSource.has(componentPath)) {
+          // If the component already tracked, other actions will handle the generating
+          return;
+        }
+
+        void (async () => {
+          try {
+            const code = await readFile(componentPath);
+            const extractedSDL = await gqlPluckFromCodeString(
+              componentPath,
+              code,
+              GRAPHQL_TAG_PLUCK_OPTIONS,
+            );
+            if (extractedSDL) {
+              const document = parseGraphQLSDL(componentPath, extractedSDL, { noLocation: true });
+              trackedSource.set(componentPath, document);
+
+              pushCodegenTask();
+              void pushInsertTypeTask(componentPath);
+            }
+          } catch (error) {
+            reporter.error(`[typegen] Fail to extract GraphQL documents from ${componentPath}`, error);
+          }
+        })();
+      }
 
       if (lastAction.type === 'SET_SCHEMA') {
         pluginState.schema = state.schema;
