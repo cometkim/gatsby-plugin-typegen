@@ -207,9 +207,21 @@ I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?i
 
 ### TypeScript plugin
 
-- [ts-graphql-plugin](https://github.com/Quramy/ts-graphql-plugin)
+The extracted schema file can also be used for [ts-graphql-plugin](https://github.com/Quramy/ts-graphql-plugin). Using the config defined in [Emit schema as GraphQL SDL](#emit-schema-as-graphql-sdl):
 
-TODO: Add config example
+```jsonc
+// tsconfig.json
+{
+  "compilerOptions": {
+    // ...
+    "plugins": [{
+      "name": "ts-graphql-plugin",
+      "schema": "src/__generated__/gatsby-schema.graphql",
+      "tag": "graphql"
+    }]
+  },
+}
+```
 
 ## Available options
 
