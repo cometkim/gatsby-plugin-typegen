@@ -5,7 +5,7 @@
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/cometkim/gatsby-plugin-typegen.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cometkim/gatsby-plugin-typegen/context:javascript)
 ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Watch your queries and automatically generates TypeScript/Flow definitions out-of-box.
@@ -277,6 +277,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.opencore.com"><img src="https://avatars2.githubusercontent.com/u/122850?v=4" width="100px;" alt=""/><br /><sub><b>Lars Francke</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=lfrancke" title="Documentation">📖</a></td>
     <td align="center"><a href="https://haspar.us"><img src="https://avatars0.githubusercontent.com/u/15332326?v=4" width="100px;" alt=""/><br /><sub><b>Piotr Monwid-Olechnowicz</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=hasparus" title="Documentation">📖</a></td>
     <td align="center"><a href="http://edykim.com"><img src="https://avatars3.githubusercontent.com/u/33057457?v=4" width="100px;" alt=""/><br /><sub><b>Edward Kim</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/issues?q=author%3Aedykim" title="Bug reports">🐛</a> <a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=edykim" title="Code">💻</a></td>
+    <td align="center"><a href="http://forivall.com"><img src="https://avatars1.githubusercontent.com/u/760204?v=4" width="100px;" alt=""/><br /><sub><b>Emily Marigold Klassen</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=forivall" title="Documentation">📖</a></td>
   </tr>
 </table>
 
