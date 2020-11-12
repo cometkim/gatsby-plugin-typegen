@@ -223,6 +223,8 @@ The extracted schema file can also be used for [ts-graphql-plugin](https://githu
 }
 ```
 
+![demo with ts-graphql-plugin, it shows type hints, auto suggestions, type errors on GraphQL tag](images/ts-graphql-plugin.gif)
+
 ## Available options
 
 Checkout the full documentation of plugin options from [`src/types.ts`](https://github.com/cometkim/gatsby-plugin-typegen/blob/master/plugin/src/types.ts).
