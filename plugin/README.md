@@ -223,7 +223,7 @@ The extracted schema file can also be used for [ts-graphql-plugin](https://githu
 }
 ```
 
-![demo with ts-graphql-plugin, it shows type hints, auto suggestions, type errors on GraphQL tag](images/ts-graphql-plugin.gif)
+ [demo with ts-graphql-plugin, it shows type hints, auto suggestions, type errors on GraphQL tag](images/ts-graphql-plugin-demo.gif)
 
 ## Available options
 
