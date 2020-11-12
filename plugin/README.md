@@ -214,11 +214,13 @@ The extracted schema file can also be used for [ts-graphql-plugin](https://githu
 {
   "compilerOptions": {
     // ...
-    "plugins": [{
-      "name": "ts-graphql-plugin",
-      "schema": "src/__generated__/gatsby-schema.graphql",
-      "tag": "graphql"
-    }]
+    "plugins": [
+      {
+        "name": "ts-graphql-plugin",
+        "schema": "src/__generated__/gatsby-schema.graphql",
+        "tag": "graphql"
+      }
+    ]
   },
 }
 ```
