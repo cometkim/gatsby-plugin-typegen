@@ -225,6 +225,12 @@ If you wanna use codegen with other plugins (e.g. React Apollo), you can use [`@
 
 Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-graphql-codegen) gives you a more flex options.
 
+## Troubleshooting
+
+### `Error: Cannot use GraphQLSchema "[object GraphQLSchema]" from another module or realm.`
+
+See https://github.com/cometkim/gatsby-plugin-typegen/issues/120
+
 ## Changelog
 
 ### v2.2.1
