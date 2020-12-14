@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": {
     "name": "Hyeseong Kim",
-    "email": "cometkim.kr@gmail.com",
+    "email": "hey@hyeseong.kim",
     "url": "https://github.com/cometkim"
   },
   "homepage": "https://www.gatsbyjs.org/packages/gatsby-plugin-typegen/",
@@ -16,7 +16,7 @@
   },
   "bugs": {
     "url": "https://github.com/cometkim/gatsby-plugin-typegen/issues",
-    "email": "cometkim.kr@gmail.com"
+    "email": "hey@hyeseong.kim"
   },
   "keywords": [
     "gatsby",
