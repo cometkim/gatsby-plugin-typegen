@@ -30,7 +30,7 @@
     "tsc:build": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "flowtype": "cp -f src/types.ts src/types.js && babel src/types.js -d . --plugins module:@babel/plugin-transform-flow-comments",
     "build": "babel src -d . --extensions .ts,.tsx",
-    "prepublish": "yarn build && yarn tsc:build && yarn flowtype"
+    "prepack": "yarn build && yarn tsc:build && yarn flowtype"
   },
   "peerDependencies": {
     "gatsby": ">=2.0.0",

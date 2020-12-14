@@ -1,6 +1,6 @@
 /src
 /__tests__
-/typings
+/typing
 /images
 /.yarn
 /.vscode
@@ -8,6 +8,7 @@
 
 renovate.json
 tsconfig.json
+tsconfig.build.json
 .editorconfig
 .gitignore
 .gitattributes
