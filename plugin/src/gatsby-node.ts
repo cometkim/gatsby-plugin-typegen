@@ -1,257 +1,231 @@
-import type { GatsbyNode } from 'gatsby';
-import type { Callable } from '@cometjs/core';
-import type { Source } from '@graphql-tools/utils';
-import type { GatsbyStore } from './gatsby-utils';
+import type { GatsbyNode, Reporter } from 'gatsby';
+import { interpret } from 'xstate';
+import { Kind } from 'gatsby/graphql';
 
-import path from 'path';
-import { stripIndent } from 'common-tags';
-import { parseGraphQLSDL } from '@graphql-tools/utils';
-import { gqlPluckFromCodeString } from '@graphql-tools/graphql-tag-pluck';
+import type { TypegenReporter } from './internal/reporter';
+import { validateConfig } from './internal/config';
+import { typegenMachine } from './internal/machine';
+import { sortDefinitions } from './internal/utils';
 
+import { makeEmitSchemaService } from './services/emitSchema';
+import { makeEmitPluginDocumentService } from './services/emitPluginDocument';
+import { makeAutofixService } from './services/autofix';
+import { makeCodegenService } from './services/codegen';
+
+import type { PluginOptions } from './types';
 import {
-  writeFile,
-  readFile,
-  deduplicateFragmentFromDocuments,
-} from './common';
-import {
-  setupCodegenWorker,
-  setupEmitSchemaWorker,
-  setupInsertTypeWorker,
-} from './workers';
-import {
-  requirePluginOptions,
-  RequiredPluginOptions,
-  GRAPHQL_TAG_PLUCK_OPTIONS,
-} from './plugin-utils';
+  readFileContent,
+  writeFileContent,
+  isCloudBuild,
+} from './utils';
 
-// Plugin will track documents what is actually used by Gatsby.
-const trackedSource = new Map<string, Source>();
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
+  Joi,
+}) => {
+  const documentOutputOptionsSchema = Joi.object({
+    format: Joi.string()
+      .valid('introspection', 'sdl')
+      .default('sdl')
+      .required(),
+    commentDescriptions: Joi.boolean()
+      .default(true),
+  }).required();
 
-let pluginOptions: RequiredPluginOptions;
-let unsubscribeQueryExtraction: Callable;
+  return Joi.object({
+    language: Joi.string()
+      .valid('typescript', 'flow')
+      .default('typescript'),
+    namespace: Joi.string()
+      .default('GatsbyTypes'),
+    outputPath: Joi.string()
+      .default('src/__generated__/gatsby-types.d.ts'),
+    includeResolvers: Joi.boolean()
+      .default(false),
+    autoFix: Joi.boolean(),
+    autofix: Joi.boolean()
+      .default(true),
+    scalars: Joi.object()
+      .pattern(/\w[\w\d\-_]+/, Joi.string().required())
+      .default({}),
+    emitSchema: Joi.object()
+      .pattern(/.+/, [
+        Joi.boolean().required(),
+        documentOutputOptionsSchema,
+      ]),
+    emitPluginDocuments: Joi.object()
+      .pattern(/.+/, [
+        Joi.boolean().required(),
+        documentOutputOptionsSchema,
+      ]),
+    emitPluginDocument: Joi.object()
+      .pattern(/.+/, [
+        Joi.boolean().required(),
+        documentOutputOptionsSchema,
+      ]),
+  });
+};
+
+let spawnedMachine: any = null;
 
 export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
-  store: _store,
+  store,
+  emitter,
   reporter,
 }, options) => {
-  const store = _store as GatsbyStore;
+  const typegenReporter = makeTypegenReporter(reporter);
+  const pluginOptions = options as unknown as PluginOptions;
 
-  // Validate plugin options earlier.
-  pluginOptions = requirePluginOptions(options, { store, reporter });
+  const { program } = store.getState();
+  const basePath = program.directory;
 
-  reporter.verbose(
-    '[typegen] Successfully validate your configuration.\n'
-    + JSON.stringify(pluginOptions, null, 2),
-  );
-
-  reporter.verbose('[typegen] Listen on query extraction');
-
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  unsubscribeQueryExtraction = store.subscribe(async () => {
-    const { lastAction } = store.getState();
-
-    if (lastAction.type !== 'QUERY_EXTRACTION_BABEL_SUCCESS') {
-      return;
-    }
-
-    const { componentPath } = lastAction.payload;
-    if (trackedSource.has(componentPath)) {
-      return;
-    }
-
-    try {
-      const code = await readFile(componentPath);
-      const extractedSDL = await gqlPluckFromCodeString(
-        componentPath,
-        code,
-        GRAPHQL_TAG_PLUCK_OPTIONS,
-      );
-      if (extractedSDL) {
-        const document = parseGraphQLSDL(componentPath, extractedSDL, { noLocation: true });
-        trackedSource.set(componentPath, document);
-      }
-    } catch (error) {
-      reporter.error(`[typegen] Fail to extract GraphQL documents from ${componentPath}`, error);
-    }
-  }) as Callable;
-};
-
-export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
-  store: _store,
-  reporter,
-}) => {
-  const store = _store as GatsbyStore;
-  const {
-    language,
-    namespace,
-    outputPath,
-    includeResolvers,
-    emitSchema,
-    emitPluginDocuments,
-    autoFix,
-    scalars,
-  } = pluginOptions;
-
-  reporter.verbose('[typegen] End-up listening on query extraction.');
-  unsubscribeQueryExtraction();
-
-  const state = store.getState();
-  const basePath = state.program.directory;
-  const pluginState = {
-    schema: state.schema,
-  };
-
-  const emitSchemaEntries = Object.entries(emitSchema);
-  const emitSchemaWorker = emitSchemaEntries.length > 0 && setupEmitSchemaWorker({
-    reporter,
+  const config = validateConfig({
+    basePath,
+    options: pluginOptions,
+    reporter: typegenReporter,
   });
-  const pushEmitSchemaTask = () => {
-    if (!emitSchemaWorker) {
-      return;
-    }
-    void emitSchemaWorker.push({
-      schema: pluginState.schema,
-      entries: emitSchemaEntries,
-    });
-  };
 
-  const codegenWorker = setupCodegenWorker({
-    language,
-    namespace,
-    outputPath,
-    includeResolvers,
-    reporter,
-    scalarMap: scalars,
-  });
-  const pushCodegenTask = () => {
-    void codegenWorker.push({
-      schema: pluginState.schema,
-      documents: deduplicateFragmentFromDocuments([...trackedSource.values()].filter(Boolean)),
-    });
-  };
+  typegenReporter.verbose(reporter.stripIndent`
+    loaded configuration
+    ${JSON.stringify(pluginOptions, null, 2)}
+  `);
 
-  const insertTypeWorker = autoFix && setupInsertTypeWorker({
-    language,
-    namespace,
-    reporter,
-  });
-  const pushInsertTypeTask = async (componentPath: string) => {
-    if (!insertTypeWorker) {
-      return;
-    }
-
-    if (language === 'typescript' && /\.tsx?$/.test(componentPath)) {
-      void insertTypeWorker.push({ file: componentPath });
-    }
-
-    // Flow version is bit more slower because should check the `@flow` comment exist.
-    if (language === 'flow' && /\.jsx?$/.test(componentPath)) {
-      const content = await readFile(componentPath);
-      const hasFlowComment = content.includes('@flow');
-      reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment.toString()}`);
-      if (hasFlowComment) {
-        void insertTypeWorker.push({ file: componentPath });
-      }
-    }
-  };
-
-  // Task 1. Emit schema
-  pushEmitSchemaTask();
-
-  // Task 2. Emit plugin documents
-  // FIXME: Move this to a seperated service like others.
-  // (not necessarily for now becuase this is one-time job)
-  //
-  // Gatsby component paths have forward slashes.
-  // The following filter doesn't work properly on Windows if the matched path uses backslashes
-  const srcPath = path.resolve(basePath, 'src').replace(/\\/g, '/');
-
-  const pluginDocuments = Object.values(emitPluginDocuments).some(Boolean) && (
-    stripIndent(
-      Array.from(trackedSource.entries())
-        .filter(([componentPath]) => !componentPath.startsWith(srcPath))
-        .map(([, source]) => source.rawSDL)
-        .join('\n'),
-    )
-  );
-  if (pluginDocuments) {
-    for (const [documentOutputPath, documentOutputOptions] of Object.entries(emitPluginDocuments)) {
-      if (!documentOutputOptions) continue;
-      reporter.verbose(`[typegen] Emit Gatsby plugin documents into ${documentOutputPath}`);
-      await writeFile(path.resolve(basePath, documentOutputPath), pluginDocuments);
-    }
+  if (isCloudBuild(process.env)) {
+    typegenReporter.verbose(reporter.stripIndent`
+      skip running on cloud build
+    `);
+    return;
   }
 
-  // Task 3. Codegen
-  pushCodegenTask();
+  const emitSchema = makeEmitSchemaService({
+    configMap: config.emitSchema,
+    reporter: typegenReporter,
+    writeFileContent,
+  });
 
-  // Task 4. Auto-fixing!
-  for (const componentPath of trackedSource.keys()) {
-    void pushInsertTypeTask(componentPath);
-  }
+  const emitPluginDocument = makeEmitPluginDocumentService({
+    configMap: config.emitPluginDocument,
+    reporter: typegenReporter,
+    writeFileContent,
+  });
 
-  // Subscribe GatsbyJS store and handle changes in development mode
-  if (process.env.NODE_ENV === 'development') {
-    reporter.verbose('[typegen] Watching schema/query changes and re-run workers');
+  const autofix = makeAutofixService({
+    ...config,
+    readFileContent,
+    writeFileContent,
+    reporter: typegenReporter,
+  });
 
-    store.subscribe(() => {
-      const state = store.getState();
-      const lastAction = state.lastAction;
+  const codegen = makeCodegenService({
+    ...config,
+    customScalars: config.scalars,
+    reporter: typegenReporter,
+    writeFileContent,
+  });
 
-      // Listen gatsby actions
-      // - QUERY_EXTRACTION_BABEL_SUCCESS action for pre-exisitng static queries.
-      // - SET_SCHEMA action for schema changing.
-      // - QUERY_EXTRACTED action for page queries.
-      // - REPLACE_STATIC_QUERY action for static queries.
-
-      if (lastAction.type === 'QUERY_EXTRACTION_BABEL_SUCCESS') {
-        const { componentPath } = lastAction.payload;
-
-        if (trackedSource.has(componentPath)) {
-          // If the component already tracked, other actions will handle the generating
-          return;
-        }
-
-        void (async () => {
-          try {
-            const code = await readFile(componentPath);
-            const extractedSDL = await gqlPluckFromCodeString(
-              componentPath,
-              code,
-              GRAPHQL_TAG_PLUCK_OPTIONS,
+  const typegenService = interpret(
+    typegenMachine
+    .withContext({
+      config,
+      debouncingDelay: 500,
+      devMode: false,
+      reporter: typegenReporter,
+    })
+    .withConfig({
+      actions: {
+        reportEmitSchemaError: (context, event) => {
+          context.reporter.error('error occurred while running emitSchema service', event.data as Error);
+        },
+        reportEmitPluginDocumentError: (context, event) => {
+          context.reporter.error('error occurred while running emitPluginDocument service', event.data as Error);
+        },
+        reportCodegenError: (context, event) => {
+          context.reporter.error('error occurred while running codegen service', event.data as Error);
+        },
+        reportAutofixError: (context, event) => {
+          context.reporter.error('error occurred while running autofix service', event.data as Error);
+        },
+      },
+      services: {
+        emitSchema: context => {
+          if (!context.schema) {
+            return Promise.reject(
+              new Error('schema is not initilaized'),
             );
-            if (extractedSDL) {
-              const document = parseGraphQLSDL(componentPath, extractedSDL, { noLocation: true });
-              trackedSource.set(componentPath, document);
-
-              pushCodegenTask();
-              void pushInsertTypeTask(componentPath);
-            }
-          } catch (error) {
-            reporter.error(`[typegen] Fail to extract GraphQL documents from ${componentPath}`, error);
           }
-        })();
-      }
+          return emitSchema(context.schema);
+        },
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore for typegen bug
+        emitPluginDocument: context => emitPluginDocument(context.thirdpartyFragments || []),
+        codegen: context => {
+          if (!context.schema) {
+            return Promise.reject(
+              new Error('schema is not initilaized'),
+            );
+          }
+          return codegen({
+            schema: context.schema,
+            documents: [...context.trackedDefinitions?.values() || []]
+              .sort(sortDefinitions)
+              .map(definitionMeta => ({
+                document: {
+                  kind: Kind.DOCUMENT,
+                  definitions: [definitionMeta.def],
+                },
+                hash: definitionMeta.hash.toString(),
+              })),
+          });
+        },
+        autofix: (context, event) => {
+          if (!context.config.autofix) {
+            const files = event.files ??
+              [...context.trackedDefinitions?.values() || []].map(def => def.filePath);
+            return autofix(files);
+          }
+          return Promise.resolve();
+        },
+      },
+    }),
+  );
 
-      if (lastAction.type === 'SET_SCHEMA') {
-        pluginState.schema = state.schema;
-        pushEmitSchemaTask();
-        pushCodegenTask();
-      }
+  typegenService.start();
 
-      if (lastAction.type === 'QUERY_EXTRACTED' || lastAction.type === 'REPLACE_STATIC_QUERY') {
-        const { payload: { query, componentPath } } = lastAction;
-        const source = trackedSource.get(componentPath);
-        if (source?.rawSDL === query) {
-          return;
-        }
+  typegenService.onTransition(({ event, value, changed }) => {
+    typegenReporter.verbose(`on ${event.type}`);
+    if (changed) {
+      typegenReporter.verbose(` ⤷ transition to ${JSON.stringify(value)}`);
+    } else {
+      typegenReporter.verbose(' ⤷ skipped');
+    }
+  });
 
-        const document = parseGraphQLSDL(componentPath, query, { noLocation: true });
-        trackedSource.set(componentPath, document);
+  spawnedMachine = typegenService;
 
-        pushCodegenTask();
-        void pushInsertTypeTask(componentPath);
-      }
-    });
-  }
+  emitter.on('SET_SCHEMA', () => {
+    typegenService.send({ type: 'SET_SCHEMA', schema: store.getState().schema });
+  });
+
+  emitter.on('SET_GRAPHQL_DEFINITIONS', () => {
+    typegenService.send({ type: 'SET_GRAPHQL_DEFINITIONS', definitions: store.getState().definitions });
+  });
 };
+
+export const onCreateDevServer: GatsbyNode['onCreateDevServer'] = () => {
+  spawnedMachine?.send('CREATE_DEV_SERVER');
+};
+
+function makeTypegenReporter(reporter: Reporter): TypegenReporter {
+  const formatMessage = (message: string) => `[typegen] ${message}`;
+  return {
+    stripIndent: reporter.stripIndent,
+    log: message => reporter.log(formatMessage(message)),
+    info: message => reporter.info(formatMessage(message)),
+    warn: message => reporter.warn(formatMessage(message)),
+    verbose: message => reporter.verbose(formatMessage(message)),
+    error: (message, e) => reporter.error(formatMessage(message), e, 'gatsby-plugin-typegen'),
+    panic: (message, e) => reporter.panic(formatMessage(message), e, 'gatsby-plugin-typegen'),
+    panicOnBuild: (message, e) => reporter.panicOnBuild(formatMessage(message), e, 'gatsby-plugin-typegen'),
+    activity: message => reporter.activityTimer(formatMessage(message)),
+    progress: (message, total) => reporter.createProgress(formatMessage(message), total),
+  };
+}

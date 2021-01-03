@@ -1,5 +1,5 @@
 {
-  "tsserver.tsdk": ".yarn/sdks/typescript/lib",
-  "eslint.nodePath": ".yarn/sdks",
+  "eslint.format.enable": true,
+  "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn"
 }
