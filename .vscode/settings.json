@@ -1,5 +1,9 @@
 {
-  "typescript.tsdk": ".yarn/pnpify/typescript/lib",
-  "eslint.nodePath": ".yarn/pnpify",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "eslint.nodePath": ".yarn/sdks",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  }
 }
