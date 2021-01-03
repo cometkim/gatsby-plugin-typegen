@@ -109,7 +109,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     if (!emitSchemaWorker) {
       return;
     }
-    emitSchemaWorker.push({
+    void emitSchemaWorker.push({
       schema: pluginState.schema,
       entries: emitSchemaEntries,
     });
@@ -124,7 +124,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     scalarMap: scalars,
   });
   const pushCodegenTask = () => {
-    codegenWorker.push({
+    void codegenWorker.push({
       schema: pluginState.schema,
       documents: deduplicateFragmentFromDocuments([...trackedSource.values()].filter(Boolean)),
     });
@@ -141,7 +141,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     }
 
     if (language === 'typescript' && /\.tsx?$/.test(componentPath)) {
-      insertTypeWorker.push({ file: componentPath });
+      void insertTypeWorker.push({ file: componentPath });
     }
 
     // Flow version is bit more slower because should check the `@flow` comment exist.
@@ -149,7 +149,9 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
       const content = await readFile(componentPath);
       const hasFlowComment = content.includes('@flow');
       reporter.verbose(`[typegen] Check if the file has flow comment: ${hasFlowComment.toString()}`);
-      hasFlowComment && insertTypeWorker.push({ file: componentPath });
+      if (hasFlowComment) {
+        void insertTypeWorker.push({ file: componentPath });
+      }
     }
   };
 

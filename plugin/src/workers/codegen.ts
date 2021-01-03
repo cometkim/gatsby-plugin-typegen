@@ -1,6 +1,6 @@
 import type { Reporter } from 'gatsby';
 import type { GraphQLSchema } from 'gatsby/graphql';
-import type { AsyncCargo } from 'async';
+import type { QueueObject } from 'async';
 import type { Callable } from '@cometjs/core';
 import type { Source } from '@graphql-tools/utils';
 import type { RequiredPluginOptions } from '../plugin-utils';
@@ -54,10 +54,6 @@ export type CodegenTask = {
   documents: Source[],
 };
 
-export type CodegenWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: CodegenTask, cb?: Callable): void,
-};
-
 interface SetupCodegenWorkerFn {
   (props: {
     reporter: Reporter,
@@ -66,7 +62,7 @@ interface SetupCodegenWorkerFn {
     outputPath: string,
     includeResolvers: boolean,
     scalarMap: { [typename: string]: string },
-  }): CodegenWorker;
+  }): QueueObject<CodegenTask>;
 }
 export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   outputPath,
@@ -76,7 +72,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
   scalarMap,
   reporter,
 }) => {
-  const worker = cargo(asyncify(async (tasks: CodegenTask[]) => {
+  const worker = cargo<CodegenTask>(asyncify(async (tasks: CodegenTask[]) => {
     const { length: l, [l - 1]: last } = tasks;
     const { schema: schemaAst, documents } = last;
 
