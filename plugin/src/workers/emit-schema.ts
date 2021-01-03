@@ -1,6 +1,6 @@
 import type { Reporter } from 'gatsby';
 import type { GraphQLSchema } from 'gatsby/graphql';
-import type { AsyncCargo } from 'async';
+import type { QueueObject } from 'async';
 import type { Option, Callable } from '@cometjs/core';
 import type { SchemaOutputOptions } from '../types';
 
@@ -13,19 +13,15 @@ export type EmitSchemaTask = {
   entries: Array<[string, SchemaOutputOptions]>,
 };
 
-export type EmitSchemaWorker = Omit<AsyncCargo, 'push'> & {
-  push(task: EmitSchemaTask, cb?: Callable): void,
-};
-
 interface SetupEmitSchemaWorkerFn {
   (props: {
     reporter: Reporter,
-  }): EmitSchemaWorker;
+  }): QueueObject<EmitSchemaTask>;
 }
 export const setupEmitSchemaWorker: SetupEmitSchemaWorkerFn = ({
   reporter,
 }) => {
-  const worker = cargo(asyncify(async (tasks: EmitSchemaTask[]) => {
+  const worker = cargo<EmitSchemaTask>(asyncify(async (tasks: EmitSchemaTask[]) => {
     const { length: l, [l - 1]: last } = tasks;
     const { schema, entries } = last;
 

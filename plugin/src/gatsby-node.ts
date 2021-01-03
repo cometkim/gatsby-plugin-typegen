@@ -109,7 +109,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     if (!emitSchemaWorker) {
       return;
     }
-    emitSchemaWorker.push({
+    void emitSchemaWorker.push({
       schema: pluginState.schema,
       entries: emitSchemaEntries,
     });
@@ -124,7 +124,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({
     scalarMap: scalars,
   });
   const pushCodegenTask = () => {
-    codegenWorker.push({
+    void codegenWorker.push({
       schema: pluginState.schema,
       documents: deduplicateFragmentFromDocuments([...trackedSource.values()].filter(Boolean)),
     });
