@@ -1,8 +1,9 @@
-/.yarn/releases/yarn-berry.js  binary linguist-generated
-/.yarn/plugins/**              binary linguist-generated
-/.yarn/cache/**                linguist-vendored
-/.yarn/sdks/**                 binary linguist-generated
-/.yarn/pnpify/typescript/**    binary linguist-generated
-/.yarn/pnpify/eslint/**        binary linguist-generated
-/.vscode/*.json                linguist-language=JSON5
-/.pnp.js                       binary linguist-generated
+/.yarn/releases/**           binary linguist-vendored
+/.yarn/plugins/**            binary linguist-vendored
+/.yarn/cache/**              binary linguist-vendored
+/.yarn/sdks/**               binary linguist-vendored
+/.yarn/pnpify/**             binary linguist-vendored
+
+/.pnp.js                     binary linguist-generated
+
+/.vscode/*.json              linguist-language=JSON5
