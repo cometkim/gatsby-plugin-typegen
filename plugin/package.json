@@ -49,7 +49,8 @@
     "@graphql-tools/graphql-tag-pluck": "^6.3.0",
     "@graphql-tools/utils": "^7.2.3",
     "async": "^3.2.0",
-    "common-tags": "^1.8.0"
+    "common-tags": "^1.8.0",
+    "xstate": "^4.15.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

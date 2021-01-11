@@ -13483,7 +13483,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["redux", "npm:4.0.5"],
             ["typescript", "patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=cc6730"],
-            ["utility-types", "npm:3.10.0"]
+            ["utility-types", "npm:3.10.0"],
+            ["xstate", "npm:4.15.4"]
           ],
           "linkType": "SOFT",
         }]
@@ -24898,6 +24899,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/xstate-npm-4.12.0-85c5c23de0-443401ded2.zip/node_modules/xstate/",
           "packageDependencies": [
             ["xstate", "npm:4.12.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.15.4", {
+          "packageLocation": "./.yarn/cache/xstate-npm-4.15.4-947426e698-8a04ebd0c5.zip/node_modules/xstate/",
+          "packageDependencies": [
+            ["xstate", "npm:4.15.4"]
           ],
           "linkType": "HARD",
         }]

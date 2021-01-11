@@ -9683,6 +9683,7 @@ fsevents@^1.2.7:
     redux: ^4.0.5
     typescript: ^4.1.3
     utility-types: ^3.10.0
+    xstate: ^4.15.4
   peerDependencies:
     gatsby: ">=2.0.0"
     graphql: ^14.0.0
@@ -19894,6 +19895,13 @@ typescript@^4.1.3:
   version: 4.12.0
   resolution: "xstate@npm:4.12.0"
   checksum: 443401ded250b40d7e5b8ba3aef0bf4a83560d02f316a1d1beaac7483516bfb54a486f3f50fa2cc18e097fe5a48796832d8807de25355d1d94bb9510b3484eff
+  languageName: node
+  linkType: hard
+
+"xstate@npm:^4.15.4":
+  version: 4.15.4
+  resolution: "xstate@npm:4.15.4"
+  checksum: 8a04ebd0c5f023805edf9f7ac46abb429a4b134273338c865656c83d762b32b9d2bcd73a46b428ecf347c9950f327e6e16c9366a712a0b421a96ca1bb6518afc
   languageName: node
   linkType: hard
 
