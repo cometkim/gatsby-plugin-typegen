@@ -3,6 +3,13 @@ import type { GraphQLSchema } from 'gatsby/graphql';
 import type { QueueObject } from 'async';
 import type { Callable } from '@cometjs/core';
 import type { Source } from '@graphql-tools/utils';
+import type { TypeScriptPluginConfig } from '@graphql-codegen/typescript/config';
+import type { TypeScriptDocumentsPluginConfig } from '@graphql-codegen/typescript-operations/config';
+import type { TypeScriptResolversPluginConfig } from '@graphql-codegen/typescript-resolvers/config';
+import type { FlowPluginConfig } from '@graphql-codegen/flow/config';
+import type { FlowDocumentsPluginConfig } from '@graphql-codegen/flow-operations/config';
+// no exposed types
+// import type { FlowResolversPluginConfig } from '@graphql-codegen/flow-resolvers/config';
 import type { RequiredPluginOptions } from '../plugin-utils';
 
 import { cargo, asyncify } from 'async';
@@ -36,18 +43,39 @@ const DEFAULT_SHARED_CONFIG = {
   },
 } as const;
 
-const DEFAULT_TYPESCRIPT_CONFIG = {
+const DEFAULT_TYPESCRIPT_CONFIG: Readonly<TypeScriptPluginConfig> = {
   avoidOptionals: true,
   immutableTypes: true,
   maybeValue: 'T | undefined',
   noExport: true,
-  enumAsTypes: true,
-} as const;
+  enumsAsTypes: true,
+};
 
-const DEFAULT_FLOW_CONFIG = {
-  useFlowExactObject: true,
+const DEFAULT_TYPESCRIPT_OPERATIONS_CONFIG: Readonly<TypeScriptDocumentsPluginConfig> = {
+  ...DEFAULT_TYPESCRIPT_CONFIG,
+  exportFragmentSpreadSubTypes: true,
+};
+
+const DEFAULT_TYPESCRIPT_RESOLVERS_CONFIG: Readonly<TypeScriptResolversPluginConfig> = {
+  // See https://github.com/dotansimha/graphql-code-generator/pull/5458
+  // ...DEFAULT_TYPESCRIPT_CONFIG,
+  contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
+};
+
+const DEFAULT_FLOW_CONFIG: Readonly<FlowPluginConfig> = {
+  useFlowExactObjects: true,
   useFlowReadOnlyTypes: true,
-} as const;
+};
+
+const DEFAULT_FLOW_OPERATIONS_CONFIG: Readonly<FlowDocumentsPluginConfig> = {
+  ...DEFAULT_FLOW_CONFIG,
+  exportFragmentSpreadSubTypes: true,
+};
+
+const DEFAULT_FLOW_RESOLVERS_CONFIG: Readonly<FlowPluginConfig> = {
+  ...DEFAULT_FLOW_CONFIG,
+  // FIXME: add config for contextType
+};
 
 export type CodegenTask = {
   schema: GraphQLSchema,
@@ -95,53 +123,38 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
     };
     type CodegenPlugin = CodegenOptions['pluginMap'][string];
     if (language === 'typescript') {
+      codegenOptions.plugins.push({ typescript: DEFAULT_TYPESCRIPT_CONFIG });
       codegenOptions.pluginMap['typescript'] = require('@graphql-codegen/typescript') as CodegenPlugin;
-      codegenOptions.plugins.push({
-        typescript: {
-          ...DEFAULT_TYPESCRIPT_CONFIG,
-        },
-      });
+
+      codegenOptions.plugins.push({ typescriptOperations: DEFAULT_TYPESCRIPT_OPERATIONS_CONFIG });
       codegenOptions.pluginMap['typescriptOperations'] = require('@graphql-codegen/typescript-operations') as CodegenPlugin;
-      codegenOptions.plugins.push({
-        typescriptOperations: {
-          ...DEFAULT_TYPESCRIPT_CONFIG,
-          // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
-          exportFragmentSpreadSubTypes: true,
-        },
-      });
+
       if (includeResolvers) {
+        codegenOptions.plugins.push({ typescriptResolvers: DEFAULT_TYPESCRIPT_RESOLVERS_CONFIG });
         codegenOptions.pluginMap['typescriptResolvers'] = require('@graphql-codegen/typescript-resolvers') as CodegenPlugin;
-        codegenOptions.plugins.push({
-          typescriptResolvers: {
-            contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
-          },
-        });
       }
     } else /* flow */ {
+      const flow: FlowPluginConfig = {
+        ...DEFAULT_FLOW_CONFIG,
+        typesPrefix: `${namespace}$`,
+      };
+      codegenOptions.plugins.push({ flow });
       codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow') as CodegenPlugin;
-      codegenOptions.plugins.push({
-        flow: {
-          ...DEFAULT_FLOW_CONFIG,
-          typesPrefix: `${namespace}$`,
-        },
-      });
+
+      const flowOperations: FlowDocumentsPluginConfig = {
+        ...DEFAULT_FLOW_OPERATIONS_CONFIG,
+        typesPrefix: `${namespace}$`,
+      };
+      codegenOptions.plugins.push({ flowOperations });
       codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations') as CodegenPlugin;
-      codegenOptions.plugins.push({
-        flowOperations: {
-          ...DEFAULT_FLOW_CONFIG,
-          // See https://github.com/cometkim/gatsby-plugin-typegen/issues/45
-          exportFragmentSpreadSubTypes: true,
-          typesPrefix: `${namespace}$`,
-        },
-      });
+
       if (includeResolvers) {
+        const flowResolvers: FlowPluginConfig = {
+          ...DEFAULT_FLOW_RESOLVERS_CONFIG,
+          typesPrefix: `${namespace}$`,
+        };
+        codegenOptions.plugins.push({ flowResolvers });
         codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers') as CodegenPlugin;
-        // Where is contextType option????? WHERE
-        codegenOptions.plugins.push({
-          flowResolvers: {
-            typesPrefix: `${namespace}$`,
-          },
-        });
       }
     }
 
