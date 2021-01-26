@@ -249,6 +249,14 @@ See https://github.com/cometkim/gatsby-plugin-typegen/issues/120
 
 ## Changelog
 
+### v2.2.3
+
+- Allow React v17 as peer dependency ([#140](https://github.com/cometkim/gatsby-plugin-typegen/pull/140))
+
+### v2.2.2
+
+- Fix missing options ([#$81](https://github.com/cometkim/gatsby-plugin-typegen/issues/81))
+
 ### v2.2.1
 
 - Fixes bug caused by upstream behavior change ([#93](https://github.com/cometkim/gatsby-plugin-typegen/issues/93))
