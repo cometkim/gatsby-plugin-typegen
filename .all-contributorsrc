@@ -121,6 +121,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ThijmenDeValk",
+      "name": "Thijmen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10213180?v=4",
+      "profile": "http://madebythijmen.nl",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
