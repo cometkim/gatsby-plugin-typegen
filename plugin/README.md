@@ -144,7 +144,7 @@ module.exports = {
     'graphql/template-strings': ['error', {
       env: 'relay',
       tagName: 'graphql',
-      schemaJsonFilepath: path.resolve(__dirname, 'src/__generated__gatsby-introspection.json'),
+      schemaJsonFilepath: path.resolve(__dirname, 'src/__generated__/gatsby-introspection.json'),
     }],
   },
 };
