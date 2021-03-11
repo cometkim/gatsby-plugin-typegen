@@ -130,6 +130,15 @@
       "contributions": [
         "maintenance"
       ]
+    },
+    {
+      "login": "GallardoCode",
+      "name": "Ricardo Gallardo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37138993?v=4",
+      "profile": "https://github.com/GallardoCode",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
