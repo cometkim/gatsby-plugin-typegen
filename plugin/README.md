@@ -152,11 +152,9 @@ module.exports = {
 
 ### VSCode extension
 
-I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo) extension.
+You can use the [VSCode GraphQL](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) with a [graphql-config](https://graphql-config.com/usage#config-search-places) file.
 
-(YES, even this isn't Apollo project)
-
-1. Install the [extension](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo).
+1. Install the [VSCode GraphQL extension](**https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql**).
 
 2. Configure plugin to emit schema and plugin documents.
 
@@ -181,29 +179,28 @@ I recommend to use [Apollo GraphQL](https://marketplace.visualstudio.com/items?i
     };
     ```
 
-3. Create `apollo.config.js` file in project root.
+3. Create `graphql.config.js` file in project root or supported [graphql-configs](https://graphql-config.com/usage#config-search-places).
 
     ```js
-    // apollo.config.js
+    // graphql.config.js
 
     module.exports = {
-      client: {
-        name: 'your-project-name',
-        tagName: 'graphql',
-        includes: [
-          './src/**/*.{ts,tsx}',
-          './src/__generated__/gatsby-plugin-documents.graphql',
-        ],
-        service: {
-          name: 'GatsbyJS',
-          localSchemaFile: './src/__generated__/gatsby-schema.graphql',
-        }
+      schema: ["src/__generated__/gatsby-introspection.json"],
+      documents: ["src/__generated__/gatsby-plugin-documents.graphql"],
+      extensions: {
+        endpoints: {
+          default: {
+            url: "http://localhost:8000/___graphql",
+            headers: { "user-agent": "JS GraphQL" },
+            introspect: false,
+          },
+        },
       },
     }
     ```
 
-4. Reload VSCode & Enjoy!\
-  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/vscode-extension-preview.png)
+4. Reload VSCode, `gatsby develop` to make queries in VSCode.
+  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/vscode-graphql-extension-preview.gif)
 
 ### TypeScript plugin
 
