@@ -8,7 +8,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Watch your queries and automatically generates TypeScript/Flow definitions out-of-box.
+High-performance TypeScript/Flow code generation for GatsbyJS queries.
 
 ## Features
 
@@ -109,50 +109,9 @@ Add generated typedefs to `.flowconfig`:
 
 Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 
-### ESLint
-
-You can use the extracted schema file for [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql)!
-
-```js
-// gatsby-config.js
-
-module.exports = {
-  plugins: [
-    // ...
-    {
-      resolve: `gatsby-plugin-typegen`,
-      options: {
-        emitSchema: {
-          'src/__generated__/gatsby-introspection.json': true,
-        },
-      },
-    },
-  ],
-};
-```
-
-```js
-// .eslintrc.js
-
-const path = require('path');
-
-module.exports = {
-  plugins: [
-    'graphql'
-  ],
-  rules: {
-    'graphql/template-strings': ['error', {
-      env: 'relay',
-      tagName: 'graphql',
-      schemaJsonFilepath: path.resolve(__dirname, 'src/__generated__/gatsby-introspection.json'),
-    }],
-  },
-};
-```
-
 ### VSCode extension
 
-You can use the [VSCode GraphQL](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) with a [graphql-config](https://graphql-config.com/usage#config-search-places) file.
+You can use the [VSCode GraphQL](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) with a [graphql-config](https://graphql-config.com/introduction) file.
 
 1. Install the [VSCode GraphQL extension](**https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql**).
 
@@ -200,7 +159,48 @@ You can use the [VSCode GraphQL](https://marketplace.visualstudio.com/items?item
     ```
 
 4. Reload VSCode, `gatsby develop` to make queries in VSCode.
-  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/vscode-graphql-extension-preview.gif)
+  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/master/plugin/images/vscode-graphql-extension-preview.gif)
+
+### ESLint
+
+You can use the extracted schema file for [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql)!
+
+```js
+// gatsby-config.js
+
+module.exports = {
+  plugins: [
+    // ...
+    {
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        emitSchema: {
+          'src/__generated__/gatsby-introspection.json': true,
+        },
+      },
+    },
+  ],
+};
+```
+
+```js
+// .eslintrc.js
+
+const path = require('path');
+
+module.exports = {
+  plugins: [
+    'graphql'
+  ],
+  rules: {
+    'graphql/template-strings': ['error', {
+      env: 'relay',
+      tagName: 'graphql',
+      schemaJsonFilepath: path.resolve(__dirname, 'src/__generated__/gatsby-introspection.json'),
+    }],
+  },
+};
+```
 
 ### TypeScript plugin
 
