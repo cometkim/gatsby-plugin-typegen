@@ -136,14 +136,14 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
     } else /* flow */ {
       const flow: FlowPluginConfig = {
         ...DEFAULT_FLOW_CONFIG,
-        typesPrefix: `${namespace}$`,
+        typesPrefix: `${namespace}`,
       };
       codegenOptions.plugins.push({ flow });
       codegenOptions.pluginMap['flow'] = require('@graphql-codegen/flow') as CodegenPlugin;
 
       const flowOperations: FlowDocumentsPluginConfig = {
         ...DEFAULT_FLOW_OPERATIONS_CONFIG,
-        typesPrefix: `${namespace}$`,
+        typesPrefix: `${namespace}`,
       };
       codegenOptions.plugins.push({ flowOperations });
       codegenOptions.pluginMap['flowOperations'] = require('@graphql-codegen/flow-operations') as CodegenPlugin;
@@ -151,7 +151,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       if (includeResolvers) {
         const flowResolvers: FlowPluginConfig = {
           ...DEFAULT_FLOW_RESOLVERS_CONFIG,
-          typesPrefix: `${namespace}$`,
+          typesPrefix: `${namespace}`,
         };
         codegenOptions.plugins.push({ flowResolvers });
         codegenOptions.pluginMap['flowResolvers'] = require('@graphql-codegen/flow-resolvers') as CodegenPlugin;
