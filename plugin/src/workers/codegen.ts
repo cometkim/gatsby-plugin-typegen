@@ -50,7 +50,7 @@ const DEFAULT_SHARED_CONFIG = {
       // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
       // Note: This will never be used since this is reserved by GatsbyJS internal
       JSON: 'any',
-    }
+    },
   },
 } as const;
 
