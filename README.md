@@ -1,7 +1,7 @@
 # gatsby-plugin-typegen
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 High-performance TypeScript/Flow code generation for GatsbyJS queries.
@@ -36,6 +36,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://forivall.com"><img src="https://avatars1.githubusercontent.com/u/760204?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emily Marigold Klassen</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=forivall" title="Documentation">📖</a></td>
     <td align="center"><a href="http://madebythijmen.nl"><img src="https://avatars.githubusercontent.com/u/10213180?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thijmen</b></sub></a><br /><a href="#maintenance-ThijmenDeValk" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/GallardoCode"><img src="https://avatars.githubusercontent.com/u/37138993?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ricardo Gallardo</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=GallardoCode" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ofqwx"><img src="https://avatars.githubusercontent.com/u/7224857?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antonio Aznarez</b></sub></a><br /><a href="https://github.com/cometkim/gatsby-plugin-typegen/commits?author=ofqwx" title="Code">💻</a></td>
   </tr>
 </table>
 
