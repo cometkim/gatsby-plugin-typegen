@@ -32,14 +32,25 @@ const DEFAULT_SHARED_CONFIG = {
   },
   addUnderscoreToArgsType: true,
   skipTypename: true,
-  scalars: {
-    // A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
-    // representation of dates and times using the Gregorian calendar.
-    Date: 'string',
+  scalars: { 
+    typescript: {
+      // A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
+      // representation of dates and times using the Gregorian calendar.
+      Date: 'string',
 
-    // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-    // Note: This will never be used since this is reserved by GatsbyJS internal
-    JSON: 'never',
+      // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+      // Note: This will never be used since this is reserved by GatsbyJS internal
+      JSON: 'never',
+    },
+    flow: {
+      // A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
+      // representation of dates and times using the Gregorian calendar.
+      Date: 'string',
+
+      // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+      // Note: This will never be used since this is reserved by GatsbyJS internal
+      JSON: 'any',
+    },
   },
 } as const;
 
@@ -114,7 +125,7 @@ export const setupCodegenWorker: SetupCodegenWorkerFn = ({
       config: {
         ...DEFAULT_SHARED_CONFIG,
         scalars: {
-          ...DEFAULT_SHARED_CONFIG.scalars,
+          ...DEFAULT_SHARED_CONFIG.scalars[language],
           ...scalarMap,
         },
       },
