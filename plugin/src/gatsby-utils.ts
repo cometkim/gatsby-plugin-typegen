@@ -1,3 +1,4 @@
+import path from 'path';
 import type { Store } from 'redux';
 import type {
   IGatsbyState as GatsbyState,
@@ -6,16 +7,19 @@ import type {
 } from 'gatsby/dist/redux/types';
 import type { OverrideProps } from '@cometjs/core';
 
-import path from 'path';
-
 export type GatsbyStore = Store<GatsbyState, GatsbyAction>;
 
 export type IDefinitionMeta = OverrideProps<_IDefinitionMeta, {
   // Trust me, this is more accurate.
-  printedAst: string | null
+  printedAst: string | null,
 }>;
-export type FragmentDefinition = IDefinitionMeta & { __BRAND__: 'FragmentDefinition', isFragment: true };
-export type QueryDefinition = IDefinitionMeta & { __BRAND__: 'QueryDefinition', isFragment: false };
+export type FragmentDefinition = OverrideProps<IDefinitionMeta, {
+  __BRAND__: 'FragmentDefinition',
+  isFragment: true,
+}>;
+export type QueryDefinition = OverrideProps<IDefinitionMeta, {
+  __BRAND__: 'QueryDefinition', isFragment: false,
+}>;
 
 export function isFragmentDefinition(def: IDefinitionMeta): def is FragmentDefinition {
   return def.isFragment;
@@ -36,7 +40,7 @@ export function guessIfUnnnamedQuery(def: QueryDefinition): boolean {
 
 export function guessIfThirdPartyDefinition(def: IDefinitionMeta): boolean {
   const { filePath } = def;
-  return /(node_modules|\.yarn)/.test(filePath);
+  return /(node_modules|\.yarn|\.cache)/.test(filePath);
 }
 
 // from https://github.com/gatsbyjs/gatsby/blob/6b4b7f81ec/packages/gatsby/src/schema/print.js#L33-L48

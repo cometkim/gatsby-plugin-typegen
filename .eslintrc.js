@@ -3,7 +3,11 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    project: './tsconfig.json',
+    project: [
+      './tsconfig.json',
+      './plugin/tsconfig.json',
+      './examples/**/tsconfig.json',
+    ],
   },
   plugins: [
     '@cometjs',
