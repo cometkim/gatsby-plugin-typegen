@@ -1,9 +1,9 @@
 # gatsby-plugin-typegen
 
+[![Backers](https://opencollective.com/gatsby-plugin-typegen/tiers/backer/badge.svg?label=backer&color=brightgreen)](https://opencollective.com/gatsby-plugin-typegen)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Backers](https://opencollective.com/gatsby-plugin-typegen/tiers/backer/badge.svg?label=backer&color=brightgreen)]()
 
 Let's give developers using GatsbyJS better DX with extreme type-safety.
 
@@ -60,14 +60,6 @@ Does your company has large GatsbyJS codebase? Consider supporting this project!
 
 <a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/0/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/1/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/2/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/3/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/4/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/5/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/6/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/7/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/8/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/9/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/9/avatar.svg"></a>
 
 ## LICENSE
 

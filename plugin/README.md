@@ -4,6 +4,7 @@
 [![Actions Status](https://github.com/cometkim/gatsby-plugin-typegen/workflows/CI/badge.svg)](https://github.com/cometkim/gatsby-plugin-typegen/actions)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/cometkim/gatsby-plugin-typegen.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cometkim/gatsby-plugin-typegen/context:javascript)
 ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
+[![Backers](https://opencollective.com/gatsby-plugin-typegen/tiers/backer/badge.svg?label=backer&color=brightgreen)](https://opencollective.com/gatsby-plugin-typegen)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -321,6 +322,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backers](https://opencollective.com/gatsby-plugin-typegen/contribute)]
+
+<a href="https://opencollective.com/gatsby-plugin-typegen"><img src="https://opencollective.com/gatsby-plugin-typegen/individuals.svg?width=890"></a>
+
+## Sponsors
+
+Does your company has large GatsbyJS codebase? Consider supporting this project! It can help contributors to develop tools and discover patterns so that we can use GatsbyJS more soundly. [[Become a sponsor](https://opencollective.com/gatsby-plugin-typegen/contribute)]
+
+<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/0/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/1/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/1/avatar.svg"></a>
 
 ## Acknowledgements
 
