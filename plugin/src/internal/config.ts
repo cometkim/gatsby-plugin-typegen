@@ -96,8 +96,8 @@ export const normalizePluginOptions: NormalizePluginOptionsFn = (
 
   const outputPath = pluginOptions.outputPath || (
     language === 'typescript'
-    ? path.resolve(basePath, 'src/__generated__/gatsby-types.ts')
-    : path.resolve(basePath, 'src/__generated__/gatsby-types.js')
+    ? path.resolve(basePath, 'src/__generated__/gatsby-types.d.ts')
+    : path.resolve(basePath, 'src/__generated__/gatsby-types.js.flow')
   );
 
   if ((language === 'typescript') !== /\.tsx?$/.test(outputPath)) {

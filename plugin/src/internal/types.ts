@@ -25,7 +25,7 @@ export type PluginOptions = {
    * @default 'src/__generated__/gatsby-types.d.ts'
    *
    * or (if you use flow)
-   * @default 'src/__generated__/gatsby-types.js'
+   * @default 'src/__generated__/gatsby-types.js.flow'
    */
   outputPath?: string,
 

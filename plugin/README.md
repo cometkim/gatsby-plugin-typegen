@@ -82,7 +82,7 @@ module.exports = {
 {
   options: {
     language: `flow`,
-    outputPath: `src/__generated__/gatsby-types.flow.js`,
+    outputPath: `src/__generated__/gatsby-types.js.flow`,
   },
 }
 ```
@@ -91,7 +91,8 @@ Add generated typedefs to `.flowconfig`:
 
 ```flowconfig
 [lib]
-./src/__generated__/gatsby-types.flow.js
+./node_modules/gatsby-plugin-typegen/types.js.flow
+./src/__generated__/gatsby-types.js.flow
 ```
 
 ### Emit schema as GraphQL SDL
