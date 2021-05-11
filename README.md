@@ -1,9 +1,9 @@
 # gatsby-plugin-typegen
 
+[![Backers](https://opencollective.com/gatsby-plugin-typegen/tiers/backer/badge.svg?label=backer&color=brightgreen)](https://opencollective.com/gatsby-plugin-typegen)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Backers](https://opencollective.com/gatsby-plugin-typegen/tiers/backer/badge.svg?label=backer&color=brightgreen)]()
 
 Let's give developers using GatsbyJS better DX with extreme type-safety.
 
@@ -57,6 +57,9 @@ Thank you to all our backers! 🙏 [[Become a backers](https://opencollective.co
 ## Sponsors
 
 Does your company has large GatsbyJS codebase? Consider supporting this project! It can help contributors to develop tools and discover patterns so that we can use GatsbyJS more soundly. [[Become a sponsor](https://opencollective.com/gatsby-plugin-typegen/contribute)]
+
+<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/0/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/gatsby-plugin-typegen/sponsor/1/website" target="_blank"><img src="https://opencollective.com/gatsby-plugin-typegen/sponsor/1/avatar.svg"></a>
 
 ## LICENSE
 
