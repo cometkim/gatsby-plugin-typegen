@@ -30,6 +30,7 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
           case 'graphql': {
             const printedDocument = ctx.thirdpartyFragmentDefinitions
               .map(def => def.printedAst)
+              .filter(Boolean)
               .join('\n\n');
             return writeFile(filePath, printedDocument);
           }

@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-types */
 // Using `Record<stirng, unknown>` instead of `{}` is way to verbose here.
 
-import type { Reporter } from 'gatsby';
+import { printSchema } from 'gatsby/graphql';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import type { IDefinitionMeta } from 'gatsby/dist/redux/types';
 import type {
   ActionFunction,
-  ActionFunctionMap,
   ActionObject,
   ConditionPredicate,
   ServiceConfig,
@@ -16,14 +15,28 @@ import type {
 import { Machine, actions } from 'xstate';
 import type { Option } from '@cometjs/core';
 
+import type { TypegenReporter } from '../internal/reporter';
+import { makeDefaultReporter } from '../internal/reporter';
 import type { FragmentDefinition } from '../internal/utils';
-import { guessIfThirdPartyDefinition, isFragmentDefinition } from '../internal/utils';
+import {
+  guessIfUnnnamedQuery,
+  guessIfThirdPartyDefinition,
+  isFragmentDefinition,
+} from '../internal/utils';
 
-const { assign, send } = actions;
+const { assign, send, cancel } = actions;
+
+export type DefinitionChangeset = {
+  type: 'added' | 'changed' | 'deleted',
+  definition: IDefinitionMeta,
+};
 
 export type TypegenContext = {
-  reporter: Option.T<Reporter>,
+  reporter: TypegenReporter,
 
+  /**
+   * Tracked GatsbyJS schema
+   */
   schema: Option.T<GraphQLSchema>,
 
   /**
@@ -42,6 +55,16 @@ export type TypegenContext = {
    * This is static after set once, entries would never be changed.
    */
   thirdpartyFragmentDefinitions: FragmentDefinition[],
+
+  /**
+   * Tracked status of the GraphQL schema change
+   */
+  hasSchemaChanged: boolean,
+
+  /**
+   * Recent changeset of GraphQL definitions
+   */
+  definitionChangesets: DefinitionChangeset[],
 };
 
 type TypegenStateSchema = {
@@ -75,24 +98,32 @@ type TypegenStateSchema = {
         },
       },
     },
-    emitting: {
+    develop: {
       states: {
-        codegen: {
+        idle: {},
+        emitting: {
           states: {
-            idle: {},
-            pending: {},
-          },
-        },
-        emitSchema: {
-          states: {
-            idle: {},
-            pending: {},
-          },
-        },
-        autoFixCodes: {
-          states: {
-            idle: {},
-            pending: {},
+            codegen: {
+              states: {
+                starting: {},
+                pending: {},
+                done: {},
+              },
+            },
+            emitSchema: {
+              states: {
+                starting: {},
+                pending: {},
+                done: {},
+              },
+            },
+            autoFixCodes: {
+              states: {
+                starting: {},
+                pending: {},
+                done: {},
+              },
+            },
           },
         },
       },
@@ -105,12 +136,16 @@ export type TypegenEvent = (
   | { type: 'SCHEDULE_NEXT_WORK' }
   | { type: 'SET_SCHEMA', schema: GraphQLSchema }
   | { type: 'SET_GRAPHQL_DEFINITIONS', definitions: IDefinitionMeta[] }
+  | { type: 'START_JOB' }
 );
 
 export type TypegenActionName = (
   | 'assignSchema'
   | 'assignTrackedDefinitions'
   | 'assignThirdPartyFragmentDefinitions'
+  | 'assignDefinitionChangesets'
+  | 'clearSchemaChange'
+  | 'clearDefinitionChangesets'
 );
 
 export type TypegenActionConfig = Record<
@@ -122,35 +157,69 @@ export type TypegenActionConfig = Record<
 >;
 
 const typegenActions: TypegenActionConfig = {
-  assignSchema: assign({
-    schema: (ctx, event) => {
-      if (event.type !== 'SET_SCHEMA') {
-        ctx.reporter?.warn('[typegen] action `assignSchema` is only allowed in `SET_SCHEMA` event');
-        return ctx.schema;
-      }
-      return event.schema;
-    },
-  }),
-  assignTrackedDefinitions: assign((ctx, event) => {
-    if (event.type !== 'SET_GRAPHQL_DEFINITIONS') {
-      ctx.reporter?.warn('[typegen] action `assignTrackedDefinitions` is only allowed in `SET_GRAPHQL_DEFINITIONS` event');
+  assignSchema: assign((ctx, event) => {
+    const { reporter } = ctx;
+
+    if (event.type !== 'SET_SCHEMA') {
+      reporter.error(reporter.stripIndent`
+        The action 'assignSchema' is only allowed in 'SET_SCHEMA' event
+
+          Expected SET_SCHEMA, but got ${event.type}
+
+        This seems a bug of gatsby-plugin-typegen
+        Please report to https://github.com/cometkim/gatsby-plugin-typegen/issues
+      `);
       return ctx;
     }
+
+    return {
+      ...ctx,
+      schema: event.schema,
+      hasSchemaChanged: ctx.schema && printSchema(ctx.schema) !== printSchema(event.schema),
+    };
+  }),
+  assignTrackedDefinitions: assign((ctx, event) => {
+    const { reporter } = ctx;
+
+    if (event.type !== 'SET_GRAPHQL_DEFINITIONS') {
+      reporter.error(reporter.stripIndent`
+        The action 'assignTrackedDefinitions' is only allowed in 'SET_GRAPHQL_DEFINITIONS' event
+
+          Expected SET_GRAPHQL_DEFINITIONS, but got ${event.type}
+
+        This seems a bug of gatsby-plugin-typegen
+        Please report to https://github.com/cometkim/gatsby-plugin-typegen/issues
+      `);
+      return ctx;
+    }
+
     const trackedDefinitions = new Map(
       event.definitions
       .filter(def => !guessIfThirdPartyDefinition(def))
+      .filter(def => !guessIfUnnnamedQuery(def))
       .map(def => [def.name, def] as const),
     );
+
     return {
       ...ctx,
       trackedDefinitions,
     };
   }),
   assignThirdPartyFragmentDefinitions: assign((ctx, event) => {
+    const { reporter } = ctx;
+
     if (event.type !== 'SET_GRAPHQL_DEFINITIONS') {
-      ctx.reporter?.warn('[typegen] action `assignThirdPartyFragmentDefinitions` is only allowed in `SET_GRAPHQL_DEFINITIONS` event');
+      reporter.error(reporter.stripIndent`
+        The action 'assignThirdPartyFragmentDefinitions' is only allowed in 'SET_GRAPHQL_DEFINITIONS' event
+
+          Expected SET_GRAPHQL_DEFINITIONS, but got ${event.type}
+
+        This seems a bug of gatsby-plugin-typegen
+        Please report to https://github.com/cometkim/gatsby-plugin-typegen/issues
+      `);
       return ctx;
     }
+
     const thirdpartyFragmentDefinitions = (
       event.definitions
       .filter(guessIfThirdPartyDefinition)
@@ -161,10 +230,74 @@ const typegenActions: TypegenActionConfig = {
       thirdpartyFragmentDefinitions,
     };
   }),
+  assignDefinitionChangesets: assign((ctx, event) => {
+    const { reporter, trackedDefinitions } = ctx;
+
+    if (event.type !== 'SET_GRAPHQL_DEFINITIONS') {
+      reporter.error(reporter.stripIndent`
+        The action 'scheduleEmitSchemaJob' is only allowed in 'SET_GRAPHQL_DEFINITIONS' event
+
+          Expected SET_GRAPHQL_DEFINITIONS, but got ${event.type}
+
+        This seems a bug of gatsby-plugin-typegen
+        Please report to https://github.com/cometkim/gatsby-plugin-typegen/issues
+      `);
+      return ctx;
+    }
+
+    if (trackedDefinitions == null) {
+      reporter.error(reporter.stripIndent`
+        The context 'trackedDefinitions' doesn't have initialized properly
+
+        This seems a bug of gatsby-plugin-typegen
+        Please report to https://github.com/cometkim/gatsby-plugin-typegen/issues
+      `);
+      return ctx;
+    }
+
+    const newDefinitions = event.definitions
+      .filter(def => !guessIfThirdPartyDefinition(def))
+      .filter(def => !guessIfUnnnamedQuery(def));
+
+    const changesets = newDefinitions
+      .map(definition => {
+        const tracked = trackedDefinitions.get(definition.name);
+        if (!tracked) {
+          return { type: 'added' as const, definition };
+        }
+        if (definition.hash !== tracked.hash) {
+          return { type: 'changed' as const, definition };
+        }
+        return null;
+      })
+      .filter(Boolean) as DefinitionChangeset[];
+
+    const deletedChangesets = [...trackedDefinitions.values()]
+        .filter(tracked => !newDefinitions.find(def => def.name === tracked.name));
+
+    console.log(changesets, deletedChangesets);
+
+    return {
+      ...ctx,
+      definitionChangeset: [
+        ...changesets,
+        ...deletedChangesets,
+      ],
+    };
+  }),
+  clearSchemaChange: assign({
+    hasSchemaChanged: _ctx => false,
+  }),
+  clearDefinitionChangesets: assign({
+    definitionChangesets: _ctx => [],
+  }),
 };
 
 export type TypegenTransitionGuardName = (
   | 'hasSchemaAndDefinitions?'
+  | 'hasSchemaChanged?'
+  | 'hasDefinitionsChanged?'
+  | 'hasSchemaOrDefinitionsChanged?'
 );
 
 export type TypegenTransitionGuardConfig = Record<
@@ -173,7 +306,10 @@ export type TypegenTransitionGuardConfig = Record<
 >;
 
 const typegenTransitionGuards: TypegenTransitionGuardConfig = {
-  'hasSchemaAndDefinitions?': context => Boolean(context.schema && context.trackedDefinitions),
+  'hasSchemaAndDefinitions?': ctx => Boolean(ctx.schema && ctx.trackedDefinitions),
+  'hasSchemaChanged?': ctx => ctx.hasSchemaChanged,
+  'hasDefinitionsChanged?': ctx => ctx.definitionChangesets.length > 0,
+  'hasSchemaOrDefinitionsChanged?': ctx => ctx.hasSchemaChanged || ctx.definitionChangesets.length > 0,
 };
 
 export type TypegenServiceName = (
@@ -205,10 +341,12 @@ const service = (id: TypegenServiceName) => id;
 export const typegenMachine = Machine<TypegenContext, TypegenStateSchema, TypegenEvent>({
   initial: 'idle',
   context: {
-    reporter: null,
+    reporter: makeDefaultReporter(),
     schema: null,
     trackedDefinitions: null,
     thirdpartyFragmentDefinitions: [],
+    hasSchemaChanged: false,
+    definitionChangesets: [],
   },
   states: {
     idle: {
@@ -231,7 +369,7 @@ export const typegenMachine = Machine<TypegenContext, TypegenStateSchema, Typege
           cond: guard('hasSchemaAndDefinitions?'),
         },
         CREATE_DEV_SERVER: {
-          target: 'emitting',
+          target: 'develop',
           cond: guard('hasSchemaAndDefinitions?'),
         },
       },
@@ -290,64 +428,130 @@ export const typegenMachine = Machine<TypegenContext, TypegenStateSchema, Typege
         },
       },
     },
-    emitting: {
-      type: 'parallel',
+    develop: {
+      initial: 'idle',
+      entry: [
+        action('clearSchemaChange'),
+        action('clearDefinitionChangesets'),
+      ],
       on: {
-        SET_SCHEMA: [
-          {
-            actions: action('assignSchema'),
-          },
-        ],
-        SET_GRAPHQL_DEFINITIONS: [
-          {
-            actions: action('assignTrackedDefinitions'),
-          },
-        ],
+        SET_SCHEMA: {
+          actions: [
+            action('assignSchema'),
+            cancel('debounced-work'),
+            send('SCHEDULE_NEXT_WORK', {
+              id: 'debounced-work',
+              delay: 5000,
+            }),
+          ],
+        },
+        SET_GRAPHQL_DEFINITIONS: {
+          actions: [
+            action('assignDefinitionChangesets'),
+            cancel('debounced-work'),
+            send('SCHEDULE_NEXT_WORK', {
+              id: 'debounced-work',
+              delay: 5000,
+            }),
+          ],
+        },
       },
       states: {
-        emitSchema: {
+        idle: {
           on: {
-            SCHEDULE_NEXT_WORK: '.pending',
-          },
-          initial: 'idle',
-          states: {
-            idle: {},
-            pending: {
-              invoke: {
-                src: service('emitSchema'),
-                onDone: 'idle',
-              },
-            },
+            SCHEDULE_NEXT_WORK: 'emitting',
           },
         },
-        codegen: {
-          on: {
-            SCHEDULE_NEXT_WORK: {
+        emitting: {
+          type: 'parallel',
+          entry: [
+            send('START_JOB'),
+          ],
+          onDone: [
+            {
+              target: 'idle',
             },
-          },
-          initial: 'idle',
+          ],
           states: {
-            idle: {},
-            pending: {
-              invoke: {
-                src: service('codegen'),
-                onDone: 'idle',
+            emitSchema: {
+              initial: 'starting',
+              states: {
+                starting: {
+                  on: {
+                    START_JOB: [
+                      {
+                        cond: guard('hasSchemaChanged?'),
+                        target: 'pending',
+                      },
+                      {
+                        target: 'done',
+                      },
+                    ],
+                  },
+                },
+                pending: {
+                  invoke: {
+                    src: service('emitSchema'),
+                    onDone: 'done',
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
               },
             },
-          },
-        },
-        autoFixCodes: {
-          on: {
-            SCHEDULE_NEXT_WORK: {
+            codegen: {
+              initial: 'starting',
+              states: {
+                starting: {
+                  on: {
+                    START_JOB: [
+                      {
+                        cond: guard('hasSchemaOrDefinitionsChanged?'),
+                        target: 'pending',
+                      },
+                      {
+                        target: 'done',
+                      },
+                    ],
+                  },
+                },
+                pending: {
+                  invoke: {
+                    src: service('codegen'),
+                    onDone: 'done',
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
+              },
             },
-          },
-          initial: 'idle',
-          states: {
-            idle: {},
-            pending: {
-              invoke: {
-                src: service('autoFixCodes'),
-                onDone: 'idle',
+            autoFixCodes: {
+              initial: 'starting',
+              states: {
+                starting: {
+                  on: {
+                    START_JOB: [
+                      {
+                        cond: guard('hasDefinitionsChanged?'),
+                        target: 'pending',
+                      },
+                      {
+                        target: 'done',
+                      },
+                    ],
+                  },
+                },
+                pending: {
+                  invoke: {
+                    src: service('autoFixCodes'),
+                    onDone: 'done',
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
               },
             },
           },

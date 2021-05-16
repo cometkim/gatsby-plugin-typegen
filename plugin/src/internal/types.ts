@@ -1,3 +1,5 @@
+export type SupportedLanguage = 'typescript' | 'flow';
+
 export type PluginOptions = {
 
   /**
@@ -5,7 +7,7 @@ export type PluginOptions = {
    *
    * @default 'typescript'
    */
-  language?: 'typescript' | 'flow',
+  language?: SupportedLanguage,
 
   /**
    * Namespace is required to avoid conflict on generated types and other global declarations.

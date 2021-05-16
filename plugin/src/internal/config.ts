@@ -1,6 +1,5 @@
 import path from 'path';
 import type { OverrideProps } from '@cometjs/core';
-import type { Reporter } from 'gatsby';
 import type { GatsbyStore } from '../gatsby-utils';
 import { gatsbyInternalScalars } from '../gatsby-utils';
 
@@ -10,6 +9,7 @@ import type {
   DocumentOutputOptions,
 } from './types';
 import { formatLanguage } from './utils';
+import type { TypegenReporter } from './reporter';
 
 const defaultSchemaOutputOption = Object.freeze({
   format: 'introspection',
@@ -46,7 +46,7 @@ interface NormalizePluginOptionsFn {
     options: PluginOptions,
     props: {
       store: GatsbyStore,
-      reporter: Reporter,
+      reporter: TypegenReporter,
     },
   ): Readonly<NormalizedPluginOptions>;
 }
@@ -102,18 +102,18 @@ export const normalizePluginOptions: NormalizePluginOptionsFn = (
 
   if ((language === 'typescript') !== /\.tsx?$/.test(outputPath)) {
     reporter.warn(
-      reporter.stripIndent(
-      `The language you specified is not match to file extension.
-        - language: ${formatLanguage(language)}
-        - outputPath: ${outputPath}
-      `),
+      reporter.stripIndent`
+        The language you specified is not match to file extension.
+          - language: ${formatLanguage(language)}
+          - outputPath: ${outputPath}
+      `,
     );
   }
 
   for (const type of gatsbyInternalScalars) {
     if (scalars[type]) {
       reporter.warn(
-        `[typegen] You couldn't override type for \`${type}\` scalar because it is reserved by Gatsby internal.`,
+        `You couldn't override type for \`${type}\` scalar because it is reserved by Gatsby internal.`,
       );
       delete scalars[type];
     }

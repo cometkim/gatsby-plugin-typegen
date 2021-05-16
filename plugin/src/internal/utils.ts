@@ -3,11 +3,13 @@ import { dirname } from 'path';
 import { promisify } from 'util';
 import type { Store } from 'redux';
 import type {
-  IGatsbyState as GatsbyState,
-  ActionsUnion as GatsbyAction,
+  IGatsbyState,
+  ActionsUnion,
   IDefinitionMeta as _IDefinitionMeta,
 } from 'gatsby/dist/redux/types';
 import type { OverrideProps } from '@cometjs/core';
+
+import type { SupportedLanguage } from './types';
 
 type Brand<T extends string> = { __BRAND__: T };
 
@@ -24,13 +26,11 @@ export const writeFile = async (path: string, data: string | Buffer): Promise<vo
   await _writeFile(path, data, { encoding: 'utf-8' });
 };
 
-export const delay = (ms: number): Promise<void> => new Promise<void>(res => setTimeout(res, ms));
-
-export const formatLanguage = (lang: 'typescript' | 'flow'): 'TypeScript' | 'Flow' => (
+export const formatLanguage = (lang: SupportedLanguage): string => (
   (lang === 'typescript') ? 'TypeScript' : 'Flow'
 );
 
-export type GatsbyStore = Store<GatsbyState, GatsbyAction>;
+export type GatsbyStore = Store<IGatsbyState, ActionsUnion>;
 
 export type IDefinitionMeta = OverrideProps<_IDefinitionMeta, {
   // Trust me, this is more accurate.
@@ -56,14 +56,12 @@ export function isQueryDefinition(def: IDefinitionMeta): def is QueryDefinition 
 /**
  * return `true` if the given definition is assumed to be generated from unnamed query.
  */
-export function guessIfUnnnamedQuery(def: QueryDefinition): boolean {
-  const { name, filePath } = def;
+export function guessIfUnnnamedQuery({ name, filePath }: IDefinitionMeta): boolean {
   const baseDir = dirname(filePath);
   return name.startsWith(baseDir.split('/').join(''));
 }
 
-export function guessIfThirdPartyDefinition(def: IDefinitionMeta): boolean {
-  const { filePath } = def;
+export function guessIfThirdPartyDefinition({ filePath }: IDefinitionMeta): boolean {
   return /(node_modules|\.yarn|\.cache)/.test(filePath);
 }
 

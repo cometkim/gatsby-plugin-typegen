@@ -1,4 +1,4 @@
-import type { GatsbyNode } from 'gatsby';
+import type { GatsbyNode, Reporter } from 'gatsby';
 import { interpret } from 'xstate';
 
 import type { TypegenIntepreter } from './services/typegenMachine';
@@ -7,10 +7,22 @@ import { makeEmitSchemaService } from './services/emitSchema';
 import { makeEmitPluginDocumentService } from './services/emitPluginDocuments';
 import type { PluginOptions } from './internal/types';
 import { normalizePluginOptions } from './internal/config';
+import type { TypegenReporter } from './internal/reporter';
 
 import type { GatsbyStore } from './gatsby-utils';
 
 let service: TypegenIntepreter;
+
+function makeTypegenReporter(reporter: Reporter): TypegenReporter {
+  const prefix = '[typegen]';
+  return {
+    ...reporter,
+    log: message => void reporter.log([prefix, message].join(' ')),
+    warn: message => void reporter.warn([prefix, message].join(' ')),
+    error: message => void reporter.error([prefix, message].join(' ')),
+    verbose: message => void reporter.verbose([prefix, message].join(' ')),
+  };
+}
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -55,11 +67,15 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
 export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
   emitter,
   store: _store,
-  reporter,
+  reporter: _reporter,
 }, options) => {
   const store = _store as GatsbyStore;
-  const { program } = store.getState();
-  const basePath = program.directory;
+  const reporter = makeTypegenReporter(_reporter);
+
+  reporter.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@2');
+
+  // const { program } = store.getState();
+  // const basePath = program.directory;
 
   const pluginOptions = normalizePluginOptions(
     options as PluginOptions,
@@ -67,26 +83,24 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
   );
 
   reporter.verbose(reporter.stripIndent`
-    [typegen] loaded normalized configuration
+    Loaded normalized configuration
     ${JSON.stringify(pluginOptions, null, 2)}
   `);
 
-  const {
-    emitSchema,
-    emitPluginDocuments,
-  } = pluginOptions;
-
+  const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
   service = interpret(
     makeTypegenMachine({
       context: {
+        reporter,
         schema: null,
         trackedDefinitions: null,
         thirdpartyFragmentDefinitions: [],
-        reporter,
+        hasSchemaChanged: false,
+        definitionChangesets: [],
       },
       services: {
         codegen() {
-          return Promise.resolve();
+          return delay(1000);
         },
         emitSchema: makeEmitSchemaService({
           pluginOptions,
@@ -95,18 +109,20 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
           pluginOptions,
         }),
         autoFixCodes() {
-          return Promise.resolve();
+          return delay(2000);
         },
       },
     }),
-  ).start();
+  );
+
+  service.start();
 
   service.onTransition(({ event, value, changed }) => {
-    reporter.verbose(`[typegen] on ${event.type}`);
+    reporter.verbose(`on ${event.type}`);
     if (changed) {
-      reporter.verbose(`[typegen]  ⤷ transition to ${JSON.stringify(value)}`);
+      reporter.verbose(` ⤷ transition to ${JSON.stringify(value)}`);
     } else {
-      reporter.verbose('[typegen]  ⤷ skipped');
+      reporter.verbose(' ⤷ skipped');
     }
   });
 
