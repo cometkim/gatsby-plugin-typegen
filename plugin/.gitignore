@@ -1,8 +1,9 @@
 # JS artifacts
 /*.js
 /*.d.ts
-/workers
+/internal
 /typing
+/services
 !/babel.config.js
 !/jest.config.js
 !/.eslintrc.js
