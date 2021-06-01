@@ -14,6 +14,7 @@ import type { TypegenReporter } from './reporter';
 const defaultSchemaOutputOption = Object.freeze({
   format: 'introspection',
   commentDescriptions: true,
+  omitPluginMetadata: true,
 } as const);
 
 type MapSchemaOutputOption<T> = T extends { [key: string]: infer V }

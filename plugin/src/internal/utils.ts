@@ -2,12 +2,18 @@ import fs from 'fs';
 import { dirname } from 'path';
 import { promisify } from 'util';
 import type { Store } from 'redux';
+import { GraphQLEnumType, GraphQLSchema } from 'gatsby/graphql';
 import type {
   IGatsbyState,
   ActionsUnion,
   IDefinitionMeta as _IDefinitionMeta,
 } from 'gatsby/dist/redux/types';
 import type { OverrideProps } from '@cometjs/core';
+import {
+  filterSchema,
+  mapSchema,
+  MapperKind,
+} from '@graphql-tools/utils';
 
 import type { SupportedLanguage } from './types';
 
@@ -82,3 +88,79 @@ export const gatsbyInternalScalars = [
   'Query',
   'String',
 ];
+
+function filterByCoordinates(
+  denylist: string[],
+  coord: { typeName?: string, fieldName?: string, argName?: string },
+) {
+  const coordStr = [coord.typeName, coord.fieldName, coord.argName]
+    .filter(Boolean)
+    .join('.');
+  return !denylist.includes(coordStr);
+}
+
+/**
+ * Remove specific types and fields used only at development time from schema output.
+ */
+export function filterDevOnlySchema(schema: GraphQLSchema): GraphQLSchema {
+  return mapSchema(filterSchema({
+    schema,
+    fieldFilter: (typeName, fieldName) => filterByCoordinates([
+      'Site.host',
+      'Site.port',
+      'SiteFilterInput.host',
+      'SiteFilterInput.port',
+    ], { typeName, fieldName }),
+    argumentFilter: (typeName, fieldName, argName) => filterByCoordinates([
+      'Query.site.host',
+      'Query.site.port',
+    ], { typeName, fieldName, argName }),
+  }), {
+    [MapperKind.ENUM_TYPE]: type => {
+      if (type.name === 'SiteFieldsEnum') {
+        const config = type.toConfig();
+        delete config.values['host'];
+        delete config.values['port'];
+        return new GraphQLEnumType({ ...config });
+      }
+      return undefined;
+    },
+  });
+}
+
+/**
+ * Remove the plugin options schema.
+ * Almost all users do not use it, but it unnecessarily increases the schema output size.
+ */
+export function filterPluginSchema(schema: GraphQLSchema): GraphQLSchema {
+  return mapSchema(filterSchema({
+    schema,
+    typeFilter: typeName => !typeName.startsWith('SitePlugin'),
+    fieldFilter: (typeName, fieldName) => filterByCoordinates([
+      'Query.allSitePlugin',
+      'Query.sitePlugin',
+      'SitePage.pluginCreatorId',
+    ], { typeName, fieldName }),
+    inputObjectFieldFilter: (typeName, fieldName) => filterByCoordinates([
+      'SitePageFilterInput.pluginCreator',
+      'SitePageFilterInput.pluginCreatorId',
+    ], { typeName, fieldName }),
+    argumentFilter: (typeName, fieldName, argName) => filterByCoordinates([
+      'Query.sitePage.pluginCreator',
+      'Query.sitePage.pluginCreatorId',
+    ], { typeName, fieldName, argName }),
+  }), {
+    [MapperKind.ENUM_TYPE]: type => {
+      if (type.name === 'SitePageFieldsEnum') {
+        const config = type.toConfig();
+        for (const key of Object.keys(config.values)) {
+          if (key.startsWith('pluginCreator')) {
+            delete config.values[key];
+          }
+        }
+        return new GraphQLEnumType({ ...config });
+      }
+      return undefined;
+    },
+  });
+}

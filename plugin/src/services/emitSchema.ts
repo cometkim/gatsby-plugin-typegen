@@ -4,7 +4,11 @@ import {
   lexicographicSortSchema,
 } from 'gatsby/graphql';
 import type { NormalizedPluginOptions } from '../internal/config';
-import { writeFile } from '../internal/utils';
+import {
+  writeFile,
+  filterDevOnlySchema,
+  filterPluginSchema,
+} from '../internal/utils';
 
 import type { TypegenContext } from './typegenMachine';
 
@@ -26,13 +30,24 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
       return;
     }
 
-    const schema = lexicographicSortSchema(ctx.schema);
+    const stableSchema = lexicographicSortSchema(
+      filterDevOnlySchema(ctx.schema),
+    );
 
     void await Promise.all(
       Object.entries(emitSchema)
       .map(([filePath, config]) => {
-        ctx.reporter?.info(`[typegen] emitting schema into ${filePath}`);
-        const { format, commentDescriptions } = config;
+        ctx.reporter?.info(`emitting schema into ${filePath}`);
+        const {
+          format,
+          commentDescriptions,
+          omitPluginMetadata,
+        } = config;
+
+        const schema = omitPluginMetadata
+          ? filterPluginSchema(stableSchema)
+          : stableSchema;
+
         switch (format) {
           case 'sdl': {
             return writeFile(

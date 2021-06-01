@@ -136,6 +136,13 @@ export type SchemaOutputOptions = {
   * @default true
   */
   commentDescriptions?: boolean,
+
+  /**
+   * Omit the plugin metadata from the schema output
+   *
+   * @default true
+   */
+  omitPluginMetadata?: boolean,
 };
 
 /**

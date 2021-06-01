@@ -18,6 +18,7 @@ function makeTypegenReporter(reporter: Reporter): TypegenReporter {
   return {
     ...reporter,
     log: message => void reporter.log([prefix, message].join(' ')),
+    info: message => void reporter.info([prefix, message].join(' ')),
     warn: message => void reporter.warn([prefix, message].join(' ')),
     error: message => void reporter.error([prefix, message].join(' ')),
     verbose: message => void reporter.verbose([prefix, message].join(' ')),
@@ -71,8 +72,6 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
 }, options) => {
   const store = _store as GatsbyStore;
   const reporter = makeTypegenReporter(_reporter);
-
-  reporter.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@2');
 
   // const { program } = store.getState();
   // const basePath = program.directory;

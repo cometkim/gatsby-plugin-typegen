@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 // Using `Record<stirng, unknown>` instead of `{}` is way to verbose here.
 
-import { printSchema } from 'gatsby/graphql';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import type { IDefinitionMeta } from 'gatsby/dist/redux/types';
 import type {
@@ -175,7 +174,9 @@ const typegenActions: TypegenActionConfig = {
     return {
       ...ctx,
       schema: event.schema,
-      hasSchemaChanged: ctx.schema && printSchema(ctx.schema) !== printSchema(event.schema),
+      hasSchemaChanged: ctx.schema
+        ? ctx.schema !== event.schema
+        : true,
     };
   }),
   assignTrackedDefinitions: assign((ctx, event) => {
@@ -274,8 +275,6 @@ const typegenActions: TypegenActionConfig = {
 
     const deletedChangesets = [...trackedDefinitions.values()]
         .filter(tracked => !newDefinitions.find(def => def.name === tracked.name));
-
-    console.log(changesets, deletedChangesets);
 
     return {
       ...ctx,

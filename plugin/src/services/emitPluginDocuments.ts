@@ -25,7 +25,7 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
     void await Promise.all(
       Object.entries(emitPluginDocuments)
       .map(([filePath, config]) => {
-        ctx.reporter?.info(`[typegen] emitting 3rd-party fragments into ${filePath}`);
+        ctx.reporter?.info(`emitting 3rd-party fragments into ${filePath}`);
         switch (config.format) {
           case 'graphql': {
             const printedDocument = ctx.thirdpartyFragmentDefinitions
