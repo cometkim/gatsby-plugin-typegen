@@ -1,4 +1,8 @@
-import { printSchema, introspectionFromSchema } from 'gatsby/graphql';
+import {
+  printSchema,
+  introspectionFromSchema,
+  lexicographicSortSchema,
+} from 'gatsby/graphql';
 import type { NormalizedPluginOptions } from '../internal/config';
 import { writeFile } from '../internal/utils';
 
@@ -18,10 +22,11 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
   },
 }) => {
   return async (ctx) => {
-    const { schema } = ctx;
-    if (!schema) {
+    if (!ctx.schema) {
       return;
     }
+
+    const schema = lexicographicSortSchema(ctx.schema);
 
     void await Promise.all(
       Object.entries(emitSchema)
