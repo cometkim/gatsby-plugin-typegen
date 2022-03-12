@@ -18,13 +18,15 @@ type Event = (
   | { type: 'CREATE_DEV_SERVER' }
   | { type: 'SET_SCHEMA', schema: GraphQLSchema }
   | { type: 'SET_GRAPHQL_DEFINITIONS', definitions: IDefinitionMeta[] }
-  | { type: 'START_emitSchema' }
-  | { type: 'DONE_emitSchema' }
-  | { type: 'START_codegen' }
-  | { type: 'DONE_codegen' }
-  | { type: 'START_autofix' }
-  | { type: 'DONE_autofix' }
+  | ScheduleEvent<'emitSchema'>
+  | ScheduleEvent<'codegen'>
+  | ScheduleEvent<'autofix'>
 );
+
+type ScheduleEvent<T extends string> = (
+  | { type: `START_${T}` }
+  | { type: `DONE_${T}` }
+)
 
 export const typegenMachine = createMachine({
   tsTypes: {} as import('./machine.typegen').Typegen0,
