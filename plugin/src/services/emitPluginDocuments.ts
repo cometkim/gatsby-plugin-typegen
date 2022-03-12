@@ -1,4 +1,5 @@
 import type { DocumentNode } from 'gatsby/graphql';
+import { Kind } from 'gatsby/graphql';
 import type { NormalizedPluginOptions } from '../internal/config';
 import { writeFile } from '../internal/utils';
 
@@ -36,7 +37,7 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
           }
           case 'json': {
             const document: DocumentNode = {
-              kind: 'Document',
+              kind: Kind.DOCUMENT,
               definitions: ctx.thirdpartyFragmentDefinitions.map(meta => meta.def),
             };
             return writeFile(filePath, JSON.stringify(document, null, 2));

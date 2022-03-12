@@ -1,13 +1,12 @@
 import path from 'path';
 import type { OverrideProps } from '@cometjs/core';
-import type { GatsbyStore } from '../gatsby-utils';
 import { gatsbyInternalScalars } from '../gatsby-utils';
 
 import type {
   PluginOptions,
   SchemaOutputOptions,
   DocumentOutputOptions,
-} from './types';
+} from './options';
 import { formatLanguage } from './utils';
 import type { TypegenReporter } from './reporter';
 
@@ -33,7 +32,7 @@ type MapDocumentOutputOption<T> = T extends { [key: string]: infer V }
   : { [key: string]: DocumentOutputOptions }
   : never;
 
-export type NormalizedPluginOptions = Required<
+export type Config = Required<
   OverrideProps<
     PluginOptions, {
       emitSchema: MapSchemaOutputOption<PluginOptions['emitSchema']>,
@@ -42,22 +41,20 @@ export type NormalizedPluginOptions = Required<
   >
 >;
 
-interface NormalizePluginOptionsFn {
+interface ValidateConfig {
   (
-    options: PluginOptions,
     props: {
-      store: GatsbyStore,
+      options: PluginOptions,
+      basePath: string,
       reporter: TypegenReporter,
     },
-  ): Readonly<NormalizedPluginOptions>;
+  ): Readonly<Config>;
 }
-export const normalizePluginOptions: NormalizePluginOptionsFn = (
+export const validateConfig: ValidateConfig = ({
   options,
-  { store, reporter },
-) => {
-  const { program } = store.getState();
-  const basePath = program.directory;
-
+  basePath,
+  reporter,
+}) => {
   // There are no required properties (yet), so must be compatible.
   const pluginOptions = options;
 
@@ -70,6 +67,10 @@ export const normalizePluginOptions: NormalizePluginOptionsFn = (
     emitPluginDocuments: emitPluginDocumentsOptionMap = {},
     scalars = {},
   } = pluginOptions;
+
+  if (includeResolvers) {
+    reporter.warn('The `includeResolvers` option is deprecated. It will be removed in v4');
+  }
 
   const emitSchema: MapSchemaOutputOption<typeof emitSchemaOptionMap> = {};
   for (const [key, options] of Object.entries(emitSchemaOptionMap)) {

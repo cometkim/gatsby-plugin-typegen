@@ -18,7 +18,8 @@ export type FragmentDefinition = OverrideProps<IDefinitionMeta, {
   isFragment: true,
 }>;
 export type QueryDefinition = OverrideProps<IDefinitionMeta, {
-  __BRAND__: 'QueryDefinition', isFragment: false,
+  __BRAND__: 'QueryDefinition',
+  isFragment: false,
 }>;
 
 export function isFragmentDefinition(def: IDefinitionMeta): def is FragmentDefinition {

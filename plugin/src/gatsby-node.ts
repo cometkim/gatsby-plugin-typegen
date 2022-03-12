@@ -73,12 +73,12 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
   const store = _store as GatsbyStore;
   const reporter = makeTypegenReporter(_reporter);
 
-  // const { program } = store.getState();
-  // const basePath = program.directory;
+  const { program } = store.getState();
+  const basePath = program.directory;
 
   const pluginOptions = normalizePluginOptions(
     options as PluginOptions,
-    { store, reporter },
+    { basePath, reporter },
   );
 
   reporter.verbose(reporter.stripIndent`

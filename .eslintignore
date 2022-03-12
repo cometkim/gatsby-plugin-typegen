@@ -4,5 +4,7 @@
 !plugin/babel.config.js
 !plugin/jest.config.js
 
+*.typegen.ts
+
 # Hack for flow
 plugin/src/types.js
