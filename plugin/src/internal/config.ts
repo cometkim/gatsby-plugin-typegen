@@ -17,29 +17,24 @@ const defaultSchemaOutputOption = Object.freeze({
   omitPluginMetadata: true,
 } as const);
 
-type MapSchemaOutputOption<T> = T extends { [key: string]: infer V }
-  ? V extends true
-  ? { [key: string]: typeof defaultSchemaOutputOption }
-  : { [key: string]: Required<SchemaOutputOptions> }
-  : never;
-
 const defaultDocumentOutputOption = Object.freeze({
   format: 'graphql',
 } as const);
 
-type MapDocumentOutputOption<T> = T extends { [key: string]: infer V }
-  ? V extends true
-  ? { [key: string]: typeof defaultDocumentOutputOption }
-  : { [key: string]: Required<DocumentOutputOptions> }
-  : never;
+type EmitSchemaConfig = {
+  [filePath: string]: Required<SchemaOutputOptions>,
+};
 
-export type Config = Required<
-  OverrideProps<
-    PluginOptions, {
-      emitSchema: MapSchemaOutputOption<PluginOptions['emitSchema']>,
-      emitPluginDocuments: MapDocumentOutputOption<PluginOptions['emitPluginDocuments']>,
-    }
-  >
+type EmitPluginDocumentConfig = {
+  [filePath: string]: Required<DocumentOutputOptions>,
+};
+
+export type Config = OverrideProps<
+  Required<PluginOptions>, {
+    emitSchema: EmitSchemaConfig,
+    emitPluginDocument: EmitPluginDocumentConfig,
+    emitPluginDocuments?: void,
+  }
 >;
 
 interface ValidateConfig {
@@ -51,6 +46,7 @@ interface ValidateConfig {
     },
   ): Readonly<Config>;
 }
+
 export const validateConfig: ValidateConfig = ({
   options,
   basePath,
@@ -65,7 +61,8 @@ export const validateConfig: ValidateConfig = ({
     includeResolvers = false,
     autoFix = true,
     emitSchema: emitSchemaOptionMap = {},
-    emitPluginDocuments: emitPluginDocumentsOptionMap = {},
+    emitPluginDocuments: legacyEmitPluginDocumentsOptionMap = {},
+    emitPluginDocument: emitPluginDocumentsOptionMap = {},
     scalars = {},
   } = pluginOptions;
 
@@ -73,7 +70,7 @@ export const validateConfig: ValidateConfig = ({
     reporter.warn('The `includeResolvers` option is deprecated. It will be removed in v4');
   }
 
-  const emitSchema: MapSchemaOutputOption<typeof emitSchemaOptionMap> = {};
+  const emitSchema: EmitSchemaConfig = {};
   for (const [key, options] of Object.entries(emitSchemaOptionMap)) {
     if (!options) continue;
     if (options === true) {
@@ -92,11 +89,29 @@ export const validateConfig: ValidateConfig = ({
     }
   }
 
-  const emitPluginDocuments: MapDocumentOutputOption<typeof emitPluginDocumentsOptionMap> = {};
+  const emitPluginDocument: EmitPluginDocumentConfig = {};
+
+  // TBD: remove next major release
+  for (const [key, options] of Object.entries(legacyEmitPluginDocumentsOptionMap)) {
+    if (!options) continue;
+    if (options === true) {
+      emitPluginDocument[key] = {
+        ...defaultDocumentOutputOption,
+        format: /\.json$/.test(key)
+          ? 'json'
+          : 'graphql',
+      };
+    } else {
+      emitPluginDocument[key] = {
+        ...defaultDocumentOutputOption,
+        ...options,
+      };
+    }
+  }
   for (const [key, options] of Object.entries(emitPluginDocumentsOptionMap)) {
     if (!options) continue;
     if (options === true) {
-      emitPluginDocuments[key] = {
+      emitPluginDocument[key] = {
         ...defaultDocumentOutputOption,
         // Infer format option based on filename.
         format: /\.json$/.test(key)
@@ -104,7 +119,7 @@ export const validateConfig: ValidateConfig = ({
           : 'graphql',
       };
     } else {
-      emitPluginDocuments[key] = {
+      emitPluginDocument[key] = {
         ...defaultDocumentOutputOption,
         ...options,
       };
@@ -143,7 +158,7 @@ export const validateConfig: ValidateConfig = ({
     includeResolvers,
     autoFix,
     emitSchema,
-    emitPluginDocuments,
+    emitPluginDocument,
     scalars,
   });
 };

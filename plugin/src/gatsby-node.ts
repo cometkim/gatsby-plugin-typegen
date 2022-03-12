@@ -62,6 +62,11 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
         Joi.boolean().required(),
         documentOutputOptionsSchema,
       ]),
+    emitPluginDocument: Joi.object()
+      .pattern(/.+/, [
+        Joi.boolean().required(),
+        documentOutputOptionsSchema,
+      ]),
   });
 };
 

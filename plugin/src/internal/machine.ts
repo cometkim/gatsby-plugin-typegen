@@ -10,7 +10,7 @@ type Context = {
   reporter: TypegenReporter,
   devMode: boolean,
   trackedDefinitions: Map<string, IDefinitionMeta>,
-  thirdPartyDefinitions?: IDefinitionMeta[],
+  thirdpartyDefinitions?: IDefinitionMeta[],
   schema?: GraphQLSchema,
 };
 
@@ -86,7 +86,7 @@ export const typegenMachine = createMachine({
           ],
           invoke: [
             { src: 'emitSchema' },
-            { src: 'emitPluginDoucments' },
+            { src: 'emitPluginDoucment' },
             { src: 'codegen' },
             { src: 'autofix' },
           ],

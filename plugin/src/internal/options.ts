@@ -102,9 +102,18 @@ export type PluginOptions = {
   },
 
   /**
+   * @deprecated Renamed to `emitPluginDocument`. It will be removed in v4.
+   *
    * Emit the GraphQL fragments declared by other plugins into the filesystem.
    */
   emitPluginDocuments?: {
+    [outputPath: string]: boolean | DocumentOutputOptions,
+  },
+
+  /**
+   * Emit the GraphQL fragments declared by other plugins into the filesystem.
+   */
+  emitPluginDocument?: {
     [outputPath: string]: boolean | DocumentOutputOptions,
   },
 };
