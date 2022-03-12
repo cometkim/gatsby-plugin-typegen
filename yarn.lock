@@ -2385,7 +2385,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-typescript@npm:^7.15.4, @babel/plugin-transform-typescript@npm:^7.16.7":
+"@babel/plugin-transform-typescript@npm:^7.15.4, @babel/plugin-transform-typescript@npm:^7.16.7, @babel/plugin-transform-typescript@npm:^7.16.8":
   version: 7.16.8
   resolution: "@babel/plugin-transform-typescript@npm:7.16.8"
   dependencies:
@@ -2723,7 +2723,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.3":
+"@babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.2":
   version: 7.17.2
   resolution: "@babel/runtime@npm:7.17.2"
   dependencies:
@@ -2848,15 +2848,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@cometjs/core@npm:2.0.0"
+"@cometjs/core@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@cometjs/core@npm:2.0.2"
   peerDependencies:
     typescript: ^4.5.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 020dd82683aa995aa193c80c513db2467794209191fbf086cf38874fdb59e011218182a56bb2269bee09ec7edd177b89b89b6009ba83ffea0102a6d895c8aaa1
+  checksum: 6d4fa87c26f29365283e5eb4a918610631b851363a3ea53f5c14ab3e81cb9d293c160866418816cd1aa7d3086b7ace627662e7081d9d0c97a55e10cc3e75b40a
   languageName: node
   linkType: hard
 
@@ -13060,7 +13060,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "gatsby-plugin-typegen@portal:../../plugin::locator=%40gatsby-plugin-typegen%2Fexample-typescript%40workspace%3Aexamples%2Ftypescript"
   dependencies:
-    "@cometjs/core": ^2.0.0
+    "@cometjs/core": ^2.0.2
     "@graphql-codegen/core": ^2.5.1
     "@graphql-codegen/flow": ^2.2.7
     "@graphql-codegen/flow-operations": ^2.2.7
@@ -13083,7 +13083,8 @@ fsevents@^1.2.7:
     "@babel/cli": ^7.17.6
     "@babel/core": ^7.17.5
     "@babel/plugin-transform-flow-comments": ^7.16.7
-    "@cometjs/core": ^2.0.0
+    "@babel/plugin-transform-typescript": ^7.16.8
+    "@babel/runtime": ^7.17.2
     "@graphql-codegen/core": ^2.5.1
     "@graphql-codegen/flow": ^2.2.7
     "@graphql-codegen/flow-operations": ^2.2.7
@@ -13092,12 +13093,14 @@ fsevents@^1.2.7:
     "@graphql-codegen/typescript-operations": ^2.3.4
     "@graphql-codegen/typescript-resolvers": ^2.5.4
     "@graphql-tools/utils": ^8.6.2
+    "@types/common-tags": ^1.8.1
     "@types/graphql": ^14.5.0
     "@types/jest": ^27.4.1
     "@types/jest-when": ^3.5.0
     "@types/node": ^17.0.21
     "@xstate/cli": ^0.1.4
     babel-preset-gatsby-package: ^2.9.0
+    common-tags: ^1.8.2
     concurrently: ^7.0.0
     gatsby: ^4.9.3
     graphql: 15.8.0

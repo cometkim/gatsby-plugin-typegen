@@ -1,9 +1,8 @@
-import * as fs from 'fs/promises';
+import * as fs from 'fs';
 import { dirname } from 'path';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import { GraphQLEnumType } from 'gatsby/graphql';
 import type { IDefinitionMeta as _IDefinitionMeta } from 'gatsby/dist/redux/types';
-import type { OverrideProps } from '@cometjs/core';
 import {
   filterSchema,
   mapSchema,
@@ -12,15 +11,17 @@ import {
 
 import type { SupportedLanguage } from './options';
 
+type OverrideProps<TBaseProps, TNewProps> = Omit<TBaseProps, keyof TNewProps> & TNewProps;
+
 type Brand<TAG extends string, T> = T & { __TAG__: TAG };
 
 export const readFileContent = async (path: string): Promise<string> => {
-  return fs.readFile(path, { encoding: 'utf-8' });
+  return fs.promises.readFile(path, { encoding: 'utf-8' });
 };
 
 export const writeFileContent = async (path: string, data: string | Buffer): Promise<void> => {
-  await fs.mkdir(dirname(path), { recursive: true });
-  await fs.writeFile(path, data, { encoding: 'utf-8' });
+  await fs.promises.mkdir(dirname(path), { recursive: true });
+  await fs.promises.writeFile(path, data, { encoding: 'utf-8' });
 };
 
 export const formatLanguage = (lang: SupportedLanguage): string => (

@@ -1,8 +1,23 @@
-import path from 'path';
-import { Option } from '@cometjs/core';
-import { readFile, writeFile } from '../../common';
+import * as path from 'path';
 
-import type { AutoFixContext } from './types';
+import type { Config } from '../internal/config';
+
+interface MakeAutofixService {
+  (props: {
+    readFileContent: (path: string) => Promise<string>,
+    writeFileContent: (path: string, content: string) => Promise<void>,
+    language: Config['language'],
+    namespace: Config['namespace'],
+  }): AutofixService,
+}
+
+interface AutofixService {
+  (files: string[]): Promise<PromiseSettledResult<string | null>[]>;
+}
+
+export {
+  makeAutofixService,
+};
 
 /**
  * (?<CallExpressionName>useStaticQuery
@@ -48,6 +63,7 @@ interface FixCodeFn {
     namespace: string,
   }): string;
 }
+
 const fixTypeScript: FixCodeFn = ({ code, namespace }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return code
@@ -55,7 +71,6 @@ const fixTypeScript: FixCodeFn = ({ code, namespace }) => {
     .replace(STATIC_QUERY_HOOK_REGEXP, (substring: string, ...args: any[]) => {
       const { length: l, [l - 1]: groups } = args;
       return substring.replace(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         groups['CallExpressionName'],
         // eslint-disable-next-line
         `useStaticQuery<${namespace}.${groups['QueryName']}Query>`,
@@ -72,6 +87,7 @@ const fixTypeScript: FixCodeFn = ({ code, namespace }) => {
       );
     });
 };
+
 const fixFlow: FixCodeFn = ({ code, namespace }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return code
@@ -99,15 +115,12 @@ const fixFlow: FixCodeFn = ({ code, namespace }) => {
 
 const lookupFirstComment = (code: string) => {
   const result = /(\/\/(.*)|\/\*([\s\S]*)\*\/)/.exec(code);
-  return Option.map(result, ([match]) => match);
+  return result?.[0];
 };
 
 const hasFlowComment = (code: string) => {
   const firstComment = lookupFirstComment(code);
-  return Option.map(firstComment, {
-    Some: true,
-    None: false,
-  });
+  return Boolean(firstComment);
 };
 
 const isJavaScriptFile = (file: string): boolean => {
@@ -120,68 +133,80 @@ const isTypeScriptFile = (file: string): boolean => {
   return /tsx?/.test(ext);
 };
 
-interface AutoFixFileFn {
+interface AutofixFn {
   (args: {
-    file: string,
     namespace: string,
-  }): Promise<void>;
+    filePath: string,
+    readFileContent: (path: string) => Promise<string>,
+    writeFileContent: (path: string, content: string) => Promise<void>,
+  }): Promise<string | null>;
 }
 
-const autoFixTypeScriptFile: AutoFixFileFn = async ({ file, namespace }) => {
-  const code = await readFile(file);
+const autofixTypeScriptFile: AutofixFn = async ({
+  namespace,
+  filePath,
+  readFileContent,
+  writeFileContent,
+}) => {
+  const code = await readFileContent(filePath);
   const fixed = fixTypeScript({ code, namespace });
   if (code !== fixed) {
-    await writeFile(file, fixed);
+    await writeFileContent(filePath, fixed);
+    return filePath;
   }
+  return null;
 };
 
-const autoFixFlowFile: AutoFixFileFn = async ({ file, namespace }) => {
-  const code = await readFile(file);
+const autofixFlowFile: AutofixFn = async ({
+  namespace,
+  filePath,
+  readFileContent,
+  writeFileContent,
+}) => {
+  const code = await readFileContent(filePath);
   if (!hasFlowComment(code)) {
-    return;
+    return null;
   }
 
   const fixed = fixFlow({ code, namespace });
   if (code !== fixed) {
-    await writeFile(file, fixed);
+    await writeFileContent(filePath, fixed);
+    return filePath;
   }
+  return null;
 };
 
-interface AutoFixFilesFn {
-  (ctx: AutoFixContext): Promise<Array<PromiseSettledResult<void>>>;
-}
-
-export const autoFixTypeScriptFiles: AutoFixFilesFn = ({
-  files,
-  pluginOptions: {
-    namespace,
-  },
-}) => {
-  return Promise.allSettled(
-    files
-    .filter(isTypeScriptFile)
-    .map(file => autoFixTypeScriptFile({ file, namespace })),
-  );
-};
-
-export const autoFixFiles = ({
-  files,
-  pluginOptions: {
-    language,
-    namespace,
-  },
-}: AutoFixContext): Promise<Array<PromiseSettledResult<void>>> => {
+const makeAutofixService: MakeAutofixService = ({
+  namespace,
+  language,
+  readFileContent,
+  writeFileContent,
+}) => async files => {
   if (language === 'typescript') {
     return Promise.allSettled(
       files
       .filter(isTypeScriptFile)
-      .map(file => autoFixTypeScriptFile({ file, namespace })),
+      .map(filePath => (
+        autofixTypeScriptFile({
+          filePath,
+          namespace,
+          readFileContent,
+          writeFileContent,
+        })
+      )),
     );
   } else {
     return Promise.allSettled(
       files
       .filter(isJavaScriptFile)
-      .map(file => autoFixFlowFile({ file, namespace })),
+      .map(filePath => (
+        autofixFlowFile({
+          filePath,
+          namespace,
+          readFileContent,
+          writeFileContent,
+        })
+      )),
     );
   }
 };
