@@ -1988,14 +1988,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-named-capturing-groups-regex@npm:7.4.4":
-  version: 7.4.4
-  resolution: "@babel/plugin-transform-named-capturing-groups-regex@npm:7.4.4"
+"@babel/plugin-transform-named-capturing-groups-regex@npm:^7.12.1, @babel/plugin-transform-named-capturing-groups-regex@npm:^7.16.8":
+  version: 7.16.8
+  resolution: "@babel/plugin-transform-named-capturing-groups-regex@npm:7.16.8"
   dependencies:
-    regexp-tree: ^0.1.0
+    "@babel/helper-create-regexp-features-plugin": ^7.16.7
   peerDependencies:
     "@babel/core": ^7.0.0
-  checksum: 68b592d81650b0759b5284467326454c458b3ac217d748241bc4a8f207ed2259d983cf601cfb51c1f1afb551cd91a8e43245e9e4ca682af1aac3af775d8e79d1
+  checksum: 73e149f5ff690f5b8e3764a881e8e5240f12f394256e7d5217705d0cbeae074c3faff394783190fe1a41f9fc5a53b960b6021158b7e5174391b5fc38f4ba047a
   languageName: node
   linkType: hard
 
@@ -13072,7 +13072,7 @@ fsevents@^1.2.7:
     xstate: ^4.30.6
   peerDependencies:
     gatsby: ^4.0.0
-    react: ^16.4.2 || ^17.0.0 || ^18.0.0
+    graphql: ^15.0.0
   languageName: node
   linkType: soft
 
@@ -13100,15 +13100,14 @@ fsevents@^1.2.7:
     babel-preset-gatsby-package: ^2.9.0
     concurrently: ^7.0.0
     gatsby: ^4.9.3
-    graphql: ^15.8.0
+    graphql: 15.8.0
     jest: ^27.5.1
     jest-when: ^3.5.1
-    redux: ^4.1.2
     typescript: ^4.6.2
     xstate: ^4.30.6
   peerDependencies:
     gatsby: ^4.0.0
-    react: ^16.4.2 || ^17.0.0 || ^18.0.0
+    graphql: ^15.0.0
   languageName: unknown
   linkType: soft
 
@@ -14371,7 +14370,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql@npm:^15.7.2, graphql@npm:^15.8.0":
+"graphql@npm:15.8.0, graphql@npm:^15.7.2":
   version: 15.8.0
   resolution: "graphql@npm:15.8.0"
   checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
@@ -21492,7 +21491,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"redux@npm:4.1.2, redux@npm:^4.1.2":
+"redux@npm:4.1.2":
   version: 4.1.2
   resolution: "redux@npm:4.1.2"
   dependencies:
@@ -21565,15 +21564,6 @@ fsevents@^1.2.7:
     extend-shallow: ^3.0.2
     safe-regex: ^1.1.0
   checksum: 3081403de79559387a35ef9d033740e41818a559512668cef3d12da4e8a29ef34ee13c8ed1256b07e27ae392790172e8a15c8a06b72962fd4550476cde3d8f77
-  languageName: node
-  linkType: hard
-
-"regexp-tree@npm:^0.1.0":
-  version: 0.1.21
-  resolution: "regexp-tree@npm:0.1.21"
-  bin:
-    regexp-tree: bin/regexp-tree
-  checksum: 1df8afdaaacbe38a8b8436d2d5dc9b0549a9ec9b563f44efbf1e5349a075f9b65a2b322806e8ed4c76ec56bd1935af75bbd7e90cf1b8cf71feba39c82d0b6166
   languageName: node
   linkType: hard
 

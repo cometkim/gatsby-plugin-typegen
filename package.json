@@ -13,9 +13,6 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
   },
-  "resolutions": {
-    "@babel/plugin-transform-named-capturing-groups-regex": "7.4.4"
-  },
   "devDependencies": {
     "@cometjs/eslint-plugin": "^2.0.0",
     "@types/jest": "^27.4.1",

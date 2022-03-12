@@ -568,6 +568,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
+        ["virtual:add1ced635212cf151ac743ee0131410f0fb2ae9945768dc7d21acf426d709bffa3fa8e04cc610f8ce976437d50b3be0485cd99e04548c0693da53d440779fa3#npm:7.17.0", {\
+          "packageLocation": "./.yarn/__virtual__/@babel-helper-create-regexp-features-plugin-virtual-a80484ce12/0/cache/@babel-helper-create-regexp-features-plugin-npm-7.17.0-19fb04fea1-eb66d92415.zip/node_modules/@babel/helper-create-regexp-features-plugin/",\
+          "packageDependencies": [\
+            ["@babel/helper-create-regexp-features-plugin", "virtual:add1ced635212cf151ac743ee0131410f0fb2ae9945768dc7d21acf426d709bffa3fa8e04cc610f8ce976437d50b3be0485cd99e04548c0693da53d440779fa3#npm:7.17.0"],\
+            ["@babel/core", "npm:7.14.0"],\
+            ["@babel/helper-annotate-as-pure", "npm:7.16.7"],\
+            ["@types/babel__core", null],\
+            ["regexpu-core", "npm:5.0.1"]\
+          ],\
+          "packagePeers": [\
+            "@babel/core",\
+            "@types/babel__core"\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["virtual:bacbc103f5798787cb6ae0443b69cc054de9a4f99a77ba4d7145a08a77ee93d93e4f2997e4a7b9ee98bf864ed2891fa45563ce414e5511ccf44667b606df7426#npm:7.12.7", {\
           "packageLocation": "./.yarn/__virtual__/@babel-helper-create-regexp-features-plugin-virtual-b49d114203/0/cache/@babel-helper-create-regexp-features-plugin-npm-7.12.7-c55ee2ee7c-4e3901eecb.zip/node_modules/@babel/helper-create-regexp-features-plugin/",\
           "packageDependencies": [\
@@ -4019,20 +4034,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@babel/plugin-transform-named-capturing-groups-regex", [\
-        ["npm:7.4.4", {\
-          "packageLocation": "./.yarn/cache/@babel-plugin-transform-named-capturing-groups-regex-npm-7.4.4-51d9f6aef8-68b592d816.zip/node_modules/@babel/plugin-transform-named-capturing-groups-regex/",\
+        ["npm:7.16.8", {\
+          "packageLocation": "./.yarn/cache/@babel-plugin-transform-named-capturing-groups-regex-npm-7.16.8-753500c58b-73e149f5ff.zip/node_modules/@babel/plugin-transform-named-capturing-groups-regex/",\
           "packageDependencies": [\
-            ["@babel/plugin-transform-named-capturing-groups-regex", "npm:7.4.4"]\
+            ["@babel/plugin-transform-named-capturing-groups-regex", "npm:7.16.8"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.4.4", {\
-          "packageLocation": "./.yarn/__virtual__/@babel-plugin-transform-named-capturing-groups-regex-virtual-1e01ac1a7c/0/cache/@babel-plugin-transform-named-capturing-groups-regex-npm-7.4.4-51d9f6aef8-68b592d816.zip/node_modules/@babel/plugin-transform-named-capturing-groups-regex/",\
+        ["virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.16.8", {\
+          "packageLocation": "./.yarn/__virtual__/@babel-plugin-transform-named-capturing-groups-regex-virtual-add1ced635/0/cache/@babel-plugin-transform-named-capturing-groups-regex-npm-7.16.8-753500c58b-73e149f5ff.zip/node_modules/@babel/plugin-transform-named-capturing-groups-regex/",\
           "packageDependencies": [\
-            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.4.4"],\
+            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.16.8"],\
             ["@babel/core", "npm:7.14.0"],\
-            ["@types/babel__core", null],\
-            ["regexp-tree", "npm:0.1.21"]\
+            ["@babel/helper-create-regexp-features-plugin", "virtual:add1ced635212cf151ac743ee0131410f0fb2ae9945768dc7d21acf426d709bffa3fa8e04cc610f8ce976437d50b3be0485cd99e04548c0693da53d440779fa3#npm:7.17.0"],\
+            ["@types/babel__core", null]\
           ],\
           "packagePeers": [\
             "@babel/core",\
@@ -4040,13 +4055,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.4.4", {\
-          "packageLocation": "./.yarn/__virtual__/@babel-plugin-transform-named-capturing-groups-regex-virtual-723e292124/0/cache/@babel-plugin-transform-named-capturing-groups-regex-npm-7.4.4-51d9f6aef8-68b592d816.zip/node_modules/@babel/plugin-transform-named-capturing-groups-regex/",\
+        ["virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.8", {\
+          "packageLocation": "./.yarn/__virtual__/@babel-plugin-transform-named-capturing-groups-regex-virtual-7c1555a075/0/cache/@babel-plugin-transform-named-capturing-groups-regex-npm-7.16.8-753500c58b-73e149f5ff.zip/node_modules/@babel/plugin-transform-named-capturing-groups-regex/",\
           "packageDependencies": [\
-            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.4.4"],\
+            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.8"],\
             ["@babel/core", "npm:7.17.5"],\
-            ["@types/babel__core", null],\
-            ["regexp-tree", "npm:0.1.21"]\
+            ["@babel/helper-create-regexp-features-plugin", "virtual:09ff83a2a30ca6f8c1265a96f7936acbca910d08542af79e5ec3f96f65f1a2081741d5582665cd815021e970b67f483e10c5be9671364577e6e78c477a6375cd#npm:7.17.0"],\
+            ["@types/babel__core", null]\
           ],\
           "packagePeers": [\
             "@babel/core",\
@@ -5123,7 +5138,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/plugin-transform-modules-commonjs", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.8"],\
             ["@babel/plugin-transform-modules-systemjs", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.7"],\
             ["@babel/plugin-transform-modules-umd", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.7"],\
-            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.4.4"],\
+            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.8"],\
             ["@babel/plugin-transform-new-target", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.7"],\
             ["@babel/plugin-transform-object-super", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.7"],\
             ["@babel/plugin-transform-parameters", "virtual:f35ede7ab37a538cfaae5bc25596179f2d9f1dad8221b9e3f8ba754c2934460001a3408c83214924bf1119dc2116a46917497de7d43ec349c89da3991f4e5f3f#npm:7.16.7"],\
@@ -5205,7 +5220,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/plugin-transform-modules-commonjs", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.12.1"],\
             ["@babel/plugin-transform-modules-systemjs", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.12.1"],\
             ["@babel/plugin-transform-modules-umd", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.12.1"],\
-            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.4.4"],\
+            ["@babel/plugin-transform-named-capturing-groups-regex", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.16.8"],\
             ["@babel/plugin-transform-new-target", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.12.1"],\
             ["@babel/plugin-transform-object-super", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.12.1"],\
             ["@babel/plugin-transform-parameters", "virtual:5eda0eacb2e9c9e9af11f55665acc18808501ae38dc778cbf0ad1f3772c9b6822bfc4f3c283c8801880293fd51174f8aa7d061910ee785dd0703f1b77f029cb3#npm:7.12.1"],\
@@ -19654,16 +19669,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/typescript-resolvers", "virtual:ceeaded282dddf3e6863852cd6963d6bc8fffb55e35e42ed4896027c744adc706d78e2bd123bc7cc528d5fd995b415da9fe44c79d2b06d9ed4af7f6a0a39f7fc#npm:2.5.4"],\
             ["@graphql-tools/utils", "virtual:ceeaded282dddf3e6863852cd6963d6bc8fffb55e35e42ed4896027c744adc706d78e2bd123bc7cc528d5fd995b415da9fe44c79d2b06d9ed4af7f6a0a39f7fc#npm:8.6.2"],\
             ["@types/gatsby", null],\
-            ["@types/react", "npm:17.0.5"],\
+            ["@types/graphql", null],\
             ["gatsby", "virtual:438d329e986b6e18f5f87bf1de1ac4520c5d99e6dc8f05812762c43be03bb6fa2e4c8fb368a11d3fa077f389f1b0398495e0b6b853c807812ff1d9b0ceab8d87#npm:3.4.2"],\
-            ["react", "npm:17.0.2"],\
+            ["graphql", null],\
             ["xstate", "npm:4.30.6"]\
           ],\
           "packagePeers": [\
             "@types/gatsby",\
-            "@types/react",\
+            "@types/graphql",\
             "gatsby",\
-            "react"\
+            "graphql"\
           ],\
           "linkType": "SOFT"\
         }],\
@@ -19694,7 +19709,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["graphql", "npm:15.8.0"],\
             ["jest", "virtual:1dae41add377423e96da5af7fb4f34b4f598113cb69fe2c5e13ca37ea8df03cd9666616f4fad95f34a47a08eecf8a7541ef0e8cc41ba2a6b40188eaf4747f591#npm:27.5.1"],\
             ["jest-when", "virtual:1dae41add377423e96da5af7fb4f34b4f598113cb69fe2c5e13ca37ea8df03cd9666616f4fad95f34a47a08eecf8a7541ef0e8cc41ba2a6b40188eaf4747f591#npm:3.5.1"],\
-            ["redux", "npm:4.1.2"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"],\
             ["xstate", "npm:4.30.6"]\
           ],\
@@ -29418,15 +29432,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regex-not", "npm:1.0.2"],\
             ["extend-shallow", "npm:3.0.2"],\
             ["safe-regex", "npm:1.1.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["regexp-tree", [\
-        ["npm:0.1.21", {\
-          "packageLocation": "./.yarn/cache/regexp-tree-npm-0.1.21-50647dc49c-1df8afdaaa.zip/node_modules/regexp-tree/",\
-          "packageDependencies": [\
-            ["regexp-tree", "npm:0.1.21"]\
           ],\
           "linkType": "HARD"\
         }]\
