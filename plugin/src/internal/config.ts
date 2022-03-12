@@ -1,5 +1,5 @@
-import path from 'path';
-import type { OverrideProps } from '@cometjs/core';
+import * as path from 'path';
+
 import { gatsbyInternalScalars } from '../gatsby-utils';
 
 import type {
@@ -7,6 +7,7 @@ import type {
   SchemaOutputOptions,
   DocumentOutputOptions,
 } from './options';
+import type { OverrideProps } from './utils';
 import { formatLanguage } from './utils';
 import type { TypegenReporter } from './reporter';
 
@@ -19,7 +20,7 @@ const defaultSchemaOutputOption = Object.freeze({
 type MapSchemaOutputOption<T> = T extends { [key: string]: infer V }
   ? V extends true
   ? { [key: string]: typeof defaultSchemaOutputOption }
-  : { [key: string]: SchemaOutputOptions }
+  : { [key: string]: Required<SchemaOutputOptions> }
   : never;
 
 const defaultDocumentOutputOption = Object.freeze({
@@ -29,7 +30,7 @@ const defaultDocumentOutputOption = Object.freeze({
 type MapDocumentOutputOption<T> = T extends { [key: string]: infer V }
   ? V extends true
   ? { [key: string]: typeof defaultDocumentOutputOption }
-  : { [key: string]: DocumentOutputOptions }
+  : { [key: string]: Required<DocumentOutputOptions> }
   : never;
 
 export type Config = Required<
@@ -75,25 +76,39 @@ export const validateConfig: ValidateConfig = ({
   const emitSchema: MapSchemaOutputOption<typeof emitSchemaOptionMap> = {};
   for (const [key, options] of Object.entries(emitSchemaOptionMap)) {
     if (!options) continue;
-    emitSchema[key] = {
-      ...defaultSchemaOutputOption,
-      // Infer format option based on filename.
-      format: /\.(graphql|graphqls|gql)$/.test(key)
-        ? 'sdl'
-        : 'introspection',
-    };
+    if (options === true) {
+      emitSchema[key] = {
+        ...defaultSchemaOutputOption,
+        // Infer format option based on filename.
+        format: /\.(graphql|graphqls|gql)$/.test(key)
+          ? 'sdl'
+          : 'introspection',
+      };
+    } else {
+      emitSchema[key] = {
+        ...defaultSchemaOutputOption,
+        ...options,
+      };
+    }
   }
 
   const emitPluginDocuments: MapDocumentOutputOption<typeof emitPluginDocumentsOptionMap> = {};
   for (const [key, options] of Object.entries(emitPluginDocumentsOptionMap)) {
     if (!options) continue;
-    emitPluginDocuments[key] = {
-      ...defaultDocumentOutputOption,
-      // Infer format option based on filename.
-      format: /\.json$/.test(key)
-        ? 'json'
-        : 'graphql',
-    };
+    if (options === true) {
+      emitPluginDocuments[key] = {
+        ...defaultDocumentOutputOption,
+        // Infer format option based on filename.
+        format: /\.json$/.test(key)
+          ? 'json'
+          : 'graphql',
+      };
+    } else {
+      emitPluginDocuments[key] = {
+        ...defaultDocumentOutputOption,
+        ...options,
+      };
+    }
   }
 
   const outputPath = pluginOptions.outputPath || (

@@ -11,9 +11,9 @@ import {
 
 import type { SupportedLanguage } from './options';
 
-type OverrideProps<TBaseProps, TNewProps> = Omit<TBaseProps, keyof TNewProps> & TNewProps;
+export type OverrideProps<TBaseProps, TNewProps> = Omit<TBaseProps, keyof TNewProps> & TNewProps;
 
-type Brand<TAG extends string, T> = T & { __TAG__: TAG };
+export type Brand<TAG extends string, T> = T & { __TAG__: TAG };
 
 export const readFileContent = async (path: string): Promise<string> => {
   return fs.promises.readFile(path, { encoding: 'utf-8' });

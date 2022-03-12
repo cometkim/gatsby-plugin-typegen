@@ -3,7 +3,7 @@ import * as path from 'path';
 import type { Config } from '../internal/config';
 
 interface MakeAutofixService {
-  (props: {
+  (deps: {
     readFileContent: (path: string) => Promise<string>,
     writeFileContent: (path: string, content: string) => Promise<void>,
     language: Config['language'],
