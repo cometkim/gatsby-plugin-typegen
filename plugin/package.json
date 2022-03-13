@@ -28,10 +28,11 @@
   ],
   "scripts": {
     "test": "jest",
+    "codegen": "xstate typegen src/internal/machine.ts",
     "build": "concurrently \"yarn:build:*\"",
     "build:js": "babel src -d . --extensions .ts,.tsx",
     "build:dts": "tsc -p tsconfig.build.json --emitDeclarationOnly",
-    "build:flow": "babel src/types.js.flow -x .flow -d . --plugins module:@babel/plugin-transform-flow-comments",
+    "build:flow": "babel src/types.flow.js -d . --plugins module:@babel/plugin-transform-flow-comments",
     "develop": "babel src -d . --extensions .ts,.tsx --watch",
     "prepack": "yarn build"
   },

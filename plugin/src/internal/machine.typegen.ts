@@ -5,7 +5,7 @@ export interface Typegen0 {
   eventsCausingActions: {
     assignDevMode: "CREATE_DEV_SERVER";
     assignSchema: "SET_SCHEMA";
-    assignPluginDefinitions: "SET_GRAPHQL_DEFINITIONS";
+    assignThirdpartyDefinitions: "SET_GRAPHQL_DEFINITIONS";
     assignDefinitions: "SET_GRAPHQL_DEFINITIONS";
     scheduleEmitSchema: "SET_SCHEMA";
     scheduleCodegen: "SET_SCHEMA" | "SET_GRAPHQL_DEFINITIONS";
@@ -31,27 +31,27 @@ export interface Typegen0 {
   };
   invokeSrcNameMap: {
     emitSchema:
-      | "done.invoke.(machine).emitting.running:invocation[0]"
+      | "done.invoke.(machine).runningOnce.running.emitSchema:invocation[0]"
       | "done.invoke.(machine).watching.jobs.emitSchema.running:invocation[0]";
-    emitPluginDoucments: "done.invoke.(machine).emitting.running:invocation[1]";
+    emitPluginDocument: "done.invoke.(machine).runningOnce.running.emitPluginDocument:invocation[0]";
     codegen:
-      | "done.invoke.(machine).emitting.running:invocation[2]"
+      | "done.invoke.(machine).runningOnce.running.codegen:invocation[0]"
       | "done.invoke.(machine).watching.jobs.codegen.running:invocation[0]";
     autofix:
-      | "done.invoke.(machine).emitting.running:invocation[3]"
+      | "done.invoke.(machine).runningOnce.running.autofix:invocation[0]"
       | "done.invoke.(machine).watching.jobs.autofix.running:invocation[0]";
     opSchemaChange: "done.invoke.(machine).watching.schedulers.t2.watchingSchema:invocation[0]";
     opDefinitionsChange: "done.invoke.(machine).watching.schedulers.t2.watchingDefinitions:invocation[0]";
   };
   missingImplementations: {
-    actions: "assignPluginDefinitions" | "assignDefinitions";
-    services: "emitSchema" | "emitPluginDoucments" | "codegen" | "autofix";
-    guards: "ready?";
+    actions: never;
+    services: "emitSchema" | "emitPluginDocument" | "codegen" | "autofix";
+    guards: never;
     delays: never;
   };
   eventsCausingServices: {
     emitSchema: "START_emitSchema";
-    emitPluginDoucments: "xstate.init";
+    emitPluginDocument: "xstate.init";
     codegen: "START_codegen";
     autofix: "START_autofix";
     opSchemaChange: "xstate.init";
@@ -59,14 +59,18 @@ export interface Typegen0 {
   };
   eventsCausingGuards: {
     "ready?": "SET_SCHEMA" | "SET_GRAPHQL_DEFINITIONS";
-    "devMode?": "done.state.(machine).emitting.running";
+    "devMode?": "done.state.(machine).runningOnce.running";
   };
   eventsCausingDelays: {};
   matchesStates:
     | "initializing"
-    | "emitting"
-    | "emitting.running"
-    | "emitting.idle"
+    | "runningOnce"
+    | "runningOnce.running"
+    | "runningOnce.running.emitSchema"
+    | "runningOnce.running.emitPluginDocument"
+    | "runningOnce.running.codegen"
+    | "runningOnce.running.autofix"
+    | "runningOnce.idle"
     | "watching"
     | "watching.schedulers"
     | "watching.schedulers.t1"
@@ -84,7 +88,16 @@ export interface Typegen0 {
     | "watching.jobs.autofix.idle"
     | "watching.jobs.autofix.running"
     | {
-        emitting?: "running" | "idle";
+        runningOnce?:
+          | "running"
+          | "idle"
+          | {
+              running?:
+                | "emitSchema"
+                | "emitPluginDocument"
+                | "codegen"
+                | "autofix";
+            };
         watching?:
           | "schedulers"
           | "jobs"

@@ -1,7 +1,6 @@
-import * as fs from 'fs';
 import { dirname } from 'path';
 import type { GraphQLSchema, SourceLocation } from 'gatsby/graphql';
-import { GraphQLEnumType } from 'gatsby/graphql';
+import { GraphQLEnumType, lexicographicSortSchema } from 'gatsby/graphql';
 import type { IDefinitionMeta as _IDefinitionMeta } from 'gatsby/dist/redux/types';
 import {
   filterSchema,
@@ -15,15 +14,6 @@ export type OverrideProps<TBaseProps, TNewProps> = Omit<TBaseProps, keyof TNewPr
 
 export type Brand<TAG extends string, T> = T & { __TAG__: TAG };
 
-export const readFileContent = async (path: string): Promise<string> => {
-  return fs.promises.readFile(path, 'utf-8');
-};
-
-export const writeFileContent = async (path: string, content: string): Promise<void> => {
-  await fs.promises.mkdir(dirname(path), { recursive: true });
-  await fs.promises.writeFile(path, content, 'utf-8');
-};
-
 export const formatLanguage = (lang: SupportedLanguage): string => (
   (lang === 'typescript') ? 'TypeScript' : 'Flow'
 );
@@ -36,6 +26,8 @@ export type IDefinitionMeta = OverrideProps<_IDefinitionMeta, {
 
   // https://github.com/gatsbyjs/gatsby/blob/d163724/packages/gatsby/src/query/file-parser.js#L429
   isConfigQuery: boolean,
+
+  hash: number,
 }>;
 
 export type FragmentDefinition = Brand<
@@ -178,4 +170,8 @@ export function filterPluginSchema(schema: GraphQLSchema): GraphQLSchema {
       return undefined;
     },
   });
+}
+
+export function stabilizeSchema(schema: GraphQLSchema): GraphQLSchema {
+  return lexicographicSortSchema(filterDevOnlySchema(schema));
 }

@@ -1,29 +1,16 @@
 import type { GatsbyNode, Reporter } from 'gatsby';
 import { interpret } from 'xstate';
+import { Kind } from 'gatsby/graphql';
 
-import type { TypegenIntepreter } from './services/typegenMachine';
-import { makeTypegenMachine } from './services/typegenMachine';
-import { makeEmitSchemaService } from './services/emitSchema';
-import { makeEmitPluginDocumentService } from './services/emitPluginDocuments';
-import type { PluginOptions } from './internal/types';
-import { normalizePluginOptions } from './internal/config';
 import type { TypegenReporter } from './internal/reporter';
-
-import type { GatsbyStore } from './gatsby-utils';
-
-let service: TypegenIntepreter;
-
-function makeTypegenReporter(reporter: Reporter): TypegenReporter {
-  const prefix = '[typegen]';
-  return {
-    ...reporter,
-    log: message => void reporter.log([prefix, message].join(' ')),
-    info: message => void reporter.info([prefix, message].join(' ')),
-    warn: message => void reporter.warn([prefix, message].join(' ')),
-    error: message => void reporter.error([prefix, message].join(' ')),
-    verbose: message => void reporter.verbose([prefix, message].join(' ')),
-  };
-}
+import { validateConfig } from './internal/config';
+import { typegenMachine } from './internal/machine';
+import { makeEmitSchemaService } from './services/emitSchema';
+import { makeEmitPluginDocumentService } from './services/emitPluginDocument';
+import { makeAutofixService } from './services/autofix';
+import { makeCodegenService } from './services/codegen';
+import type { PluginOptions } from './types';
+import { readFileContent, writeFileContent } from './utils';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -70,75 +57,121 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   });
 };
 
+let spawnedMachine: any = null;
+
 export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
+  store,
   emitter,
-  store: _store,
-  reporter: _reporter,
+  reporter,
 }, options) => {
-  const store = _store as GatsbyStore;
-  const reporter = makeTypegenReporter(_reporter);
+  const typegenReporter = makeTypegenReporter(reporter);
+  const pluginOptions = options as unknown as PluginOptions;
 
   const { program } = store.getState();
   const basePath = program.directory;
 
-  const pluginOptions = normalizePluginOptions(
-    options as PluginOptions,
-    { basePath, reporter },
+  const config = validateConfig(
+    {
+      basePath,
+      options: pluginOptions,
+      reporter: typegenReporter,
+    },
   );
 
-  reporter.verbose(reporter.stripIndent`
-    Loaded normalized configuration
+  typegenReporter.verbose(reporter.stripIndent`
+    loaded configuration
     ${JSON.stringify(pluginOptions, null, 2)}
   `);
 
-  const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-  service = interpret(
-    makeTypegenMachine({
-      context: {
-        reporter,
-        schema: null,
-        trackedDefinitions: null,
-        thirdpartyFragmentDefinitions: [],
-        hasSchemaChanged: false,
-        definitionChangesets: [],
-      },
+  const emitSchema = makeEmitSchemaService({
+    configMap: config.emitSchema,
+    reporter: typegenReporter,
+    writeFileContent,
+  });
+
+  const emitPluginDocument = makeEmitPluginDocumentService({
+    configMap: config.emitPluginDocument,
+    reporter: typegenReporter,
+    writeFileContent,
+  });
+
+  const autofix = makeAutofixService({
+    ...config,
+    readFileContent,
+    writeFileContent,
+  });
+
+  const codegen = makeCodegenService({
+    ...config,
+    customScalars: config.scalars,
+    reporter: typegenReporter,
+    writeFileContent,
+  })
+
+  const typegenService = interpret(
+    typegenMachine
+    .withContext({
+      debouncingDelay: 500,
+      devMode: false,
+      reporter: typegenReporter,
+    })
+    .withConfig({
       services: {
-        codegen() {
-          return delay(1000);
-        },
-        emitSchema: makeEmitSchemaService({
-          pluginOptions,
+        emitSchema: context => emitSchema(context.schema!),
+        // @ts-ignore for typegen bug
+        emitPluginDocument: context => emitPluginDocument(context.thirdpartyFragments || []),
+        autofix: (_context, event) => autofix(event.files),
+        codegen: context => codegen({
+          schema: context.schema!,
+          documents: [...context.trackedDefinitions?.values() || []]
+            .map(definitionMeta => ({
+              document: {
+                kind: Kind.DOCUMENT,
+                definitions: [definitionMeta.def],
+              },
+              hash: definitionMeta.hash.toString(),
+            })),
         }),
-        emitPluginDocuments: makeEmitPluginDocumentService({
-          pluginOptions,
-        }),
-        autoFixCodes() {
-          return delay(2000);
-        },
       },
-    }),
+    })
   );
 
-  service.start();
+  typegenService.start();
 
-  service.onTransition(({ event, value, changed }) => {
-    reporter.verbose(`on ${event.type}`);
+  typegenService.onTransition(({ event, value, changed }) => {
+    typegenReporter.verbose(`on ${event.type}`);
     if (changed) {
-      reporter.verbose(` ⤷ transition to ${JSON.stringify(value)}`);
+      typegenReporter.verbose(` ⤷ transition to ${JSON.stringify(value)}`);
     } else {
-      reporter.verbose(' ⤷ skipped');
+      typegenReporter.verbose(' ⤷ skipped');
     }
   });
 
+  spawnedMachine = typegenService;
+
   emitter.on('SET_SCHEMA', () => {
-    service.send({ type: 'SET_SCHEMA', schema: store.getState().schema });
+    typegenService.send({ type: 'SET_SCHEMA', schema: store.getState().schema });
   });
 
   emitter.on('SET_GRAPHQL_DEFINITIONS', () => {
-    service.send({ type: 'SET_GRAPHQL_DEFINITIONS', definitions: [...store.getState().definitions.values()] });
+    typegenService.send({ type: 'SET_GRAPHQL_DEFINITIONS', definitions: store.getState().definitions });
   });
 };
 
 export const onCreateDevServer: GatsbyNode['onCreateDevServer'] = () => {
-  service.send('CREATE_DEV_SERVER');
+  spawnedMachine?.send('CREATE_DEV_SERVER');
 };
+
+function makeTypegenReporter(reporter: Reporter): TypegenReporter {
+  const formatMessage = (message: string) => `[typegen] ${message}`;
+  return {
+    ...reporter,
+    log: message => reporter.log(formatMessage(message)),
+    info: message => reporter.info(formatMessage(message)),
+    warn: message => reporter.warn(formatMessage(message)),
+    error: message => reporter.error(formatMessage(message)),
+    verbose: message => reporter.verbose(formatMessage(message)),
+    panic: reporter.panic,
+    panicOnBuild: reporter.panicOnBuild,
+  };
+}

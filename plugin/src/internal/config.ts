@@ -1,14 +1,12 @@
 import * as path from 'path';
 
-import { gatsbyInternalScalars } from '../gatsby-utils';
-
 import type {
   PluginOptions,
   SchemaOutputOptions,
   DocumentOutputOptions,
 } from './options';
 import type { OverrideProps } from './utils';
-import { formatLanguage } from './utils';
+import { formatLanguage, gatsbyInternalScalars } from './utils';
 import type { TypegenReporter } from './reporter';
 
 const defaultSchemaOutputOption = Object.freeze({

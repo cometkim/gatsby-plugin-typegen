@@ -32,10 +32,6 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
       return;
     }
 
-    const stableSchema = lexicographicSortSchema(
-      filterDevOnlySchema(schema),
-    );
-
     await Promise.all(
       entries.map(([filePath, config]) => {
         reporter.info(`emitting schema into ${filePath}`);
@@ -46,23 +42,23 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
           omitPluginMetadata,
         } = config;
 
-        let schema = stableSchema;
+        let outputSchema = schema;
         if (omitPluginMetadata) {
-          schema = filterPluginSchema(schema);
+          outputSchema = filterPluginSchema(outputSchema);
         }
 
         switch (format) {
           case 'sdl': {
             return writeFileContent(
               filePath,
-              printSchema(schema, { commentDescriptions }),
+              printSchema(outputSchema, { commentDescriptions }),
             );
           }
           case 'introspection': {
             return writeFileContent(
               filePath,
               JSON.stringify(
-                introspectionFromSchema(schema, {
+                introspectionFromSchema(outputSchema, {
                   descriptions: true,
                   schemaDescription: true,
                   directiveIsRepeatable: true,

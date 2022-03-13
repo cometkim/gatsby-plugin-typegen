@@ -1,1 +1,4 @@
-export * from './internal/types';
+export type { PluginOptions } from './internal/options';
+
+export interface GatsbyResolverContext {
+}
