@@ -2848,18 +2848,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cometjs/core@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@cometjs/core@npm:2.0.2"
-  peerDependencies:
-    typescript: ^4.5.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 6d4fa87c26f29365283e5eb4a918610631b851363a3ea53f5c14ab3e81cb9d293c160866418816cd1aa7d3086b7ace627662e7081d9d0c97a55e10cc3e75b40a
-  languageName: node
-  linkType: hard
-
 "@cometjs/eslint-plugin@npm:^2.0.0":
   version: 2.0.0
   resolution: "@cometjs/eslint-plugin@npm:2.0.0"
@@ -3044,6 +3032,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-codegen/add@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@graphql-codegen/add@npm:3.1.1"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^2.3.2
+    tslib: ~2.3.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 293ed4b679dfa18ba977a6e159f0760e64bf9e153d139d4b2d6fc21f4438170a516959c7841c766f4187f17b788f569333fb4ab126c151627553724b38183101
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/core@npm:^2.5.1":
   version: 2.5.1
   resolution: "@graphql-codegen/core@npm:2.5.1"
@@ -3178,7 +3178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/visitor-plugin-common@npm:2.7.3":
+"@graphql-codegen/visitor-plugin-common@npm:2.7.3, @graphql-codegen/visitor-plugin-common@npm:^2.7.3":
   version: 2.7.3
   resolution: "@graphql-codegen/visitor-plugin-common@npm:2.7.3"
   dependencies:
@@ -13060,7 +13060,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "gatsby-plugin-typegen@portal:../../plugin::locator=%40gatsby-plugin-typegen%2Fexample-typescript%40workspace%3Aexamples%2Ftypescript"
   dependencies:
-    "@cometjs/core": ^2.0.2
+    "@graphql-codegen/add": ^3.1.1
     "@graphql-codegen/core": ^2.5.1
     "@graphql-codegen/flow": ^2.2.7
     "@graphql-codegen/flow-operations": ^2.2.7
@@ -13068,6 +13068,7 @@ fsevents@^1.2.7:
     "@graphql-codegen/typescript": ^2.4.7
     "@graphql-codegen/typescript-operations": ^2.3.4
     "@graphql-codegen/typescript-resolvers": ^2.5.4
+    "@graphql-codegen/visitor-plugin-common": ^2.7.3
     "@graphql-tools/utils": ^8.6.2
     xstate: ^4.30.6
   peerDependencies:
@@ -13085,13 +13086,16 @@ fsevents@^1.2.7:
     "@babel/plugin-transform-flow-comments": ^7.16.7
     "@babel/plugin-transform-typescript": ^7.16.8
     "@babel/runtime": ^7.17.2
+    "@graphql-codegen/add": ^3.1.1
     "@graphql-codegen/core": ^2.5.1
     "@graphql-codegen/flow": ^2.2.7
     "@graphql-codegen/flow-operations": ^2.2.7
     "@graphql-codegen/flow-resolvers": ^2.2.8
+    "@graphql-codegen/plugin-helpers": ^2.4.2
     "@graphql-codegen/typescript": ^2.4.7
     "@graphql-codegen/typescript-operations": ^2.3.4
     "@graphql-codegen/typescript-resolvers": ^2.5.4
+    "@graphql-codegen/visitor-plugin-common": ^2.7.3
     "@graphql-tools/utils": ^8.6.2
     "@types/common-tags": ^1.8.1
     "@types/graphql": ^14.5.0

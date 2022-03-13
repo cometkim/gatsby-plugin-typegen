@@ -2,6 +2,10 @@ import * as path from 'path';
 
 import type { Config } from '../internal/config';
 
+interface AutofixService {
+  (files: string[]): Promise<PromiseSettledResult<string | null>[]>;
+}
+
 interface MakeAutofixService {
   (deps: {
     readFileContent: (path: string) => Promise<string>,
@@ -9,10 +13,6 @@ interface MakeAutofixService {
     language: Config['language'],
     namespace: Config['namespace'],
   }): AutofixService,
-}
-
-interface AutofixService {
-  (files: string[]): Promise<PromiseSettledResult<string | null>[]>;
 }
 
 export {

@@ -32,7 +32,7 @@ export type PluginOptions = {
   outputPath?: string,
 
   /**
-   * @deprecated The plugin does not generate useful types for the interface of GatsbyJS schema builder. This will removed from v4.
+   * @deprecated The plugin does not generate useful types for the interface of GatsbyJS schema builder. Will be removed from v4.
    *
    * If you use [schema customization](https://www.gatsbyjs.org/docs/schema-customization/),
    * you might want types for custom resolvers.
@@ -102,7 +102,7 @@ export type PluginOptions = {
   },
 
   /**
-   * @deprecated Renamed to `emitPluginDocument`. It will be removed in v4.
+   * @deprecated Renamed to `emitPluginDocument`. Will be removed from v4.
    *
    * Emit the GraphQL fragments declared by other plugins into the filesystem.
    */
@@ -142,10 +142,10 @@ export type SchemaOutputOptions = {
   format: 'introspection' | 'sdl',
 
   /**
-  * Include comment descriptions
-  *
-  * @default true
-  */
+   * Use preceding comments as the description.
+   *
+   * @default true
+   */
   commentDescriptions?: boolean,
 
   /**

@@ -8,11 +8,13 @@ export const testReporter: TypegenReporter = {
   warn: console.warn,
   error: console.error,
   verbose: console.debug,
-  panic: msg => {
-    throw new Error(msg);
+  panic: (msg, e) => {
+    console.error(msg);
+    throw e;
   },
-  panicOnBuild: msg => {
-    throw new Error(msg);
+  panicOnBuild: (msg, e) => {
+    console.error(msg);
+    throw e;
   },
   stripIndent,
 };

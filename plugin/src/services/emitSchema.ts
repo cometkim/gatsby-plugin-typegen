@@ -36,7 +36,7 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
       filterDevOnlySchema(schema),
     );
 
-    void await Promise.all(
+    await Promise.all(
       entries.map(([filePath, config]) => {
         reporter.info(`emitting schema into ${filePath}`);
 
@@ -62,7 +62,13 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
             return writeFileContent(
               filePath,
               JSON.stringify(
-                introspectionFromSchema(schema, { descriptions: commentDescriptions }),
+                introspectionFromSchema(schema, {
+                  descriptions: true,
+                  schemaDescription: true,
+                  directiveIsRepeatable: true,
+                  inputValueDeprecation: true,
+                  specifiedByUrl: true,
+                }),
                 null,
                 2,
               ),

@@ -5,16 +5,16 @@ import type { Config } from '../internal/config';
 import type { TypegenReporter } from '../internal/reporter';
 import type { IDefinitionMeta } from '../internal/utils';
 
+interface EmitPluginDocumentService {
+  (definitions: IDefinitionMeta[]): Promise<void>;
+}
+
 interface MakeEmitPluginDocumentService {
   (deps: {
     configMap: Config['emitPluginDocument'],
     reporter: TypegenReporter,
     writeFileContent: (path: string, content: string) => Promise<void>,
   }): EmitPluginDocumentService;
-}
-
-interface EmitPluginDocumentService {
-  (definitions: IDefinitionMeta[]): Promise<void>;
 }
 
 export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({

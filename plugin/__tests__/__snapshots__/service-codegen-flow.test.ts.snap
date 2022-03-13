@@ -1,0 +1,3260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`codegen service flow: codegen.flow.js 1`] = `
+"/* eslint-disable */
+
+// @flow
+
+import { type GraphQLResolveInfo, type GraphQLScalarType, type GraphQLScalarTypeConfig } from 'graphql';
+import { type GatsbyResolverContext } from 'gatsby-plugin-typegen/types.flow';
+declare type $RequireFields<Origin, Keys> = $Diff<Origin, Keys> & $ObjMapi<Keys, <Key>(k: Key) => $NonMaybeType<$ElementType<Origin, Key>>>;
+/** All built-in and custom scalars, mapped to their actual values */
+declare type Scalars = {|
+  ID: string,
+  String: string,
+  Boolean: boolean,
+  Int: number,
+  Float: number,
+  Date: string,
+  JSON: any,
+|};
+
+
+
+
+
+
+
+
+
+
+declare type AVIFOptions = {|
+  lossless?: ?$ElementType<Scalars, 'Boolean'>,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+  speed?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+declare type BlurredOptions = {|
+  toFormat?: ?ImageFormat,
+  width?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+declare type BooleanQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'Boolean'>,
+  in?: ?Array<?$ElementType<Scalars, 'Boolean'>>,
+  ne?: ?$ElementType<Scalars, 'Boolean'>,
+  nin?: ?Array<?$ElementType<Scalars, 'Boolean'>>,
+|};
+
+
+declare type DateQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'Date'>,
+  gt?: ?$ElementType<Scalars, 'Date'>,
+  gte?: ?$ElementType<Scalars, 'Date'>,
+  in?: ?Array<?$ElementType<Scalars, 'Date'>>,
+  lt?: ?$ElementType<Scalars, 'Date'>,
+  lte?: ?$ElementType<Scalars, 'Date'>,
+  ne?: ?$ElementType<Scalars, 'Date'>,
+  nin?: ?Array<?$ElementType<Scalars, 'Date'>>,
+|};
+
+declare type Directory = {|
+  ...Node,
+  ...{|
+    +absolutePath: $ElementType<Scalars, 'String'>,
+    +accessTime: $ElementType<Scalars, 'Date'>,
+    +atime: $ElementType<Scalars, 'Date'>,
+    +atimeMs: $ElementType<Scalars, 'Float'>,
+    +base: $ElementType<Scalars, 'String'>,
+    +birthTime: $ElementType<Scalars, 'Date'>,
+    +birthtime?: ?$ElementType<Scalars, 'Date'>,
+    +birthtimeMs?: ?$ElementType<Scalars, 'Float'>,
+    +blksize?: ?$ElementType<Scalars, 'Int'>,
+    +blocks?: ?$ElementType<Scalars, 'Int'>,
+    +changeTime: $ElementType<Scalars, 'Date'>,
+    +children: Array<Node>,
+    +ctime: $ElementType<Scalars, 'Date'>,
+    +ctimeMs: $ElementType<Scalars, 'Float'>,
+    +dev: $ElementType<Scalars, 'Int'>,
+    +dir: $ElementType<Scalars, 'String'>,
+    +ext: $ElementType<Scalars, 'String'>,
+    +extension: $ElementType<Scalars, 'String'>,
+    +gid: $ElementType<Scalars, 'Int'>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +ino: $ElementType<Scalars, 'Float'>,
+    +internal: Internal,
+    +mode: $ElementType<Scalars, 'Int'>,
+    +modifiedTime: $ElementType<Scalars, 'Date'>,
+    +mtime: $ElementType<Scalars, 'Date'>,
+    +mtimeMs: $ElementType<Scalars, 'Float'>,
+    +name: $ElementType<Scalars, 'String'>,
+    +nlink: $ElementType<Scalars, 'Int'>,
+    +parent?: ?Node,
+    +prettySize: $ElementType<Scalars, 'String'>,
+    +rdev: $ElementType<Scalars, 'Int'>,
+    +relativeDirectory: $ElementType<Scalars, 'String'>,
+    +relativePath: $ElementType<Scalars, 'String'>,
+    +root: $ElementType<Scalars, 'String'>,
+    +size: $ElementType<Scalars, 'Int'>,
+    +sourceInstanceName: $ElementType<Scalars, 'String'>,
+    +uid: $ElementType<Scalars, 'Int'>,
+  |}
+|};
+
+
+declare type Directory_accessTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type Directory_atimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type Directory_birthTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type Directory_changeTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type Directory_ctimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type Directory_modifiedTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type Directory_mtimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type DirectoryConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<DirectoryEdge>,
+  +group: Array<DirectoryGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<Directory>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type DirectoryConnection_distinctArgs = {|
+  field: DirectoryFieldsEnum,
+|};
+
+
+declare type DirectoryConnection_groupArgs = {|
+  field: DirectoryFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type DirectoryConnection_maxArgs = {|
+  field: DirectoryFieldsEnum,
+|};
+
+
+declare type DirectoryConnection_minArgs = {|
+  field: DirectoryFieldsEnum,
+|};
+
+
+declare type DirectoryConnection_sumArgs = {|
+  field: DirectoryFieldsEnum,
+|};
+
+declare type DirectoryEdge = {|
+  +next?: ?Directory,
+  +node: Directory,
+  +previous?: ?Directory,
+|};
+
+export const DirectoryFieldsEnumValues = Object.freeze({
+  absolutePath: 'absolutePath',
+  accessTime: 'accessTime',
+  atime: 'atime',
+  atimeMs: 'atimeMs',
+  base: 'base',
+  birthTime: 'birthTime',
+  birthtime: 'birthtime',
+  birthtimeMs: 'birthtimeMs',
+  blksize: 'blksize',
+  blocks: 'blocks',
+  changeTime: 'changeTime',
+  children: 'children',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  ctime: 'ctime',
+  ctimeMs: 'ctimeMs',
+  dev: 'dev',
+  dir: 'dir',
+  ext: 'ext',
+  extension: 'extension',
+  gid: 'gid',
+  id: 'id',
+  ino: 'ino',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  mode: 'mode',
+  modifiedTime: 'modifiedTime',
+  mtime: 'mtime',
+  mtimeMs: 'mtimeMs',
+  name: 'name',
+  nlink: 'nlink',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id',
+  prettySize: 'prettySize',
+  rdev: 'rdev',
+  relativeDirectory: 'relativeDirectory',
+  relativePath: 'relativePath',
+  root: 'root',
+  size: 'size',
+  sourceInstanceName: 'sourceInstanceName',
+  uid: 'uid'
+});
+
+
+declare type DirectoryFieldsEnum = $Values<typeof DirectoryFieldsEnumValues>;
+
+declare type DirectoryFilterInput = {|
+  absolutePath?: ?StringQueryOperatorInput,
+  accessTime?: ?DateQueryOperatorInput,
+  atime?: ?DateQueryOperatorInput,
+  atimeMs?: ?FloatQueryOperatorInput,
+  base?: ?StringQueryOperatorInput,
+  birthTime?: ?DateQueryOperatorInput,
+  birthtime?: ?DateQueryOperatorInput,
+  birthtimeMs?: ?FloatQueryOperatorInput,
+  blksize?: ?IntQueryOperatorInput,
+  blocks?: ?IntQueryOperatorInput,
+  changeTime?: ?DateQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  ctime?: ?DateQueryOperatorInput,
+  ctimeMs?: ?FloatQueryOperatorInput,
+  dev?: ?IntQueryOperatorInput,
+  dir?: ?StringQueryOperatorInput,
+  ext?: ?StringQueryOperatorInput,
+  extension?: ?StringQueryOperatorInput,
+  gid?: ?IntQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  ino?: ?FloatQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  mode?: ?IntQueryOperatorInput,
+  modifiedTime?: ?DateQueryOperatorInput,
+  mtime?: ?DateQueryOperatorInput,
+  mtimeMs?: ?FloatQueryOperatorInput,
+  name?: ?StringQueryOperatorInput,
+  nlink?: ?IntQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  prettySize?: ?StringQueryOperatorInput,
+  rdev?: ?IntQueryOperatorInput,
+  relativeDirectory?: ?StringQueryOperatorInput,
+  relativePath?: ?StringQueryOperatorInput,
+  root?: ?StringQueryOperatorInput,
+  size?: ?IntQueryOperatorInput,
+  sourceInstanceName?: ?StringQueryOperatorInput,
+  uid?: ?IntQueryOperatorInput,
+|};
+
+declare type DirectoryGroupConnection = {|
+  +edges: Array<DirectoryEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<Directory>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type DirectorySortInput = {|
+  fields?: ?Array<?DirectoryFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+declare type DuotoneGradient = {|
+  highlight: $ElementType<Scalars, 'String'>,
+  opacity?: ?$ElementType<Scalars, 'Int'>,
+  shadow: $ElementType<Scalars, 'String'>,
+|};
+
+declare type File = {|
+  ...Node,
+  ...{|
+    +absolutePath: $ElementType<Scalars, 'String'>,
+    +accessTime: $ElementType<Scalars, 'Date'>,
+    +atime: $ElementType<Scalars, 'Date'>,
+    +atimeMs: $ElementType<Scalars, 'Float'>,
+    +base: $ElementType<Scalars, 'String'>,
+    +birthTime: $ElementType<Scalars, 'Date'>,
+    +birthtime?: ?$ElementType<Scalars, 'Date'>,
+    +birthtimeMs?: ?$ElementType<Scalars, 'Float'>,
+    +blksize?: ?$ElementType<Scalars, 'Int'>,
+    +blocks?: ?$ElementType<Scalars, 'Int'>,
+    +changeTime: $ElementType<Scalars, 'Date'>,
+    +childImageSharp?: ?ImageSharp,
+    +children: Array<Node>,
+    +childrenImageSharp?: ?Array<?ImageSharp>,
+    +ctime: $ElementType<Scalars, 'Date'>,
+    +ctimeMs: $ElementType<Scalars, 'Float'>,
+    +dev: $ElementType<Scalars, 'Int'>,
+    +dir: $ElementType<Scalars, 'String'>,
+    +ext: $ElementType<Scalars, 'String'>,
+    +extension: $ElementType<Scalars, 'String'>,
+    +gid: $ElementType<Scalars, 'Int'>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +ino: $ElementType<Scalars, 'Float'>,
+    +internal: Internal,
+    +mode: $ElementType<Scalars, 'Int'>,
+    +modifiedTime: $ElementType<Scalars, 'Date'>,
+    +mtime: $ElementType<Scalars, 'Date'>,
+    +mtimeMs: $ElementType<Scalars, 'Float'>,
+    +name: $ElementType<Scalars, 'String'>,
+    +nlink: $ElementType<Scalars, 'Int'>,
+    +parent?: ?Node,
+    +prettySize: $ElementType<Scalars, 'String'>,
+    +publicURL?: ?$ElementType<Scalars, 'String'>,
+    +rdev: $ElementType<Scalars, 'Int'>,
+    +relativeDirectory: $ElementType<Scalars, 'String'>,
+    +relativePath: $ElementType<Scalars, 'String'>,
+    +root: $ElementType<Scalars, 'String'>,
+    +size: $ElementType<Scalars, 'Int'>,
+    +sourceInstanceName: $ElementType<Scalars, 'String'>,
+    +uid: $ElementType<Scalars, 'Int'>,
+  |}
+|};
+
+
+declare type File_accessTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type File_atimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type File_birthTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type File_changeTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type File_ctimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type File_modifiedTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+
+declare type File_mtimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type FileConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<FileEdge>,
+  +group: Array<FileGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<File>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type FileConnection_distinctArgs = {|
+  field: FileFieldsEnum,
+|};
+
+
+declare type FileConnection_groupArgs = {|
+  field: FileFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type FileConnection_maxArgs = {|
+  field: FileFieldsEnum,
+|};
+
+
+declare type FileConnection_minArgs = {|
+  field: FileFieldsEnum,
+|};
+
+
+declare type FileConnection_sumArgs = {|
+  field: FileFieldsEnum,
+|};
+
+declare type FileEdge = {|
+  +next?: ?File,
+  +node: File,
+  +previous?: ?File,
+|};
+
+export const FileFieldsEnumValues = Object.freeze({
+  absolutePath: 'absolutePath',
+  accessTime: 'accessTime',
+  atime: 'atime',
+  atimeMs: 'atimeMs',
+  base: 'base',
+  birthTime: 'birthTime',
+  birthtime: 'birthtime',
+  birthtimeMs: 'birthtimeMs',
+  blksize: 'blksize',
+  blocks: 'blocks',
+  changeTime: 'changeTime',
+  childImageSharp___children: 'childImageSharp___children',
+  childImageSharp___children___children: 'childImageSharp___children___children',
+  childImageSharp___children___children___children: 'childImageSharp___children___children___children',
+  childImageSharp___children___children___id: 'childImageSharp___children___children___id',
+  childImageSharp___children___id: 'childImageSharp___children___id',
+  childImageSharp___children___internal___content: 'childImageSharp___children___internal___content',
+  childImageSharp___children___internal___contentDigest: 'childImageSharp___children___internal___contentDigest',
+  childImageSharp___children___internal___description: 'childImageSharp___children___internal___description',
+  childImageSharp___children___internal___fieldOwners: 'childImageSharp___children___internal___fieldOwners',
+  childImageSharp___children___internal___ignoreType: 'childImageSharp___children___internal___ignoreType',
+  childImageSharp___children___internal___mediaType: 'childImageSharp___children___internal___mediaType',
+  childImageSharp___children___internal___owner: 'childImageSharp___children___internal___owner',
+  childImageSharp___children___internal___type: 'childImageSharp___children___internal___type',
+  childImageSharp___children___parent___children: 'childImageSharp___children___parent___children',
+  childImageSharp___children___parent___id: 'childImageSharp___children___parent___id',
+  childImageSharp___fixed___aspectRatio: 'childImageSharp___fixed___aspectRatio',
+  childImageSharp___fixed___base64: 'childImageSharp___fixed___base64',
+  childImageSharp___fixed___height: 'childImageSharp___fixed___height',
+  childImageSharp___fixed___originalName: 'childImageSharp___fixed___originalName',
+  childImageSharp___fixed___src: 'childImageSharp___fixed___src',
+  childImageSharp___fixed___srcSet: 'childImageSharp___fixed___srcSet',
+  childImageSharp___fixed___srcSetWebp: 'childImageSharp___fixed___srcSetWebp',
+  childImageSharp___fixed___srcWebp: 'childImageSharp___fixed___srcWebp',
+  childImageSharp___fixed___tracedSVG: 'childImageSharp___fixed___tracedSVG',
+  childImageSharp___fixed___width: 'childImageSharp___fixed___width',
+  childImageSharp___fluid___aspectRatio: 'childImageSharp___fluid___aspectRatio',
+  childImageSharp___fluid___base64: 'childImageSharp___fluid___base64',
+  childImageSharp___fluid___originalImg: 'childImageSharp___fluid___originalImg',
+  childImageSharp___fluid___originalName: 'childImageSharp___fluid___originalName',
+  childImageSharp___fluid___presentationHeight: 'childImageSharp___fluid___presentationHeight',
+  childImageSharp___fluid___presentationWidth: 'childImageSharp___fluid___presentationWidth',
+  childImageSharp___fluid___sizes: 'childImageSharp___fluid___sizes',
+  childImageSharp___fluid___src: 'childImageSharp___fluid___src',
+  childImageSharp___fluid___srcSet: 'childImageSharp___fluid___srcSet',
+  childImageSharp___fluid___srcSetWebp: 'childImageSharp___fluid___srcSetWebp',
+  childImageSharp___fluid___srcWebp: 'childImageSharp___fluid___srcWebp',
+  childImageSharp___fluid___tracedSVG: 'childImageSharp___fluid___tracedSVG',
+  childImageSharp___gatsbyImageData: 'childImageSharp___gatsbyImageData',
+  childImageSharp___id: 'childImageSharp___id',
+  childImageSharp___internal___content: 'childImageSharp___internal___content',
+  childImageSharp___internal___contentDigest: 'childImageSharp___internal___contentDigest',
+  childImageSharp___internal___description: 'childImageSharp___internal___description',
+  childImageSharp___internal___fieldOwners: 'childImageSharp___internal___fieldOwners',
+  childImageSharp___internal___ignoreType: 'childImageSharp___internal___ignoreType',
+  childImageSharp___internal___mediaType: 'childImageSharp___internal___mediaType',
+  childImageSharp___internal___owner: 'childImageSharp___internal___owner',
+  childImageSharp___internal___type: 'childImageSharp___internal___type',
+  childImageSharp___original___height: 'childImageSharp___original___height',
+  childImageSharp___original___src: 'childImageSharp___original___src',
+  childImageSharp___original___width: 'childImageSharp___original___width',
+  childImageSharp___parent___children: 'childImageSharp___parent___children',
+  childImageSharp___parent___children___children: 'childImageSharp___parent___children___children',
+  childImageSharp___parent___children___id: 'childImageSharp___parent___children___id',
+  childImageSharp___parent___id: 'childImageSharp___parent___id',
+  childImageSharp___parent___internal___content: 'childImageSharp___parent___internal___content',
+  childImageSharp___parent___internal___contentDigest: 'childImageSharp___parent___internal___contentDigest',
+  childImageSharp___parent___internal___description: 'childImageSharp___parent___internal___description',
+  childImageSharp___parent___internal___fieldOwners: 'childImageSharp___parent___internal___fieldOwners',
+  childImageSharp___parent___internal___ignoreType: 'childImageSharp___parent___internal___ignoreType',
+  childImageSharp___parent___internal___mediaType: 'childImageSharp___parent___internal___mediaType',
+  childImageSharp___parent___internal___owner: 'childImageSharp___parent___internal___owner',
+  childImageSharp___parent___internal___type: 'childImageSharp___parent___internal___type',
+  childImageSharp___parent___parent___children: 'childImageSharp___parent___parent___children',
+  childImageSharp___parent___parent___id: 'childImageSharp___parent___parent___id',
+  childImageSharp___resize___aspectRatio: 'childImageSharp___resize___aspectRatio',
+  childImageSharp___resize___height: 'childImageSharp___resize___height',
+  childImageSharp___resize___originalName: 'childImageSharp___resize___originalName',
+  childImageSharp___resize___src: 'childImageSharp___resize___src',
+  childImageSharp___resize___tracedSVG: 'childImageSharp___resize___tracedSVG',
+  childImageSharp___resize___width: 'childImageSharp___resize___width',
+  children: 'children',
+  childrenImageSharp: 'childrenImageSharp',
+  childrenImageSharp___children: 'childrenImageSharp___children',
+  childrenImageSharp___children___children: 'childrenImageSharp___children___children',
+  childrenImageSharp___children___children___children: 'childrenImageSharp___children___children___children',
+  childrenImageSharp___children___children___id: 'childrenImageSharp___children___children___id',
+  childrenImageSharp___children___id: 'childrenImageSharp___children___id',
+  childrenImageSharp___children___internal___content: 'childrenImageSharp___children___internal___content',
+  childrenImageSharp___children___internal___contentDigest: 'childrenImageSharp___children___internal___contentDigest',
+  childrenImageSharp___children___internal___description: 'childrenImageSharp___children___internal___description',
+  childrenImageSharp___children___internal___fieldOwners: 'childrenImageSharp___children___internal___fieldOwners',
+  childrenImageSharp___children___internal___ignoreType: 'childrenImageSharp___children___internal___ignoreType',
+  childrenImageSharp___children___internal___mediaType: 'childrenImageSharp___children___internal___mediaType',
+  childrenImageSharp___children___internal___owner: 'childrenImageSharp___children___internal___owner',
+  childrenImageSharp___children___internal___type: 'childrenImageSharp___children___internal___type',
+  childrenImageSharp___children___parent___children: 'childrenImageSharp___children___parent___children',
+  childrenImageSharp___children___parent___id: 'childrenImageSharp___children___parent___id',
+  childrenImageSharp___fixed___aspectRatio: 'childrenImageSharp___fixed___aspectRatio',
+  childrenImageSharp___fixed___base64: 'childrenImageSharp___fixed___base64',
+  childrenImageSharp___fixed___height: 'childrenImageSharp___fixed___height',
+  childrenImageSharp___fixed___originalName: 'childrenImageSharp___fixed___originalName',
+  childrenImageSharp___fixed___src: 'childrenImageSharp___fixed___src',
+  childrenImageSharp___fixed___srcSet: 'childrenImageSharp___fixed___srcSet',
+  childrenImageSharp___fixed___srcSetWebp: 'childrenImageSharp___fixed___srcSetWebp',
+  childrenImageSharp___fixed___srcWebp: 'childrenImageSharp___fixed___srcWebp',
+  childrenImageSharp___fixed___tracedSVG: 'childrenImageSharp___fixed___tracedSVG',
+  childrenImageSharp___fixed___width: 'childrenImageSharp___fixed___width',
+  childrenImageSharp___fluid___aspectRatio: 'childrenImageSharp___fluid___aspectRatio',
+  childrenImageSharp___fluid___base64: 'childrenImageSharp___fluid___base64',
+  childrenImageSharp___fluid___originalImg: 'childrenImageSharp___fluid___originalImg',
+  childrenImageSharp___fluid___originalName: 'childrenImageSharp___fluid___originalName',
+  childrenImageSharp___fluid___presentationHeight: 'childrenImageSharp___fluid___presentationHeight',
+  childrenImageSharp___fluid___presentationWidth: 'childrenImageSharp___fluid___presentationWidth',
+  childrenImageSharp___fluid___sizes: 'childrenImageSharp___fluid___sizes',
+  childrenImageSharp___fluid___src: 'childrenImageSharp___fluid___src',
+  childrenImageSharp___fluid___srcSet: 'childrenImageSharp___fluid___srcSet',
+  childrenImageSharp___fluid___srcSetWebp: 'childrenImageSharp___fluid___srcSetWebp',
+  childrenImageSharp___fluid___srcWebp: 'childrenImageSharp___fluid___srcWebp',
+  childrenImageSharp___fluid___tracedSVG: 'childrenImageSharp___fluid___tracedSVG',
+  childrenImageSharp___gatsbyImageData: 'childrenImageSharp___gatsbyImageData',
+  childrenImageSharp___id: 'childrenImageSharp___id',
+  childrenImageSharp___internal___content: 'childrenImageSharp___internal___content',
+  childrenImageSharp___internal___contentDigest: 'childrenImageSharp___internal___contentDigest',
+  childrenImageSharp___internal___description: 'childrenImageSharp___internal___description',
+  childrenImageSharp___internal___fieldOwners: 'childrenImageSharp___internal___fieldOwners',
+  childrenImageSharp___internal___ignoreType: 'childrenImageSharp___internal___ignoreType',
+  childrenImageSharp___internal___mediaType: 'childrenImageSharp___internal___mediaType',
+  childrenImageSharp___internal___owner: 'childrenImageSharp___internal___owner',
+  childrenImageSharp___internal___type: 'childrenImageSharp___internal___type',
+  childrenImageSharp___original___height: 'childrenImageSharp___original___height',
+  childrenImageSharp___original___src: 'childrenImageSharp___original___src',
+  childrenImageSharp___original___width: 'childrenImageSharp___original___width',
+  childrenImageSharp___parent___children: 'childrenImageSharp___parent___children',
+  childrenImageSharp___parent___children___children: 'childrenImageSharp___parent___children___children',
+  childrenImageSharp___parent___children___id: 'childrenImageSharp___parent___children___id',
+  childrenImageSharp___parent___id: 'childrenImageSharp___parent___id',
+  childrenImageSharp___parent___internal___content: 'childrenImageSharp___parent___internal___content',
+  childrenImageSharp___parent___internal___contentDigest: 'childrenImageSharp___parent___internal___contentDigest',
+  childrenImageSharp___parent___internal___description: 'childrenImageSharp___parent___internal___description',
+  childrenImageSharp___parent___internal___fieldOwners: 'childrenImageSharp___parent___internal___fieldOwners',
+  childrenImageSharp___parent___internal___ignoreType: 'childrenImageSharp___parent___internal___ignoreType',
+  childrenImageSharp___parent___internal___mediaType: 'childrenImageSharp___parent___internal___mediaType',
+  childrenImageSharp___parent___internal___owner: 'childrenImageSharp___parent___internal___owner',
+  childrenImageSharp___parent___internal___type: 'childrenImageSharp___parent___internal___type',
+  childrenImageSharp___parent___parent___children: 'childrenImageSharp___parent___parent___children',
+  childrenImageSharp___parent___parent___id: 'childrenImageSharp___parent___parent___id',
+  childrenImageSharp___resize___aspectRatio: 'childrenImageSharp___resize___aspectRatio',
+  childrenImageSharp___resize___height: 'childrenImageSharp___resize___height',
+  childrenImageSharp___resize___originalName: 'childrenImageSharp___resize___originalName',
+  childrenImageSharp___resize___src: 'childrenImageSharp___resize___src',
+  childrenImageSharp___resize___tracedSVG: 'childrenImageSharp___resize___tracedSVG',
+  childrenImageSharp___resize___width: 'childrenImageSharp___resize___width',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  ctime: 'ctime',
+  ctimeMs: 'ctimeMs',
+  dev: 'dev',
+  dir: 'dir',
+  ext: 'ext',
+  extension: 'extension',
+  gid: 'gid',
+  id: 'id',
+  ino: 'ino',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  mode: 'mode',
+  modifiedTime: 'modifiedTime',
+  mtime: 'mtime',
+  mtimeMs: 'mtimeMs',
+  name: 'name',
+  nlink: 'nlink',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id',
+  prettySize: 'prettySize',
+  publicURL: 'publicURL',
+  rdev: 'rdev',
+  relativeDirectory: 'relativeDirectory',
+  relativePath: 'relativePath',
+  root: 'root',
+  size: 'size',
+  sourceInstanceName: 'sourceInstanceName',
+  uid: 'uid'
+});
+
+
+declare type FileFieldsEnum = $Values<typeof FileFieldsEnumValues>;
+
+declare type FileFilterInput = {|
+  absolutePath?: ?StringQueryOperatorInput,
+  accessTime?: ?DateQueryOperatorInput,
+  atime?: ?DateQueryOperatorInput,
+  atimeMs?: ?FloatQueryOperatorInput,
+  base?: ?StringQueryOperatorInput,
+  birthTime?: ?DateQueryOperatorInput,
+  birthtime?: ?DateQueryOperatorInput,
+  birthtimeMs?: ?FloatQueryOperatorInput,
+  blksize?: ?IntQueryOperatorInput,
+  blocks?: ?IntQueryOperatorInput,
+  changeTime?: ?DateQueryOperatorInput,
+  childImageSharp?: ?ImageSharpFilterInput,
+  children?: ?NodeFilterListInput,
+  childrenImageSharp?: ?ImageSharpFilterListInput,
+  ctime?: ?DateQueryOperatorInput,
+  ctimeMs?: ?FloatQueryOperatorInput,
+  dev?: ?IntQueryOperatorInput,
+  dir?: ?StringQueryOperatorInput,
+  ext?: ?StringQueryOperatorInput,
+  extension?: ?StringQueryOperatorInput,
+  gid?: ?IntQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  ino?: ?FloatQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  mode?: ?IntQueryOperatorInput,
+  modifiedTime?: ?DateQueryOperatorInput,
+  mtime?: ?DateQueryOperatorInput,
+  mtimeMs?: ?FloatQueryOperatorInput,
+  name?: ?StringQueryOperatorInput,
+  nlink?: ?IntQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  prettySize?: ?StringQueryOperatorInput,
+  publicURL?: ?StringQueryOperatorInput,
+  rdev?: ?IntQueryOperatorInput,
+  relativeDirectory?: ?StringQueryOperatorInput,
+  relativePath?: ?StringQueryOperatorInput,
+  root?: ?StringQueryOperatorInput,
+  size?: ?IntQueryOperatorInput,
+  sourceInstanceName?: ?StringQueryOperatorInput,
+  uid?: ?IntQueryOperatorInput,
+|};
+
+declare type FileGroupConnection = {|
+  +edges: Array<FileEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<File>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type FileSortInput = {|
+  fields?: ?Array<?FileFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+declare type FloatQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'Float'>,
+  gt?: ?$ElementType<Scalars, 'Float'>,
+  gte?: ?$ElementType<Scalars, 'Float'>,
+  in?: ?Array<?$ElementType<Scalars, 'Float'>>,
+  lt?: ?$ElementType<Scalars, 'Float'>,
+  lte?: ?$ElementType<Scalars, 'Float'>,
+  ne?: ?$ElementType<Scalars, 'Float'>,
+  nin?: ?Array<?$ElementType<Scalars, 'Float'>>,
+|};
+
+export const ImageCropFocusValues = Object.freeze({
+  ATTENTION: 'ATTENTION',
+  CENTER: 'CENTER',
+  EAST: 'EAST',
+  ENTROPY: 'ENTROPY',
+  NORTH: 'NORTH',
+  NORTHEAST: 'NORTHEAST',
+  NORTHWEST: 'NORTHWEST',
+  SOUTH: 'SOUTH',
+  SOUTHEAST: 'SOUTHEAST',
+  SOUTHWEST: 'SOUTHWEST',
+  WEST: 'WEST'
+});
+
+
+declare type ImageCropFocus = $Values<typeof ImageCropFocusValues>;
+
+export const ImageFitValues = Object.freeze({
+  CONTAIN: 'CONTAIN',
+  COVER: 'COVER',
+  FILL: 'FILL',
+  INSIDE: 'INSIDE',
+  OUTSIDE: 'OUTSIDE'
+});
+
+
+declare type ImageFit = $Values<typeof ImageFitValues>;
+
+export const ImageFormatValues = Object.freeze({
+  AUTO: 'AUTO',
+  AVIF: 'AVIF',
+  JPG: 'JPG',
+  NO_CHANGE: 'NO_CHANGE',
+  PNG: 'PNG',
+  WEBP: 'WEBP'
+});
+
+
+declare type ImageFormat = $Values<typeof ImageFormatValues>;
+
+export const ImageLayoutValues = Object.freeze({
+  CONSTRAINED: 'CONSTRAINED',
+  FIXED: 'FIXED',
+  FULL_WIDTH: 'FULL_WIDTH'
+});
+
+
+declare type ImageLayout = $Values<typeof ImageLayoutValues>;
+
+export const ImagePlaceholderValues = Object.freeze({
+  BLURRED: 'BLURRED',
+  DOMINANT_COLOR: 'DOMINANT_COLOR',
+  NONE: 'NONE',
+  TRACED_SVG: 'TRACED_SVG'
+});
+
+
+declare type ImagePlaceholder = $Values<typeof ImagePlaceholderValues>;
+
+declare type ImageSharp = {|
+  ...Node,
+  ...{|
+    +children: Array<Node>,
+    +fixed?: ?ImageSharpFixed,
+    +fluid?: ?ImageSharpFluid,
+    +gatsbyImageData: $ElementType<Scalars, 'JSON'>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +internal: Internal,
+    +original?: ?ImageSharpOriginal,
+    +parent?: ?Node,
+    +resize?: ?ImageSharpResize,
+  |}
+|};
+
+
+declare type ImageSharp_fixedArgs = {|
+  background: $ElementType<Scalars, 'String'>,
+  base64Width?: ?$ElementType<Scalars, 'Int'>,
+  cropFocus: ImageCropFocus,
+  duotone?: ?DuotoneGradient,
+  fit: ImageFit,
+  grayscale: $ElementType<Scalars, 'Boolean'>,
+  height?: ?$ElementType<Scalars, 'Int'>,
+  jpegProgressive: $ElementType<Scalars, 'Boolean'>,
+  jpegQuality?: ?$ElementType<Scalars, 'Int'>,
+  pngCompressionSpeed: $ElementType<Scalars, 'Int'>,
+  pngQuality?: ?$ElementType<Scalars, 'Int'>,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+  rotate: $ElementType<Scalars, 'Int'>,
+  toFormat: ImageFormat,
+  toFormatBase64: ImageFormat,
+  traceSVG?: ?Potrace,
+  trim: $ElementType<Scalars, 'Float'>,
+  webpQuality?: ?$ElementType<Scalars, 'Int'>,
+  width?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type ImageSharp_fluidArgs = {|
+  background: $ElementType<Scalars, 'String'>,
+  base64Width?: ?$ElementType<Scalars, 'Int'>,
+  cropFocus: ImageCropFocus,
+  duotone?: ?DuotoneGradient,
+  fit: ImageFit,
+  grayscale: $ElementType<Scalars, 'Boolean'>,
+  jpegProgressive: $ElementType<Scalars, 'Boolean'>,
+  jpegQuality?: ?$ElementType<Scalars, 'Int'>,
+  maxHeight?: ?$ElementType<Scalars, 'Int'>,
+  maxWidth?: ?$ElementType<Scalars, 'Int'>,
+  pngCompressionSpeed: $ElementType<Scalars, 'Int'>,
+  pngQuality?: ?$ElementType<Scalars, 'Int'>,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+  rotate: $ElementType<Scalars, 'Int'>,
+  sizes: $ElementType<Scalars, 'String'>,
+  srcSetBreakpoints: Array<?$ElementType<Scalars, 'Int'>>,
+  toFormat: ImageFormat,
+  toFormatBase64: ImageFormat,
+  traceSVG?: ?Potrace,
+  trim: $ElementType<Scalars, 'Float'>,
+  webpQuality?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type ImageSharp_gatsbyImageDataArgs = {|
+  aspectRatio?: ?$ElementType<Scalars, 'Float'>,
+  avifOptions?: ?AVIFOptions,
+  backgroundColor?: ?$ElementType<Scalars, 'String'>,
+  blurredOptions?: ?BlurredOptions,
+  breakpoints?: ?Array<?$ElementType<Scalars, 'Int'>>,
+  formats?: ?Array<?ImageFormat>,
+  height?: ?$ElementType<Scalars, 'Int'>,
+  jpgOptions?: ?JPGOptions,
+  layout: ImageLayout,
+  outputPixelDensities?: ?Array<?$ElementType<Scalars, 'Float'>>,
+  placeholder?: ?ImagePlaceholder,
+  pngOptions?: ?PNGOptions,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+  sizes?: ?$ElementType<Scalars, 'String'>,
+  tracedSVGOptions?: ?Potrace,
+  transformOptions?: ?TransformOptions,
+  webpOptions?: ?WebPOptions,
+  width?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type ImageSharp_resizeArgs = {|
+  background: $ElementType<Scalars, 'String'>,
+  base64: $ElementType<Scalars, 'Boolean'>,
+  cropFocus: ImageCropFocus,
+  duotone?: ?DuotoneGradient,
+  fit: ImageFit,
+  grayscale: $ElementType<Scalars, 'Boolean'>,
+  height?: ?$ElementType<Scalars, 'Int'>,
+  jpegProgressive: $ElementType<Scalars, 'Boolean'>,
+  jpegQuality?: ?$ElementType<Scalars, 'Int'>,
+  pngCompressionLevel: $ElementType<Scalars, 'Int'>,
+  pngCompressionSpeed: $ElementType<Scalars, 'Int'>,
+  pngQuality?: ?$ElementType<Scalars, 'Int'>,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+  rotate: $ElementType<Scalars, 'Int'>,
+  toFormat: ImageFormat,
+  traceSVG?: ?Potrace,
+  trim: $ElementType<Scalars, 'Float'>,
+  webpQuality?: ?$ElementType<Scalars, 'Int'>,
+  width?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+declare type ImageSharpConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<ImageSharpEdge>,
+  +group: Array<ImageSharpGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<ImageSharp>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type ImageSharpConnection_distinctArgs = {|
+  field: ImageSharpFieldsEnum,
+|};
+
+
+declare type ImageSharpConnection_groupArgs = {|
+  field: ImageSharpFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type ImageSharpConnection_maxArgs = {|
+  field: ImageSharpFieldsEnum,
+|};
+
+
+declare type ImageSharpConnection_minArgs = {|
+  field: ImageSharpFieldsEnum,
+|};
+
+
+declare type ImageSharpConnection_sumArgs = {|
+  field: ImageSharpFieldsEnum,
+|};
+
+declare type ImageSharpEdge = {|
+  +next?: ?ImageSharp,
+  +node: ImageSharp,
+  +previous?: ?ImageSharp,
+|};
+
+export const ImageSharpFieldsEnumValues = Object.freeze({
+  children: 'children',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  fixed___aspectRatio: 'fixed___aspectRatio',
+  fixed___base64: 'fixed___base64',
+  fixed___height: 'fixed___height',
+  fixed___originalName: 'fixed___originalName',
+  fixed___src: 'fixed___src',
+  fixed___srcSet: 'fixed___srcSet',
+  fixed___srcSetWebp: 'fixed___srcSetWebp',
+  fixed___srcWebp: 'fixed___srcWebp',
+  fixed___tracedSVG: 'fixed___tracedSVG',
+  fixed___width: 'fixed___width',
+  fluid___aspectRatio: 'fluid___aspectRatio',
+  fluid___base64: 'fluid___base64',
+  fluid___originalImg: 'fluid___originalImg',
+  fluid___originalName: 'fluid___originalName',
+  fluid___presentationHeight: 'fluid___presentationHeight',
+  fluid___presentationWidth: 'fluid___presentationWidth',
+  fluid___sizes: 'fluid___sizes',
+  fluid___src: 'fluid___src',
+  fluid___srcSet: 'fluid___srcSet',
+  fluid___srcSetWebp: 'fluid___srcSetWebp',
+  fluid___srcWebp: 'fluid___srcWebp',
+  fluid___tracedSVG: 'fluid___tracedSVG',
+  gatsbyImageData: 'gatsbyImageData',
+  id: 'id',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  original___height: 'original___height',
+  original___src: 'original___src',
+  original___width: 'original___width',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id',
+  resize___aspectRatio: 'resize___aspectRatio',
+  resize___height: 'resize___height',
+  resize___originalName: 'resize___originalName',
+  resize___src: 'resize___src',
+  resize___tracedSVG: 'resize___tracedSVG',
+  resize___width: 'resize___width'
+});
+
+
+declare type ImageSharpFieldsEnum = $Values<typeof ImageSharpFieldsEnumValues>;
+
+declare type ImageSharpFilterInput = {|
+  children?: ?NodeFilterListInput,
+  fixed?: ?ImageSharpFixedFilterInput,
+  fluid?: ?ImageSharpFluidFilterInput,
+  gatsbyImageData?: ?JSONQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  original?: ?ImageSharpOriginalFilterInput,
+  parent?: ?NodeFilterInput,
+  resize?: ?ImageSharpResizeFilterInput,
+|};
+
+declare type ImageSharpFilterListInput = {|
+  elemMatch?: ?ImageSharpFilterInput,
+|};
+
+declare type ImageSharpFixed = {|
+  +aspectRatio?: ?$ElementType<Scalars, 'Float'>,
+  +base64?: ?$ElementType<Scalars, 'String'>,
+  +height: $ElementType<Scalars, 'Float'>,
+  +originalName?: ?$ElementType<Scalars, 'String'>,
+  +src: $ElementType<Scalars, 'String'>,
+  +srcSet: $ElementType<Scalars, 'String'>,
+  +srcSetWebp?: ?$ElementType<Scalars, 'String'>,
+  +srcWebp?: ?$ElementType<Scalars, 'String'>,
+  +tracedSVG?: ?$ElementType<Scalars, 'String'>,
+  +width: $ElementType<Scalars, 'Float'>,
+|};
+
+declare type ImageSharpFixedFilterInput = {|
+  aspectRatio?: ?FloatQueryOperatorInput,
+  base64?: ?StringQueryOperatorInput,
+  height?: ?FloatQueryOperatorInput,
+  originalName?: ?StringQueryOperatorInput,
+  src?: ?StringQueryOperatorInput,
+  srcSet?: ?StringQueryOperatorInput,
+  srcSetWebp?: ?StringQueryOperatorInput,
+  srcWebp?: ?StringQueryOperatorInput,
+  tracedSVG?: ?StringQueryOperatorInput,
+  width?: ?FloatQueryOperatorInput,
+|};
+
+declare type ImageSharpFluid = {|
+  +aspectRatio: $ElementType<Scalars, 'Float'>,
+  +base64?: ?$ElementType<Scalars, 'String'>,
+  +originalImg?: ?$ElementType<Scalars, 'String'>,
+  +originalName?: ?$ElementType<Scalars, 'String'>,
+  +presentationHeight: $ElementType<Scalars, 'Int'>,
+  +presentationWidth: $ElementType<Scalars, 'Int'>,
+  +sizes: $ElementType<Scalars, 'String'>,
+  +src: $ElementType<Scalars, 'String'>,
+  +srcSet: $ElementType<Scalars, 'String'>,
+  +srcSetWebp?: ?$ElementType<Scalars, 'String'>,
+  +srcWebp?: ?$ElementType<Scalars, 'String'>,
+  +tracedSVG?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type ImageSharpFluidFilterInput = {|
+  aspectRatio?: ?FloatQueryOperatorInput,
+  base64?: ?StringQueryOperatorInput,
+  originalImg?: ?StringQueryOperatorInput,
+  originalName?: ?StringQueryOperatorInput,
+  presentationHeight?: ?IntQueryOperatorInput,
+  presentationWidth?: ?IntQueryOperatorInput,
+  sizes?: ?StringQueryOperatorInput,
+  src?: ?StringQueryOperatorInput,
+  srcSet?: ?StringQueryOperatorInput,
+  srcSetWebp?: ?StringQueryOperatorInput,
+  srcWebp?: ?StringQueryOperatorInput,
+  tracedSVG?: ?StringQueryOperatorInput,
+|};
+
+declare type ImageSharpGroupConnection = {|
+  +edges: Array<ImageSharpEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<ImageSharp>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type ImageSharpOriginal = {|
+  +height?: ?$ElementType<Scalars, 'Float'>,
+  +src?: ?$ElementType<Scalars, 'String'>,
+  +width?: ?$ElementType<Scalars, 'Float'>,
+|};
+
+declare type ImageSharpOriginalFilterInput = {|
+  height?: ?FloatQueryOperatorInput,
+  src?: ?StringQueryOperatorInput,
+  width?: ?FloatQueryOperatorInput,
+|};
+
+declare type ImageSharpResize = {|
+  +aspectRatio?: ?$ElementType<Scalars, 'Float'>,
+  +height?: ?$ElementType<Scalars, 'Int'>,
+  +originalName?: ?$ElementType<Scalars, 'String'>,
+  +src?: ?$ElementType<Scalars, 'String'>,
+  +tracedSVG?: ?$ElementType<Scalars, 'String'>,
+  +width?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+declare type ImageSharpResizeFilterInput = {|
+  aspectRatio?: ?FloatQueryOperatorInput,
+  height?: ?IntQueryOperatorInput,
+  originalName?: ?StringQueryOperatorInput,
+  src?: ?StringQueryOperatorInput,
+  tracedSVG?: ?StringQueryOperatorInput,
+  width?: ?IntQueryOperatorInput,
+|};
+
+declare type ImageSharpSortInput = {|
+  fields?: ?Array<?ImageSharpFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+declare type IntQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'Int'>,
+  gt?: ?$ElementType<Scalars, 'Int'>,
+  gte?: ?$ElementType<Scalars, 'Int'>,
+  in?: ?Array<?$ElementType<Scalars, 'Int'>>,
+  lt?: ?$ElementType<Scalars, 'Int'>,
+  lte?: ?$ElementType<Scalars, 'Int'>,
+  ne?: ?$ElementType<Scalars, 'Int'>,
+  nin?: ?Array<?$ElementType<Scalars, 'Int'>>,
+|};
+
+declare type Internal = {|
+  +content?: ?$ElementType<Scalars, 'String'>,
+  +contentDigest: $ElementType<Scalars, 'String'>,
+  +description?: ?$ElementType<Scalars, 'String'>,
+  +fieldOwners?: ?Array<?$ElementType<Scalars, 'String'>>,
+  +ignoreType?: ?$ElementType<Scalars, 'Boolean'>,
+  +mediaType?: ?$ElementType<Scalars, 'String'>,
+  +owner: $ElementType<Scalars, 'String'>,
+  +type: $ElementType<Scalars, 'String'>,
+|};
+
+declare type InternalFilterInput = {|
+  content?: ?StringQueryOperatorInput,
+  contentDigest?: ?StringQueryOperatorInput,
+  description?: ?StringQueryOperatorInput,
+  fieldOwners?: ?StringQueryOperatorInput,
+  ignoreType?: ?BooleanQueryOperatorInput,
+  mediaType?: ?StringQueryOperatorInput,
+  owner?: ?StringQueryOperatorInput,
+  type?: ?StringQueryOperatorInput,
+|};
+
+declare type JPGOptions = {|
+  progressive?: ?$ElementType<Scalars, 'Boolean'>,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type JSONQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'JSON'>,
+  glob?: ?$ElementType<Scalars, 'JSON'>,
+  in?: ?Array<?$ElementType<Scalars, 'JSON'>>,
+  ne?: ?$ElementType<Scalars, 'JSON'>,
+  nin?: ?Array<?$ElementType<Scalars, 'JSON'>>,
+  regex?: ?$ElementType<Scalars, 'JSON'>,
+|};
+
+declare type Node = {|
+  +children: Array<Node>,
+  +id: $ElementType<Scalars, 'ID'>,
+  +internal: Internal,
+  +parent?: ?Node,
+|};
+
+declare type NodeFilterInput = {|
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  parent?: ?NodeFilterInput,
+|};
+
+declare type NodeFilterListInput = {|
+  elemMatch?: ?NodeFilterInput,
+|};
+
+declare type PNGOptions = {|
+  compressionSpeed?: ?$ElementType<Scalars, 'Int'>,
+  quality?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+declare type PageInfo = {|
+  +currentPage: $ElementType<Scalars, 'Int'>,
+  +hasNextPage: $ElementType<Scalars, 'Boolean'>,
+  +hasPreviousPage: $ElementType<Scalars, 'Boolean'>,
+  +itemCount: $ElementType<Scalars, 'Int'>,
+  +pageCount: $ElementType<Scalars, 'Int'>,
+  +perPage?: ?$ElementType<Scalars, 'Int'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type Potrace = {|
+  alphaMax?: ?$ElementType<Scalars, 'Float'>,
+  background?: ?$ElementType<Scalars, 'String'>,
+  blackOnWhite?: ?$ElementType<Scalars, 'Boolean'>,
+  color?: ?$ElementType<Scalars, 'String'>,
+  optCurve?: ?$ElementType<Scalars, 'Boolean'>,
+  optTolerance?: ?$ElementType<Scalars, 'Float'>,
+  threshold?: ?$ElementType<Scalars, 'Int'>,
+  turdSize?: ?$ElementType<Scalars, 'Float'>,
+  turnPolicy?: ?PotraceTurnPolicy,
+|};
+
+export const PotraceTurnPolicyValues = Object.freeze({
+  TURNPOLICY_BLACK: 'TURNPOLICY_BLACK',
+  TURNPOLICY_LEFT: 'TURNPOLICY_LEFT',
+  TURNPOLICY_MAJORITY: 'TURNPOLICY_MAJORITY',
+  TURNPOLICY_MINORITY: 'TURNPOLICY_MINORITY',
+  TURNPOLICY_RIGHT: 'TURNPOLICY_RIGHT',
+  TURNPOLICY_WHITE: 'TURNPOLICY_WHITE'
+});
+
+
+declare type PotraceTurnPolicy = $Values<typeof PotraceTurnPolicyValues>;
+
+declare type Query = {|
+  +allDirectory: DirectoryConnection,
+  +allFile: FileConnection,
+  +allImageSharp: ImageSharpConnection,
+  +allSite: SiteConnection,
+  +allSiteBuildMetadata: SiteBuildMetadataConnection,
+  +allSiteFunction: SiteFunctionConnection,
+  +allSitePage: SitePageConnection,
+  +directory?: ?Directory,
+  +file?: ?File,
+  +imageSharp?: ?ImageSharp,
+  +site?: ?Site,
+  +siteBuildMetadata?: ?SiteBuildMetadata,
+  +siteFunction?: ?SiteFunction,
+  +sitePage?: ?SitePage,
+|};
+
+
+declare type Query_allDirectoryArgs = {|
+  filter?: ?DirectoryFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?DirectorySortInput,
+|};
+
+
+declare type Query_allFileArgs = {|
+  filter?: ?FileFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?FileSortInput,
+|};
+
+
+declare type Query_allImageSharpArgs = {|
+  filter?: ?ImageSharpFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?ImageSharpSortInput,
+|};
+
+
+declare type Query_allSiteArgs = {|
+  filter?: ?SiteFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?SiteSortInput,
+|};
+
+
+declare type Query_allSiteBuildMetadataArgs = {|
+  filter?: ?SiteBuildMetadataFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?SiteBuildMetadataSortInput,
+|};
+
+
+declare type Query_allSiteFunctionArgs = {|
+  filter?: ?SiteFunctionFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?SiteFunctionSortInput,
+|};
+
+
+declare type Query_allSitePageArgs = {|
+  filter?: ?SitePageFilterInput,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+  sort?: ?SitePageSortInput,
+|};
+
+
+declare type Query_directoryArgs = {|
+  absolutePath?: ?StringQueryOperatorInput,
+  accessTime?: ?DateQueryOperatorInput,
+  atime?: ?DateQueryOperatorInput,
+  atimeMs?: ?FloatQueryOperatorInput,
+  base?: ?StringQueryOperatorInput,
+  birthTime?: ?DateQueryOperatorInput,
+  birthtime?: ?DateQueryOperatorInput,
+  birthtimeMs?: ?FloatQueryOperatorInput,
+  blksize?: ?IntQueryOperatorInput,
+  blocks?: ?IntQueryOperatorInput,
+  changeTime?: ?DateQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  ctime?: ?DateQueryOperatorInput,
+  ctimeMs?: ?FloatQueryOperatorInput,
+  dev?: ?IntQueryOperatorInput,
+  dir?: ?StringQueryOperatorInput,
+  ext?: ?StringQueryOperatorInput,
+  extension?: ?StringQueryOperatorInput,
+  gid?: ?IntQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  ino?: ?FloatQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  mode?: ?IntQueryOperatorInput,
+  modifiedTime?: ?DateQueryOperatorInput,
+  mtime?: ?DateQueryOperatorInput,
+  mtimeMs?: ?FloatQueryOperatorInput,
+  name?: ?StringQueryOperatorInput,
+  nlink?: ?IntQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  prettySize?: ?StringQueryOperatorInput,
+  rdev?: ?IntQueryOperatorInput,
+  relativeDirectory?: ?StringQueryOperatorInput,
+  relativePath?: ?StringQueryOperatorInput,
+  root?: ?StringQueryOperatorInput,
+  size?: ?IntQueryOperatorInput,
+  sourceInstanceName?: ?StringQueryOperatorInput,
+  uid?: ?IntQueryOperatorInput,
+|};
+
+
+declare type Query_fileArgs = {|
+  absolutePath?: ?StringQueryOperatorInput,
+  accessTime?: ?DateQueryOperatorInput,
+  atime?: ?DateQueryOperatorInput,
+  atimeMs?: ?FloatQueryOperatorInput,
+  base?: ?StringQueryOperatorInput,
+  birthTime?: ?DateQueryOperatorInput,
+  birthtime?: ?DateQueryOperatorInput,
+  birthtimeMs?: ?FloatQueryOperatorInput,
+  blksize?: ?IntQueryOperatorInput,
+  blocks?: ?IntQueryOperatorInput,
+  changeTime?: ?DateQueryOperatorInput,
+  childImageSharp?: ?ImageSharpFilterInput,
+  children?: ?NodeFilterListInput,
+  childrenImageSharp?: ?ImageSharpFilterListInput,
+  ctime?: ?DateQueryOperatorInput,
+  ctimeMs?: ?FloatQueryOperatorInput,
+  dev?: ?IntQueryOperatorInput,
+  dir?: ?StringQueryOperatorInput,
+  ext?: ?StringQueryOperatorInput,
+  extension?: ?StringQueryOperatorInput,
+  gid?: ?IntQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  ino?: ?FloatQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  mode?: ?IntQueryOperatorInput,
+  modifiedTime?: ?DateQueryOperatorInput,
+  mtime?: ?DateQueryOperatorInput,
+  mtimeMs?: ?FloatQueryOperatorInput,
+  name?: ?StringQueryOperatorInput,
+  nlink?: ?IntQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  prettySize?: ?StringQueryOperatorInput,
+  publicURL?: ?StringQueryOperatorInput,
+  rdev?: ?IntQueryOperatorInput,
+  relativeDirectory?: ?StringQueryOperatorInput,
+  relativePath?: ?StringQueryOperatorInput,
+  root?: ?StringQueryOperatorInput,
+  size?: ?IntQueryOperatorInput,
+  sourceInstanceName?: ?StringQueryOperatorInput,
+  uid?: ?IntQueryOperatorInput,
+|};
+
+
+declare type Query_imageSharpArgs = {|
+  children?: ?NodeFilterListInput,
+  fixed?: ?ImageSharpFixedFilterInput,
+  fluid?: ?ImageSharpFluidFilterInput,
+  gatsbyImageData?: ?JSONQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  original?: ?ImageSharpOriginalFilterInput,
+  parent?: ?NodeFilterInput,
+  resize?: ?ImageSharpResizeFilterInput,
+|};
+
+
+declare type Query_siteArgs = {|
+  buildTime?: ?DateQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  parent?: ?NodeFilterInput,
+  pathPrefix?: ?StringQueryOperatorInput,
+  polyfill?: ?BooleanQueryOperatorInput,
+  siteMetadata?: ?SiteSiteMetadataFilterInput,
+|};
+
+
+declare type Query_siteBuildMetadataArgs = {|
+  buildTime?: ?DateQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  parent?: ?NodeFilterInput,
+|};
+
+
+declare type Query_siteFunctionArgs = {|
+  absoluteCompiledFilePath?: ?StringQueryOperatorInput,
+  apiRoute?: ?StringQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  matchPath?: ?StringQueryOperatorInput,
+  originalFilePath?: ?StringQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  relativeCompiledFilePath?: ?StringQueryOperatorInput,
+|};
+
+
+declare type Query_sitePageArgs = {|
+  children?: ?NodeFilterListInput,
+  component?: ?StringQueryOperatorInput,
+  componentChunkName?: ?StringQueryOperatorInput,
+  componentPath?: ?StringQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  internalComponentName?: ?StringQueryOperatorInput,
+  isCreatedByStatefulCreatePages?: ?BooleanQueryOperatorInput,
+  matchPath?: ?StringQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  path?: ?StringQueryOperatorInput,
+|};
+
+declare type Site = {|
+  ...Node,
+  ...{|
+    +buildTime?: ?$ElementType<Scalars, 'Date'>,
+    +children: Array<Node>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +internal: Internal,
+    +parent?: ?Node,
+    +pathPrefix?: ?$ElementType<Scalars, 'String'>,
+    +polyfill?: ?$ElementType<Scalars, 'Boolean'>,
+    +siteMetadata?: ?SiteSiteMetadata,
+  |}
+|};
+
+
+declare type Site_buildTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type SiteBuildMetadata = {|
+  ...Node,
+  ...{|
+    +buildTime?: ?$ElementType<Scalars, 'Date'>,
+    +children: Array<Node>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +internal: Internal,
+    +parent?: ?Node,
+  |}
+|};
+
+
+declare type SiteBuildMetadata_buildTimeArgs = {|
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type SiteBuildMetadataConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<SiteBuildMetadataEdge>,
+  +group: Array<SiteBuildMetadataGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<SiteBuildMetadata>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SiteBuildMetadataConnection_distinctArgs = {|
+  field: SiteBuildMetadataFieldsEnum,
+|};
+
+
+declare type SiteBuildMetadataConnection_groupArgs = {|
+  field: SiteBuildMetadataFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SiteBuildMetadataConnection_maxArgs = {|
+  field: SiteBuildMetadataFieldsEnum,
+|};
+
+
+declare type SiteBuildMetadataConnection_minArgs = {|
+  field: SiteBuildMetadataFieldsEnum,
+|};
+
+
+declare type SiteBuildMetadataConnection_sumArgs = {|
+  field: SiteBuildMetadataFieldsEnum,
+|};
+
+declare type SiteBuildMetadataEdge = {|
+  +next?: ?SiteBuildMetadata,
+  +node: SiteBuildMetadata,
+  +previous?: ?SiteBuildMetadata,
+|};
+
+export const SiteBuildMetadataFieldsEnumValues = Object.freeze({
+  buildTime: 'buildTime',
+  children: 'children',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  id: 'id',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id'
+});
+
+
+declare type SiteBuildMetadataFieldsEnum = $Values<typeof SiteBuildMetadataFieldsEnumValues>;
+
+declare type SiteBuildMetadataFilterInput = {|
+  buildTime?: ?DateQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  parent?: ?NodeFilterInput,
+|};
+
+declare type SiteBuildMetadataGroupConnection = {|
+  +edges: Array<SiteBuildMetadataEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<SiteBuildMetadata>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type SiteBuildMetadataSortInput = {|
+  fields?: ?Array<?SiteBuildMetadataFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+declare type SiteConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<SiteEdge>,
+  +group: Array<SiteGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<Site>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SiteConnection_distinctArgs = {|
+  field: SiteFieldsEnum,
+|};
+
+
+declare type SiteConnection_groupArgs = {|
+  field: SiteFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SiteConnection_maxArgs = {|
+  field: SiteFieldsEnum,
+|};
+
+
+declare type SiteConnection_minArgs = {|
+  field: SiteFieldsEnum,
+|};
+
+
+declare type SiteConnection_sumArgs = {|
+  field: SiteFieldsEnum,
+|};
+
+declare type SiteEdge = {|
+  +next?: ?Site,
+  +node: Site,
+  +previous?: ?Site,
+|};
+
+export const SiteFieldsEnumValues = Object.freeze({
+  buildTime: 'buildTime',
+  children: 'children',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  id: 'id',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id',
+  pathPrefix: 'pathPrefix',
+  polyfill: 'polyfill',
+  siteMetadata___author: 'siteMetadata___author',
+  siteMetadata___description: 'siteMetadata___description',
+  siteMetadata___title: 'siteMetadata___title'
+});
+
+
+declare type SiteFieldsEnum = $Values<typeof SiteFieldsEnumValues>;
+
+declare type SiteFilterInput = {|
+  buildTime?: ?DateQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  parent?: ?NodeFilterInput,
+  pathPrefix?: ?StringQueryOperatorInput,
+  polyfill?: ?BooleanQueryOperatorInput,
+  siteMetadata?: ?SiteSiteMetadataFilterInput,
+|};
+
+declare type SiteFunction = {|
+  ...Node,
+  ...{|
+    +absoluteCompiledFilePath: $ElementType<Scalars, 'String'>,
+    +apiRoute: $ElementType<Scalars, 'String'>,
+    +children: Array<Node>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +internal: Internal,
+    +matchPath?: ?$ElementType<Scalars, 'String'>,
+    +originalFilePath: $ElementType<Scalars, 'String'>,
+    +parent?: ?Node,
+    +relativeCompiledFilePath: $ElementType<Scalars, 'String'>,
+  |}
+|};
+
+declare type SiteFunctionConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<SiteFunctionEdge>,
+  +group: Array<SiteFunctionGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<SiteFunction>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SiteFunctionConnection_distinctArgs = {|
+  field: SiteFunctionFieldsEnum,
+|};
+
+
+declare type SiteFunctionConnection_groupArgs = {|
+  field: SiteFunctionFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SiteFunctionConnection_maxArgs = {|
+  field: SiteFunctionFieldsEnum,
+|};
+
+
+declare type SiteFunctionConnection_minArgs = {|
+  field: SiteFunctionFieldsEnum,
+|};
+
+
+declare type SiteFunctionConnection_sumArgs = {|
+  field: SiteFunctionFieldsEnum,
+|};
+
+declare type SiteFunctionEdge = {|
+  +next?: ?SiteFunction,
+  +node: SiteFunction,
+  +previous?: ?SiteFunction,
+|};
+
+export const SiteFunctionFieldsEnumValues = Object.freeze({
+  absoluteCompiledFilePath: 'absoluteCompiledFilePath',
+  apiRoute: 'apiRoute',
+  children: 'children',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  id: 'id',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  matchPath: 'matchPath',
+  originalFilePath: 'originalFilePath',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id',
+  relativeCompiledFilePath: 'relativeCompiledFilePath'
+});
+
+
+declare type SiteFunctionFieldsEnum = $Values<typeof SiteFunctionFieldsEnumValues>;
+
+declare type SiteFunctionFilterInput = {|
+  absoluteCompiledFilePath?: ?StringQueryOperatorInput,
+  apiRoute?: ?StringQueryOperatorInput,
+  children?: ?NodeFilterListInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  matchPath?: ?StringQueryOperatorInput,
+  originalFilePath?: ?StringQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  relativeCompiledFilePath?: ?StringQueryOperatorInput,
+|};
+
+declare type SiteFunctionGroupConnection = {|
+  +edges: Array<SiteFunctionEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<SiteFunction>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type SiteFunctionSortInput = {|
+  fields?: ?Array<?SiteFunctionFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+declare type SiteGroupConnection = {|
+  +edges: Array<SiteEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<Site>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type SitePage = {|
+  ...Node,
+  ...{|
+    +children: Array<Node>,
+    +component: $ElementType<Scalars, 'String'>,
+    +componentChunkName: $ElementType<Scalars, 'String'>,
+    +componentPath?: ?$ElementType<Scalars, 'String'>,
+    +id: $ElementType<Scalars, 'ID'>,
+    +internal: Internal,
+    +internalComponentName: $ElementType<Scalars, 'String'>,
+    +isCreatedByStatefulCreatePages?: ?$ElementType<Scalars, 'Boolean'>,
+    +matchPath?: ?$ElementType<Scalars, 'String'>,
+    +parent?: ?Node,
+    +path: $ElementType<Scalars, 'String'>,
+  |}
+|};
+
+declare type SitePageConnection = {|
+  +distinct: Array<$ElementType<Scalars, 'String'>>,
+  +edges: Array<SitePageEdge>,
+  +group: Array<SitePageGroupConnection>,
+  +max?: ?$ElementType<Scalars, 'Float'>,
+  +min?: ?$ElementType<Scalars, 'Float'>,
+  +nodes: Array<SitePage>,
+  +pageInfo: PageInfo,
+  +sum?: ?$ElementType<Scalars, 'Float'>,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SitePageConnection_distinctArgs = {|
+  field: SitePageFieldsEnum,
+|};
+
+
+declare type SitePageConnection_groupArgs = {|
+  field: SitePageFieldsEnum,
+  limit?: ?$ElementType<Scalars, 'Int'>,
+  skip?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+
+declare type SitePageConnection_maxArgs = {|
+  field: SitePageFieldsEnum,
+|};
+
+
+declare type SitePageConnection_minArgs = {|
+  field: SitePageFieldsEnum,
+|};
+
+
+declare type SitePageConnection_sumArgs = {|
+  field: SitePageFieldsEnum,
+|};
+
+declare type SitePageEdge = {|
+  +next?: ?SitePage,
+  +node: SitePage,
+  +previous?: ?SitePage,
+|};
+
+export const SitePageFieldsEnumValues = Object.freeze({
+  children: 'children',
+  children___children: 'children___children',
+  children___children___children: 'children___children___children',
+  children___children___children___children: 'children___children___children___children',
+  children___children___children___id: 'children___children___children___id',
+  children___children___id: 'children___children___id',
+  children___children___internal___content: 'children___children___internal___content',
+  children___children___internal___contentDigest: 'children___children___internal___contentDigest',
+  children___children___internal___description: 'children___children___internal___description',
+  children___children___internal___fieldOwners: 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType: 'children___children___internal___ignoreType',
+  children___children___internal___mediaType: 'children___children___internal___mediaType',
+  children___children___internal___owner: 'children___children___internal___owner',
+  children___children___internal___type: 'children___children___internal___type',
+  children___children___parent___children: 'children___children___parent___children',
+  children___children___parent___id: 'children___children___parent___id',
+  children___id: 'children___id',
+  children___internal___content: 'children___internal___content',
+  children___internal___contentDigest: 'children___internal___contentDigest',
+  children___internal___description: 'children___internal___description',
+  children___internal___fieldOwners: 'children___internal___fieldOwners',
+  children___internal___ignoreType: 'children___internal___ignoreType',
+  children___internal___mediaType: 'children___internal___mediaType',
+  children___internal___owner: 'children___internal___owner',
+  children___internal___type: 'children___internal___type',
+  children___parent___children: 'children___parent___children',
+  children___parent___children___children: 'children___parent___children___children',
+  children___parent___children___id: 'children___parent___children___id',
+  children___parent___id: 'children___parent___id',
+  children___parent___internal___content: 'children___parent___internal___content',
+  children___parent___internal___contentDigest: 'children___parent___internal___contentDigest',
+  children___parent___internal___description: 'children___parent___internal___description',
+  children___parent___internal___fieldOwners: 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType: 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType: 'children___parent___internal___mediaType',
+  children___parent___internal___owner: 'children___parent___internal___owner',
+  children___parent___internal___type: 'children___parent___internal___type',
+  children___parent___parent___children: 'children___parent___parent___children',
+  children___parent___parent___id: 'children___parent___parent___id',
+  component: 'component',
+  componentChunkName: 'componentChunkName',
+  componentPath: 'componentPath',
+  id: 'id',
+  internalComponentName: 'internalComponentName',
+  internal___content: 'internal___content',
+  internal___contentDigest: 'internal___contentDigest',
+  internal___description: 'internal___description',
+  internal___fieldOwners: 'internal___fieldOwners',
+  internal___ignoreType: 'internal___ignoreType',
+  internal___mediaType: 'internal___mediaType',
+  internal___owner: 'internal___owner',
+  internal___type: 'internal___type',
+  isCreatedByStatefulCreatePages: 'isCreatedByStatefulCreatePages',
+  matchPath: 'matchPath',
+  parent___children: 'parent___children',
+  parent___children___children: 'parent___children___children',
+  parent___children___children___children: 'parent___children___children___children',
+  parent___children___children___id: 'parent___children___children___id',
+  parent___children___id: 'parent___children___id',
+  parent___children___internal___content: 'parent___children___internal___content',
+  parent___children___internal___contentDigest: 'parent___children___internal___contentDigest',
+  parent___children___internal___description: 'parent___children___internal___description',
+  parent___children___internal___fieldOwners: 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType: 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType: 'parent___children___internal___mediaType',
+  parent___children___internal___owner: 'parent___children___internal___owner',
+  parent___children___internal___type: 'parent___children___internal___type',
+  parent___children___parent___children: 'parent___children___parent___children',
+  parent___children___parent___id: 'parent___children___parent___id',
+  parent___id: 'parent___id',
+  parent___internal___content: 'parent___internal___content',
+  parent___internal___contentDigest: 'parent___internal___contentDigest',
+  parent___internal___description: 'parent___internal___description',
+  parent___internal___fieldOwners: 'parent___internal___fieldOwners',
+  parent___internal___ignoreType: 'parent___internal___ignoreType',
+  parent___internal___mediaType: 'parent___internal___mediaType',
+  parent___internal___owner: 'parent___internal___owner',
+  parent___internal___type: 'parent___internal___type',
+  parent___parent___children: 'parent___parent___children',
+  parent___parent___children___children: 'parent___parent___children___children',
+  parent___parent___children___id: 'parent___parent___children___id',
+  parent___parent___id: 'parent___parent___id',
+  parent___parent___internal___content: 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest: 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description: 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners: 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType: 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType: 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner: 'parent___parent___internal___owner',
+  parent___parent___internal___type: 'parent___parent___internal___type',
+  parent___parent___parent___children: 'parent___parent___parent___children',
+  parent___parent___parent___id: 'parent___parent___parent___id',
+  path: 'path'
+});
+
+
+declare type SitePageFieldsEnum = $Values<typeof SitePageFieldsEnumValues>;
+
+declare type SitePageFilterInput = {|
+  children?: ?NodeFilterListInput,
+  component?: ?StringQueryOperatorInput,
+  componentChunkName?: ?StringQueryOperatorInput,
+  componentPath?: ?StringQueryOperatorInput,
+  id?: ?StringQueryOperatorInput,
+  internal?: ?InternalFilterInput,
+  internalComponentName?: ?StringQueryOperatorInput,
+  isCreatedByStatefulCreatePages?: ?BooleanQueryOperatorInput,
+  matchPath?: ?StringQueryOperatorInput,
+  parent?: ?NodeFilterInput,
+  path?: ?StringQueryOperatorInput,
+|};
+
+declare type SitePageGroupConnection = {|
+  +edges: Array<SitePageEdge>,
+  +field: $ElementType<Scalars, 'String'>,
+  +fieldValue?: ?$ElementType<Scalars, 'String'>,
+  +nodes: Array<SitePage>,
+  +pageInfo: PageInfo,
+  +totalCount: $ElementType<Scalars, 'Int'>,
+|};
+
+declare type SitePageSortInput = {|
+  fields?: ?Array<?SitePageFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+declare type SiteSiteMetadata = {|
+  +author?: ?$ElementType<Scalars, 'String'>,
+  +description?: ?$ElementType<Scalars, 'String'>,
+  +title?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type SiteSiteMetadataFilterInput = {|
+  author?: ?StringQueryOperatorInput,
+  description?: ?StringQueryOperatorInput,
+  title?: ?StringQueryOperatorInput,
+|};
+
+declare type SiteSortInput = {|
+  fields?: ?Array<?SiteFieldsEnum>,
+  order?: ?Array<?SortOrderEnum>,
+|};
+
+export const SortOrderEnumValues = Object.freeze({
+  ASC: 'ASC',
+  DESC: 'DESC'
+});
+
+
+declare type SortOrderEnum = $Values<typeof SortOrderEnumValues>;
+
+declare type StringQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'String'>,
+  glob?: ?$ElementType<Scalars, 'String'>,
+  in?: ?Array<?$ElementType<Scalars, 'String'>>,
+  ne?: ?$ElementType<Scalars, 'String'>,
+  nin?: ?Array<?$ElementType<Scalars, 'String'>>,
+  regex?: ?$ElementType<Scalars, 'String'>,
+|};
+
+declare type TransformOptions = {|
+  cropFocus?: ?ImageCropFocus,
+  duotone?: ?DuotoneGradient,
+  fit?: ?ImageFit,
+  grayscale?: ?$ElementType<Scalars, 'Boolean'>,
+  rotate?: ?$ElementType<Scalars, 'Int'>,
+  trim?: ?$ElementType<Scalars, 'Float'>,
+|};
+
+declare type WebPOptions = {|
+  quality?: ?$ElementType<Scalars, 'Int'>,
+|};
+
+type $Pick<Origin: Object, Keys: Object> = $ObjMapi<Keys, <Key>(k: Key) => $ElementType<Origin, Key>>;
+
+declare type TestQueryVariables = {};
+
+
+declare type TestQuery = {| +site?: ?{| +siteMetadata?: ?$Pick<SiteSiteMetadata, {| +title?: * |}> |} |};
+
+export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
+  parent: Parent,
+  args: Args,
+  context: Context,
+  info: GraphQLResolveInfo
+) => Promise<Result> | Result;
+
+export type SubscriptionSubscribeFn<Result, Parent, Context, Args> = (
+  parent: Parent,
+  args: Args,
+  context: Context,
+  info: GraphQLResolveInfo
+) => AsyncIterator<Result> | Promise<AsyncIterator<Result>>;
+
+export type SubscriptionResolveFn<Result, Parent, Context, Args> = (
+  parent: Parent,
+  args: Args,
+  context: Context,
+  info: GraphQLResolveInfo
+) => Result | Promise<Result>;
+
+export interface SubscriptionSubscriberObject<Result, Key: string, Parent, Context, Args> {
+  subscribe: SubscriptionSubscribeFn<{ [key: Key]: Result }, Parent, Context, Args>;
+  resolve?: SubscriptionResolveFn<Result, { [key: Key]: Result }, Context, Args>;
+}
+
+export interface SubscriptionResolverObject<Result, Parent, Context, Args> {
+  subscribe: SubscriptionSubscribeFn<mixed, Parent, Context, Args>;
+  resolve: SubscriptionResolveFn<Result, mixed, Context, Args>;
+}
+
+export type SubscriptionObject<Result, Key: string, Parent, Context, Args> =
+  | SubscriptionSubscriberObject<Result, Key, Parent, Context, Args>
+  | SubscriptionResolverObject<Result, Parent, Context, Args>;
+
+export type SubscriptionResolver<Result, Key: string, Parent = {}, Context = {}, Args = {}> =
+  | ((...args: Array<any>) => SubscriptionObject<Result, Key, Parent, Context, Args>)
+  | SubscriptionObject<Result, Key, Parent, Context, Args>;
+
+export type TypeResolveFn<Types, Parent = {}, Context = {}> = (
+  parent: Parent,
+  context: Context,
+  info: GraphQLResolveInfo
+) => ?Types | Promise<?Types>;
+
+declare type IsTypeOfResolverFn<T = {}, Context = {}> = (obj: T, context: Context, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+
+declare type NextResolverFn<T> = () => Promise<T>;
+
+export type DirectiveResolverFn<Result = {}, Parent = {}, Args = {}, Context = {}> = (
+  next: NextResolverFn<Result>,
+  parent: Parent,
+  args: Args,
+  context: Context,
+  info: GraphQLResolveInfo
+) => Result | Promise<Result>;
+
+declare type ResolverTypeWrapper<T> = Promise<T> | T;
+
+/** Mapping between all available schema types and the resolvers types */
+declare type ResolversTypes = {
+  AVIFOptions: AVIFOptions,
+  Boolean: ResolverTypeWrapper<$ElementType<Scalars, 'Boolean'>>,
+  Int: ResolverTypeWrapper<$ElementType<Scalars, 'Int'>>,
+  BlurredOptions: BlurredOptions,
+  BooleanQueryOperatorInput: BooleanQueryOperatorInput,
+  Date: ResolverTypeWrapper<$ElementType<Scalars, 'Date'>>,
+  DateQueryOperatorInput: DateQueryOperatorInput,
+  Directory: ResolverTypeWrapper<Directory>,
+  String: ResolverTypeWrapper<$ElementType<Scalars, 'String'>>,
+  Float: ResolverTypeWrapper<$ElementType<Scalars, 'Float'>>,
+  ID: ResolverTypeWrapper<$ElementType<Scalars, 'ID'>>,
+  DirectoryConnection: ResolverTypeWrapper<DirectoryConnection>,
+  DirectoryEdge: ResolverTypeWrapper<DirectoryEdge>,
+  DirectoryFieldsEnum: DirectoryFieldsEnum,
+  DirectoryFilterInput: DirectoryFilterInput,
+  DirectoryGroupConnection: ResolverTypeWrapper<DirectoryGroupConnection>,
+  DirectorySortInput: DirectorySortInput,
+  DuotoneGradient: DuotoneGradient,
+  File: ResolverTypeWrapper<File>,
+  FileConnection: ResolverTypeWrapper<FileConnection>,
+  FileEdge: ResolverTypeWrapper<FileEdge>,
+  FileFieldsEnum: FileFieldsEnum,
+  FileFilterInput: FileFilterInput,
+  FileGroupConnection: ResolverTypeWrapper<FileGroupConnection>,
+  FileSortInput: FileSortInput,
+  FloatQueryOperatorInput: FloatQueryOperatorInput,
+  ImageCropFocus: ImageCropFocus,
+  ImageFit: ImageFit,
+  ImageFormat: ImageFormat,
+  ImageLayout: ImageLayout,
+  ImagePlaceholder: ImagePlaceholder,
+  ImageSharp: ResolverTypeWrapper<ImageSharp>,
+  ImageSharpConnection: ResolverTypeWrapper<ImageSharpConnection>,
+  ImageSharpEdge: ResolverTypeWrapper<ImageSharpEdge>,
+  ImageSharpFieldsEnum: ImageSharpFieldsEnum,
+  ImageSharpFilterInput: ImageSharpFilterInput,
+  ImageSharpFilterListInput: ImageSharpFilterListInput,
+  ImageSharpFixed: ResolverTypeWrapper<ImageSharpFixed>,
+  ImageSharpFixedFilterInput: ImageSharpFixedFilterInput,
+  ImageSharpFluid: ResolverTypeWrapper<ImageSharpFluid>,
+  ImageSharpFluidFilterInput: ImageSharpFluidFilterInput,
+  ImageSharpGroupConnection: ResolverTypeWrapper<ImageSharpGroupConnection>,
+  ImageSharpOriginal: ResolverTypeWrapper<ImageSharpOriginal>,
+  ImageSharpOriginalFilterInput: ImageSharpOriginalFilterInput,
+  ImageSharpResize: ResolverTypeWrapper<ImageSharpResize>,
+  ImageSharpResizeFilterInput: ImageSharpResizeFilterInput,
+  ImageSharpSortInput: ImageSharpSortInput,
+  IntQueryOperatorInput: IntQueryOperatorInput,
+  Internal: ResolverTypeWrapper<Internal>,
+  InternalFilterInput: InternalFilterInput,
+  JPGOptions: JPGOptions,
+  JSON: ResolverTypeWrapper<$ElementType<Scalars, 'JSON'>>,
+  JSONQueryOperatorInput: JSONQueryOperatorInput,
+  Node: $ElementType<ResolversTypes, 'Directory'> | $ElementType<ResolversTypes, 'File'> | $ElementType<ResolversTypes, 'ImageSharp'> | $ElementType<ResolversTypes, 'Site'> | $ElementType<ResolversTypes, 'SiteBuildMetadata'> | $ElementType<ResolversTypes, 'SiteFunction'> | $ElementType<ResolversTypes, 'SitePage'>,
+  NodeFilterInput: NodeFilterInput,
+  NodeFilterListInput: NodeFilterListInput,
+  PNGOptions: PNGOptions,
+  PageInfo: ResolverTypeWrapper<PageInfo>,
+  Potrace: Potrace,
+  PotraceTurnPolicy: PotraceTurnPolicy,
+  Query: ResolverTypeWrapper<{}>,
+  Site: ResolverTypeWrapper<Site>,
+  SiteBuildMetadata: ResolverTypeWrapper<SiteBuildMetadata>,
+  SiteBuildMetadataConnection: ResolverTypeWrapper<SiteBuildMetadataConnection>,
+  SiteBuildMetadataEdge: ResolverTypeWrapper<SiteBuildMetadataEdge>,
+  SiteBuildMetadataFieldsEnum: SiteBuildMetadataFieldsEnum,
+  SiteBuildMetadataFilterInput: SiteBuildMetadataFilterInput,
+  SiteBuildMetadataGroupConnection: ResolverTypeWrapper<SiteBuildMetadataGroupConnection>,
+  SiteBuildMetadataSortInput: SiteBuildMetadataSortInput,
+  SiteConnection: ResolverTypeWrapper<SiteConnection>,
+  SiteEdge: ResolverTypeWrapper<SiteEdge>,
+  SiteFieldsEnum: SiteFieldsEnum,
+  SiteFilterInput: SiteFilterInput,
+  SiteFunction: ResolverTypeWrapper<SiteFunction>,
+  SiteFunctionConnection: ResolverTypeWrapper<SiteFunctionConnection>,
+  SiteFunctionEdge: ResolverTypeWrapper<SiteFunctionEdge>,
+  SiteFunctionFieldsEnum: SiteFunctionFieldsEnum,
+  SiteFunctionFilterInput: SiteFunctionFilterInput,
+  SiteFunctionGroupConnection: ResolverTypeWrapper<SiteFunctionGroupConnection>,
+  SiteFunctionSortInput: SiteFunctionSortInput,
+  SiteGroupConnection: ResolverTypeWrapper<SiteGroupConnection>,
+  SitePage: ResolverTypeWrapper<SitePage>,
+  SitePageConnection: ResolverTypeWrapper<SitePageConnection>,
+  SitePageEdge: ResolverTypeWrapper<SitePageEdge>,
+  SitePageFieldsEnum: SitePageFieldsEnum,
+  SitePageFilterInput: SitePageFilterInput,
+  SitePageGroupConnection: ResolverTypeWrapper<SitePageGroupConnection>,
+  SitePageSortInput: SitePageSortInput,
+  SiteSiteMetadata: ResolverTypeWrapper<SiteSiteMetadata>,
+  SiteSiteMetadataFilterInput: SiteSiteMetadataFilterInput,
+  SiteSortInput: SiteSortInput,
+  SortOrderEnum: SortOrderEnum,
+  StringQueryOperatorInput: StringQueryOperatorInput,
+  TransformOptions: TransformOptions,
+  WebPOptions: WebPOptions,
+};
+
+/** Mapping between all available schema types and the resolvers parents */
+declare type ResolversParentTypes = {
+  AVIFOptions: AVIFOptions,
+  Boolean: $ElementType<Scalars, 'Boolean'>,
+  Int: $ElementType<Scalars, 'Int'>,
+  BlurredOptions: BlurredOptions,
+  BooleanQueryOperatorInput: BooleanQueryOperatorInput,
+  Date: $ElementType<Scalars, 'Date'>,
+  DateQueryOperatorInput: DateQueryOperatorInput,
+  Directory: Directory,
+  String: $ElementType<Scalars, 'String'>,
+  Float: $ElementType<Scalars, 'Float'>,
+  ID: $ElementType<Scalars, 'ID'>,
+  DirectoryConnection: DirectoryConnection,
+  DirectoryEdge: DirectoryEdge,
+  DirectoryFilterInput: DirectoryFilterInput,
+  DirectoryGroupConnection: DirectoryGroupConnection,
+  DirectorySortInput: DirectorySortInput,
+  DuotoneGradient: DuotoneGradient,
+  File: File,
+  FileConnection: FileConnection,
+  FileEdge: FileEdge,
+  FileFilterInput: FileFilterInput,
+  FileGroupConnection: FileGroupConnection,
+  FileSortInput: FileSortInput,
+  FloatQueryOperatorInput: FloatQueryOperatorInput,
+  ImageSharp: ImageSharp,
+  ImageSharpConnection: ImageSharpConnection,
+  ImageSharpEdge: ImageSharpEdge,
+  ImageSharpFilterInput: ImageSharpFilterInput,
+  ImageSharpFilterListInput: ImageSharpFilterListInput,
+  ImageSharpFixed: ImageSharpFixed,
+  ImageSharpFixedFilterInput: ImageSharpFixedFilterInput,
+  ImageSharpFluid: ImageSharpFluid,
+  ImageSharpFluidFilterInput: ImageSharpFluidFilterInput,
+  ImageSharpGroupConnection: ImageSharpGroupConnection,
+  ImageSharpOriginal: ImageSharpOriginal,
+  ImageSharpOriginalFilterInput: ImageSharpOriginalFilterInput,
+  ImageSharpResize: ImageSharpResize,
+  ImageSharpResizeFilterInput: ImageSharpResizeFilterInput,
+  ImageSharpSortInput: ImageSharpSortInput,
+  IntQueryOperatorInput: IntQueryOperatorInput,
+  Internal: Internal,
+  InternalFilterInput: InternalFilterInput,
+  JPGOptions: JPGOptions,
+  JSON: $ElementType<Scalars, 'JSON'>,
+  JSONQueryOperatorInput: JSONQueryOperatorInput,
+  Node: $ElementType<ResolversParentTypes, 'Directory'> | $ElementType<ResolversParentTypes, 'File'> | $ElementType<ResolversParentTypes, 'ImageSharp'> | $ElementType<ResolversParentTypes, 'Site'> | $ElementType<ResolversParentTypes, 'SiteBuildMetadata'> | $ElementType<ResolversParentTypes, 'SiteFunction'> | $ElementType<ResolversParentTypes, 'SitePage'>,
+  NodeFilterInput: NodeFilterInput,
+  NodeFilterListInput: NodeFilterListInput,
+  PNGOptions: PNGOptions,
+  PageInfo: PageInfo,
+  Potrace: Potrace,
+  Query: {},
+  Site: Site,
+  SiteBuildMetadata: SiteBuildMetadata,
+  SiteBuildMetadataConnection: SiteBuildMetadataConnection,
+  SiteBuildMetadataEdge: SiteBuildMetadataEdge,
+  SiteBuildMetadataFilterInput: SiteBuildMetadataFilterInput,
+  SiteBuildMetadataGroupConnection: SiteBuildMetadataGroupConnection,
+  SiteBuildMetadataSortInput: SiteBuildMetadataSortInput,
+  SiteConnection: SiteConnection,
+  SiteEdge: SiteEdge,
+  SiteFilterInput: SiteFilterInput,
+  SiteFunction: SiteFunction,
+  SiteFunctionConnection: SiteFunctionConnection,
+  SiteFunctionEdge: SiteFunctionEdge,
+  SiteFunctionFilterInput: SiteFunctionFilterInput,
+  SiteFunctionGroupConnection: SiteFunctionGroupConnection,
+  SiteFunctionSortInput: SiteFunctionSortInput,
+  SiteGroupConnection: SiteGroupConnection,
+  SitePage: SitePage,
+  SitePageConnection: SitePageConnection,
+  SitePageEdge: SitePageEdge,
+  SitePageFilterInput: SitePageFilterInput,
+  SitePageGroupConnection: SitePageGroupConnection,
+  SitePageSortInput: SitePageSortInput,
+  SiteSiteMetadata: SiteSiteMetadata,
+  SiteSiteMetadataFilterInput: SiteSiteMetadataFilterInput,
+  SiteSortInput: SiteSortInput,
+  StringQueryOperatorInput: StringQueryOperatorInput,
+  TransformOptions: TransformOptions,
+  WebPOptions: WebPOptions,
+};
+
+declare type childOfDirectiveArgs = {
+  mimeTypes: Array<$ElementType<Scalars, 'String'>>,
+  types: Array<$ElementType<Scalars, 'String'>>,
+};
+
+declare type childOfDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = childOfDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type dateformatDirectiveArgs = {
+  difference?: ?$ElementType<Scalars, 'String'>,
+  formatString?: ?$ElementType<Scalars, 'String'>,
+  fromNow?: ?$ElementType<Scalars, 'Boolean'>,
+  locale?: ?$ElementType<Scalars, 'String'>,
+};
+
+declare type dateformatDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = dateformatDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type dontInferDirectiveArgs = { };
+
+declare type dontInferDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = dontInferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type fileByRelativePathDirectiveArgs = {
+  from?: ?$ElementType<Scalars, 'String'>,
+};
+
+declare type fileByRelativePathDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = fileByRelativePathDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type inferDirectiveArgs = { };
+
+declare type inferDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = inferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type linkDirectiveArgs = {
+  by: $ElementType<Scalars, 'String'>,
+  from?: ?$ElementType<Scalars, 'String'>,
+  on?: ?$ElementType<Scalars, 'String'>,
+};
+
+declare type linkDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = linkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type mimeTypesDirectiveArgs = {
+  types: Array<$ElementType<Scalars, 'String'>>,
+};
+
+declare type mimeTypesDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = mimeTypesDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type nodeInterfaceDirectiveArgs = { };
+
+declare type nodeInterfaceDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = nodeInterfaceDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type proxyDirectiveArgs = {
+  from: $ElementType<Scalars, 'String'>,
+  fromNode: $ElementType<Scalars, 'Boolean'>,
+};
+
+declare type proxyDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = proxyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+declare type DateScalarConfig = {
+  ...GraphQLScalarTypeConfig<$ElementType<ResolversTypes, 'Date'>, any>,
+  name: 'Date'
+};
+
+declare type DirectoryResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Directory'>> = {
+  absolutePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  accessTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_accessTimeArgs>,
+  atime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_atimeArgs>,
+  atimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  birthTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_birthTimeArgs>,
+  birthtime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType>,
+  birthtimeMs?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  blksize?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  blocks?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  changeTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_changeTimeArgs>,
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  ctime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_ctimeArgs>,
+  ctimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  dev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  dir?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  ext?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  extension?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  gid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  ino?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  mode?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  modifiedTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_modifiedTimeArgs>,
+  mtime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_mtimeArgs>,
+  mtimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  name?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nlink?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  prettySize?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  rdev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  relativeDirectory?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  relativePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  root?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  size?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  sourceInstanceName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  uid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type DirectoryConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'DirectoryConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<DirectoryConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'DirectoryEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'DirectoryGroupConnection'>>, ParentType, ContextType, $RequireFields<DirectoryConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<DirectoryConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<DirectoryConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Directory'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<DirectoryConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type DirectoryEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'DirectoryEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type DirectoryGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'DirectoryGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'DirectoryEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Directory'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type FileResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'File'>> = {
+  absolutePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  accessTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_accessTimeArgs>,
+  atime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_atimeArgs>,
+  atimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  birthTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_birthTimeArgs>,
+  birthtime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType>,
+  birthtimeMs?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  blksize?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  blocks?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  changeTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_changeTimeArgs>,
+  childImageSharp?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  childrenImageSharp?: Resolver<?Array<?$ElementType<ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
+  ctime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_ctimeArgs>,
+  ctimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  dev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  dir?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  ext?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  extension?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  gid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  ino?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  mode?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  modifiedTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_modifiedTimeArgs>,
+  mtime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_mtimeArgs>,
+  mtimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  name?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nlink?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  prettySize?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  publicURL?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  rdev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  relativeDirectory?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  relativePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  root?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  size?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  sourceInstanceName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  uid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type FileConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'FileConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<FileConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'FileEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'FileGroupConnection'>>, ParentType, ContextType, $RequireFields<FileConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<FileConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<FileConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'File'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<FileConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type FileEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'FileEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'File'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'File'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'File'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type FileGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'FileGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'FileEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'File'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharp'>> = {
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  fixed?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpFixed'>, ParentType, ContextType, $RequireFields<ImageSharp_fixedArgs, { background: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionSpeed: *, rotate: *, toFormat: *, toFormatBase64: *, trim: * }>>,
+  fluid?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpFluid'>, ParentType, ContextType, $RequireFields<ImageSharp_fluidArgs, { background: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionSpeed: *, rotate: *, sizes: *, srcSetBreakpoints: *, toFormat: *, toFormatBase64: *, trim: * }>>,
+  gatsbyImageData?: Resolver<$ElementType<ResolversTypes, 'JSON'>, ParentType, ContextType, $RequireFields<ImageSharp_gatsbyImageDataArgs, { layout: * }>>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  original?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpOriginal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  resize?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpResize'>, ParentType, ContextType, $RequireFields<ImageSharp_resizeArgs, { background: *, base64: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionLevel: *, pngCompressionSpeed: *, rotate: *, toFormat: *, trim: * }>>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<ImageSharpConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharpEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharpGroupConnection'>>, ParentType, ContextType, $RequireFields<ImageSharpConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<ImageSharpConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<ImageSharpConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<ImageSharpConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpFixedResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpFixed'>> = {
+  aspectRatio?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base64?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  height?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  originalName?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  src?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSet?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSetWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  tracedSVG?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  width?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpFluidResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpFluid'>> = {
+  aspectRatio?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base64?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  originalImg?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  originalName?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  presentationHeight?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  presentationWidth?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  sizes?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  src?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSet?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSetWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  tracedSVG?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharpEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpOriginalResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpOriginal'>> = {
+  height?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  src?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  width?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type ImageSharpResizeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpResize'>> = {
+  aspectRatio?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+  height?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  originalName?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  src?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  tracedSVG?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  width?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type InternalResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Internal'>> = {
+  content?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  contentDigest?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  description?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldOwners?: Resolver<?Array<?$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType>,
+  ignoreType?: Resolver<?$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  mediaType?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  owner?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  type?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type JSONScalarConfig = {
+  ...GraphQLScalarTypeConfig<$ElementType<ResolversTypes, 'JSON'>, any>,
+  name: 'JSON'
+};
+
+declare type NodeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Node'>> = {
+  __resolveType: TypeResolveFn<'Directory' | 'File' | 'ImageSharp' | 'Site' | 'SiteBuildMetadata' | 'SiteFunction' | 'SitePage', ParentType, ContextType>,
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+};
+
+declare type PageInfoResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'PageInfo'>> = {
+  currentPage?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  hasNextPage?: Resolver<$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  hasPreviousPage?: Resolver<$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  itemCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  pageCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  perPage?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type QueryResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Query'>> = {
+  allDirectory?: Resolver<$ElementType<ResolversTypes, 'DirectoryConnection'>, ParentType, ContextType, Query_allDirectoryArgs>,
+  allFile?: Resolver<$ElementType<ResolversTypes, 'FileConnection'>, ParentType, ContextType, Query_allFileArgs>,
+  allImageSharp?: Resolver<$ElementType<ResolversTypes, 'ImageSharpConnection'>, ParentType, ContextType, Query_allImageSharpArgs>,
+  allSite?: Resolver<$ElementType<ResolversTypes, 'SiteConnection'>, ParentType, ContextType, Query_allSiteArgs>,
+  allSiteBuildMetadata?: Resolver<$ElementType<ResolversTypes, 'SiteBuildMetadataConnection'>, ParentType, ContextType, Query_allSiteBuildMetadataArgs>,
+  allSiteFunction?: Resolver<$ElementType<ResolversTypes, 'SiteFunctionConnection'>, ParentType, ContextType, Query_allSiteFunctionArgs>,
+  allSitePage?: Resolver<$ElementType<ResolversTypes, 'SitePageConnection'>, ParentType, ContextType, Query_allSitePageArgs>,
+  directory?: Resolver<?$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType, Query_directoryArgs>,
+  file?: Resolver<?$ElementType<ResolversTypes, 'File'>, ParentType, ContextType, Query_fileArgs>,
+  imageSharp?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType, Query_imageSharpArgs>,
+  site?: Resolver<?$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType, Query_siteArgs>,
+  siteBuildMetadata?: Resolver<?$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType, Query_siteBuildMetadataArgs>,
+  siteFunction?: Resolver<?$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType, Query_siteFunctionArgs>,
+  sitePage?: Resolver<?$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType, Query_sitePageArgs>,
+};
+
+declare type SiteResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Site'>> = {
+  buildTime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Site_buildTimeArgs>,
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  pathPrefix?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  polyfill?: Resolver<?$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  siteMetadata?: Resolver<?$ElementType<ResolversTypes, 'SiteSiteMetadata'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteBuildMetadataResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadata'>> = {
+  buildTime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, SiteBuildMetadata_buildTimeArgs>,
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteBuildMetadataConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadataConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadataEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadataGroupConnection'>>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadata'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteBuildMetadataEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadataEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteBuildMetadataGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadataGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadataEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadata'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SiteConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'SiteGroupConnection'>>, ParentType, ContextType, $RequireFields<SiteConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Site'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteFunctionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunction'>> = {
+  absoluteCompiledFilePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  apiRoute?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  matchPath?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  originalFilePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  relativeCompiledFilePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteFunctionConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunctionConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunctionEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunctionGroupConnection'>>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunction'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteFunctionEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunctionEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteFunctionGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunctionGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunctionEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunction'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Site'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SitePageResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePage'>> = {
+  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  component?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  componentChunkName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  componentPath?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  internalComponentName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  isCreatedByStatefulCreatePages?: Resolver<?$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  matchPath?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  path?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SitePageConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePageConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SitePageConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SitePageEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<ResolversTypes, 'SitePageGroupConnection'>>, ParentType, ContextType, $RequireFields<SitePageConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SitePageConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SitePageConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SitePage'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SitePageConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SitePageEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePageEdge'>> = {
+  next?: Resolver<?$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SitePageGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePageGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SitePageEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SitePage'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type SiteSiteMetadataResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteSiteMetadata'>> = {
+  author?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  description?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  title?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
+};
+
+declare type Resolvers<ContextType = type GatsbyResolverContext> = {
+  Date?: GraphQLScalarType,
+  Directory?: DirectoryResolvers<ContextType>,
+  DirectoryConnection?: DirectoryConnectionResolvers<ContextType>,
+  DirectoryEdge?: DirectoryEdgeResolvers<ContextType>,
+  DirectoryGroupConnection?: DirectoryGroupConnectionResolvers<ContextType>,
+  File?: FileResolvers<ContextType>,
+  FileConnection?: FileConnectionResolvers<ContextType>,
+  FileEdge?: FileEdgeResolvers<ContextType>,
+  FileGroupConnection?: FileGroupConnectionResolvers<ContextType>,
+  ImageSharp?: ImageSharpResolvers<ContextType>,
+  ImageSharpConnection?: ImageSharpConnectionResolvers<ContextType>,
+  ImageSharpEdge?: ImageSharpEdgeResolvers<ContextType>,
+  ImageSharpFixed?: ImageSharpFixedResolvers<ContextType>,
+  ImageSharpFluid?: ImageSharpFluidResolvers<ContextType>,
+  ImageSharpGroupConnection?: ImageSharpGroupConnectionResolvers<ContextType>,
+  ImageSharpOriginal?: ImageSharpOriginalResolvers<ContextType>,
+  ImageSharpResize?: ImageSharpResizeResolvers<ContextType>,
+  Internal?: InternalResolvers<ContextType>,
+  JSON?: GraphQLScalarType,
+  Node?: NodeResolvers<ContextType>,
+  PageInfo?: PageInfoResolvers<ContextType>,
+  Query?: QueryResolvers<ContextType>,
+  Site?: SiteResolvers<ContextType>,
+  SiteBuildMetadata?: SiteBuildMetadataResolvers<ContextType>,
+  SiteBuildMetadataConnection?: SiteBuildMetadataConnectionResolvers<ContextType>,
+  SiteBuildMetadataEdge?: SiteBuildMetadataEdgeResolvers<ContextType>,
+  SiteBuildMetadataGroupConnection?: SiteBuildMetadataGroupConnectionResolvers<ContextType>,
+  SiteConnection?: SiteConnectionResolvers<ContextType>,
+  SiteEdge?: SiteEdgeResolvers<ContextType>,
+  SiteFunction?: SiteFunctionResolvers<ContextType>,
+  SiteFunctionConnection?: SiteFunctionConnectionResolvers<ContextType>,
+  SiteFunctionEdge?: SiteFunctionEdgeResolvers<ContextType>,
+  SiteFunctionGroupConnection?: SiteFunctionGroupConnectionResolvers<ContextType>,
+  SiteGroupConnection?: SiteGroupConnectionResolvers<ContextType>,
+  SitePage?: SitePageResolvers<ContextType>,
+  SitePageConnection?: SitePageConnectionResolvers<ContextType>,
+  SitePageEdge?: SitePageEdgeResolvers<ContextType>,
+  SitePageGroupConnection?: SitePageGroupConnectionResolvers<ContextType>,
+  SiteSiteMetadata?: SiteSiteMetadataResolvers<ContextType>,
+};
+
+declare type DirectiveResolvers<ContextType = type GatsbyResolverContext> = {
+  childOf?: childOfDirectiveResolver<any, any, ContextType>,
+  dateformat?: dateformatDirectiveResolver<any, any, ContextType>,
+  dontInfer?: dontInferDirectiveResolver<any, any, ContextType>,
+  fileByRelativePath?: fileByRelativePathDirectiveResolver<any, any, ContextType>,
+  infer?: inferDirectiveResolver<any, any, ContextType>,
+  link?: linkDirectiveResolver<any, any, ContextType>,
+  mimeTypes?: mimeTypesDirectiveResolver<any, any, ContextType>,
+  nodeInterface?: nodeInterfaceDirectiveResolver<any, any, ContextType>,
+  proxy?: proxyDirectiveResolver<any, any, ContextType>,
+};
+"
+`;

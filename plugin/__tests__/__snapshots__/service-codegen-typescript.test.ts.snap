@@ -1,0 +1,3189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`codegen service typescript: codegen.d.ts 1`] = `
+"/* eslint-disable */
+
+import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import type { GatsbyResolverContext } from 'gatsby-plugin-typegen/types';
+
+declare namespace GatsbyTypes {
+
+type Maybe<T> = T | undefined;
+type InputMaybe<T> = T | undefined;
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
+/** All built-in and custom scalars, mapped to their actual values */
+type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  Date: string;
+  JSON: any;
+};
+
+type AVIFOptions = {
+  readonly lossless: InputMaybe<Scalars['Boolean']>;
+  readonly quality: InputMaybe<Scalars['Int']>;
+  readonly speed: InputMaybe<Scalars['Int']>;
+};
+
+type BlurredOptions = {
+  readonly toFormat: InputMaybe<ImageFormat>;
+  readonly width: InputMaybe<Scalars['Int']>;
+};
+
+type BooleanQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['Boolean']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
+  readonly ne: InputMaybe<Scalars['Boolean']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
+};
+
+type DateQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['Date']>;
+  readonly gt: InputMaybe<Scalars['Date']>;
+  readonly gte: InputMaybe<Scalars['Date']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Date']>>>;
+  readonly lt: InputMaybe<Scalars['Date']>;
+  readonly lte: InputMaybe<Scalars['Date']>;
+  readonly ne: InputMaybe<Scalars['Date']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Date']>>>;
+};
+
+type Directory = Node & {
+  readonly absolutePath: Scalars['String'];
+  readonly accessTime: Scalars['Date'];
+  readonly atime: Scalars['Date'];
+  readonly atimeMs: Scalars['Float'];
+  readonly base: Scalars['String'];
+  readonly birthTime: Scalars['Date'];
+  /** @deprecated Use \`birthTime\` instead */
+  readonly birthtime: Maybe<Scalars['Date']>;
+  /** @deprecated Use \`birthTime\` instead */
+  readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly blksize: Maybe<Scalars['Int']>;
+  readonly blocks: Maybe<Scalars['Int']>;
+  readonly changeTime: Scalars['Date'];
+  readonly children: ReadonlyArray<Node>;
+  readonly ctime: Scalars['Date'];
+  readonly ctimeMs: Scalars['Float'];
+  readonly dev: Scalars['Int'];
+  readonly dir: Scalars['String'];
+  readonly ext: Scalars['String'];
+  readonly extension: Scalars['String'];
+  readonly gid: Scalars['Int'];
+  readonly id: Scalars['ID'];
+  readonly ino: Scalars['Float'];
+  readonly internal: Internal;
+  readonly mode: Scalars['Int'];
+  readonly modifiedTime: Scalars['Date'];
+  readonly mtime: Scalars['Date'];
+  readonly mtimeMs: Scalars['Float'];
+  readonly name: Scalars['String'];
+  readonly nlink: Scalars['Int'];
+  readonly parent: Maybe<Node>;
+  readonly prettySize: Scalars['String'];
+  readonly rdev: Scalars['Int'];
+  readonly relativeDirectory: Scalars['String'];
+  readonly relativePath: Scalars['String'];
+  readonly root: Scalars['String'];
+  readonly size: Scalars['Int'];
+  readonly sourceInstanceName: Scalars['String'];
+  readonly uid: Scalars['Int'];
+};
+
+
+type Directory_accessTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Directory_atimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Directory_birthTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Directory_changeTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Directory_ctimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Directory_modifiedTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Directory_mtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type DirectoryConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<DirectoryEdge>;
+  readonly group: ReadonlyArray<DirectoryGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<Directory>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type DirectoryConnection_distinctArgs = {
+  field: DirectoryFieldsEnum;
+};
+
+
+type DirectoryConnection_groupArgs = {
+  field: DirectoryFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type DirectoryConnection_maxArgs = {
+  field: DirectoryFieldsEnum;
+};
+
+
+type DirectoryConnection_minArgs = {
+  field: DirectoryFieldsEnum;
+};
+
+
+type DirectoryConnection_sumArgs = {
+  field: DirectoryFieldsEnum;
+};
+
+type DirectoryEdge = {
+  readonly next: Maybe<Directory>;
+  readonly node: Directory;
+  readonly previous: Maybe<Directory>;
+};
+
+type DirectoryFieldsEnum =
+  | 'absolutePath'
+  | 'accessTime'
+  | 'atime'
+  | 'atimeMs'
+  | 'base'
+  | 'birthTime'
+  | 'birthtime'
+  | 'birthtimeMs'
+  | 'blksize'
+  | 'blocks'
+  | 'changeTime'
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'ctime'
+  | 'ctimeMs'
+  | 'dev'
+  | 'dir'
+  | 'ext'
+  | 'extension'
+  | 'gid'
+  | 'id'
+  | 'ino'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'mode'
+  | 'modifiedTime'
+  | 'mtime'
+  | 'mtimeMs'
+  | 'name'
+  | 'nlink'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'prettySize'
+  | 'rdev'
+  | 'relativeDirectory'
+  | 'relativePath'
+  | 'root'
+  | 'size'
+  | 'sourceInstanceName'
+  | 'uid';
+
+type DirectoryFilterInput = {
+  readonly absolutePath: InputMaybe<StringQueryOperatorInput>;
+  readonly accessTime: InputMaybe<DateQueryOperatorInput>;
+  readonly atime: InputMaybe<DateQueryOperatorInput>;
+  readonly atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly base: InputMaybe<StringQueryOperatorInput>;
+  readonly birthTime: InputMaybe<DateQueryOperatorInput>;
+  readonly birthtime: InputMaybe<DateQueryOperatorInput>;
+  readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly blksize: InputMaybe<IntQueryOperatorInput>;
+  readonly blocks: InputMaybe<IntQueryOperatorInput>;
+  readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly ctime: InputMaybe<DateQueryOperatorInput>;
+  readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly dev: InputMaybe<IntQueryOperatorInput>;
+  readonly dir: InputMaybe<StringQueryOperatorInput>;
+  readonly ext: InputMaybe<StringQueryOperatorInput>;
+  readonly extension: InputMaybe<StringQueryOperatorInput>;
+  readonly gid: InputMaybe<IntQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly ino: InputMaybe<FloatQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly mode: InputMaybe<IntQueryOperatorInput>;
+  readonly modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  readonly mtime: InputMaybe<DateQueryOperatorInput>;
+  readonly mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly nlink: InputMaybe<IntQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prettySize: InputMaybe<StringQueryOperatorInput>;
+  readonly rdev: InputMaybe<IntQueryOperatorInput>;
+  readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  readonly relativePath: InputMaybe<StringQueryOperatorInput>;
+  readonly root: InputMaybe<StringQueryOperatorInput>;
+  readonly size: InputMaybe<IntQueryOperatorInput>;
+  readonly sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+type DirectoryGroupConnection = {
+  readonly edges: ReadonlyArray<DirectoryEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<Directory>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type DirectorySortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<DirectoryFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type DuotoneGradient = {
+  readonly highlight: Scalars['String'];
+  readonly opacity: InputMaybe<Scalars['Int']>;
+  readonly shadow: Scalars['String'];
+};
+
+type File = Node & {
+  readonly absolutePath: Scalars['String'];
+  readonly accessTime: Scalars['Date'];
+  readonly atime: Scalars['Date'];
+  readonly atimeMs: Scalars['Float'];
+  readonly base: Scalars['String'];
+  readonly birthTime: Scalars['Date'];
+  /** @deprecated Use \`birthTime\` instead */
+  readonly birthtime: Maybe<Scalars['Date']>;
+  /** @deprecated Use \`birthTime\` instead */
+  readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly blksize: Maybe<Scalars['Int']>;
+  readonly blocks: Maybe<Scalars['Int']>;
+  readonly changeTime: Scalars['Date'];
+  readonly childImageSharp: Maybe<ImageSharp>;
+  readonly children: ReadonlyArray<Node>;
+  readonly childrenImageSharp: Maybe<ReadonlyArray<Maybe<ImageSharp>>>;
+  readonly ctime: Scalars['Date'];
+  readonly ctimeMs: Scalars['Float'];
+  readonly dev: Scalars['Int'];
+  readonly dir: Scalars['String'];
+  readonly ext: Scalars['String'];
+  readonly extension: Scalars['String'];
+  readonly gid: Scalars['Int'];
+  readonly id: Scalars['ID'];
+  readonly ino: Scalars['Float'];
+  readonly internal: Internal;
+  readonly mode: Scalars['Int'];
+  readonly modifiedTime: Scalars['Date'];
+  readonly mtime: Scalars['Date'];
+  readonly mtimeMs: Scalars['Float'];
+  readonly name: Scalars['String'];
+  readonly nlink: Scalars['Int'];
+  readonly parent: Maybe<Node>;
+  readonly prettySize: Scalars['String'];
+  readonly publicURL: Maybe<Scalars['String']>;
+  readonly rdev: Scalars['Int'];
+  readonly relativeDirectory: Scalars['String'];
+  readonly relativePath: Scalars['String'];
+  readonly root: Scalars['String'];
+  readonly size: Scalars['Int'];
+  readonly sourceInstanceName: Scalars['String'];
+  readonly uid: Scalars['Int'];
+};
+
+
+type File_accessTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type File_atimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type File_birthTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type File_changeTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type File_ctimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type File_modifiedTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type File_mtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type FileConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<FileEdge>;
+  readonly group: ReadonlyArray<FileGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<File>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type FileConnection_distinctArgs = {
+  field: FileFieldsEnum;
+};
+
+
+type FileConnection_groupArgs = {
+  field: FileFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type FileConnection_maxArgs = {
+  field: FileFieldsEnum;
+};
+
+
+type FileConnection_minArgs = {
+  field: FileFieldsEnum;
+};
+
+
+type FileConnection_sumArgs = {
+  field: FileFieldsEnum;
+};
+
+type FileEdge = {
+  readonly next: Maybe<File>;
+  readonly node: File;
+  readonly previous: Maybe<File>;
+};
+
+type FileFieldsEnum =
+  | 'absolutePath'
+  | 'accessTime'
+  | 'atime'
+  | 'atimeMs'
+  | 'base'
+  | 'birthTime'
+  | 'birthtime'
+  | 'birthtimeMs'
+  | 'blksize'
+  | 'blocks'
+  | 'changeTime'
+  | 'childImageSharp___children'
+  | 'childImageSharp___children___children'
+  | 'childImageSharp___children___children___children'
+  | 'childImageSharp___children___children___id'
+  | 'childImageSharp___children___id'
+  | 'childImageSharp___children___internal___content'
+  | 'childImageSharp___children___internal___contentDigest'
+  | 'childImageSharp___children___internal___description'
+  | 'childImageSharp___children___internal___fieldOwners'
+  | 'childImageSharp___children___internal___ignoreType'
+  | 'childImageSharp___children___internal___mediaType'
+  | 'childImageSharp___children___internal___owner'
+  | 'childImageSharp___children___internal___type'
+  | 'childImageSharp___children___parent___children'
+  | 'childImageSharp___children___parent___id'
+  | 'childImageSharp___fixed___aspectRatio'
+  | 'childImageSharp___fixed___base64'
+  | 'childImageSharp___fixed___height'
+  | 'childImageSharp___fixed___originalName'
+  | 'childImageSharp___fixed___src'
+  | 'childImageSharp___fixed___srcSet'
+  | 'childImageSharp___fixed___srcSetWebp'
+  | 'childImageSharp___fixed___srcWebp'
+  | 'childImageSharp___fixed___tracedSVG'
+  | 'childImageSharp___fixed___width'
+  | 'childImageSharp___fluid___aspectRatio'
+  | 'childImageSharp___fluid___base64'
+  | 'childImageSharp___fluid___originalImg'
+  | 'childImageSharp___fluid___originalName'
+  | 'childImageSharp___fluid___presentationHeight'
+  | 'childImageSharp___fluid___presentationWidth'
+  | 'childImageSharp___fluid___sizes'
+  | 'childImageSharp___fluid___src'
+  | 'childImageSharp___fluid___srcSet'
+  | 'childImageSharp___fluid___srcSetWebp'
+  | 'childImageSharp___fluid___srcWebp'
+  | 'childImageSharp___fluid___tracedSVG'
+  | 'childImageSharp___gatsbyImageData'
+  | 'childImageSharp___id'
+  | 'childImageSharp___internal___content'
+  | 'childImageSharp___internal___contentDigest'
+  | 'childImageSharp___internal___description'
+  | 'childImageSharp___internal___fieldOwners'
+  | 'childImageSharp___internal___ignoreType'
+  | 'childImageSharp___internal___mediaType'
+  | 'childImageSharp___internal___owner'
+  | 'childImageSharp___internal___type'
+  | 'childImageSharp___original___height'
+  | 'childImageSharp___original___src'
+  | 'childImageSharp___original___width'
+  | 'childImageSharp___parent___children'
+  | 'childImageSharp___parent___children___children'
+  | 'childImageSharp___parent___children___id'
+  | 'childImageSharp___parent___id'
+  | 'childImageSharp___parent___internal___content'
+  | 'childImageSharp___parent___internal___contentDigest'
+  | 'childImageSharp___parent___internal___description'
+  | 'childImageSharp___parent___internal___fieldOwners'
+  | 'childImageSharp___parent___internal___ignoreType'
+  | 'childImageSharp___parent___internal___mediaType'
+  | 'childImageSharp___parent___internal___owner'
+  | 'childImageSharp___parent___internal___type'
+  | 'childImageSharp___parent___parent___children'
+  | 'childImageSharp___parent___parent___id'
+  | 'childImageSharp___resize___aspectRatio'
+  | 'childImageSharp___resize___height'
+  | 'childImageSharp___resize___originalName'
+  | 'childImageSharp___resize___src'
+  | 'childImageSharp___resize___tracedSVG'
+  | 'childImageSharp___resize___width'
+  | 'children'
+  | 'childrenImageSharp'
+  | 'childrenImageSharp___children'
+  | 'childrenImageSharp___children___children'
+  | 'childrenImageSharp___children___children___children'
+  | 'childrenImageSharp___children___children___id'
+  | 'childrenImageSharp___children___id'
+  | 'childrenImageSharp___children___internal___content'
+  | 'childrenImageSharp___children___internal___contentDigest'
+  | 'childrenImageSharp___children___internal___description'
+  | 'childrenImageSharp___children___internal___fieldOwners'
+  | 'childrenImageSharp___children___internal___ignoreType'
+  | 'childrenImageSharp___children___internal___mediaType'
+  | 'childrenImageSharp___children___internal___owner'
+  | 'childrenImageSharp___children___internal___type'
+  | 'childrenImageSharp___children___parent___children'
+  | 'childrenImageSharp___children___parent___id'
+  | 'childrenImageSharp___fixed___aspectRatio'
+  | 'childrenImageSharp___fixed___base64'
+  | 'childrenImageSharp___fixed___height'
+  | 'childrenImageSharp___fixed___originalName'
+  | 'childrenImageSharp___fixed___src'
+  | 'childrenImageSharp___fixed___srcSet'
+  | 'childrenImageSharp___fixed___srcSetWebp'
+  | 'childrenImageSharp___fixed___srcWebp'
+  | 'childrenImageSharp___fixed___tracedSVG'
+  | 'childrenImageSharp___fixed___width'
+  | 'childrenImageSharp___fluid___aspectRatio'
+  | 'childrenImageSharp___fluid___base64'
+  | 'childrenImageSharp___fluid___originalImg'
+  | 'childrenImageSharp___fluid___originalName'
+  | 'childrenImageSharp___fluid___presentationHeight'
+  | 'childrenImageSharp___fluid___presentationWidth'
+  | 'childrenImageSharp___fluid___sizes'
+  | 'childrenImageSharp___fluid___src'
+  | 'childrenImageSharp___fluid___srcSet'
+  | 'childrenImageSharp___fluid___srcSetWebp'
+  | 'childrenImageSharp___fluid___srcWebp'
+  | 'childrenImageSharp___fluid___tracedSVG'
+  | 'childrenImageSharp___gatsbyImageData'
+  | 'childrenImageSharp___id'
+  | 'childrenImageSharp___internal___content'
+  | 'childrenImageSharp___internal___contentDigest'
+  | 'childrenImageSharp___internal___description'
+  | 'childrenImageSharp___internal___fieldOwners'
+  | 'childrenImageSharp___internal___ignoreType'
+  | 'childrenImageSharp___internal___mediaType'
+  | 'childrenImageSharp___internal___owner'
+  | 'childrenImageSharp___internal___type'
+  | 'childrenImageSharp___original___height'
+  | 'childrenImageSharp___original___src'
+  | 'childrenImageSharp___original___width'
+  | 'childrenImageSharp___parent___children'
+  | 'childrenImageSharp___parent___children___children'
+  | 'childrenImageSharp___parent___children___id'
+  | 'childrenImageSharp___parent___id'
+  | 'childrenImageSharp___parent___internal___content'
+  | 'childrenImageSharp___parent___internal___contentDigest'
+  | 'childrenImageSharp___parent___internal___description'
+  | 'childrenImageSharp___parent___internal___fieldOwners'
+  | 'childrenImageSharp___parent___internal___ignoreType'
+  | 'childrenImageSharp___parent___internal___mediaType'
+  | 'childrenImageSharp___parent___internal___owner'
+  | 'childrenImageSharp___parent___internal___type'
+  | 'childrenImageSharp___parent___parent___children'
+  | 'childrenImageSharp___parent___parent___id'
+  | 'childrenImageSharp___resize___aspectRatio'
+  | 'childrenImageSharp___resize___height'
+  | 'childrenImageSharp___resize___originalName'
+  | 'childrenImageSharp___resize___src'
+  | 'childrenImageSharp___resize___tracedSVG'
+  | 'childrenImageSharp___resize___width'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'ctime'
+  | 'ctimeMs'
+  | 'dev'
+  | 'dir'
+  | 'ext'
+  | 'extension'
+  | 'gid'
+  | 'id'
+  | 'ino'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'mode'
+  | 'modifiedTime'
+  | 'mtime'
+  | 'mtimeMs'
+  | 'name'
+  | 'nlink'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'prettySize'
+  | 'publicURL'
+  | 'rdev'
+  | 'relativeDirectory'
+  | 'relativePath'
+  | 'root'
+  | 'size'
+  | 'sourceInstanceName'
+  | 'uid';
+
+type FileFilterInput = {
+  readonly absolutePath: InputMaybe<StringQueryOperatorInput>;
+  readonly accessTime: InputMaybe<DateQueryOperatorInput>;
+  readonly atime: InputMaybe<DateQueryOperatorInput>;
+  readonly atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly base: InputMaybe<StringQueryOperatorInput>;
+  readonly birthTime: InputMaybe<DateQueryOperatorInput>;
+  readonly birthtime: InputMaybe<DateQueryOperatorInput>;
+  readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly blksize: InputMaybe<IntQueryOperatorInput>;
+  readonly blocks: InputMaybe<IntQueryOperatorInput>;
+  readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+  readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
+  readonly ctime: InputMaybe<DateQueryOperatorInput>;
+  readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly dev: InputMaybe<IntQueryOperatorInput>;
+  readonly dir: InputMaybe<StringQueryOperatorInput>;
+  readonly ext: InputMaybe<StringQueryOperatorInput>;
+  readonly extension: InputMaybe<StringQueryOperatorInput>;
+  readonly gid: InputMaybe<IntQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly ino: InputMaybe<FloatQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly mode: InputMaybe<IntQueryOperatorInput>;
+  readonly modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  readonly mtime: InputMaybe<DateQueryOperatorInput>;
+  readonly mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly nlink: InputMaybe<IntQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prettySize: InputMaybe<StringQueryOperatorInput>;
+  readonly publicURL: InputMaybe<StringQueryOperatorInput>;
+  readonly rdev: InputMaybe<IntQueryOperatorInput>;
+  readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  readonly relativePath: InputMaybe<StringQueryOperatorInput>;
+  readonly root: InputMaybe<StringQueryOperatorInput>;
+  readonly size: InputMaybe<IntQueryOperatorInput>;
+  readonly sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+type FileGroupConnection = {
+  readonly edges: ReadonlyArray<FileEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<File>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type FileSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<FileFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type FloatQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['Float']>;
+  readonly gt: InputMaybe<Scalars['Float']>;
+  readonly gte: InputMaybe<Scalars['Float']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  readonly lt: InputMaybe<Scalars['Float']>;
+  readonly lte: InputMaybe<Scalars['Float']>;
+  readonly ne: InputMaybe<Scalars['Float']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+};
+
+type ImageCropFocus =
+  | 'ATTENTION'
+  | 'CENTER'
+  | 'EAST'
+  | 'ENTROPY'
+  | 'NORTH'
+  | 'NORTHEAST'
+  | 'NORTHWEST'
+  | 'SOUTH'
+  | 'SOUTHEAST'
+  | 'SOUTHWEST'
+  | 'WEST';
+
+type ImageFit =
+  | 'CONTAIN'
+  | 'COVER'
+  | 'FILL'
+  | 'INSIDE'
+  | 'OUTSIDE';
+
+type ImageFormat =
+  | 'AUTO'
+  | 'AVIF'
+  | 'JPG'
+  | 'NO_CHANGE'
+  | 'PNG'
+  | 'WEBP';
+
+type ImageLayout =
+  | 'CONSTRAINED'
+  | 'FIXED'
+  | 'FULL_WIDTH';
+
+type ImagePlaceholder =
+  | 'BLURRED'
+  | 'DOMINANT_COLOR'
+  | 'NONE'
+  | 'TRACED_SVG';
+
+type ImageSharp = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly fixed: Maybe<ImageSharpFixed>;
+  readonly fluid: Maybe<ImageSharpFluid>;
+  readonly gatsbyImageData: Scalars['JSON'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly original: Maybe<ImageSharpOriginal>;
+  readonly parent: Maybe<Node>;
+  readonly resize: Maybe<ImageSharpResize>;
+};
+
+
+type ImageSharp_fixedArgs = {
+  background?: InputMaybe<Scalars['String']>;
+  base64Width: InputMaybe<Scalars['Int']>;
+  cropFocus?: InputMaybe<ImageCropFocus>;
+  duotone: InputMaybe<DuotoneGradient>;
+  fit?: InputMaybe<ImageFit>;
+  grayscale?: InputMaybe<Scalars['Boolean']>;
+  height: InputMaybe<Scalars['Int']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  jpegQuality: InputMaybe<Scalars['Int']>;
+  pngCompressionSpeed?: InputMaybe<Scalars['Int']>;
+  pngQuality: InputMaybe<Scalars['Int']>;
+  quality: InputMaybe<Scalars['Int']>;
+  rotate?: InputMaybe<Scalars['Int']>;
+  toFormat?: InputMaybe<ImageFormat>;
+  toFormatBase64?: InputMaybe<ImageFormat>;
+  traceSVG: InputMaybe<Potrace>;
+  trim?: InputMaybe<Scalars['Float']>;
+  webpQuality: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharp_fluidArgs = {
+  background?: InputMaybe<Scalars['String']>;
+  base64Width: InputMaybe<Scalars['Int']>;
+  cropFocus?: InputMaybe<ImageCropFocus>;
+  duotone: InputMaybe<DuotoneGradient>;
+  fit?: InputMaybe<ImageFit>;
+  grayscale?: InputMaybe<Scalars['Boolean']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  jpegQuality: InputMaybe<Scalars['Int']>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth: InputMaybe<Scalars['Int']>;
+  pngCompressionSpeed?: InputMaybe<Scalars['Int']>;
+  pngQuality: InputMaybe<Scalars['Int']>;
+  quality: InputMaybe<Scalars['Int']>;
+  rotate?: InputMaybe<Scalars['Int']>;
+  sizes?: InputMaybe<Scalars['String']>;
+  srcSetBreakpoints?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  toFormat?: InputMaybe<ImageFormat>;
+  toFormatBase64?: InputMaybe<ImageFormat>;
+  traceSVG: InputMaybe<Potrace>;
+  trim?: InputMaybe<Scalars['Float']>;
+  webpQuality: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharp_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  avifOptions: InputMaybe<AVIFOptions>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  blurredOptions: InputMaybe<BlurredOptions>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  formats: InputMaybe<ReadonlyArray<InputMaybe<ImageFormat>>>;
+  height: InputMaybe<Scalars['Int']>;
+  jpgOptions: InputMaybe<JPGOptions>;
+  layout?: InputMaybe<ImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImagePlaceholder>;
+  pngOptions: InputMaybe<PNGOptions>;
+  quality: InputMaybe<Scalars['Int']>;
+  sizes: InputMaybe<Scalars['String']>;
+  tracedSVGOptions: InputMaybe<Potrace>;
+  transformOptions: InputMaybe<TransformOptions>;
+  webpOptions: InputMaybe<WebPOptions>;
+  width: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharp_resizeArgs = {
+  background?: InputMaybe<Scalars['String']>;
+  base64?: InputMaybe<Scalars['Boolean']>;
+  cropFocus?: InputMaybe<ImageCropFocus>;
+  duotone: InputMaybe<DuotoneGradient>;
+  fit?: InputMaybe<ImageFit>;
+  grayscale?: InputMaybe<Scalars['Boolean']>;
+  height: InputMaybe<Scalars['Int']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  jpegQuality: InputMaybe<Scalars['Int']>;
+  pngCompressionLevel?: InputMaybe<Scalars['Int']>;
+  pngCompressionSpeed?: InputMaybe<Scalars['Int']>;
+  pngQuality: InputMaybe<Scalars['Int']>;
+  quality: InputMaybe<Scalars['Int']>;
+  rotate?: InputMaybe<Scalars['Int']>;
+  toFormat?: InputMaybe<ImageFormat>;
+  traceSVG: InputMaybe<Potrace>;
+  trim?: InputMaybe<Scalars['Float']>;
+  webpQuality: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+};
+
+type ImageSharpConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<ImageSharpEdge>;
+  readonly group: ReadonlyArray<ImageSharpGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<ImageSharp>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type ImageSharpConnection_distinctArgs = {
+  field: ImageSharpFieldsEnum;
+};
+
+
+type ImageSharpConnection_groupArgs = {
+  field: ImageSharpFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharpConnection_maxArgs = {
+  field: ImageSharpFieldsEnum;
+};
+
+
+type ImageSharpConnection_minArgs = {
+  field: ImageSharpFieldsEnum;
+};
+
+
+type ImageSharpConnection_sumArgs = {
+  field: ImageSharpFieldsEnum;
+};
+
+type ImageSharpEdge = {
+  readonly next: Maybe<ImageSharp>;
+  readonly node: ImageSharp;
+  readonly previous: Maybe<ImageSharp>;
+};
+
+type ImageSharpFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'fixed___aspectRatio'
+  | 'fixed___base64'
+  | 'fixed___height'
+  | 'fixed___originalName'
+  | 'fixed___src'
+  | 'fixed___srcSet'
+  | 'fixed___srcSetWebp'
+  | 'fixed___srcWebp'
+  | 'fixed___tracedSVG'
+  | 'fixed___width'
+  | 'fluid___aspectRatio'
+  | 'fluid___base64'
+  | 'fluid___originalImg'
+  | 'fluid___originalName'
+  | 'fluid___presentationHeight'
+  | 'fluid___presentationWidth'
+  | 'fluid___sizes'
+  | 'fluid___src'
+  | 'fluid___srcSet'
+  | 'fluid___srcSetWebp'
+  | 'fluid___srcWebp'
+  | 'fluid___tracedSVG'
+  | 'gatsbyImageData'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'original___height'
+  | 'original___src'
+  | 'original___width'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'resize___aspectRatio'
+  | 'resize___height'
+  | 'resize___originalName'
+  | 'resize___src'
+  | 'resize___tracedSVG'
+  | 'resize___width';
+
+type ImageSharpFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly fixed: InputMaybe<ImageSharpFixedFilterInput>;
+  readonly fluid: InputMaybe<ImageSharpFluidFilterInput>;
+  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly original: InputMaybe<ImageSharpOriginalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly resize: InputMaybe<ImageSharpResizeFilterInput>;
+};
+
+type ImageSharpFilterListInput = {
+  readonly elemMatch: InputMaybe<ImageSharpFilterInput>;
+};
+
+type ImageSharpFixed = {
+  readonly aspectRatio: Maybe<Scalars['Float']>;
+  readonly base64: Maybe<Scalars['String']>;
+  readonly height: Scalars['Float'];
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly src: Scalars['String'];
+  readonly srcSet: Scalars['String'];
+  readonly srcSetWebp: Maybe<Scalars['String']>;
+  readonly srcWebp: Maybe<Scalars['String']>;
+  readonly tracedSVG: Maybe<Scalars['String']>;
+  readonly width: Scalars['Float'];
+};
+
+type ImageSharpFixedFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly base64: InputMaybe<StringQueryOperatorInput>;
+  readonly height: InputMaybe<FloatQueryOperatorInput>;
+  readonly originalName: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<FloatQueryOperatorInput>;
+};
+
+type ImageSharpFluid = {
+  readonly aspectRatio: Scalars['Float'];
+  readonly base64: Maybe<Scalars['String']>;
+  readonly originalImg: Maybe<Scalars['String']>;
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly presentationHeight: Scalars['Int'];
+  readonly presentationWidth: Scalars['Int'];
+  readonly sizes: Scalars['String'];
+  readonly src: Scalars['String'];
+  readonly srcSet: Scalars['String'];
+  readonly srcSetWebp: Maybe<Scalars['String']>;
+  readonly srcWebp: Maybe<Scalars['String']>;
+  readonly tracedSVG: Maybe<Scalars['String']>;
+};
+
+type ImageSharpFluidFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly base64: InputMaybe<StringQueryOperatorInput>;
+  readonly originalImg: InputMaybe<StringQueryOperatorInput>;
+  readonly originalName: InputMaybe<StringQueryOperatorInput>;
+  readonly presentationHeight: InputMaybe<IntQueryOperatorInput>;
+  readonly presentationWidth: InputMaybe<IntQueryOperatorInput>;
+  readonly sizes: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+};
+
+type ImageSharpGroupConnection = {
+  readonly edges: ReadonlyArray<ImageSharpEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<ImageSharp>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type ImageSharpOriginal = {
+  readonly height: Maybe<Scalars['Float']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Float']>;
+};
+
+type ImageSharpOriginalFilterInput = {
+  readonly height: InputMaybe<FloatQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<FloatQueryOperatorInput>;
+};
+
+type ImageSharpResize = {
+  readonly aspectRatio: Maybe<Scalars['Float']>;
+  readonly height: Maybe<Scalars['Int']>;
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly tracedSVG: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+};
+
+type ImageSharpResizeFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly height: InputMaybe<IntQueryOperatorInput>;
+  readonly originalName: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<IntQueryOperatorInput>;
+};
+
+type ImageSharpSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<ImageSharpFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type IntQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['Int']>;
+  readonly gt: InputMaybe<Scalars['Int']>;
+  readonly gte: InputMaybe<Scalars['Int']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  readonly lt: InputMaybe<Scalars['Int']>;
+  readonly lte: InputMaybe<Scalars['Int']>;
+  readonly ne: InputMaybe<Scalars['Int']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+type Internal = {
+  readonly content: Maybe<Scalars['String']>;
+  readonly contentDigest: Scalars['String'];
+  readonly description: Maybe<Scalars['String']>;
+  readonly fieldOwners: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly ignoreType: Maybe<Scalars['Boolean']>;
+  readonly mediaType: Maybe<Scalars['String']>;
+  readonly owner: Scalars['String'];
+  readonly type: Scalars['String'];
+};
+
+type InternalFilterInput = {
+  readonly content: InputMaybe<StringQueryOperatorInput>;
+  readonly contentDigest: InputMaybe<StringQueryOperatorInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly fieldOwners: InputMaybe<StringQueryOperatorInput>;
+  readonly ignoreType: InputMaybe<BooleanQueryOperatorInput>;
+  readonly mediaType: InputMaybe<StringQueryOperatorInput>;
+  readonly owner: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+};
+
+type JPGOptions = {
+  readonly progressive: InputMaybe<Scalars['Boolean']>;
+  readonly quality: InputMaybe<Scalars['Int']>;
+};
+
+type JSONQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['JSON']>;
+  readonly glob: InputMaybe<Scalars['JSON']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['JSON']>>>;
+  readonly ne: InputMaybe<Scalars['JSON']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['JSON']>>>;
+  readonly regex: InputMaybe<Scalars['JSON']>;
+};
+
+type Node = {
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type NodeFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type NodeFilterListInput = {
+  readonly elemMatch: InputMaybe<NodeFilterInput>;
+};
+
+type PNGOptions = {
+  readonly compressionSpeed: InputMaybe<Scalars['Int']>;
+  readonly quality: InputMaybe<Scalars['Int']>;
+};
+
+type PageInfo = {
+  readonly currentPage: Scalars['Int'];
+  readonly hasNextPage: Scalars['Boolean'];
+  readonly hasPreviousPage: Scalars['Boolean'];
+  readonly itemCount: Scalars['Int'];
+  readonly pageCount: Scalars['Int'];
+  readonly perPage: Maybe<Scalars['Int']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+type Potrace = {
+  readonly alphaMax: InputMaybe<Scalars['Float']>;
+  readonly background: InputMaybe<Scalars['String']>;
+  readonly blackOnWhite: InputMaybe<Scalars['Boolean']>;
+  readonly color: InputMaybe<Scalars['String']>;
+  readonly optCurve: InputMaybe<Scalars['Boolean']>;
+  readonly optTolerance: InputMaybe<Scalars['Float']>;
+  readonly threshold: InputMaybe<Scalars['Int']>;
+  readonly turdSize: InputMaybe<Scalars['Float']>;
+  readonly turnPolicy: InputMaybe<PotraceTurnPolicy>;
+};
+
+type PotraceTurnPolicy =
+  | 'TURNPOLICY_BLACK'
+  | 'TURNPOLICY_LEFT'
+  | 'TURNPOLICY_MAJORITY'
+  | 'TURNPOLICY_MINORITY'
+  | 'TURNPOLICY_RIGHT'
+  | 'TURNPOLICY_WHITE';
+
+type Query = {
+  readonly allDirectory: DirectoryConnection;
+  readonly allFile: FileConnection;
+  readonly allImageSharp: ImageSharpConnection;
+  readonly allSite: SiteConnection;
+  readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
+  readonly allSiteFunction: SiteFunctionConnection;
+  readonly allSitePage: SitePageConnection;
+  readonly directory: Maybe<Directory>;
+  readonly file: Maybe<File>;
+  readonly imageSharp: Maybe<ImageSharp>;
+  readonly site: Maybe<Site>;
+  readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
+  readonly siteFunction: Maybe<SiteFunction>;
+  readonly sitePage: Maybe<SitePage>;
+};
+
+
+type Query_allDirectoryArgs = {
+  filter: InputMaybe<DirectoryFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<DirectorySortInput>;
+};
+
+
+type Query_allFileArgs = {
+  filter: InputMaybe<FileFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<FileSortInput>;
+};
+
+
+type Query_allImageSharpArgs = {
+  filter: InputMaybe<ImageSharpFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ImageSharpSortInput>;
+};
+
+
+type Query_allSiteArgs = {
+  filter: InputMaybe<SiteFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<SiteSortInput>;
+};
+
+
+type Query_allSiteBuildMetadataArgs = {
+  filter: InputMaybe<SiteBuildMetadataFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<SiteBuildMetadataSortInput>;
+};
+
+
+type Query_allSiteFunctionArgs = {
+  filter: InputMaybe<SiteFunctionFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<SiteFunctionSortInput>;
+};
+
+
+type Query_allSitePageArgs = {
+  filter: InputMaybe<SitePageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<SitePageSortInput>;
+};
+
+
+type Query_directoryArgs = {
+  absolutePath: InputMaybe<StringQueryOperatorInput>;
+  accessTime: InputMaybe<DateQueryOperatorInput>;
+  atime: InputMaybe<DateQueryOperatorInput>;
+  atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  base: InputMaybe<StringQueryOperatorInput>;
+  birthTime: InputMaybe<DateQueryOperatorInput>;
+  birthtime: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  blksize: InputMaybe<IntQueryOperatorInput>;
+  blocks: InputMaybe<IntQueryOperatorInput>;
+  changeTime: InputMaybe<DateQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  ctime: InputMaybe<DateQueryOperatorInput>;
+  ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  dev: InputMaybe<IntQueryOperatorInput>;
+  dir: InputMaybe<StringQueryOperatorInput>;
+  ext: InputMaybe<StringQueryOperatorInput>;
+  extension: InputMaybe<StringQueryOperatorInput>;
+  gid: InputMaybe<IntQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  ino: InputMaybe<FloatQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  mode: InputMaybe<IntQueryOperatorInput>;
+  modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  mtime: InputMaybe<DateQueryOperatorInput>;
+  mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  nlink: InputMaybe<IntQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prettySize: InputMaybe<StringQueryOperatorInput>;
+  rdev: InputMaybe<IntQueryOperatorInput>;
+  relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  relativePath: InputMaybe<StringQueryOperatorInput>;
+  root: InputMaybe<StringQueryOperatorInput>;
+  size: InputMaybe<IntQueryOperatorInput>;
+  sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+
+type Query_fileArgs = {
+  absolutePath: InputMaybe<StringQueryOperatorInput>;
+  accessTime: InputMaybe<DateQueryOperatorInput>;
+  atime: InputMaybe<DateQueryOperatorInput>;
+  atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  base: InputMaybe<StringQueryOperatorInput>;
+  birthTime: InputMaybe<DateQueryOperatorInput>;
+  birthtime: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  blksize: InputMaybe<IntQueryOperatorInput>;
+  blocks: InputMaybe<IntQueryOperatorInput>;
+  changeTime: InputMaybe<DateQueryOperatorInput>;
+  childImageSharp: InputMaybe<ImageSharpFilterInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
+  ctime: InputMaybe<DateQueryOperatorInput>;
+  ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  dev: InputMaybe<IntQueryOperatorInput>;
+  dir: InputMaybe<StringQueryOperatorInput>;
+  ext: InputMaybe<StringQueryOperatorInput>;
+  extension: InputMaybe<StringQueryOperatorInput>;
+  gid: InputMaybe<IntQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  ino: InputMaybe<FloatQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  mode: InputMaybe<IntQueryOperatorInput>;
+  modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  mtime: InputMaybe<DateQueryOperatorInput>;
+  mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  nlink: InputMaybe<IntQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prettySize: InputMaybe<StringQueryOperatorInput>;
+  publicURL: InputMaybe<StringQueryOperatorInput>;
+  rdev: InputMaybe<IntQueryOperatorInput>;
+  relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  relativePath: InputMaybe<StringQueryOperatorInput>;
+  root: InputMaybe<StringQueryOperatorInput>;
+  size: InputMaybe<IntQueryOperatorInput>;
+  sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+
+type Query_imageSharpArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  fixed: InputMaybe<ImageSharpFixedFilterInput>;
+  fluid: InputMaybe<ImageSharpFluidFilterInput>;
+  gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  original: InputMaybe<ImageSharpOriginalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  resize: InputMaybe<ImageSharpResizeFilterInput>;
+};
+
+
+type Query_siteArgs = {
+  buildTime: InputMaybe<DateQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  pathPrefix: InputMaybe<StringQueryOperatorInput>;
+  polyfill: InputMaybe<BooleanQueryOperatorInput>;
+  siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
+};
+
+
+type Query_siteBuildMetadataArgs = {
+  buildTime: InputMaybe<DateQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
+type Query_siteFunctionArgs = {
+  absoluteCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
+  apiRoute: InputMaybe<StringQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  matchPath: InputMaybe<StringQueryOperatorInput>;
+  originalFilePath: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  relativeCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_sitePageArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  component: InputMaybe<StringQueryOperatorInput>;
+  componentChunkName: InputMaybe<StringQueryOperatorInput>;
+  componentPath: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  internalComponentName: InputMaybe<StringQueryOperatorInput>;
+  isCreatedByStatefulCreatePages: InputMaybe<BooleanQueryOperatorInput>;
+  matchPath: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  path: InputMaybe<StringQueryOperatorInput>;
+};
+
+type Site = Node & {
+  readonly buildTime: Maybe<Scalars['Date']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+  readonly pathPrefix: Maybe<Scalars['String']>;
+  readonly polyfill: Maybe<Scalars['Boolean']>;
+  readonly siteMetadata: Maybe<SiteSiteMetadata>;
+};
+
+
+type Site_buildTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type SiteBuildMetadata = Node & {
+  readonly buildTime: Maybe<Scalars['Date']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+
+type SiteBuildMetadata_buildTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type SiteBuildMetadataConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<SiteBuildMetadataEdge>;
+  readonly group: ReadonlyArray<SiteBuildMetadataGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<SiteBuildMetadata>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type SiteBuildMetadataConnection_distinctArgs = {
+  field: SiteBuildMetadataFieldsEnum;
+};
+
+
+type SiteBuildMetadataConnection_groupArgs = {
+  field: SiteBuildMetadataFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type SiteBuildMetadataConnection_maxArgs = {
+  field: SiteBuildMetadataFieldsEnum;
+};
+
+
+type SiteBuildMetadataConnection_minArgs = {
+  field: SiteBuildMetadataFieldsEnum;
+};
+
+
+type SiteBuildMetadataConnection_sumArgs = {
+  field: SiteBuildMetadataFieldsEnum;
+};
+
+type SiteBuildMetadataEdge = {
+  readonly next: Maybe<SiteBuildMetadata>;
+  readonly node: SiteBuildMetadata;
+  readonly previous: Maybe<SiteBuildMetadata>;
+};
+
+type SiteBuildMetadataFieldsEnum =
+  | 'buildTime'
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id';
+
+type SiteBuildMetadataFilterInput = {
+  readonly buildTime: InputMaybe<DateQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type SiteBuildMetadataGroupConnection = {
+  readonly edges: ReadonlyArray<SiteBuildMetadataEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<SiteBuildMetadata>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type SiteBuildMetadataSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<SiteBuildMetadataFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type SiteConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<SiteEdge>;
+  readonly group: ReadonlyArray<SiteGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<Site>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type SiteConnection_distinctArgs = {
+  field: SiteFieldsEnum;
+};
+
+
+type SiteConnection_groupArgs = {
+  field: SiteFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type SiteConnection_maxArgs = {
+  field: SiteFieldsEnum;
+};
+
+
+type SiteConnection_minArgs = {
+  field: SiteFieldsEnum;
+};
+
+
+type SiteConnection_sumArgs = {
+  field: SiteFieldsEnum;
+};
+
+type SiteEdge = {
+  readonly next: Maybe<Site>;
+  readonly node: Site;
+  readonly previous: Maybe<Site>;
+};
+
+type SiteFieldsEnum =
+  | 'buildTime'
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'pathPrefix'
+  | 'polyfill'
+  | 'siteMetadata___author'
+  | 'siteMetadata___description'
+  | 'siteMetadata___title';
+
+type SiteFilterInput = {
+  readonly buildTime: InputMaybe<DateQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly pathPrefix: InputMaybe<StringQueryOperatorInput>;
+  readonly polyfill: InputMaybe<BooleanQueryOperatorInput>;
+  readonly siteMetadata: InputMaybe<SiteSiteMetadataFilterInput>;
+};
+
+type SiteFunction = Node & {
+  readonly absoluteCompiledFilePath: Scalars['String'];
+  readonly apiRoute: Scalars['String'];
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly matchPath: Maybe<Scalars['String']>;
+  readonly originalFilePath: Scalars['String'];
+  readonly parent: Maybe<Node>;
+  readonly relativeCompiledFilePath: Scalars['String'];
+};
+
+type SiteFunctionConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<SiteFunctionEdge>;
+  readonly group: ReadonlyArray<SiteFunctionGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<SiteFunction>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type SiteFunctionConnection_distinctArgs = {
+  field: SiteFunctionFieldsEnum;
+};
+
+
+type SiteFunctionConnection_groupArgs = {
+  field: SiteFunctionFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type SiteFunctionConnection_maxArgs = {
+  field: SiteFunctionFieldsEnum;
+};
+
+
+type SiteFunctionConnection_minArgs = {
+  field: SiteFunctionFieldsEnum;
+};
+
+
+type SiteFunctionConnection_sumArgs = {
+  field: SiteFunctionFieldsEnum;
+};
+
+type SiteFunctionEdge = {
+  readonly next: Maybe<SiteFunction>;
+  readonly node: SiteFunction;
+  readonly previous: Maybe<SiteFunction>;
+};
+
+type SiteFunctionFieldsEnum =
+  | 'absoluteCompiledFilePath'
+  | 'apiRoute'
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'matchPath'
+  | 'originalFilePath'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'relativeCompiledFilePath';
+
+type SiteFunctionFilterInput = {
+  readonly absoluteCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
+  readonly apiRoute: InputMaybe<StringQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly matchPath: InputMaybe<StringQueryOperatorInput>;
+  readonly originalFilePath: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly relativeCompiledFilePath: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SiteFunctionGroupConnection = {
+  readonly edges: ReadonlyArray<SiteFunctionEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<SiteFunction>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type SiteFunctionSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<SiteFunctionFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type SiteGroupConnection = {
+  readonly edges: ReadonlyArray<SiteEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<Site>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type SitePage = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly component: Scalars['String'];
+  readonly componentChunkName: Scalars['String'];
+  readonly componentPath: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly internalComponentName: Scalars['String'];
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly matchPath: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly path: Scalars['String'];
+};
+
+type SitePageConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<SitePageEdge>;
+  readonly group: ReadonlyArray<SitePageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<SitePage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type SitePageConnection_distinctArgs = {
+  field: SitePageFieldsEnum;
+};
+
+
+type SitePageConnection_groupArgs = {
+  field: SitePageFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type SitePageConnection_maxArgs = {
+  field: SitePageFieldsEnum;
+};
+
+
+type SitePageConnection_minArgs = {
+  field: SitePageFieldsEnum;
+};
+
+
+type SitePageConnection_sumArgs = {
+  field: SitePageFieldsEnum;
+};
+
+type SitePageEdge = {
+  readonly next: Maybe<SitePage>;
+  readonly node: SitePage;
+  readonly previous: Maybe<SitePage>;
+};
+
+type SitePageFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'component'
+  | 'componentChunkName'
+  | 'componentPath'
+  | 'id'
+  | 'internalComponentName'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'isCreatedByStatefulCreatePages'
+  | 'matchPath'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'path';
+
+type SitePageFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly component: InputMaybe<StringQueryOperatorInput>;
+  readonly componentChunkName: InputMaybe<StringQueryOperatorInput>;
+  readonly componentPath: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly internalComponentName: InputMaybe<StringQueryOperatorInput>;
+  readonly isCreatedByStatefulCreatePages: InputMaybe<BooleanQueryOperatorInput>;
+  readonly matchPath: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly path: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SitePageGroupConnection = {
+  readonly edges: ReadonlyArray<SitePageEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly nodes: ReadonlyArray<SitePage>;
+  readonly pageInfo: PageInfo;
+  readonly totalCount: Scalars['Int'];
+};
+
+type SitePageSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<SitePageFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type SiteSiteMetadata = {
+  readonly author: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+type SiteSiteMetadataFilterInput = {
+  readonly author: InputMaybe<StringQueryOperatorInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SiteSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<SiteFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
+
+type SortOrderEnum =
+  | 'ASC'
+  | 'DESC';
+
+type StringQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['String']>;
+  readonly glob: InputMaybe<Scalars['String']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly ne: InputMaybe<Scalars['String']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
+  readonly regex: InputMaybe<Scalars['String']>;
+};
+
+type TransformOptions = {
+  readonly cropFocus: InputMaybe<ImageCropFocus>;
+  readonly duotone: InputMaybe<DuotoneGradient>;
+  readonly fit: InputMaybe<ImageFit>;
+  readonly grayscale: InputMaybe<Scalars['Boolean']>;
+  readonly rotate: InputMaybe<Scalars['Int']>;
+  readonly trim: InputMaybe<Scalars['Float']>;
+};
+
+type WebPOptions = {
+  readonly quality: InputMaybe<Scalars['Int']>;
+};
+
+type TestQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type TestQuery = { readonly site: { readonly siteMetadata: { readonly title: string | undefined } | undefined } | undefined };
+
+
+
+export type ResolverTypeWrapper<T> = Promise<T> | T;
+
+
+export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
+  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
+};
+export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
+
+export type ResolverFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => Promise<TResult> | TResult;
+
+export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => AsyncIterable<TResult> | Promise<AsyncIterable<TResult>>;
+
+export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => TResult | Promise<TResult>;
+
+export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
+  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
+  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
+}
+
+export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
+  subscribe: SubscriptionSubscribeFn<any, TParent, TContext, TArgs>;
+  resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
+}
+
+export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
+  | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
+  | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
+
+export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
+  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
+  | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
+
+export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
+  parent: TParent,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
+
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+
+export type NextResolverFn<T> = () => Promise<T>;
+
+export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
+  next: NextResolverFn<TResult>,
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => TResult | Promise<TResult>;
+
+/** Mapping between all available schema types and the resolvers types */
+export type ResolversTypes = {
+  AVIFOptions: AVIFOptions;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  BlurredOptions: BlurredOptions;
+  BooleanQueryOperatorInput: BooleanQueryOperatorInput;
+  Date: ResolverTypeWrapper<Scalars['Date']>;
+  DateQueryOperatorInput: DateQueryOperatorInput;
+  Directory: ResolverTypeWrapper<Directory>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  Float: ResolverTypeWrapper<Scalars['Float']>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
+  DirectoryConnection: ResolverTypeWrapper<DirectoryConnection>;
+  DirectoryEdge: ResolverTypeWrapper<DirectoryEdge>;
+  DirectoryFieldsEnum: DirectoryFieldsEnum;
+  DirectoryFilterInput: DirectoryFilterInput;
+  DirectoryGroupConnection: ResolverTypeWrapper<DirectoryGroupConnection>;
+  DirectorySortInput: DirectorySortInput;
+  DuotoneGradient: DuotoneGradient;
+  File: ResolverTypeWrapper<File>;
+  FileConnection: ResolverTypeWrapper<FileConnection>;
+  FileEdge: ResolverTypeWrapper<FileEdge>;
+  FileFieldsEnum: FileFieldsEnum;
+  FileFilterInput: FileFilterInput;
+  FileGroupConnection: ResolverTypeWrapper<FileGroupConnection>;
+  FileSortInput: FileSortInput;
+  FloatQueryOperatorInput: FloatQueryOperatorInput;
+  ImageCropFocus: ImageCropFocus;
+  ImageFit: ImageFit;
+  ImageFormat: ImageFormat;
+  ImageLayout: ImageLayout;
+  ImagePlaceholder: ImagePlaceholder;
+  ImageSharp: ResolverTypeWrapper<ImageSharp>;
+  ImageSharpConnection: ResolverTypeWrapper<ImageSharpConnection>;
+  ImageSharpEdge: ResolverTypeWrapper<ImageSharpEdge>;
+  ImageSharpFieldsEnum: ImageSharpFieldsEnum;
+  ImageSharpFilterInput: ImageSharpFilterInput;
+  ImageSharpFilterListInput: ImageSharpFilterListInput;
+  ImageSharpFixed: ResolverTypeWrapper<ImageSharpFixed>;
+  ImageSharpFixedFilterInput: ImageSharpFixedFilterInput;
+  ImageSharpFluid: ResolverTypeWrapper<ImageSharpFluid>;
+  ImageSharpFluidFilterInput: ImageSharpFluidFilterInput;
+  ImageSharpGroupConnection: ResolverTypeWrapper<ImageSharpGroupConnection>;
+  ImageSharpOriginal: ResolverTypeWrapper<ImageSharpOriginal>;
+  ImageSharpOriginalFilterInput: ImageSharpOriginalFilterInput;
+  ImageSharpResize: ResolverTypeWrapper<ImageSharpResize>;
+  ImageSharpResizeFilterInput: ImageSharpResizeFilterInput;
+  ImageSharpSortInput: ImageSharpSortInput;
+  IntQueryOperatorInput: IntQueryOperatorInput;
+  Internal: ResolverTypeWrapper<Internal>;
+  InternalFilterInput: InternalFilterInput;
+  JPGOptions: JPGOptions;
+  JSON: ResolverTypeWrapper<Scalars['JSON']>;
+  JSONQueryOperatorInput: JSONQueryOperatorInput;
+  Node: ResolversTypes['Directory'] | ResolversTypes['File'] | ResolversTypes['ImageSharp'] | ResolversTypes['Site'] | ResolversTypes['SiteBuildMetadata'] | ResolversTypes['SiteFunction'] | ResolversTypes['SitePage'];
+  NodeFilterInput: NodeFilterInput;
+  NodeFilterListInput: NodeFilterListInput;
+  PNGOptions: PNGOptions;
+  PageInfo: ResolverTypeWrapper<PageInfo>;
+  Potrace: Potrace;
+  PotraceTurnPolicy: PotraceTurnPolicy;
+  Query: ResolverTypeWrapper<{}>;
+  Site: ResolverTypeWrapper<Site>;
+  SiteBuildMetadata: ResolverTypeWrapper<SiteBuildMetadata>;
+  SiteBuildMetadataConnection: ResolverTypeWrapper<SiteBuildMetadataConnection>;
+  SiteBuildMetadataEdge: ResolverTypeWrapper<SiteBuildMetadataEdge>;
+  SiteBuildMetadataFieldsEnum: SiteBuildMetadataFieldsEnum;
+  SiteBuildMetadataFilterInput: SiteBuildMetadataFilterInput;
+  SiteBuildMetadataGroupConnection: ResolverTypeWrapper<SiteBuildMetadataGroupConnection>;
+  SiteBuildMetadataSortInput: SiteBuildMetadataSortInput;
+  SiteConnection: ResolverTypeWrapper<SiteConnection>;
+  SiteEdge: ResolverTypeWrapper<SiteEdge>;
+  SiteFieldsEnum: SiteFieldsEnum;
+  SiteFilterInput: SiteFilterInput;
+  SiteFunction: ResolverTypeWrapper<SiteFunction>;
+  SiteFunctionConnection: ResolverTypeWrapper<SiteFunctionConnection>;
+  SiteFunctionEdge: ResolverTypeWrapper<SiteFunctionEdge>;
+  SiteFunctionFieldsEnum: SiteFunctionFieldsEnum;
+  SiteFunctionFilterInput: SiteFunctionFilterInput;
+  SiteFunctionGroupConnection: ResolverTypeWrapper<SiteFunctionGroupConnection>;
+  SiteFunctionSortInput: SiteFunctionSortInput;
+  SiteGroupConnection: ResolverTypeWrapper<SiteGroupConnection>;
+  SitePage: ResolverTypeWrapper<SitePage>;
+  SitePageConnection: ResolverTypeWrapper<SitePageConnection>;
+  SitePageEdge: ResolverTypeWrapper<SitePageEdge>;
+  SitePageFieldsEnum: SitePageFieldsEnum;
+  SitePageFilterInput: SitePageFilterInput;
+  SitePageGroupConnection: ResolverTypeWrapper<SitePageGroupConnection>;
+  SitePageSortInput: SitePageSortInput;
+  SiteSiteMetadata: ResolverTypeWrapper<SiteSiteMetadata>;
+  SiteSiteMetadataFilterInput: SiteSiteMetadataFilterInput;
+  SiteSortInput: SiteSortInput;
+  SortOrderEnum: SortOrderEnum;
+  StringQueryOperatorInput: StringQueryOperatorInput;
+  TransformOptions: TransformOptions;
+  WebPOptions: WebPOptions;
+};
+
+/** Mapping between all available schema types and the resolvers parents */
+export type ResolversParentTypes = {
+  AVIFOptions: AVIFOptions;
+  Boolean: Scalars['Boolean'];
+  Int: Scalars['Int'];
+  BlurredOptions: BlurredOptions;
+  BooleanQueryOperatorInput: BooleanQueryOperatorInput;
+  Date: Scalars['Date'];
+  DateQueryOperatorInput: DateQueryOperatorInput;
+  Directory: Directory;
+  String: Scalars['String'];
+  Float: Scalars['Float'];
+  ID: Scalars['ID'];
+  DirectoryConnection: DirectoryConnection;
+  DirectoryEdge: DirectoryEdge;
+  DirectoryFilterInput: DirectoryFilterInput;
+  DirectoryGroupConnection: DirectoryGroupConnection;
+  DirectorySortInput: DirectorySortInput;
+  DuotoneGradient: DuotoneGradient;
+  File: File;
+  FileConnection: FileConnection;
+  FileEdge: FileEdge;
+  FileFilterInput: FileFilterInput;
+  FileGroupConnection: FileGroupConnection;
+  FileSortInput: FileSortInput;
+  FloatQueryOperatorInput: FloatQueryOperatorInput;
+  ImageSharp: ImageSharp;
+  ImageSharpConnection: ImageSharpConnection;
+  ImageSharpEdge: ImageSharpEdge;
+  ImageSharpFilterInput: ImageSharpFilterInput;
+  ImageSharpFilterListInput: ImageSharpFilterListInput;
+  ImageSharpFixed: ImageSharpFixed;
+  ImageSharpFixedFilterInput: ImageSharpFixedFilterInput;
+  ImageSharpFluid: ImageSharpFluid;
+  ImageSharpFluidFilterInput: ImageSharpFluidFilterInput;
+  ImageSharpGroupConnection: ImageSharpGroupConnection;
+  ImageSharpOriginal: ImageSharpOriginal;
+  ImageSharpOriginalFilterInput: ImageSharpOriginalFilterInput;
+  ImageSharpResize: ImageSharpResize;
+  ImageSharpResizeFilterInput: ImageSharpResizeFilterInput;
+  ImageSharpSortInput: ImageSharpSortInput;
+  IntQueryOperatorInput: IntQueryOperatorInput;
+  Internal: Internal;
+  InternalFilterInput: InternalFilterInput;
+  JPGOptions: JPGOptions;
+  JSON: Scalars['JSON'];
+  JSONQueryOperatorInput: JSONQueryOperatorInput;
+  Node: ResolversParentTypes['Directory'] | ResolversParentTypes['File'] | ResolversParentTypes['ImageSharp'] | ResolversParentTypes['Site'] | ResolversParentTypes['SiteBuildMetadata'] | ResolversParentTypes['SiteFunction'] | ResolversParentTypes['SitePage'];
+  NodeFilterInput: NodeFilterInput;
+  NodeFilterListInput: NodeFilterListInput;
+  PNGOptions: PNGOptions;
+  PageInfo: PageInfo;
+  Potrace: Potrace;
+  Query: {};
+  Site: Site;
+  SiteBuildMetadata: SiteBuildMetadata;
+  SiteBuildMetadataConnection: SiteBuildMetadataConnection;
+  SiteBuildMetadataEdge: SiteBuildMetadataEdge;
+  SiteBuildMetadataFilterInput: SiteBuildMetadataFilterInput;
+  SiteBuildMetadataGroupConnection: SiteBuildMetadataGroupConnection;
+  SiteBuildMetadataSortInput: SiteBuildMetadataSortInput;
+  SiteConnection: SiteConnection;
+  SiteEdge: SiteEdge;
+  SiteFilterInput: SiteFilterInput;
+  SiteFunction: SiteFunction;
+  SiteFunctionConnection: SiteFunctionConnection;
+  SiteFunctionEdge: SiteFunctionEdge;
+  SiteFunctionFilterInput: SiteFunctionFilterInput;
+  SiteFunctionGroupConnection: SiteFunctionGroupConnection;
+  SiteFunctionSortInput: SiteFunctionSortInput;
+  SiteGroupConnection: SiteGroupConnection;
+  SitePage: SitePage;
+  SitePageConnection: SitePageConnection;
+  SitePageEdge: SitePageEdge;
+  SitePageFilterInput: SitePageFilterInput;
+  SitePageGroupConnection: SitePageGroupConnection;
+  SitePageSortInput: SitePageSortInput;
+  SiteSiteMetadata: SiteSiteMetadata;
+  SiteSiteMetadataFilterInput: SiteSiteMetadataFilterInput;
+  SiteSortInput: SiteSortInput;
+  StringQueryOperatorInput: StringQueryOperatorInput;
+  TransformOptions: TransformOptions;
+  WebPOptions: WebPOptions;
+};
+
+export type childOfDirectiveArgs = {
+  mimeTypes?: ReadonlyArray<Scalars['String']>;
+  types?: ReadonlyArray<Scalars['String']>;
+};
+
+export type childOfDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = childOfDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type dateformatDirectiveArgs = {
+  difference: Maybe<Scalars['String']>;
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+export type dateformatDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = dateformatDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type dontInferDirectiveArgs = { };
+
+export type dontInferDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = dontInferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type fileByRelativePathDirectiveArgs = {
+  from: Maybe<Scalars['String']>;
+};
+
+export type fileByRelativePathDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = fileByRelativePathDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type inferDirectiveArgs = { };
+
+export type inferDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = inferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type linkDirectiveArgs = {
+  by?: Scalars['String'];
+  from: Maybe<Scalars['String']>;
+  on: Maybe<Scalars['String']>;
+};
+
+export type linkDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = linkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type mimeTypesDirectiveArgs = {
+  types?: ReadonlyArray<Scalars['String']>;
+};
+
+export type mimeTypesDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = mimeTypesDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type nodeInterfaceDirectiveArgs = { };
+
+export type nodeInterfaceDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = nodeInterfaceDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type proxyDirectiveArgs = {
+  from: Scalars['String'];
+  fromNode?: Scalars['Boolean'];
+};
+
+export type proxyDirectiveResolver<Result, Parent, ContextType = GatsbyResolverContext, Args = proxyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
+  name: 'Date';
+}
+
+export type DirectoryResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['Directory'] = ResolversParentTypes['Directory']> = {
+  absolutePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  accessTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_accessTimeArgs>>;
+  atime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_atimeArgs>>;
+  atimeMs: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  base: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  birthTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_birthTimeArgs>>;
+  birthtime: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
+  birthtimeMs: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  blksize: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  blocks: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  changeTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_changeTimeArgs>>;
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  ctime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_ctimeArgs>>;
+  ctimeMs: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  dev: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  dir: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  ext: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  extension: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  gid: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  ino: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  mode: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  modifiedTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_modifiedTimeArgs>>;
+  mtime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<Directory_mtimeArgs>>;
+  mtimeMs: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  name: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  nlink: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  prettySize: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  rdev: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  relativeDirectory: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  relativePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  root: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  size: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  sourceInstanceName: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  uid: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DirectoryConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['DirectoryConnection'] = ResolversParentTypes['DirectoryConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<DirectoryConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['DirectoryEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['DirectoryGroupConnection']>, ParentType, ContextType, RequireFields<DirectoryConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<DirectoryConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<DirectoryConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['Directory']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<DirectoryConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DirectoryEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['DirectoryEdge'] = ResolversParentTypes['DirectoryEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['Directory']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['Directory'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['Directory']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DirectoryGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['DirectoryGroupConnection'] = ResolversParentTypes['DirectoryGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['DirectoryEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['Directory']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type FileResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['File'] = ResolversParentTypes['File']> = {
+  absolutePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  accessTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_accessTimeArgs>>;
+  atime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_atimeArgs>>;
+  atimeMs: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  base: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  birthTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_birthTimeArgs>>;
+  birthtime: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
+  birthtimeMs: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  blksize: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  blocks: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  changeTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_changeTimeArgs>>;
+  childImageSharp: Resolver<Maybe<ResolversTypes['ImageSharp']>, ParentType, ContextType>;
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  childrenImageSharp: Resolver<Maybe<ReadonlyArray<Maybe<ResolversTypes['ImageSharp']>>>, ParentType, ContextType>;
+  ctime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_ctimeArgs>>;
+  ctimeMs: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  dev: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  dir: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  ext: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  extension: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  gid: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  ino: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  mode: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  modifiedTime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_modifiedTimeArgs>>;
+  mtime: Resolver<ResolversTypes['Date'], ParentType, ContextType, Partial<File_mtimeArgs>>;
+  mtimeMs: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  name: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  nlink: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  prettySize: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  publicURL: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  rdev: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  relativeDirectory: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  relativePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  root: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  size: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  sourceInstanceName: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  uid: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type FileConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['FileConnection'] = ResolversParentTypes['FileConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<FileConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['FileEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['FileGroupConnection']>, ParentType, ContextType, RequireFields<FileConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<FileConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<FileConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['File']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<FileConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type FileEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['FileEdge'] = ResolversParentTypes['FileEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['File']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['File'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['File']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type FileGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['FileGroupConnection'] = ResolversParentTypes['FileGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['FileEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['File']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharp'] = ResolversParentTypes['ImageSharp']> = {
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  fixed: Resolver<Maybe<ResolversTypes['ImageSharpFixed']>, ParentType, ContextType, RequireFields<ImageSharp_fixedArgs, 'background' | 'cropFocus' | 'fit' | 'grayscale' | 'jpegProgressive' | 'pngCompressionSpeed' | 'rotate' | 'toFormat' | 'toFormatBase64' | 'trim'>>;
+  fluid: Resolver<Maybe<ResolversTypes['ImageSharpFluid']>, ParentType, ContextType, RequireFields<ImageSharp_fluidArgs, 'background' | 'cropFocus' | 'fit' | 'grayscale' | 'jpegProgressive' | 'pngCompressionSpeed' | 'rotate' | 'sizes' | 'srcSetBreakpoints' | 'toFormat' | 'toFormatBase64' | 'trim'>>;
+  gatsbyImageData: Resolver<ResolversTypes['JSON'], ParentType, ContextType, RequireFields<ImageSharp_gatsbyImageDataArgs, 'layout'>>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  original: Resolver<Maybe<ResolversTypes['ImageSharpOriginal']>, ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  resize: Resolver<Maybe<ResolversTypes['ImageSharpResize']>, ParentType, ContextType, RequireFields<ImageSharp_resizeArgs, 'background' | 'base64' | 'cropFocus' | 'fit' | 'grayscale' | 'jpegProgressive' | 'pngCompressionLevel' | 'pngCompressionSpeed' | 'rotate' | 'toFormat' | 'trim'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpConnection'] = ResolversParentTypes['ImageSharpConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<ImageSharpConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['ImageSharpEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['ImageSharpGroupConnection']>, ParentType, ContextType, RequireFields<ImageSharpConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<ImageSharpConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<ImageSharpConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['ImageSharp']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<ImageSharpConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpEdge'] = ResolversParentTypes['ImageSharpEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['ImageSharp']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['ImageSharp'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['ImageSharp']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpFixedResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpFixed'] = ResolversParentTypes['ImageSharpFixed']> = {
+  aspectRatio: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  base64: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  height: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  originalName: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  src: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  srcSet: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  srcSetWebp: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  srcWebp: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tracedSVG: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  width: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpFluidResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpFluid'] = ResolversParentTypes['ImageSharpFluid']> = {
+  aspectRatio: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  base64: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  originalImg: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  originalName: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  presentationHeight: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  presentationWidth: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  sizes: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  src: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  srcSet: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  srcSetWebp: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  srcWebp: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tracedSVG: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpGroupConnection'] = ResolversParentTypes['ImageSharpGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['ImageSharpEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['ImageSharp']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpOriginalResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpOriginal'] = ResolversParentTypes['ImageSharpOriginal']> = {
+  height: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  src: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  width: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ImageSharpResizeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['ImageSharpResize'] = ResolversParentTypes['ImageSharpResize']> = {
+  aspectRatio: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  height: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  originalName: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  src: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tracedSVG: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  width: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type InternalResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['Internal'] = ResolversParentTypes['Internal']> = {
+  content: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  contentDigest: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  fieldOwners: Resolver<Maybe<ReadonlyArray<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+  ignoreType: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  mediaType: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  owner: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  type: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface JSONScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
+  name: 'JSON';
+}
+
+export type NodeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['Node'] = ResolversParentTypes['Node']> = {
+  __resolveType: TypeResolveFn<'Directory' | 'File' | 'ImageSharp' | 'Site' | 'SiteBuildMetadata' | 'SiteFunction' | 'SitePage', ParentType, ContextType>;
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+};
+
+export type PageInfoResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']> = {
+  currentPage: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  hasNextPage: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  hasPreviousPage: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  itemCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  pageCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  perPage: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type QueryResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  allDirectory: Resolver<ResolversTypes['DirectoryConnection'], ParentType, ContextType, Partial<Query_allDirectoryArgs>>;
+  allFile: Resolver<ResolversTypes['FileConnection'], ParentType, ContextType, Partial<Query_allFileArgs>>;
+  allImageSharp: Resolver<ResolversTypes['ImageSharpConnection'], ParentType, ContextType, Partial<Query_allImageSharpArgs>>;
+  allSite: Resolver<ResolversTypes['SiteConnection'], ParentType, ContextType, Partial<Query_allSiteArgs>>;
+  allSiteBuildMetadata: Resolver<ResolversTypes['SiteBuildMetadataConnection'], ParentType, ContextType, Partial<Query_allSiteBuildMetadataArgs>>;
+  allSiteFunction: Resolver<ResolversTypes['SiteFunctionConnection'], ParentType, ContextType, Partial<Query_allSiteFunctionArgs>>;
+  allSitePage: Resolver<ResolversTypes['SitePageConnection'], ParentType, ContextType, Partial<Query_allSitePageArgs>>;
+  directory: Resolver<Maybe<ResolversTypes['Directory']>, ParentType, ContextType, Partial<Query_directoryArgs>>;
+  file: Resolver<Maybe<ResolversTypes['File']>, ParentType, ContextType, Partial<Query_fileArgs>>;
+  imageSharp: Resolver<Maybe<ResolversTypes['ImageSharp']>, ParentType, ContextType, Partial<Query_imageSharpArgs>>;
+  site: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, Partial<Query_siteArgs>>;
+  siteBuildMetadata: Resolver<Maybe<ResolversTypes['SiteBuildMetadata']>, ParentType, ContextType, Partial<Query_siteBuildMetadataArgs>>;
+  siteFunction: Resolver<Maybe<ResolversTypes['SiteFunction']>, ParentType, ContextType, Partial<Query_siteFunctionArgs>>;
+  sitePage: Resolver<Maybe<ResolversTypes['SitePage']>, ParentType, ContextType, Partial<Query_sitePageArgs>>;
+};
+
+export type SiteResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['Site'] = ResolversParentTypes['Site']> = {
+  buildTime: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType, Partial<Site_buildTimeArgs>>;
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  pathPrefix: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  polyfill: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  siteMetadata: Resolver<Maybe<ResolversTypes['SiteSiteMetadata']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteBuildMetadataResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteBuildMetadata'] = ResolversParentTypes['SiteBuildMetadata']> = {
+  buildTime: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType, Partial<SiteBuildMetadata_buildTimeArgs>>;
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteBuildMetadataConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteBuildMetadataConnection'] = ResolversParentTypes['SiteBuildMetadataConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<SiteBuildMetadataConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['SiteBuildMetadataEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['SiteBuildMetadataGroupConnection']>, ParentType, ContextType, RequireFields<SiteBuildMetadataConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteBuildMetadataConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteBuildMetadataConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['SiteBuildMetadata']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteBuildMetadataConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteBuildMetadataEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteBuildMetadataEdge'] = ResolversParentTypes['SiteBuildMetadataEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['SiteBuildMetadata']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['SiteBuildMetadata'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['SiteBuildMetadata']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteBuildMetadataGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteBuildMetadataGroupConnection'] = ResolversParentTypes['SiteBuildMetadataGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['SiteBuildMetadataEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['SiteBuildMetadata']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteConnection'] = ResolversParentTypes['SiteConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<SiteConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['SiteEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['SiteGroupConnection']>, ParentType, ContextType, RequireFields<SiteConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['Site']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteEdge'] = ResolversParentTypes['SiteEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['Site'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteFunctionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteFunction'] = ResolversParentTypes['SiteFunction']> = {
+  absoluteCompiledFilePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  apiRoute: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  matchPath: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  originalFilePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  relativeCompiledFilePath: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteFunctionConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteFunctionConnection'] = ResolversParentTypes['SiteFunctionConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<SiteFunctionConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['SiteFunctionEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['SiteFunctionGroupConnection']>, ParentType, ContextType, RequireFields<SiteFunctionConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteFunctionConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteFunctionConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['SiteFunction']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SiteFunctionConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteFunctionEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteFunctionEdge'] = ResolversParentTypes['SiteFunctionEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['SiteFunction']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['SiteFunction'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['SiteFunction']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteFunctionGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteFunctionGroupConnection'] = ResolversParentTypes['SiteFunctionGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['SiteFunctionEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['SiteFunction']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteGroupConnection'] = ResolversParentTypes['SiteGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['SiteEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['Site']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SitePageResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SitePage'] = ResolversParentTypes['SitePage']> = {
+  children: Resolver<ReadonlyArray<ResolversTypes['Node']>, ParentType, ContextType>;
+  component: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  componentChunkName: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  componentPath: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  internal: Resolver<ResolversTypes['Internal'], ParentType, ContextType>;
+  internalComponentName: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  isCreatedByStatefulCreatePages: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  matchPath: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  parent: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType>;
+  path: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SitePageConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SitePageConnection'] = ResolversParentTypes['SitePageConnection']> = {
+  distinct: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType, RequireFields<SitePageConnection_distinctArgs, 'field'>>;
+  edges: Resolver<ReadonlyArray<ResolversTypes['SitePageEdge']>, ParentType, ContextType>;
+  group: Resolver<ReadonlyArray<ResolversTypes['SitePageGroupConnection']>, ParentType, ContextType, RequireFields<SitePageConnection_groupArgs, 'field'>>;
+  max: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SitePageConnection_maxArgs, 'field'>>;
+  min: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SitePageConnection_minArgs, 'field'>>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['SitePage']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  sum: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<SitePageConnection_sumArgs, 'field'>>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SitePageEdgeResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SitePageEdge'] = ResolversParentTypes['SitePageEdge']> = {
+  next: Resolver<Maybe<ResolversTypes['SitePage']>, ParentType, ContextType>;
+  node: Resolver<ResolversTypes['SitePage'], ParentType, ContextType>;
+  previous: Resolver<Maybe<ResolversTypes['SitePage']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SitePageGroupConnectionResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SitePageGroupConnection'] = ResolversParentTypes['SitePageGroupConnection']> = {
+  edges: Resolver<ReadonlyArray<ResolversTypes['SitePageEdge']>, ParentType, ContextType>;
+  field: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fieldValue: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nodes: Resolver<ReadonlyArray<ResolversTypes['SitePage']>, ParentType, ContextType>;
+  pageInfo: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SiteSiteMetadataResolvers<ContextType = GatsbyResolverContext, ParentType extends ResolversParentTypes['SiteSiteMetadata'] = ResolversParentTypes['SiteSiteMetadata']> = {
+  author: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  description: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  title: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Resolvers<ContextType = GatsbyResolverContext> = {
+  Date: GraphQLScalarType;
+  Directory: DirectoryResolvers<ContextType>;
+  DirectoryConnection: DirectoryConnectionResolvers<ContextType>;
+  DirectoryEdge: DirectoryEdgeResolvers<ContextType>;
+  DirectoryGroupConnection: DirectoryGroupConnectionResolvers<ContextType>;
+  File: FileResolvers<ContextType>;
+  FileConnection: FileConnectionResolvers<ContextType>;
+  FileEdge: FileEdgeResolvers<ContextType>;
+  FileGroupConnection: FileGroupConnectionResolvers<ContextType>;
+  ImageSharp: ImageSharpResolvers<ContextType>;
+  ImageSharpConnection: ImageSharpConnectionResolvers<ContextType>;
+  ImageSharpEdge: ImageSharpEdgeResolvers<ContextType>;
+  ImageSharpFixed: ImageSharpFixedResolvers<ContextType>;
+  ImageSharpFluid: ImageSharpFluidResolvers<ContextType>;
+  ImageSharpGroupConnection: ImageSharpGroupConnectionResolvers<ContextType>;
+  ImageSharpOriginal: ImageSharpOriginalResolvers<ContextType>;
+  ImageSharpResize: ImageSharpResizeResolvers<ContextType>;
+  Internal: InternalResolvers<ContextType>;
+  JSON: GraphQLScalarType;
+  Node: NodeResolvers<ContextType>;
+  PageInfo: PageInfoResolvers<ContextType>;
+  Query: QueryResolvers<ContextType>;
+  Site: SiteResolvers<ContextType>;
+  SiteBuildMetadata: SiteBuildMetadataResolvers<ContextType>;
+  SiteBuildMetadataConnection: SiteBuildMetadataConnectionResolvers<ContextType>;
+  SiteBuildMetadataEdge: SiteBuildMetadataEdgeResolvers<ContextType>;
+  SiteBuildMetadataGroupConnection: SiteBuildMetadataGroupConnectionResolvers<ContextType>;
+  SiteConnection: SiteConnectionResolvers<ContextType>;
+  SiteEdge: SiteEdgeResolvers<ContextType>;
+  SiteFunction: SiteFunctionResolvers<ContextType>;
+  SiteFunctionConnection: SiteFunctionConnectionResolvers<ContextType>;
+  SiteFunctionEdge: SiteFunctionEdgeResolvers<ContextType>;
+  SiteFunctionGroupConnection: SiteFunctionGroupConnectionResolvers<ContextType>;
+  SiteGroupConnection: SiteGroupConnectionResolvers<ContextType>;
+  SitePage: SitePageResolvers<ContextType>;
+  SitePageConnection: SitePageConnectionResolvers<ContextType>;
+  SitePageEdge: SitePageEdgeResolvers<ContextType>;
+  SitePageGroupConnection: SitePageGroupConnectionResolvers<ContextType>;
+  SiteSiteMetadata: SiteSiteMetadataResolvers<ContextType>;
+};
+
+export type DirectiveResolvers<ContextType = GatsbyResolverContext> = {
+  childOf: childOfDirectiveResolver<any, any, ContextType>;
+  dateformat: dateformatDirectiveResolver<any, any, ContextType>;
+  dontInfer: dontInferDirectiveResolver<any, any, ContextType>;
+  fileByRelativePath: fileByRelativePathDirectiveResolver<any, any, ContextType>;
+  infer: inferDirectiveResolver<any, any, ContextType>;
+  link: linkDirectiveResolver<any, any, ContextType>;
+  mimeTypes: mimeTypesDirectiveResolver<any, any, ContextType>;
+  nodeInterface: nodeInterfaceDirectiveResolver<any, any, ContextType>;
+  proxy: proxyDirectiveResolver<any, any, ContextType>;
+};
+
+
+}
+"
+`;

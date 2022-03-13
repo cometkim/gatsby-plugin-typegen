@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { dirname } from 'path';
-import type { GraphQLSchema } from 'gatsby/graphql';
+import type { GraphQLSchema, SourceLocation } from 'gatsby/graphql';
 import { GraphQLEnumType } from 'gatsby/graphql';
 import type { IDefinitionMeta as _IDefinitionMeta } from 'gatsby/dist/redux/types';
 import {
@@ -16,12 +16,12 @@ export type OverrideProps<TBaseProps, TNewProps> = Omit<TBaseProps, keyof TNewPr
 export type Brand<TAG extends string, T> = T & { __TAG__: TAG };
 
 export const readFileContent = async (path: string): Promise<string> => {
-  return fs.promises.readFile(path, { encoding: 'utf-8' });
+  return fs.promises.readFile(path, 'utf-8');
 };
 
-export const writeFileContent = async (path: string, data: string | Buffer): Promise<void> => {
+export const writeFileContent = async (path: string, content: string): Promise<void> => {
   await fs.promises.mkdir(dirname(path), { recursive: true });
-  await fs.promises.writeFile(path, data, { encoding: 'utf-8' });
+  await fs.promises.writeFile(path, content, 'utf-8');
 };
 
 export const formatLanguage = (lang: SupportedLanguage): string => (
@@ -29,8 +29,13 @@ export const formatLanguage = (lang: SupportedLanguage): string => (
 );
 
 export type IDefinitionMeta = OverrideProps<_IDefinitionMeta, {
+  templateLoc: SourceLocation,
+
   // Trust me, this is more accurate.
   printedAst: string | null,
+
+  // https://github.com/gatsbyjs/gatsby/blob/d163724/packages/gatsby/src/query/file-parser.js#L429
+  isConfigQuery: boolean,
 }>;
 
 export type FragmentDefinition = Brand<
