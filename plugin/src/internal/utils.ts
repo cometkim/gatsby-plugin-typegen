@@ -1,4 +1,5 @@
-import { dirname } from 'path';
+import slugify from 'slugify';
+import _ from 'lodash';
 import type { GraphQLSchema, SourceLocation } from 'gatsby/graphql';
 import { GraphQLEnumType, lexicographicSortSchema } from 'gatsby/graphql';
 import type { IDefinitionMeta as _IDefinitionMeta } from 'gatsby/dist/redux/types';
@@ -30,6 +31,10 @@ export type IDefinitionMeta = OverrideProps<_IDefinitionMeta, {
   hash: number,
 }>;
 
+export function definitionIsEqual(a: IDefinitionMeta, b: IDefinitionMeta): boolean {
+  return a.name === b.name && a.hash === b.hash;
+}
+
 export type FragmentDefinition = Brand<
   'FragmentDefinition',
   OverrideProps<IDefinitionMeta, {
@@ -55,16 +60,27 @@ export function isQueryDefinition(def: IDefinitionMeta): def is QueryDefinition 
 /**
  * return `true` if the given definition is assumed to be generated from unnamed query.
  */
-export function guessIfUnnnamedQuery({ name, filePath }: IDefinitionMeta): boolean {
-  const baseDir = dirname(filePath);
-  return name.startsWith(baseDir.split('/').join(''));
+function guessIfUnnnamedQuery({ isStaticQuery, name, filePath }: IDefinitionMeta): boolean {
+  const queryType = isStaticQuery ? 'static' : 'page';
+  // See https://github.com/gatsbyjs/gatsby/blob/d163724/packages/gatsby/src/query/file-parser.js#L33
+  const generatedQueryName = slugify(filePath, { replacement: ' ', lower: false });
+  const pattern = _.camelCase(`${queryType}-${generatedQueryName}`);
+  return name.startsWith(pattern);
 }
 
 /**
  * return `true` if the given definition is assumed to be included by third-party plugins or gatsby internal.
  */
-export function guessIfThirdpartyDefinition({ filePath }: IDefinitionMeta): boolean {
+function guessIfThirdpartyDefinition({ filePath }: IDefinitionMeta): boolean {
   return /(node_modules|\.yarn|\.cache)/.test(filePath);
+}
+
+export function isThirdpartyFragment(def: IDefinitionMeta): def is FragmentDefinition {
+  return isFragmentDefinition(def) && guessIfThirdpartyDefinition(def);
+}
+
+export function isTargetDefinition(def: IDefinitionMeta): boolean {
+  return !(guessIfThirdpartyDefinition(def) || guessIfUnnnamedQuery(def));
 }
 
 // from https://github.com/gatsbyjs/gatsby/blob/6365768/packages/gatsby/src/schema/print.js#L33-L48
@@ -85,7 +101,7 @@ export const gatsbyInternalScalars = [
   'String',
 ];
 
-const filterFromCoordinates = (
+const fieldFilterFromCoordinates = (
   (coords: string[]) =>
   (coord: { typeName?: string, fieldName?: string, argName?: string }) =>
   {
@@ -103,7 +119,7 @@ export function filterDevOnlySchema(schema: GraphQLSchema): GraphQLSchema {
   return mapSchema(filterSchema({
     schema,
     fieldFilter: (typeName, fieldName) => (
-      filterFromCoordinates([
+      fieldFilterFromCoordinates([
         'Site.host',
         'Site.port',
         'SiteFilterInput.host',
@@ -111,7 +127,7 @@ export function filterDevOnlySchema(schema: GraphQLSchema): GraphQLSchema {
       ])({ typeName, fieldName })
     ),
     argumentFilter: (typeName, fieldName, argName) => (
-      filterFromCoordinates([
+      fieldFilterFromCoordinates([
         'Query.site.host',
         'Query.site.port',
       ])({ typeName, fieldName, argName })
@@ -138,20 +154,20 @@ export function filterPluginSchema(schema: GraphQLSchema): GraphQLSchema {
     schema,
     typeFilter: typeName => !typeName.startsWith('SitePlugin'),
     fieldFilter: (typeName, fieldName) => (
-      filterFromCoordinates([
+      fieldFilterFromCoordinates([
         'Query.allSitePlugin',
         'Query.sitePlugin',
         'SitePage.pluginCreatorId',
       ])({ typeName, fieldName })
     ),
     inputObjectFieldFilter: (typeName, fieldName) => (
-      filterFromCoordinates([
+      fieldFilterFromCoordinates([
         'SitePageFilterInput.pluginCreator',
         'SitePageFilterInput.pluginCreatorId',
       ])({ typeName, fieldName })
     ),
     argumentFilter: (typeName, fieldName, argName) => (
-      filterFromCoordinates([
+      fieldFilterFromCoordinates([
         'Query.sitePage.pluginCreator',
         'Query.sitePage.pluginCreatorId',
       ])({ typeName, fieldName, argName })

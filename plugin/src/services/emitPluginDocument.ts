@@ -41,7 +41,8 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
         switch (config.format) {
           case 'graphql': {
             const printedDocument = definitions
-              .map(def => def.printedAst!)
+              .map(def => def.printedAst || '')
+              .filter(Boolean)
               .join('\n\n');
             return void writeFileContent(filePath, printedDocument);
           }

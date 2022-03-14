@@ -1,33 +1,47 @@
+import _ from 'lodash';
 import type { GraphQLSchema } from 'gatsby/graphql';
 import type { DoneInvokeEvent } from 'xstate';
 import { createMachine, actions } from 'xstate';
 
-import { TypegenReporter } from './reporter';
+import type { TypegenReporter } from './reporter';
+import type { Config } from './config';
 import type { IDefinitionMeta, FragmentDefinition } from './utils';
 import {
   stabilizeSchema,
-  isFragmentDefinition,
-  guessIfThirdpartyDefinition,
-  guessIfUnnnamedQuery,
+  definitionIsEqual,
+  isTargetDefinition,
+  isThirdpartyFragment,
 } from './utils';
 
+type DefinitionName = string;
+type DefinitionMap = Map<DefinitionName, IDefinitionMeta>;
+
 type Context = {
+  config: Config,
   debouncingDelay: number,
   reporter: TypegenReporter,
   devMode: boolean,
-  trackedDefinitions?: Map<string, IDefinitionMeta>,
+  trackedDefinitions?: DefinitionMap,
   thirdpartyFragments?: FragmentDefinition[],
   schema?: GraphQLSchema,
 };
 
 type Event = (
-  | { type: 'CREATE_DEV_SERVER' }
   | { type: 'SET_SCHEMA', schema: GraphQLSchema }
-  | { type: 'SET_GRAPHQL_DEFINITIONS', definitions: Map<string, IDefinitionMeta> }
-  | { type: 'START_emitSchema' }
+  | { type: 'SET_GRAPHQL_DEFINITIONS', definitions: DefinitionMap }
+  | { type: 'CREATE_DEV_SERVER' }
+
+  | { type: 'CHANGE_SCHEMA', schema: GraphQLSchema }
+  | { type: 'CHANGE_GRAPHQL_DEFINITIONS', definitions: DefinitionMap }
+
+  | { type: 'CHECK_IF_READY' }
+
+  | { type: 'START_emitSchema', schema: GraphQLSchema }
   | { type: 'DONE_emitSchema' }
-  | { type: 'START_codegen' }
+
+  | { type: 'START_codegen', schema: GraphQLSchema, definitions: DefinitionMap }
   | { type: 'DONE_codegen' }
+
   | { type: 'START_autofix', files: string[] }
   | { type: 'DONE_autofix' }
 );
@@ -50,50 +64,102 @@ export const typegenMachine = createMachine({
     initializing: {
       type: 'parallel',
       on: {
-        SET_SCHEMA: [
-          {
-            cond: 'ready?',
-            actions: 'assignSchema',
-            target: 'runningOnce',
-          },
-          {
-            actions: 'assignSchema',
-          },
-        ],
-        SET_GRAPHQL_DEFINITIONS: [
-          {
-            cond: 'ready?',
-            actions: [
-              'assignThirdpartyDefinitions',
-              'assignDefinitions',
-            ],
-            target: 'runningOnce',
-          },
-          {
-            actions: [
-              'assignThirdpartyDefinitions',
-              'assignDefinitions',
-            ],
-          },
-        ],
+        SET_SCHEMA: {
+          actions: [
+            'assignSchema',
+            actions.send<Context, PickEvent<'SET_SCHEMA'>>('CHECK_IF_READY'),
+          ],
+        },
+        SET_GRAPHQL_DEFINITIONS: {
+          actions: [
+            'assignThirdpartyDefinitions',
+            'assignDefinitions',
+            actions.send<Context, PickEvent<'SET_GRAPHQL_DEFINITIONS'>>('CHECK_IF_READY'),
+          ],
+        },
+        CHECK_IF_READY: {
+          cond: 'ready?',
+          target: 'runningOnce',
+        },
       },
     },
     runningOnce: {
+      initial: 'running',
       states: {
         running: {
           type: 'parallel',
           states: {
             emitSchema: {
-              invoke: { src: 'emitSchema' },
+              initial: 'running',
+              states: {
+                running: {
+                  invoke: {
+                    src: 'emitSchema',
+                    onDone: 'done',
+                    onError: {
+                      target: 'done',
+                      actions: 'reportEmitSchemaError',
+                    },
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
+              },
             },
             emitPluginDocument: {
-              invoke: { src: 'emitPluginDocument' },
+              initial: 'running',
+              states: {
+                running: {
+                  invoke: {
+                    src: 'emitPluginDocument',
+                    onDone: 'done',
+                    onError: {
+                      target: 'done',
+                      actions: 'reportEmitPluginDocumentError',
+                    },
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
+              },
             },
             codegen: {
-              invoke: { src: 'codegen' },
+              initial: 'running',
+              states: {
+                running: {
+                  invoke: {
+                    src: 'codegen',
+                    onDone: 'done',
+                    onError: {
+                      target: 'done',
+                      actions: 'reportCodegenError',
+                    },
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
+              },
             },
             autofix: {
-              invoke: { src: 'autofix' },
+              initial: 'running',
+              states: {
+                running: {
+                  invoke: {
+                    src: 'autofix',
+                    onDone: 'done',
+                    onError: {
+                      target: 'done',
+                      actions: 'reportAutofixError',
+                    },
+                  },
+                },
+                done: {
+                  type: 'final',
+                },
+              },
             },
           },
           onDone: [
@@ -118,41 +184,20 @@ export const typegenMachine = createMachine({
       id: 'watching',
       states: {
         schedulers: {
-          type: 'parallel',
-          initial: 'running',
-          states: {
-            t1: {
-              on: {
-                SET_SCHEMA: {
-                  actions: [
-                    'assignSchema',
-                    'scheduleEmitSchema',
-                    'scheduleCodegen',
-                  ],
-                },
-                SET_GRAPHQL_DEFINITIONS: {
-                  actions: [
-                    'assignDefinitions',
-                    'scheduleAutofix',
-                    'scheduleCodegen',
-                  ],
-                },
-              },
+          on: {
+            SET_SCHEMA: {
+              cond: 'hasSchemaChanged?',
+              actions: 'onSchemaChange',
             },
-            t2: {
-              type: 'parallel',
-              states: {
-                watchingSchema: {
-                  invoke: {
-                    src: 'opSchemaChange',
-                  },
-                },
-                watchingDefinitions: {
-                  invoke: {
-                    src: 'opDefinitionsChange',
-                  },
-                },
-              },
+            CHANGE_SCHEMA: {
+              actions: 'assignSchema',
+            },
+            SET_GRAPHQL_DEFINITIONS: {
+              cond: 'hasDefinitionsChanged?',
+              actions: 'onDefinitionsChange',
+            },
+            CHANGE_GRAPHQL_DEFINITIONS: {
+              actions: 'assignDefinitions',
             },
           },
         },
@@ -174,6 +219,13 @@ export const typegenMachine = createMachine({
                       target: 'idle',
                       actions: actions.send<Context, DoneInvokeEvent<unknown>>('DONE_emitSchema'),
                     },
+                    onError: {
+                      target: 'idle',
+                      actions: [
+                        'reportEmitSchemaError',
+                        actions.send<Context, DoneInvokeEvent<unknown>>('DONE_emitSchema'),
+                      ],
+                    },
                   },
                 },
               },
@@ -192,6 +244,13 @@ export const typegenMachine = createMachine({
                     onDone: {
                       target: 'idle',
                       actions: actions.send<Context, DoneInvokeEvent<unknown>>('DONE_codegen'),
+                    },
+                    onError: {
+                      target: 'idle',
+                      actions: [
+                        'reportCodegenError',
+                        actions.send<Context, DoneInvokeEvent<unknown>>('DONE_codegen'),
+                      ],
                     },
                   },
                 },
@@ -212,6 +271,13 @@ export const typegenMachine = createMachine({
                       target: 'idle',
                       actions: actions.send<Context, DoneInvokeEvent<unknown>>('DONE_autofix'),
                     },
+                    onError: {
+                      target: 'idle',
+                      actions: [
+                        'reportAutofixError',
+                        actions.send<Context, DoneInvokeEvent<unknown>>('DONE_autofix'),
+                      ],
+                    },
                   },
                 },
               },
@@ -224,7 +290,16 @@ export const typegenMachine = createMachine({
 }, {
   guards: {
     'devMode?': context => Boolean(context.devMode),
-    'ready?': context => Boolean(context.schema && context.trackedDefinitions),
+    'ready?': context => Boolean(context.schema && context.trackedDefinitions && context.thirdpartyFragments),
+    'hasSchemaChanged?': (context, event) => context.schema !== event.schema,
+    'hasDefinitionsChanged?': (context, event) => {
+      const changes = _.differenceWith(
+        [...context.trackedDefinitions?.values() || []],
+        extractTargetDefinitions(event.definitions),
+        definitionIsEqual,
+      );
+      return changes.length !== 0;
+    },
   },
   actions: {
     assignDevMode: actions.assign({
@@ -234,153 +309,85 @@ export const typegenMachine = createMachine({
       schema: (_context, event) => stabilizeSchema(event.schema),
     }),
     assignThirdpartyDefinitions: actions.assign({
-      thirdpartyFragments: (_context, event) => {
-        return [...event.definitions.values()]
-          .filter(isFragmentDefinition)
-          .filter(guessIfThirdpartyDefinition);
-      },
+      thirdpartyFragments: (_context, event) => extractThirdpartyDefinitions(event.definitions),
     }),
     assignDefinitions: actions.assign({
-      trackedDefinitions: (_context, event) => {
-        const filtered = [...event.definitions.entries()]
-          .filter(([_name, def]) => !guessIfUnnnamedQuery(def));
-        return new Map(filtered);
-      },
+      trackedDefinitions: (_context, event) => filterTargetDefinitions(event.definitions),
     }),
-    scheduleEmitSchema: actions.pure(() => {
-      const jobId = 'SCHEDULED_emitSchema';
+    onSchemaChange: actions.pure((_context, event) => {
+      const { schema } = event;
+
+      const emitSchemaJobId = 'SCHEDULED_emitSchema';
+
       return [
-        actions.cancel(jobId),
+        actions.send({ type: 'CHANGE_SCHEMA', schema }),
+
+        actions.cancel(emitSchemaJobId),
         actions.send<Context, PickEvent<'SET_SCHEMA'>>(
-          'START_emitSchema',
+          { type: 'START_emitSchema', schema },
           {
-            id: jobId,
+            id: emitSchemaJobId,
             delay: context => context.debouncingDelay,
           },
         ),
       ];
     }),
-    scheduleCodegen: actions.pure(() => {
-      const jobId = 'SCHEDULED_codegen';
+    onDefinitionsChange: actions.pure((context, event) => {
+      const {
+        schema,
+        trackedDefinitions,
+        debouncingDelay,
+      } = context;
+      const { definitions } = event;
+
+      const changes = _.differenceWith(
+        [...trackedDefinitions?.values() || []],
+        extractTargetDefinitions(definitions),
+        definitionIsEqual,
+      );
+
+      const codegenJobId = 'SCHEDULED_codegen';
+      const autofixJobId = 'SCHEDULED_autofix';
+
       return [
-        actions.cancel(jobId),
-        actions.send<Context, PickEvent<'SET_SCHEMA' | 'SET_GRAPHQL_DEFINITIONS'>>(
-          'START_codegen',
-          {
-            id: jobId,
-            delay: context => context.debouncingDelay,
-          },
-        ),
-      ];
-    }),
-    scheduleAutofix: actions.pure(() => {
-      const jobId = 'SCHEDULED_autofix';
-      return [
-        actions.cancel(jobId),
+        actions.send({ type: 'CHANGE_GRAPHQL_DEFINITIONS', definitions }),
+
+        actions.cancel(codegenJobId),
         actions.send<Context, PickEvent<'SET_GRAPHQL_DEFINITIONS'>>(
-          context => ({ type: 'START_autofix', files: [...context.trackedDefinitions?.keys() || []] }),
+          { type: 'START_codegen', schema, definitions },
           {
-            id: jobId,
-            delay: context => context.debouncingDelay,
+            id: codegenJobId,
+            delay: debouncingDelay,
+          },
+        ),
+
+        actions.cancel(autofixJobId),
+        actions.send<Context, PickEvent<'SET_GRAPHQL_DEFINITIONS'>>(
+          { type: 'START_autofix', files: changes.map(change => change.filePath) },
+          {
+            id: autofixJobId,
+            delay: debouncingDelay,
           },
         ),
       ];
     }),
-  },
-  services: {
-    opSchemaChange: context => (callback, onReceive) => {
-      type LocalContext = {
-        schema: GraphQLSchema,
-      };
-      const local: LocalContext = {
-        schema: context.schema!,
-      };
-      onReceive((e: Event) => {
-        switch (e.type) {
-          case 'DONE_emitSchema': {
-            if (local.schema !== context.schema) {
-              callback('START_emitSchema');
-              local.schema = context.schema!;
-            }
-            return;
-          }
-
-          case 'DONE_codegen': {
-            if (local.schema !== context.schema) {
-              callback('START_codegen');
-              local.schema = context.schema!;
-            }
-            return;
-          }
-        }
-      });
-    },
-    opDefinitionsChange: context => (callback, onReceive) => {
-      type Def = Pick<IDefinitionMeta, 'filePath' | 'hash'>
-      let prevCodegenStat = new Map<string, Def>();
-      let prevAutofixStat = new Map<string, Def>();
-
-      function getChangeset(stats: Map<string, Def>, definitions: IDefinitionMeta[]) {
-        const changed: Def[] = [];
-
-        for (const def of definitions) {
-          // added
-          if (!stats.has(def.name)) {
-            changed.push({ filePath: def.filePath, hash: def.hash });
-          }
-
-          // modified
-          if (stats.has(def.name) && stats.get(def.name)?.hash !== def.hash) {
-            changed.push({ filePath: def.filePath, hash: def.hash });
-          }
-        }
-
-        for (const [existName, existDef] of stats.entries()) {
-          // deleted
-          const existence = definitions.find(def => def.name === existName);
-          if (existence) {
-            changed.push(existDef);
-          }
-        }
-
-        return changed;
-      }
-
-      onReceive((e: Event) => {
-        switch (e.type) {
-          case 'START_codegen': {
-            prevCodegenStat = new Map(
-              [...context.trackedDefinitions?.values() || []]
-              .map(({ name, hash, filePath }) => [name, { hash, filePath }] as const)
-            );
-            break;
-          }
-          case 'DONE_codegen': {
-            const definitions = [...context.trackedDefinitions?.values() || []];
-            const changeset = getChangeset(prevCodegenStat, definitions);
-            if (changeset.length > 0) {
-              callback('START_codegen');
-            }
-            break;
-          }
-
-          case 'START_autofix': {
-            prevAutofixStat = new Map(
-              [...context.trackedDefinitions?.values() || []]
-              .map(({ name, hash, filePath }) => [name, { hash, filePath }] as const)
-            );
-            break;
-          }
-          case 'DONE_autofix': {
-            const definitions = [...context.trackedDefinitions?.values() || []];
-            const changeset = getChangeset(prevAutofixStat, definitions);
-            if (changeset.length > 0) {
-              callback({ type: 'START_autofix', files: changeset.map(change => change.filePath) });
-            }
-            break;
-          }
-        }
-      });
-    },
   },
 });
+
+function extractThirdpartyDefinitions(defMap: DefinitionMap) {
+  return [...defMap.values()].filter(isThirdpartyFragment);
+}
+
+function extractTargetDefinitions(defMap: DefinitionMap) {
+  return [...defMap.values()].filter(isTargetDefinition);
+}
+
+function filterTargetDefinitions(defMap: DefinitionMap) {
+  const defs: Array<[name: string, def: IDefinitionMeta]> = [];
+  for (const [name, def] of defMap) {
+    if (isTargetDefinition(def)) {
+      defs.push([name, def]);
+    }
+  }
+  return new Map(defs);
+}

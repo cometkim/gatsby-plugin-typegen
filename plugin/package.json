@@ -37,15 +37,12 @@
     "prepack": "yarn build"
   },
   "files": [
-    "README.md",
-    "LICENSE",
     "index.js",
     "gatsby-node.js",
-    "gatsby-utils.js",
-    "gatsby-utils.d.ts",
     "types.js",
     "types.d.ts",
     "types.js.flow",
+    "utils.js",
     "internal",
     "services"
   ],
@@ -65,6 +62,8 @@
     "@graphql-codegen/typescript-resolvers": "^2.5.4",
     "@graphql-codegen/visitor-plugin-common": "^2.7.3",
     "@graphql-tools/utils": "^8.6.2",
+    "lodash": "^4.17.21",
+    "slugify": "^1.6.5",
     "xstate": "^4.30.6"
   },
   "devDependencies": {
@@ -77,6 +76,7 @@
     "@types/graphql": "^14.5.0",
     "@types/jest": "^27.4.1",
     "@types/jest-when": "^3.5.0",
+    "@types/lodash": "^4.14.179",
     "@types/node": "^17.0.21",
     "@xstate/cli": "^0.1.4",
     "babel-preset-gatsby-package": "^2.9.0",

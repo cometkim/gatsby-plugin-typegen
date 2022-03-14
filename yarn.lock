@@ -5472,6 +5472,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.179":
+  version: 4.14.179
+  resolution: "@types/lodash@npm:4.14.179"
+  checksum: 71faa0c8071732c2b7f0bd092850d3cea96fc7912055d57d819cf2ab399a64150e4190d8a4ea35a0905662ddc118be9d2abd55891d8047c085acf98608156149
+  languageName: node
+  linkType: hard
+
 "@types/lodash@npm:^4.14.92":
   version: 4.14.159
   resolution: "@types/lodash@npm:4.14.159"
@@ -13071,6 +13078,8 @@ fsevents@^1.2.7:
     "@graphql-codegen/typescript-resolvers": ^2.5.4
     "@graphql-codegen/visitor-plugin-common": ^2.7.3
     "@graphql-tools/utils": ^8.6.2
+    lodash: ^4.17.21
+    slugify: ^1.6.5
     xstate: ^4.30.6
   peerDependencies:
     gatsby: ^4.0.0
@@ -13102,6 +13111,7 @@ fsevents@^1.2.7:
     "@types/graphql": ^14.5.0
     "@types/jest": ^27.4.1
     "@types/jest-when": ^3.5.0
+    "@types/lodash": ^4.14.179
     "@types/node": ^17.0.21
     "@xstate/cli": ^0.1.4
     babel-preset-gatsby-package: ^2.9.0
@@ -13111,6 +13121,8 @@ fsevents@^1.2.7:
     graphql: 15.8.0
     jest: ^27.5.1
     jest-when: ^3.5.1
+    lodash: ^4.17.21
+    slugify: ^1.6.5
     typescript: ^4.6.2
     xstate: ^4.30.6
   peerDependencies:
@@ -14371,14 +14383,14 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql@npm:*, graphql@npm:^15.4.0":
-  version: 15.5.0
-  resolution: "graphql@npm:15.5.0"
-  checksum: 58a69f7274ae94c690bfa2517f96bbaf1327e1ca1fc46606e772ba2f7ca517adeb375346301373351e693022f448b7866163034209623d7c5315819ef8c5e7c0
+"graphql@npm:*":
+  version: 16.3.0
+  resolution: "graphql@npm:16.3.0"
+  checksum: ba540641e9cd2a8de5b989ff1433b015f232fa73aaef478d6709c1339cd43113347917acb965a5799c004667687852fc8ff0cfaa935eb26374c91c1fd7fdaeb1
   languageName: node
   linkType: hard
 
-"graphql@npm:15.8.0, graphql@npm:^15.7.2":
+"graphql@npm:15.8.0, graphql@npm:^15.4.0, graphql@npm:^15.7.2":
   version: 15.8.0
   resolution: "graphql@npm:15.8.0"
   checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
@@ -22710,7 +22722,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"slugify@npm:^1.6.1":
+"slugify@npm:^1.6.1, slugify@npm:^1.6.5":
   version: 1.6.5
   resolution: "slugify@npm:1.6.5"
   checksum: a955a1b600201030f4c1daa9bb74a17d4402a0693fc40978bbd17e44e64fd72dad3bac4037422aa8aed55b5170edd57f3f4cd8f59ba331f5cf0f10f1a7795609

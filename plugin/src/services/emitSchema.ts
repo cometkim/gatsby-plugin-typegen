@@ -1,13 +1,12 @@
 import type { GraphQLSchema } from 'gatsby/graphql';
 import {
-  lexicographicSortSchema,
   printSchema,
   introspectionFromSchema,
 } from 'gatsby/graphql';
 
 import type { Config } from '../internal/config';
 import type { TypegenReporter } from '../internal/reporter';
-import { filterDevOnlySchema, filterPluginSchema } from '../internal/utils';
+import { filterPluginSchema } from '../internal/utils';
 
 interface EmitSchemaService {
   (schema: GraphQLSchema): Promise<void>;

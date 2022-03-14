@@ -36,6 +36,8 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
       .default(false),
     autoFix: Joi.boolean()
       .default(true),
+    autofix: Joi.boolean()
+      .default(true),
     scalars: Joi.object()
       .pattern(/\w[\w\d\-_]+/, Joi.string().required())
       .default({}),
@@ -106,23 +108,38 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
     customScalars: config.scalars,
     reporter: typegenReporter,
     writeFileContent,
-  })
+  });
 
   const typegenService = interpret(
     typegenMachine
     .withContext({
+      config,
       debouncingDelay: 500,
       devMode: false,
       reporter: typegenReporter,
     })
     .withConfig({
+      actions: {
+        reportEmitSchemaError: (context, event) => {
+          context.reporter.error('error occurred while running emitSchema service', event.data as Error);
+        },
+        reportEmitPluginDocumentError: (context, event) => {
+          context.reporter.error('error occurred while running emitPluginDocument service', event.data as Error);
+        },
+        reportCodegenError: (context, event) => {
+          context.reporter.error('error occurred while running codegen service', event.data as Error);
+        },
+        reportAutofixError: (context, event) => {
+          context.reporter.error('error occurred while running autofix service', event.data as Error);
+        },
+      },
       services: {
-        emitSchema: context => emitSchema(context.schema!),
+        emitSchema: (_context, event) => emitSchema(event.schema),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore for typegen bug
         emitPluginDocument: context => emitPluginDocument(context.thirdpartyFragments || []),
-        autofix: (_context, event) => autofix(event.files),
-        codegen: context => codegen({
-          schema: context.schema!,
+        codegen: (context, event) => codegen({
+          schema: event.schema,
           documents: [...context.trackedDefinitions?.values() || []]
             .map(definitionMeta => ({
               document: {
@@ -132,8 +149,15 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
               hash: definitionMeta.hash.toString(),
             })),
         }),
+        autofix: (context, event) => {
+          if (!context.config.autoFix) {
+            return autofix(event.files);
+          }
+          context.reporter.verbose('running autofix is skipped since disabled');
+          return Promise.resolve();
+        },
       },
-    })
+    }),
   );
 
   typegenService.start();
@@ -165,13 +189,13 @@ export const onCreateDevServer: GatsbyNode['onCreateDevServer'] = () => {
 function makeTypegenReporter(reporter: Reporter): TypegenReporter {
   const formatMessage = (message: string) => `[typegen] ${message}`;
   return {
-    ...reporter,
+    stripIndent: reporter.stripIndent,
     log: message => reporter.log(formatMessage(message)),
     info: message => reporter.info(formatMessage(message)),
     warn: message => reporter.warn(formatMessage(message)),
-    error: message => reporter.error(formatMessage(message)),
     verbose: message => reporter.verbose(formatMessage(message)),
-    panic: reporter.panic,
-    panicOnBuild: reporter.panicOnBuild,
+    error: (message, e) => reporter.error(formatMessage(message), e, 'gatsby-plugin-typegen'),
+    panic: (message, e) => reporter.panic(formatMessage(message), e, 'gatsby-plugin-typegen'),
+    panicOnBuild: (message, e) => reporter.panicOnBuild(formatMessage(message), e, 'gatsby-plugin-typegen'),
   };
 }

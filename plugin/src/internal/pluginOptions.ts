@@ -49,11 +49,16 @@ export type PluginOptions = {
   includeResolvers?: boolean,
 
   /**
+   * @deprecated Renamed to `autofix`. Will be removed from v4.
+   */
+  autoFix?: boolean,
+
+  /**
    * Enable auto-fixing `useStaticQuery()` & `<StaticQuery>` with generated type names.
    *
    * @default true
    */
-  autoFix?: boolean,
+  autofix?: boolean,
 
   /**
    * Extends or overrides the built-in scalars and custom GraphQL scalars to a custom type.
@@ -88,7 +93,6 @@ export type PluginOptions = {
    * @see https://github.com/gatsbyjs/gatsby/blob/6b4b7f81ec/packages/gatsby/src/schema/print.js#L33-L48
    */
   scalars?: { [typename: string]: string },
-
 
   /**
    * Emit the Gatsby's schema into the filesystem.

@@ -1,13 +1,16 @@
+/* eslint-disable no-console */
+
 import { stripIndent } from 'common-tags';
 
 import type { TypegenReporter } from '../src/internal/reporter';
 
 export const testReporter: TypegenReporter = {
+  stripIndent,
   log: console.log,
   info: console.info,
   warn: console.warn,
-  error: console.error,
   verbose: console.debug,
+  error: console.error,
   panic: (msg, e) => {
     console.error(msg);
     throw e;
@@ -16,5 +19,4 @@ export const testReporter: TypegenReporter = {
     console.error(msg);
     throw e;
   },
-  stripIndent,
 };

@@ -32,6 +32,8 @@ export type PluginOptions = {
   outputPath?: string,
 
   /**
+   * @deprecated The plugin does not generate useful types for the interface of GatsbyJS schema builder. Will be removed from v4.
+   *
    * If you use [schema customization](https://www.gatsbyjs.org/docs/schema-customization/),
    * you might want types for custom resolvers.
    *
@@ -47,11 +49,16 @@ export type PluginOptions = {
   includeResolvers?: boolean,
 
   /**
+   * @deprecated Renamed to `autofix`. Will be removed from v4.
+   */
+  autoFix?: boolean,
+
+  /**
    * Enable auto-fixing `useStaticQuery()` & `<StaticQuery>` with generated type names.
    *
    * @default true
    */
-  autoFix?: boolean,
+  autofix?: boolean,
 
   /**
    * Extends or overrides the built-in scalars and custom GraphQL scalars to a custom type.
@@ -87,7 +94,6 @@ export type PluginOptions = {
    */
   scalars?: { [typename: string]: string },
 
-
   /**
    * Emit the Gatsby's schema into the filesystem.
    *
@@ -96,16 +102,37 @@ export type PluginOptions = {
    * @see SchemaOutputOptions
    */
   emitSchema?: {
-    [outputPath: string]: true | SchemaOutputOptions,
+    [outputPath: string]: boolean | SchemaOutputOptions,
+  },
+
+  /**
+   * @deprecated Renamed to `emitPluginDocument`. Will be removed from v4.
+   *
+   * Emit the GraphQL fragments declared by other plugins into the filesystem.
+   */
+  emitPluginDocuments?: {
+    [outputPath: string]: boolean | DocumentOutputOptions,
   },
 
   /**
    * Emit the GraphQL fragments declared by other plugins into the filesystem.
    */
-  emitPluginDocuments?: {
-    [outputPath: string]: true,
+  emitPluginDocument?: {
+    [outputPath: string]: boolean | DocumentOutputOptions,
   },
-} & DeprecatedPluginOptions;
+};
+
+export type DocumentOutputOptions = {
+  /**
+   * Output file format.
+   *
+   * By default, the AST will be parsed and printed as GraphQL.
+   * If set `json`, the AST will be emitted as JSON.
+   *
+   * @default 'graphql'
+   */
+  format: 'graphql' | 'json',
+};
 
 export type SchemaOutputOptions = {
   /**
@@ -126,32 +153,12 @@ export type SchemaOutputOptions = {
   commentDescriptions?: boolean,
 };
 
-export type DeprecatedPluginOptions = {
-  /**
-   * Path to where the schema file is being generated.
-   *
-   * @deprecated
-   *
-   * @default `${CWD}/.cache/caches/gatsby-plugin-typegen/schema.json`
-   */
-  schemaOutputPath?: string,
-
-  /**
-   * Path to where the type definition file is being generated.
-   *
-   * @deprecated
-   *
-   * @default `${CWD}/node_modules/generated/types/gatsby.ts`
-   */
-  typeDefsOutputPath?: string,
-};
-
 /**
- * Type definition for https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/schema/context.js
+ * Copy of the `IGatsbyResolverContext`
+ * @see https://github.com/gatsbyjs/gatsby/blob/f10eb58/packages/gatsby/src/schema/type-definitions.ts
  *
- * @todo Provide correct type definition.
+ * @todo Provide more accurate type definition.
  */
 export type GatsbyResolverContext = {
-  defaultFieldResolvers: any,
   nodeModel: any,
 };

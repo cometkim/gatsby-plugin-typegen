@@ -38,9 +38,7 @@ interface MakeCodegenService {
   }): CodegenService;
 }
 
-export {
-  makeCodegenService,
-};
+export { makeCodegenService };
 
 // Preset configurations to ensure compatibility with Gatsby.
 const DEFAULT_CONFIG = Object.freeze({
@@ -52,7 +50,7 @@ const DEFAULT_CONFIG = Object.freeze({
   addUnderscoreToArgsType: true,
   skipTypename: true,
   flattenGeneratedTypes: true,
-} as const);
+});
 
 const DEFAULT_TYPESCRIPT_SCALARS = Object.freeze({
   // A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
@@ -64,26 +62,32 @@ const DEFAULT_TYPESCRIPT_SCALARS = Object.freeze({
   JSON: 'any',
 });
 
-const DEFAULT_TYPESCRIPT_CONFIG: Readonly<TypeScriptPluginConfig> = Object.freeze({
-  avoidOptionals: true,
-  immutableTypes: true,
-  // Will be changed from v4
-  maybeValue: 'T | undefined',
-  noExport: true,
-  enumsAsTypes: true,
-  scalars: DEFAULT_TYPESCRIPT_SCALARS,
-  useTypeImports: true,
-});
+const DEFAULT_TYPESCRIPT_CONFIG: Readonly<TypeScriptPluginConfig> = (
+  Object.freeze({
+    avoidOptionals: true,
+    immutableTypes: true,
+    // Will be changed from v4
+    maybeValue: 'T | undefined',
+    noExport: true,
+    enumsAsTypes: true,
+    scalars: DEFAULT_TYPESCRIPT_SCALARS,
+    useTypeImports: true,
+  })
+);
 
-const DEFAULT_TYPESCRIPT_OPERATIONS_CONFIG: Readonly<TypeScriptDocumentsPluginConfig> = Object.freeze({
-  ...DEFAULT_TYPESCRIPT_CONFIG,
-  exportFragmentSpreadSubTypes: true,
-});
+const DEFAULT_TYPESCRIPT_OPERATIONS_CONFIG: Readonly<TypeScriptDocumentsPluginConfig> = (
+  Object.freeze({
+    ...DEFAULT_TYPESCRIPT_CONFIG,
+    exportFragmentSpreadSubTypes: true,
+  })
+);
 
-const DEFAULT_TYPESCRIPT_RESOLVERS_CONFIG: Readonly<TypeScriptResolversPluginConfig> = {
-  ...DEFAULT_TYPESCRIPT_CONFIG,
-  contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
-};
+const DEFAULT_TYPESCRIPT_RESOLVERS_CONFIG: TypeScriptResolversPluginConfig = (
+  Object.freeze({
+    ...DEFAULT_TYPESCRIPT_CONFIG,
+    contextType: 'gatsby-plugin-typegen/types#GatsbyResolverContext',
+  })
+);
 
 const DEFAULT_FLOW_SCALARS = Object.freeze({
   // A date string, such as 2007-12-03, compliant with the ISO 8601 standard for
@@ -95,21 +99,27 @@ const DEFAULT_FLOW_SCALARS = Object.freeze({
   JSON: 'any',
 });
 
-const DEFAULT_FLOW_CONFIG: Readonly<FlowPluginConfig> = {
-  useFlowExactObjects: true,
-  useFlowReadOnlyTypes: true,
-  scalars: DEFAULT_FLOW_SCALARS,
-};
+const DEFAULT_FLOW_CONFIG: Readonly<FlowPluginConfig> = (
+  Object.freeze({
+    useFlowExactObjects: true,
+    useFlowReadOnlyTypes: true,
+    scalars: DEFAULT_FLOW_SCALARS,
+  })
+);
 
-const DEFAULT_FLOW_OPERATIONS_CONFIG: Readonly<FlowDocumentsPluginConfig> = {
-  ...DEFAULT_FLOW_CONFIG,
-  exportFragmentSpreadSubTypes: true,
-};
+const DEFAULT_FLOW_OPERATIONS_CONFIG: Readonly<FlowDocumentsPluginConfig> = (
+  Object.freeze({
+    ...DEFAULT_FLOW_CONFIG,
+    exportFragmentSpreadSubTypes: true,
+  })
+);
 
-const DEFAULT_FLOW_RESOLVERS_CONFIG: Readonly<FlowResolversPluginConfig> = {
-  ...DEFAULT_FLOW_CONFIG,
-  contextType: 'gatsby-plugin-typegen/types.flow#type GatsbyResolverContext',
-};
+const DEFAULT_FLOW_RESOLVERS_CONFIG: Readonly<FlowResolversPluginConfig> = (
+  Object.freeze({
+    ...DEFAULT_FLOW_CONFIG,
+    contextType: 'gatsby-plugin-typegen/types.flow#type GatsbyResolverContext',
+  })
+);
 
 const makeCodegenService: MakeCodegenService = ({
   outputPath,
@@ -145,7 +155,7 @@ const makeCodegenService: MakeCodegenService = ({
       pluginConfig.plugins.push({
         add: {
           placement: 'prepend',
-          content: `\ndeclare namespace ${namespace} {\n`
+          content: `\ndeclare namespace ${namespace} {\n`,
         },
       });
       pluginConfig.plugins.push({
@@ -207,6 +217,9 @@ const makeCodegenService: MakeCodegenService = ({
     documents,
   }) => {
     const codegenOptions: Omit<Types.GenerateOptions, 'plugins' | 'pluginMap'> = {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore for inaccurate type definitions
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       schema: undefined as any,
       schemaAst: schema,
       documents,
@@ -219,26 +232,21 @@ const makeCodegenService: MakeCodegenService = ({
 
     reporter.verbose(`Generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})`);
 
-    try {
-      let result = await codegen({
-        ...pluginConfig,
-        ...codegenOptions,
-      });
+    let result = await codegen({
+      ...pluginConfig,
+      ...codegenOptions,
+    });
 
-      // FIXME: find more accurate way
-      if (language === 'flow') {
-        const FLOW_FILE_TOP = '/* @flow */\n\n';
-        const FLOW_FILE_TOP_REGEXP = /\/\*\s*@flow\s*\*\/\s*/;
-        result = result.replace(FLOW_FILE_TOP_REGEXP, FLOW_FILE_TOP + 'opaque type never = mixed;\n\n');
+    // FIXME: find more accurate way
+    if (language === 'flow') {
+      const FLOW_FILE_TOP = '/* @flow */\n\n';
+      const FLOW_FILE_TOP_REGEXP = /\/\*\s*@flow\s*\*\/\s*/;
+      result = result.replace(FLOW_FILE_TOP_REGEXP, FLOW_FILE_TOP + 'opaque type never = mixed;\n\n');
 
-        const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
-        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, 'declare type $1');
-      }
-
-      await writeFileContent(outputPath, result);
-
-    } catch (e) {
-      reporter.panicOnBuild('An error on codegen', e);
+      const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
+      result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, 'declare type $1');
     }
+
+    await writeFileContent(outputPath, result);
   };
 };

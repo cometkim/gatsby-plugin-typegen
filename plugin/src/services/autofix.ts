@@ -3,7 +3,7 @@ import * as path from 'path';
 import type { Config } from '../internal/config';
 
 interface AutofixService {
-  (files: string[]): Promise<PromiseSettledResult<string | null>[]>;
+  (files: string[]): Promise<Array<PromiseSettledResult<string | null>>>;
 }
 
 interface MakeAutofixService {
@@ -12,12 +12,10 @@ interface MakeAutofixService {
     writeFileContent: (path: string, content: string) => Promise<void>,
     language: Config['language'],
     namespace: Config['namespace'],
-  }): AutofixService,
+  }): AutofixService;
 }
 
-export {
-  makeAutofixService,
-};
+export { makeAutofixService };
 
 /**
  * (?<CallExpressionName>useStaticQuery

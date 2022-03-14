@@ -4,7 +4,7 @@ import type {
   PluginOptions,
   SchemaOutputOptions,
   DocumentOutputOptions,
-} from './options';
+} from './pluginOptions';
 import type { OverrideProps } from './utils';
 import { formatLanguage, gatsbyInternalScalars } from './utils';
 import type { TypegenReporter } from './reporter';
@@ -31,6 +31,9 @@ export type Config = OverrideProps<
   Required<PluginOptions>, {
     emitSchema: EmitSchemaConfig,
     emitPluginDocument: EmitPluginDocumentConfig,
+
+    // deprecated options
+    autoFix?: void,
     emitPluginDocuments?: void,
   }
 >;
@@ -57,12 +60,17 @@ export const validateConfig: ValidateConfig = ({
     language = 'typescript',
     namespace = 'GatsbyTypes',
     includeResolvers = false,
-    autoFix = true,
+    autoFix,
+    autofix = true,
     emitSchema: emitSchemaOptionMap = {},
     emitPluginDocuments: legacyEmitPluginDocumentsOptionMap = {},
     emitPluginDocument: emitPluginDocumentsOptionMap = {},
     scalars = {},
   } = pluginOptions;
+
+  if (autofix) {
+    reporter.warn('The `autoFix` option is deprecated. Use `autofix` instead.');
+  }
 
   if (includeResolvers) {
     reporter.warn('The `includeResolvers` option is deprecated. It will be removed in v4');
@@ -154,7 +162,7 @@ export const validateConfig: ValidateConfig = ({
     namespace,
     outputPath,
     includeResolvers,
-    autoFix,
+    autofix: autoFix || autofix,
     emitSchema,
     emitPluginDocument,
     scalars,
