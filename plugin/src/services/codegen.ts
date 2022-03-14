@@ -192,10 +192,16 @@ const makeCodegenService: MakeCodegenService = ({
       };
 
       pluginConfig.plugins.push({
-        flow: DEFAULT_FLOW_CONFIG,
+        flow: {
+          ...DEFAULT_FLOW_CONFIG,
+          typesPrefix: `${namespace}$`,
+        },
       });
       pluginConfig.plugins.push({
-        flowOperations: DEFAULT_FLOW_OPERATIONS_CONFIG,
+        flowOperations: {
+          ...DEFAULT_FLOW_OPERATIONS_CONFIG,
+          typesPrefix: `${namespace}$`,
+        },
       });
 
       if (includeResolvers) {
@@ -204,7 +210,10 @@ const makeCodegenService: MakeCodegenService = ({
           flowResolvers: require('@graphql-codegen/flow-resolvers'),
         };
         pluginConfig.plugins.push({
-          flowResolvers: DEFAULT_FLOW_RESOLVERS_CONFIG,
+          flowResolvers: {
+            ...DEFAULT_FLOW_RESOLVERS_CONFIG,
+            typesPrefix: `${namespace}$`,
+          },
         });
       }
 

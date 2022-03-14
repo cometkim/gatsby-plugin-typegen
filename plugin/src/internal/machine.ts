@@ -42,7 +42,7 @@ type Event = (
   | { type: 'START_codegen', schema: GraphQLSchema, definitions: DefinitionMap }
   | { type: 'DONE_codegen' }
 
-  | { type: 'START_autofix', files: string[] }
+  | { type: 'START_autofix', files?: string[] }
   | { type: 'DONE_autofix' }
 );
 

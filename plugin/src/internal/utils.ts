@@ -9,7 +9,7 @@ import {
   MapperKind,
 } from '@graphql-tools/utils';
 
-import type { SupportedLanguage } from './options';
+import type { SupportedLanguage } from './pluginOptions';
 
 export type OverrideProps<TBaseProps, TNewProps> = Omit<TBaseProps, keyof TNewProps> & TNewProps;
 

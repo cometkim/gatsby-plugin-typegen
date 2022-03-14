@@ -134,12 +134,12 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
         },
       },
       services: {
-        emitSchema: (_context, event) => emitSchema(event.schema),
+        emitSchema: context => emitSchema(context.schema!),
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore for typegen bug
         emitPluginDocument: context => emitPluginDocument(context.thirdpartyFragments || []),
-        codegen: (context, event) => codegen({
-          schema: event.schema,
+        codegen: context => codegen({
+          schema: context.schema!,
           documents: [...context.trackedDefinitions?.values() || []]
             .map(definitionMeta => ({
               document: {
@@ -151,7 +151,9 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
         }),
         autofix: (context, event) => {
           if (!context.config.autoFix) {
-            return autofix(event.files);
+            const files = event.files ??
+              [...context.trackedDefinitions?.values() || []].map(def => def.filePath);
+            return autofix(files);
           }
           context.reporter.verbose('running autofix is skipped since disabled');
           return Promise.resolve();
