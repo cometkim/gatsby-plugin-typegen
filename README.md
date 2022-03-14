@@ -7,11 +7,11 @@
 
 Let's give developers using GatsbyJS better DX with extreme type-safety.
 
-- [Plugin](./plugin): Source code of the plugin.
+- [Plugin](plugin): Source code of the plugin.
 
-- [ ] TypeScript example
+- [TypeScript example](examples/typescript)
 
-- [ ] Flow example
+- [Flow example](examples/flow)
 
 ## Contributors ✨
 

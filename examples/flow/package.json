@@ -1,0 +1,33 @@
+{
+  "name": "example-flow",
+  "private": true,
+  "description": "gatsby-plugin-typegen example with Flow",
+  "version": "0.1.0",
+  "author": {
+    "name": "Hyeseong Kim",
+    "email": "hey@hyeseong.kim"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^4.9.3",
+    "gatsby-plugin-image": "^2.9.1",
+    "gatsby-plugin-react-helmet": "^5.9.0",
+    "gatsby-plugin-react-helmet-async": "^1.2.1",
+    "gatsby-plugin-sharp": "^4.9.1",
+    "gatsby-plugin-typegen": "portal:../../plugin",
+    "gatsby-source-filesystem": "^4.9.1",
+    "gatsby-transformer-sharp": "^4.9.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet-async": "^1.2.3"
+  },
+  "devDependencies": {
+    "@babel/preset-flow": "^7.16.7",
+    "flow-bin": "^0.173.0"
+  }
+}
