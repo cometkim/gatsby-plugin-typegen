@@ -1,9 +1,9 @@
-/.yarn/releases/**           binary linguist-vendored
-/.yarn/plugins/**            binary linguist-vendored
-/.yarn/cache/**              binary linguist-vendored
-/.yarn/sdks/**               binary linguist-vendored
-/.yarn/pnpify/**             binary linguist-vendored
+/.yarn/**            linguist-vendored
+/.yarn/releases/**   binary
+/.yarn/plugins/**    binary
 
-/.pnp.js                     binary linguist-generated
+/.pnp.*              binary linguist-generated
 
-/.vscode/*.json              linguist-language=JSON5
+/.vscode/*.json      linguist-language=JSON5
+
+**/__generated__/**  linguist-generated
