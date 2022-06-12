@@ -5,6 +5,8 @@ import { Kind } from 'gatsby/graphql';
 import type { TypegenReporter } from './internal/reporter';
 import { validateConfig } from './internal/config';
 import { typegenMachine } from './internal/machine';
+import { sortDefinitions } from './internal/utils';
+
 import { makeEmitSchemaService } from './services/emitSchema';
 import { makeEmitPluginDocumentService } from './services/emitPluginDocument';
 import { makeAutofixService } from './services/autofix';
@@ -150,6 +152,7 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
         codegen: context => codegen({
           schema: context.schema!,
           documents: [...context.trackedDefinitions?.values() || []]
+            .sort(sortDefinitions)
             .map(definitionMeta => ({
               document: {
                 kind: Kind.DOCUMENT,
