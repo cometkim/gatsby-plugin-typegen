@@ -109,7 +109,7 @@ Add generated typedefs to `.flowconfig`:
 }
 ```
 
-![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/blob/v3.0.0/plugin/images/auto-fixing-demo.gif)
+![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/blob/main/plugin/images/gatsby-schema-visualized.png)
 
 Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 
@@ -226,21 +226,17 @@ The extracted schema file can also be used for [ts-graphql-plugin](https://githu
 }
 ```
 
-![demo with ts-graphql-plugin, it shows type hints, auto suggestions, type errors on GraphQL tag](images/ts-graphql-plugin-demo.gif)
+![demo with ts-graphql-plugin, it shows type hints, auto suggestions, type errors on GraphQL tag](https://github.com/cometkim/gatsby-plugin-typegen/raw/main/plugin/images/ts-graphql-plugin-demo.gif)
 
 ## Available options
 
-Checkout the full documentation of plugin options from [`src/types.ts`](https://github.com/cometkim/gatsby-plugin-typegen/blob/master/plugin/src/types.ts).
+Checkout the full documentation of plugin options from [`src/types.ts`](https://github.com/cometkim/gatsby-plugin-typegen/blob/main/plugin/src/types.ts).
 
 ## Disclaimer
 
-This plugin is a bit opinionated about how integrate GatsbyJS and codegen.
-
-You cannot customize plugins and its options of graphql-codegen because this plugin is built for **ONLY GatsbyJS**.
+This plugin is a bit opinionated about how integrate GatsbyJS and GCG. You cannot customize plugins and its options because this plugin is built for **ONLY GatsbyJS queries**.
 
 If you wanna use codegen with other plugins (e.g. React Apollo), you can use [`@graphql-codegen/cli`](https://www.npmjs.com/package/@graphql-codegen/cli) for it.
-
-Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-graphql-codegen) gives you a more flex options.
 
 ## Changelog
 
