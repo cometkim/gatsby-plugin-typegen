@@ -12,6 +12,10 @@ import { makeCodegenService } from './services/codegen';
 import type { PluginOptions } from './types';
 import { readFileContent, writeFileContent } from './utils';
 
+const isCloudBuild = (env: NodeJS.ProcessEnv) => {
+  return env.NODE_ENV === 'production' && env.CI === 'true';
+};
+
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
 }) => {
@@ -84,6 +88,13 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
     loaded configuration
     ${JSON.stringify(pluginOptions, null, 2)}
   `);
+
+  if (isCloudBuild(process.env)) {
+    typegenReporter.verbose(reporter.stripIndent`
+      skip running on cloud build
+    `);
+    return;
+  }
 
   const emitSchema = makeEmitSchemaService({
     configMap: config.emitSchema,
