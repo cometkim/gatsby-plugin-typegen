@@ -2986,7 +2986,7 @@ declare type GatsbyTypes$StringQueryOperatorInput = {|
 declare type GatsbyTypes$TransformOptions = {|
   cropFocus?: ?ImageCropFocus,
   duotone?: ?GatsbyTypes$DuotoneGradient,
-  fit?: ?GatsbyTypes$ImageFit,
+  fit?: ?ImageFit,
   grayscale?: ?$ElementType<Scalars, 'Boolean'>,
   rotate?: ?$ElementType<Scalars, 'Int'>,
   trim?: ?$ElementType<Scalars, 'Float'>,
