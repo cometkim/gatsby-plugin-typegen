@@ -25,7 +25,7 @@ I strongly recommend to use the official feature instead of this plugin. If you 
 
 ## Demo
 
-![Demonstration of auto-fixing](https://github.com/cometkim/gatsby-plugin-typegen/raw/v3.0.0/images/auto-fixing-demo.gif)
+![Demonstration of auto-fixing](https://github.com/cometkim/gatsby-plugin-typegen/raw/main/plugin/images/auto-fixing-demo.gif)
 
 ## Install
 
@@ -109,7 +109,7 @@ Add generated typedefs to `.flowconfig`:
 }
 ```
 
-![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/raw/v3.0.0/images/gatsby-schema-visualized.png)
+![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/blob/v3.0.0/plugin/images/auto-fixing-demo.gif)
 
 Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 
@@ -163,7 +163,7 @@ You can use the [VSCode GraphQL](https://marketplace.visualstudio.com/items?item
     ```
 
 4. Reload VSCode, `gatsby develop` to make queries in VSCode.
-  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/master/plugin/images/vscode-graphql-extension-preview.gif)
+  ![VSCode extension preview](https://github.com/cometkim/gatsby-plugin-typegen/raw/main/plugin/images/vscode-graphql-extension-preview.gif)
 
 ### ESLint
 
