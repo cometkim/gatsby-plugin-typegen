@@ -38,8 +38,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
       .default('src/__generated__/gatsby-types.d.ts'),
     includeResolvers: Joi.boolean()
       .default(false),
-    autoFix: Joi.boolean()
-      .default(true),
+    autoFix: Joi.boolean(),
     autofix: Joi.boolean()
       .default(true),
     scalars: Joi.object()

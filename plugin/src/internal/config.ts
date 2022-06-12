@@ -5,9 +5,9 @@ import type {
   SchemaOutputOptions,
   DocumentOutputOptions,
 } from './pluginOptions';
+import type { TypegenReporter } from './reporter';
 import type { OverrideProps } from './utils';
 import { formatLanguage, gatsbyInternalScalars } from './utils';
-import type { TypegenReporter } from './reporter';
 
 const defaultSchemaOutputOption = Object.freeze({
   format: 'introspection',
@@ -61,14 +61,14 @@ export const validateConfig: ValidateConfig = ({
     namespace = 'GatsbyTypes',
     includeResolvers = false,
     autoFix,
-    autofix = true,
+    autofix,
     emitSchema: emitSchemaOptionMap = {},
     emitPluginDocuments: legacyEmitPluginDocumentsOptionMap = {},
     emitPluginDocument: emitPluginDocumentsOptionMap = {},
     scalars = {},
   } = pluginOptions;
 
-  if (autofix) {
+  if (autoFix != null) {
     reporter.warn('The `autoFix` option is deprecated. Use `autofix` instead.');
   }
 
@@ -162,7 +162,7 @@ export const validateConfig: ValidateConfig = ({
     namespace,
     outputPath,
     includeResolvers,
-    autofix: autoFix || autofix,
+    autofix: (autofix === true) || (autoFix === true) || (autofix !== false),
     emitSchema,
     emitPluginDocument,
     scalars,
