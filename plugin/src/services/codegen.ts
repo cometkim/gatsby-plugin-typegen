@@ -50,6 +50,7 @@ const DEFAULT_CONFIG = Object.freeze({
   addUnderscoreToArgsType: true,
   skipTypename: true,
   flattenGeneratedTypes: true,
+  flattenGeneratedTypesIncludeFragments: true,
 });
 
 const DEFAULT_TYPESCRIPT_SCALARS = Object.freeze({
