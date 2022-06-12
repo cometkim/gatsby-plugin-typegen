@@ -13,13 +13,11 @@ High-performance TypeScript/Flow code generation for GatsbyJS queries.
 
 ## Features
 
-- [x] Schema extraction
-- [x] Plugin documents extraction
-- [x] Generates type definitions using [graphql-codegen](https://graphql-code-generator.com/)
-- [x] Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
-- [x] Integrates GatsbyJS project with GraphQL & TypeScript ecosystem.
-- [ ] Provides type definitions for the [schema customization](https://www.gatsbyjs.org/docs/schema-customization/).
-- [ ] Provides utility types for `gatsby-node.js`.
+- Schema extraction
+- Plugin documents extraction
+- Generates type definitions for TypeScript & Flow, using [graphql-codegen](https://graphql-code-generator.com/)
+- Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
+- Integrates GatsbyJS project with GraphQL & TypeScript ecosystem.
 
 ## Demo
 
@@ -28,7 +26,7 @@ High-performance TypeScript/Flow code generation for GatsbyJS queries.
 ## Install
 
 ```bash
-yarn add gatsby-plugin-typegen
+yarn add gatsby-plugin-typegen@rc
 
 # or
 # npm install --save gatsby-plugin-typegen
@@ -131,7 +129,7 @@ You can use the [VSCode GraphQL](https://marketplace.visualstudio.com/items?item
             emitSchema: {
               'src/__generated__/gatsby-introspection.json': true,
             },
-            emitPluginDocuments: {
+            emitPluginDocument: {
               'src/__generated__/gatsby-plugin-documents.graphql': true,
             },
           },
@@ -241,6 +239,15 @@ If you wanna use codegen with other plugins (e.g. React Apollo), you can use [`@
 Or [gatsby-plugin-graphql-codegen](https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-graphql-codegen) gives you a more flex options.
 
 ## Changelog
+
+### v3.0.0
+
+- **[BREAKING CHANGE]** nullable fields are typed as `T | null`, instead of `T | undefined` (which was inaccurate).
+- **The output is now stable**, no more dev-only fields, no more randomly-sorted definitions.
+- `autoFix` option is renamed to `autofix`. Previous option will be removed in v4.
+- `emitPluginDocuments` option is renamed to `emitPluginDocument`. Previous option will be removed in v4.
+- Fixed bunch of bugs ([#138](https://github.com/cometkim/gatsby-plugin-typegen/pull/138)).
+- The plugin introduced a very predictable & debuggable scheduler built on top of [XState](https://xstate.js.org/).
 
 ### v2.2.4
 
