@@ -61,6 +61,9 @@ const DEFAULT_TYPESCRIPT_SCALARS = Object.freeze({
   // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
   // Note: This will never be used since this is reserved by GatsbyJS internal
   JSON: 'any',
+
+  // https://github.com/gatsbyjs/gatsby/pull/35683
+  GatsbyImageData: 'import(\'gatsby-plugin-image\').IGatsbyImageData',
 });
 
 const DEFAULT_TYPESCRIPT_CONFIG: Readonly<TypeScriptPluginConfig> = (
@@ -97,6 +100,9 @@ const DEFAULT_FLOW_SCALARS = Object.freeze({
   // The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
   // Note: This will never be used since this is reserved by GatsbyJS internal
   JSON: 'any',
+
+  // FIXME: support library type for this
+  GatsbyImageData: 'any',
 });
 
 const DEFAULT_FLOW_CONFIG: Readonly<FlowPluginConfig> = (
