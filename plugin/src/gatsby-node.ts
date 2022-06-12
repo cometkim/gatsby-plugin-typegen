@@ -75,13 +75,11 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
   const { program } = store.getState();
   const basePath = program.directory;
 
-  const config = validateConfig(
-    {
-      basePath,
-      options: pluginOptions,
-      reporter: typegenReporter,
-    },
-  );
+  const config = validateConfig({
+    basePath,
+    options: pluginOptions,
+    reporter: typegenReporter,
+  });
 
   typegenReporter.verbose(reporter.stripIndent`
     loaded configuration
@@ -111,6 +109,7 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
     ...config,
     readFileContent,
     writeFileContent,
+    reporter: typegenReporter,
   });
 
   const codegen = makeCodegenService({
@@ -165,7 +164,6 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
               [...context.trackedDefinitions?.values() || []].map(def => def.filePath);
             return autofix(files);
           }
-          context.reporter.verbose('running autofix is skipped since disabled');
           return Promise.resolve();
         },
       },
@@ -209,5 +207,7 @@ function makeTypegenReporter(reporter: Reporter): TypegenReporter {
     error: (message, e) => reporter.error(formatMessage(message), e, 'gatsby-plugin-typegen'),
     panic: (message, e) => reporter.panic(formatMessage(message), e, 'gatsby-plugin-typegen'),
     panicOnBuild: (message, e) => reporter.panicOnBuild(formatMessage(message), e, 'gatsby-plugin-typegen'),
+    activity: message => reporter.activityTimer(formatMessage(message)),
+    progress: (message, total) => reporter.createProgress(formatMessage(message), total),
   };
 }

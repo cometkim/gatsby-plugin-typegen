@@ -1,3 +1,15 @@
+interface TypegenActivity {
+  start(): void;
+  panic(arg: any): void;
+  panicOnBuild(arg: any): void;
+  end(): void;
+}
+
+interface TypegenProgressActivity extends TypegenActivity {
+  tick(): void;
+  done(): void;
+}
+
 export interface TypegenReporter {
   stripIndent(template: TemplateStringsArray, ...substitutions: unknown[]): string;
   log(message: string): void;
@@ -7,4 +19,6 @@ export interface TypegenReporter {
   error(message: string, e?: Error | Error[]): void;
   panic(message: string, e: Error | Error[]): void;
   panicOnBuild(message: string, e: Error | Error[]): void;
+  activity(message: string): TypegenActivity;
+  progress(message: string, total: number): TypegenProgressActivity;
 }

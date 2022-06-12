@@ -239,23 +239,32 @@ const makeCodegenService: MakeCodegenService = ({
       },
     };
 
-    reporter.verbose(`Generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})`);
+    const activity = reporter.activity(reporter.stripIndent`
+      generate type definitions to ${outputPath}. (language: ${formatLanguage(language)})
+    `);
+    activity.start();
 
-    let result = await codegen({
-      ...pluginConfig,
-      ...codegenOptions,
-    });
+    try {
+      let result = await codegen({
+        ...pluginConfig,
+        ...codegenOptions,
+      });
 
-    // FIXME: find more accurate way
-    if (language === 'flow') {
-      const FLOW_FILE_TOP = '/* @flow */\n\n';
-      const FLOW_FILE_TOP_REGEXP = /\/\*\s*@flow\s*\*\/\s*/;
-      result = result.replace(FLOW_FILE_TOP_REGEXP, FLOW_FILE_TOP + 'opaque type never = mixed;\n\n');
+      // FIXME: find more accurate way
+      if (language === 'flow') {
+        const FLOW_FILE_TOP = '/* @flow */\n\n';
+        const FLOW_FILE_TOP_REGEXP = /\/\*\s*@flow\s*\*\/\s*/;
+        result = result.replace(FLOW_FILE_TOP_REGEXP, FLOW_FILE_TOP + 'opaque type never = mixed;\n\n');
 
-      const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
-      result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, 'declare type $1');
+        const TYPEDEF_EXPORT_NODE_REGEXP = /export type ((.*)(\{\|?|;)($|\s))/g;
+        result = result.replace(TYPEDEF_EXPORT_NODE_REGEXP, 'declare type $1');
+      }
+
+      await writeFileContent(outputPath, result);
+    } catch (e) {
+      activity.panic(e);
+    } finally {
+      activity.end();
     }
-
-    await writeFileContent(outputPath, result);
   };
 };

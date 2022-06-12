@@ -1,9 +1,11 @@
 import * as path from 'path';
 
 import type { Config } from '../internal/config';
+import type { TypegenReporter } from '../internal/reporter';
+import {formatLanguage} from '../internal/utils';
 
 interface AutofixService {
-  (files: string[]): Promise<Array<PromiseSettledResult<string | null>>>;
+  (files: string[]): Promise<void>;
 }
 
 interface MakeAutofixService {
@@ -12,6 +14,7 @@ interface MakeAutofixService {
     writeFileContent: (path: string, content: string) => Promise<void>,
     language: Config['language'],
     namespace: Config['namespace'],
+    reporter: TypegenReporter,
   }): AutofixService;
 }
 
@@ -179,32 +182,52 @@ const makeAutofixService: MakeAutofixService = ({
   language,
   readFileContent,
   writeFileContent,
+  reporter,
 }) => async files => {
+  const progress = reporter.progress(
+    `autofix ${files.length} files (language: ${formatLanguage(language)})`,
+    files.length,
+  );
+
   if (language === 'typescript') {
-    return Promise.allSettled(
+    await Promise.allSettled(
       files
       .filter(isTypeScriptFile)
-      .map(filePath => (
-        autofixTypeScriptFile({
-          filePath,
-          namespace,
-          readFileContent,
-          writeFileContent,
-        })
-      )),
+      .map(async filePath => {
+        try {
+          await autofixTypeScriptFile({
+            filePath,
+            namespace,
+            readFileContent,
+            writeFileContent,
+          });
+        } catch (e) {
+          reporter.error(`failed to autofix ${filePath}`, e as Error);
+        } finally {
+          progress.tick();
+        }
+      }),
     );
   } else {
-    return Promise.allSettled(
+    await Promise.allSettled(
       files
       .filter(isJavaScriptFile)
-      .map(filePath => (
-        autofixFlowFile({
-          filePath,
-          namespace,
-          readFileContent,
-          writeFileContent,
-        })
-      )),
+      .map(async filePath => {
+        try {
+          await autofixFlowFile({
+            filePath,
+            namespace,
+            readFileContent,
+            writeFileContent,
+          });
+        } catch (e) {
+          reporter.error(`failed to autofix ${filePath}`, e as Error);
+        } finally {
+          progress.tick();
+        }
+      }),
     );
   }
+
+  progress.done();
 };

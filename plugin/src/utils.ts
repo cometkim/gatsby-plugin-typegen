@@ -9,5 +9,3 @@ export const writeFileContent = async (path: string, content: string): Promise<v
   await fs.promises.mkdir(dirname(path), { recursive: true });
   await fs.promises.writeFile(path, content, 'utf-8');
 };
-
-

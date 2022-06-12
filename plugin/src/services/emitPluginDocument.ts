@@ -35,24 +35,31 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
     }
 
     await Promise.all(
-      entries.map(([filePath, config]) => {
-        reporter.info(`emitting 3rd-party documents into ${filePath}`);
+      entries.map(async ([filePath, config]) => {
+        const activity = reporter.activity(`emitting 3rd-party documents into ${filePath}`);
+        activity.start();
 
-        switch (config.format) {
-          case 'graphql': {
-            const printedDocument = definitions
-              .map(def => def.printedAst || '')
-              .filter(Boolean)
-              .join('\n\n');
-            return void writeFileContent(filePath, printedDocument);
+        try {
+          switch (config.format) {
+            case 'graphql': {
+              const printedDocument = definitions
+                .map(def => def.printedAst || '')
+                .filter(Boolean)
+                .join('\n\n');
+              await writeFileContent(filePath, printedDocument);
+            }
+            case 'json': {
+              const document: DocumentNode = {
+                kind: Kind.DOCUMENT,
+                definitions: definitions.map(meta => meta.def),
+              };
+              await writeFileContent(filePath, JSON.stringify(document, null, 2));
+            }
           }
-          case 'json': {
-            const document: DocumentNode = {
-              kind: Kind.DOCUMENT,
-              definitions: definitions.map(meta => meta.def),
-            };
-            return void writeFileContent(filePath, JSON.stringify(document, null, 2));
-          }
+        } catch (e) {
+          activity.panic(e);
+        } finally {
+          activity.end();
         }
       }),
     );

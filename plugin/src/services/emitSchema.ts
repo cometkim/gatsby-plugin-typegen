@@ -32,8 +32,9 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
     }
 
     await Promise.all(
-      entries.map(([filePath, config]) => {
-        reporter.info(`emitting schema into ${filePath}`);
+      entries.map(async ([filePath, config]) => {
+        const activity = reporter.activity(`emit schema into ${filePath}`);
+        activity.start();
 
         const {
           format,
@@ -41,34 +42,39 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
           omitPluginMetadata,
         } = config;
 
-        let outputSchema = schema;
-        if (omitPluginMetadata) {
-          outputSchema = filterPluginSchema(outputSchema);
-        }
-
-        switch (format) {
-          case 'sdl': {
-            return writeFileContent(
-              filePath,
-              printSchema(outputSchema, { commentDescriptions }),
-            );
+        try {
+          let outputSchema = schema;
+          if (omitPluginMetadata) {
+            outputSchema = filterPluginSchema(outputSchema);
           }
-          case 'introspection': {
-            return writeFileContent(
-              filePath,
-              JSON.stringify(
-                introspectionFromSchema(outputSchema, {
-                  descriptions: true,
-                  schemaDescription: true,
-                  directiveIsRepeatable: true,
-                  inputValueDeprecation: true,
-                  specifiedByUrl: true,
-                }),
-                null,
-                2,
-              ),
-            );
+          switch (format) {
+            case 'sdl': {
+              await writeFileContent(
+                filePath,
+                printSchema(outputSchema, { commentDescriptions }),
+              );
+            }
+            case 'introspection': {
+              await writeFileContent(
+                filePath,
+                JSON.stringify(
+                  introspectionFromSchema(outputSchema, {
+                    descriptions: true,
+                    schemaDescription: true,
+                    directiveIsRepeatable: true,
+                    inputValueDeprecation: true,
+                    specifiedByUrl: true,
+                  }),
+                  null,
+                  2,
+                ),
+              );
+            }
           }
+        } catch (e) {
+          activity.panic(e);
+        } finally {
+          activity.end();
         }
       }),
     );
