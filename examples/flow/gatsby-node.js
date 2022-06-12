@@ -3,5 +3,3 @@ exports.onCreateBabelConfig = ({ actions }) => {
     name: require.resolve('@babel/preset-flow'),
   });
 };
-
-exports.pluginOptionsSchema = ({ Joi }) => Joi.object({});

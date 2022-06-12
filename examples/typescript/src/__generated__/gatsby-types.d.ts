@@ -22,6 +22,7 @@ type Scalars = {
   Float: number;
   /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: string;
+  GatsbyImageData: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
 };
@@ -919,6 +920,13 @@ type FloatQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
 };
 
+type GatsbyImageDataQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['GatsbyImageData']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['GatsbyImageData']>>>;
+  readonly ne: InputMaybe<Scalars['GatsbyImageData']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['GatsbyImageData']>>>;
+};
+
 type GatsbyImageFormat =
   | 'auto'
   | 'avif'
@@ -981,7 +989,7 @@ type ImageSharp = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly fixed: Maybe<ImageSharpFixed>;
   readonly fluid: Maybe<ImageSharpFluid>;
-  readonly gatsbyImageData: Scalars['JSON'];
+  readonly gatsbyImageData: Scalars['GatsbyImageData'];
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly original: Maybe<ImageSharpOriginal>;
@@ -1251,7 +1259,7 @@ type ImageSharpFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly fixed: InputMaybe<ImageSharpFixedFilterInput>;
   readonly fluid: InputMaybe<ImageSharpFluidFilterInput>;
-  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly original: InputMaybe<ImageSharpOriginalFilterInput>;
@@ -1667,7 +1675,7 @@ type Query_imageSharpArgs = {
   children: InputMaybe<NodeFilterListInput>;
   fixed: InputMaybe<ImageSharpFixedFilterInput>;
   fluid: InputMaybe<ImageSharpFluidFilterInput>;
-  gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   original: InputMaybe<ImageSharpOriginalFilterInput>;
@@ -1679,6 +1687,7 @@ type Query_imageSharpArgs = {
 type Query_siteArgs = {
   buildTime: InputMaybe<DateQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
+  graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   jsxRuntime: InputMaybe<StringQueryOperatorInput>;
@@ -1748,6 +1757,7 @@ type Query_sitePluginArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly children: ReadonlyArray<Node>;
+  readonly graphqlTypegen: Maybe<Scalars['Boolean']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly jsxRuntime: Maybe<Scalars['String']>;
@@ -2056,6 +2066,7 @@ type SiteFieldsEnum =
   | 'children.parent.internal.type'
   | 'children.parent.parent.children'
   | 'children.parent.parent.id'
+  | 'graphqlTypegen'
   | 'id'
   | 'internal.content'
   | 'internal.contentDigest'
@@ -2113,6 +2124,7 @@ type SiteFieldsEnum =
 type SiteFilterInput = {
   readonly buildTime: InputMaybe<DateQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly graphqlTypegen: InputMaybe<BooleanQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly jsxRuntime: InputMaybe<StringQueryOperatorInput>;

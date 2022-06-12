@@ -16,6 +16,7 @@ declare type Scalars = {|
   Float: number,
   /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: string,
+  GatsbyImageData: any,
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any,
 |};
@@ -933,6 +934,14 @@ declare type GatsbyTypes$FloatQueryOperatorInput = {|
   nin?: ?Array<?$ElementType<Scalars, 'Float'>>,
 |};
 
+
+declare type GatsbyTypes$GatsbyImageDataQueryOperatorInput = {|
+  eq?: ?$ElementType<Scalars, 'GatsbyImageData'>,
+  in?: ?Array<?$ElementType<Scalars, 'GatsbyImageData'>>,
+  ne?: ?$ElementType<Scalars, 'GatsbyImageData'>,
+  nin?: ?Array<?$ElementType<Scalars, 'GatsbyImageData'>>,
+|};
+
 export const GatsbyTypes$GatsbyImageFormatValues = Object.freeze({
   AUTO: 'auto',
   AVIF: 'avif',
@@ -1029,7 +1038,7 @@ declare type GatsbyTypes$ImageSharp = {|
     +children: Array<GatsbyTypes$Node>,
     +fixed?: ?GatsbyTypes$ImageSharpFixed,
     +fluid?: ?GatsbyTypes$ImageSharpFluid,
-    +gatsbyImageData: $ElementType<Scalars, 'JSON'>,
+    +gatsbyImageData: $ElementType<Scalars, 'GatsbyImageData'>,
     +id: $ElementType<Scalars, 'ID'>,
     +internal: GatsbyTypes$Internal,
     +original?: ?GatsbyTypes$ImageSharpOriginal,
@@ -1304,7 +1313,7 @@ declare type GatsbyTypes$ImageSharpFilterInput = {|
   children?: ?GatsbyTypes$NodeFilterListInput,
   fixed?: ?GatsbyTypes$ImageSharpFixedFilterInput,
   fluid?: ?GatsbyTypes$ImageSharpFluidFilterInput,
-  gatsbyImageData?: ?GatsbyTypes$JSONQueryOperatorInput,
+  gatsbyImageData?: ?GatsbyTypes$GatsbyImageDataQueryOperatorInput,
   id?: ?GatsbyTypes$StringQueryOperatorInput,
   internal?: ?GatsbyTypes$InternalFilterInput,
   original?: ?GatsbyTypes$ImageSharpOriginalFilterInput,
@@ -1725,7 +1734,7 @@ declare type GatsbyTypes$Query_imageSharpArgs = {|
   children?: ?GatsbyTypes$NodeFilterListInput,
   fixed?: ?GatsbyTypes$ImageSharpFixedFilterInput,
   fluid?: ?GatsbyTypes$ImageSharpFluidFilterInput,
-  gatsbyImageData?: ?GatsbyTypes$JSONQueryOperatorInput,
+  gatsbyImageData?: ?GatsbyTypes$GatsbyImageDataQueryOperatorInput,
   id?: ?GatsbyTypes$StringQueryOperatorInput,
   internal?: ?GatsbyTypes$InternalFilterInput,
   original?: ?GatsbyTypes$ImageSharpOriginalFilterInput,
@@ -1737,6 +1746,7 @@ declare type GatsbyTypes$Query_imageSharpArgs = {|
 declare type GatsbyTypes$Query_siteArgs = {|
   buildTime?: ?GatsbyTypes$DateQueryOperatorInput,
   children?: ?GatsbyTypes$NodeFilterListInput,
+  graphqlTypegen?: ?GatsbyTypes$BooleanQueryOperatorInput,
   id?: ?GatsbyTypes$StringQueryOperatorInput,
   internal?: ?GatsbyTypes$InternalFilterInput,
   jsxRuntime?: ?GatsbyTypes$StringQueryOperatorInput,
@@ -1808,6 +1818,7 @@ declare type GatsbyTypes$Site = {|
   ...{|
     +buildTime?: ?$ElementType<Scalars, 'Date'>,
     +children: Array<GatsbyTypes$Node>,
+    +graphqlTypegen?: ?$ElementType<Scalars, 'Boolean'>,
     +id: $ElementType<Scalars, 'ID'>,
     +internal: GatsbyTypes$Internal,
     +jsxRuntime?: ?$ElementType<Scalars, 'String'>,
@@ -2124,6 +2135,7 @@ export const GatsbyTypes$SiteFieldsEnumValues = Object.freeze({
   children___parent___internal___type: 'children.parent.internal.type',
   children___parent___parent___children: 'children.parent.parent.children',
   children___parent___parent___id: 'children.parent.parent.id',
+  graphqlTypegen: 'graphqlTypegen',
   id: 'id',
   internal___content: 'internal.content',
   internal___contentDigest: 'internal.contentDigest',
@@ -2185,6 +2197,7 @@ declare type GatsbyTypes$SiteFieldsEnum = $Values<typeof GatsbyTypes$SiteFieldsE
 declare type GatsbyTypes$SiteFilterInput = {|
   buildTime?: ?GatsbyTypes$DateQueryOperatorInput,
   children?: ?GatsbyTypes$NodeFilterListInput,
+  graphqlTypegen?: ?GatsbyTypes$BooleanQueryOperatorInput,
   id?: ?GatsbyTypes$StringQueryOperatorInput,
   internal?: ?GatsbyTypes$InternalFilterInput,
   jsxRuntime?: ?GatsbyTypes$StringQueryOperatorInput,
