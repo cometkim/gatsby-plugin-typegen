@@ -25,7 +25,7 @@ I strongly recommend to use the official feature instead of this plugin. If you 
 
 ## Demo
 
-![Demonstration of auto-fixing](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/auto-fixing-demo.gif)
+![Demonstration of auto-fixing](https://github.com/cometkim/gatsby-plugin-typegen/raw/v3.0.0/images/auto-fixing-demo.gif)
 
 ## Install
 
@@ -109,7 +109,7 @@ Add generated typedefs to `.flowconfig`:
 }
 ```
 
-![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/raw/v2.0.0/images/gatsby-schema-visualized.png)
+![GatsbyJS schema visualized](https://github.com/cometkim/gatsby-plugin-typegen/raw/v3.0.0/images/gatsby-schema-visualized.png)
 
 Visualized via [GraphQL Voyager](https://apis.guru/graphql-voyager/).
 
