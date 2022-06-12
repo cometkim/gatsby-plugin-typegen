@@ -53,6 +53,7 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
                 filePath,
                 printSchema(outputSchema, { commentDescriptions }),
               );
+              break;
             }
             case 'introspection': {
               await writeFileContent(
@@ -69,6 +70,7 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
                   2,
                 ),
               );
+              break;
             }
           }
         } catch (e) {

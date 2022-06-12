@@ -36,7 +36,7 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
 
     await Promise.all(
       entries.map(async ([filePath, config]) => {
-        const activity = reporter.activity(`emitting 3rd-party documents into ${filePath}`);
+        const activity = reporter.activity(`emit 3rd-party documents into ${filePath}`);
         activity.start();
 
         try {
@@ -47,6 +47,7 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
                 .filter(Boolean)
                 .join('\n\n');
               await writeFileContent(filePath, printedDocument);
+              break;
             }
             case 'json': {
               const document: DocumentNode = {
@@ -54,6 +55,7 @@ export const makeEmitPluginDocumentService: MakeEmitPluginDocumentService = ({
                 definitions: definitions.map(meta => meta.def),
               };
               await writeFileContent(filePath, JSON.stringify(document, null, 2));
+              break;
             }
           }
         } catch (e) {
