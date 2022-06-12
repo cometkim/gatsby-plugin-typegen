@@ -2,7 +2,7 @@ import * as path from 'path';
 
 import type { Config } from '../internal/config';
 import type { TypegenReporter } from '../internal/reporter';
-import {formatLanguage} from '../internal/utils';
+import { formatLanguage } from '../internal/utils';
 
 interface AutofixService {
   (files: string[]): Promise<void>;

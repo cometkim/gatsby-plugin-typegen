@@ -11,12 +11,13 @@ import { makeEmitSchemaService } from './services/emitSchema';
 import { makeEmitPluginDocumentService } from './services/emitPluginDocument';
 import { makeAutofixService } from './services/autofix';
 import { makeCodegenService } from './services/codegen';
-import type { PluginOptions } from './types';
-import { readFileContent, writeFileContent } from './utils';
 
-const isCloudBuild = (env: NodeJS.ProcessEnv) => {
-  return env.NODE_ENV === 'production' && env.CI === 'true';
-};
+import type { PluginOptions } from './types';
+import {
+  readFileContent,
+  writeFileContent,
+  isCloudBuild,
+} from './utils';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -145,24 +146,38 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({
         },
       },
       services: {
-        emitSchema: context => emitSchema(context.schema!),
+        emitSchema: context => {
+          if (!context.schema) {
+            return Promise.reject(
+              new Error('schema is not initilaized'),
+            );
+          }
+          return emitSchema(context.schema);
+        },
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore for typegen bug
         emitPluginDocument: context => emitPluginDocument(context.thirdpartyFragments || []),
-        codegen: context => codegen({
-          schema: context.schema!,
-          documents: [...context.trackedDefinitions?.values() || []]
-            .sort(sortDefinitions)
-            .map(definitionMeta => ({
-              document: {
-                kind: Kind.DOCUMENT,
-                definitions: [definitionMeta.def],
-              },
-              hash: definitionMeta.hash.toString(),
-            })),
-        }),
+        codegen: context => {
+          if (!context.schema) {
+            return Promise.reject(
+              new Error('schema is not initilaized'),
+            );
+          }
+          return codegen({
+            schema: context.schema,
+            documents: [...context.trackedDefinitions?.values() || []]
+              .sort(sortDefinitions)
+              .map(definitionMeta => ({
+                document: {
+                  kind: Kind.DOCUMENT,
+                  definitions: [definitionMeta.def],
+                },
+                hash: definitionMeta.hash.toString(),
+              })),
+          });
+        },
         autofix: (context, event) => {
-          if (!context.config.autoFix) {
+          if (!context.config.autofix) {
             const files = event.files ??
               [...context.trackedDefinitions?.values() || []].map(def => def.filePath);
             return autofix(files);
