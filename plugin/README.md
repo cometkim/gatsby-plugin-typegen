@@ -1,7 +1,7 @@
 # gatsby-plugin-typegen
 [![Package version](https://img.shields.io/npm/v/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen)
 [![Npm downloads](https://img.shields.io/npm/dw/gatsby-plugin-typegen)](https://www.npmjs.com/package/gatsby-plugin-typegen)
-[![Actions Status](https://github.com/cometkim/gatsby-plugin-typegen/workflows/CI/badge.svg)](https://github.com/cometkim/gatsby-plugin-typegen/actions)
+[![Integration](https://github.com/cometkim/gatsby-plugin-typegen/actions/workflows/ci.yml/badge.svg)](https://github.com/cometkim/gatsby-plugin-typegen/actions/workflows/ci.yml)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/cometkim/gatsby-plugin-typegen.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cometkim/gatsby-plugin-typegen/context:javascript)
 ![License](https://img.shields.io/github/license/cometkim/gatsby-plugin-typegen)
 [![Backers](https://opencollective.com/gatsby-plugin-typegen/tiers/backer/badge.svg?label=backer&color=brightgreen)](https://opencollective.com/gatsby-plugin-typegen)
@@ -9,7 +9,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-High-performance TypeScript/Flow code generation for GatsbyJS queries.
+TypeScript/Flow code generation for GatsbyJS queries.
 
 ## Features
 
@@ -18,6 +18,10 @@ High-performance TypeScript/Flow code generation for GatsbyJS queries.
 - Generates type definitions for TypeScript & Flow, using [graphql-codegen](https://graphql-code-generator.com/)
 - Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
 - Integrates GatsbyJS project with GraphQL & TypeScript ecosystem.
+
+However, GatsbyJS provides builtin typegen feature since v4.15+. See [discussion](https://github.com/gatsbyjs/gatsby/discussions/35420).
+
+I strongly recommend to use the official feature instead of this plugin. If you would like to experiment with other typegen use cases with this plugin, please [leave your idea](https://github.com/cometkim/gatsby-plugin-typegen/issues/174)!
 
 ## Demo
 
