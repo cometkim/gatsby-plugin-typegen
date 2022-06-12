@@ -1,7 +1,7 @@
 interface TypegenActivity {
   start(): void;
-  panic(arg: any): void;
-  panicOnBuild(arg: any): void;
+  panic(arg: unknown): void;
+  panicOnBuild(arg: unknown): void;
   end(): void;
 }
 

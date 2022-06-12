@@ -19,10 +19,16 @@ const IndexPage: React.FC = () => (
       alt="A Gatsby astronaut"
       style={{ marginBottom: '1.45rem' }}
     />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-mdx/">Go to "Using MDX"</Link> <br />
-    </p>
+    <ul>
+      <li>
+        <Link to="/page-2/">Go to page 2</Link>
+      </li>
+      <li>
+        <Link to="/using-mdx/">
+          {'Go to "Using MDX"'}
+        </Link>
+      </li>
+    </ul>
   </Layout>
 );
 

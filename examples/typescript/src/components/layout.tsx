@@ -4,7 +4,11 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Header from './header';
 import './layout.css';
 
-const Layout: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode,
+};
+
+const Layout: React.FC<Props> = ({ children }) => {
   const data = useStaticQuery<GatsbyTypes.LayoutQuery>(graphql`
     query Layout {
       site {

@@ -65,6 +65,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let spawnedMachine: any = null;
 
 export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = ({

@@ -22,14 +22,17 @@ const Seo: React.FC<SeoProps> = ({ title, description, lang }) => {
     `,
   );
 
-  const metaDescription = description || site?.siteMetadata?.description;
+  const metaDescription = description || site?.siteMetadata?.description || '';
   const defaultTitle = site?.siteMetadata?.title;
 
   return (
     <Helmet
       htmlAttributes={{ lang }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
+      titleTemplate={defaultTitle
+        ? `%s | ${defaultTitle as string}`
+        : undefined
+      }
       meta={[
         {
           name: 'description',

@@ -11112,7 +11112,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^2.4.2
     "@graphql-codegen/typescript-resolvers": ^2.6.6
     "@graphql-codegen/visitor-plugin-common": ^2.9.1
-    "@graphql-tools/utils": ^8.6.2
+    "@graphql-tools/utils": ^8.6.13
     lodash: ^4.17.21
     slugify: ^1.6.5
     xstate: ^4.32.1
@@ -11136,7 +11136,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^2.4.2
     "@graphql-codegen/typescript-resolvers": ^2.6.6
     "@graphql-codegen/visitor-plugin-common": ^2.9.1
-    "@graphql-tools/utils": ^8.6.2
+    "@graphql-tools/utils": ^8.6.13
     lodash: ^4.17.21
     slugify: ^1.6.5
     xstate: ^4.32.1
@@ -11160,7 +11160,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^2.4.2
     "@graphql-codegen/typescript-resolvers": ^2.6.6
     "@graphql-codegen/visitor-plugin-common": ^2.9.1
-    "@graphql-tools/utils": ^8.6.2
+    "@graphql-tools/utils": ^8.6.13
     lodash: ^4.17.21
     slugify: ^1.6.5
     xstate: ^4.32.1

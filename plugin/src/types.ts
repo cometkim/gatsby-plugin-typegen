@@ -7,5 +7,6 @@ export type { PluginOptions } from './internal/pluginOptions';
  * @todo Provide more accurate type definition.
  */
 export interface GatsbyResolverContext {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   nodeModel: any;
 }
