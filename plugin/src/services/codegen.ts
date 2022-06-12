@@ -67,8 +67,7 @@ const DEFAULT_TYPESCRIPT_CONFIG: Readonly<TypeScriptPluginConfig> = (
   Object.freeze({
     avoidOptionals: true,
     immutableTypes: true,
-    // Will be changed from v4
-    maybeValue: 'T | undefined',
+    maybeValue: 'T | null',
     noExport: true,
     enumsAsTypes: true,
     scalars: DEFAULT_TYPESCRIPT_SCALARS,

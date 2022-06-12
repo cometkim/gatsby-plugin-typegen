@@ -3,8 +3,8 @@
 
 declare namespace GatsbyTypes {
 
-type Maybe<T> = T | undefined;
-type InputMaybe<T> = T | undefined;
+type Maybe<T> = T | null;
+type InputMaybe<T> = T | null;
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -2902,17 +2902,17 @@ type WebPOptions = {
 type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type LayoutQuery = { readonly site: { readonly siteMetadata: { readonly title: string | undefined } | undefined } | undefined };
+type LayoutQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | undefined, readonly description: string | undefined } | undefined } | undefined };
+type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly description: string | null } | null } | null };
 
 type UsingTypescriptPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type UsingTypescriptPageQuery = { readonly site: { readonly buildTime: string | undefined } | undefined };
+type UsingTypescriptPageQuery = { readonly site: { readonly buildTime: string | null } | null };
 
 
 }
