@@ -28,18 +28,18 @@ declare type Scalars = {|
 
 
 
-declare type AVIFOptions = {|
+declare type GatsbyTypes$AVIFOptions = {|
   lossless?: ?$ElementType<Scalars, 'Boolean'>,
   quality?: ?$ElementType<Scalars, 'Int'>,
   speed?: ?$ElementType<Scalars, 'Int'>,
 |};
 
-declare type BlurredOptions = {|
-  toFormat?: ?ImageFormat,
+declare type GatsbyTypes$BlurredOptions = {|
+  toFormat?: ?GatsbyTypes$ImageFormat,
   width?: ?$ElementType<Scalars, 'Int'>,
 |};
 
-declare type BooleanQueryOperatorInput = {|
+declare type GatsbyTypes$BooleanQueryOperatorInput = {|
   eq?: ?$ElementType<Scalars, 'Boolean'>,
   in?: ?Array<?$ElementType<Scalars, 'Boolean'>>,
   ne?: ?$ElementType<Scalars, 'Boolean'>,
@@ -47,7 +47,7 @@ declare type BooleanQueryOperatorInput = {|
 |};
 
 
-declare type DateQueryOperatorInput = {|
+declare type GatsbyTypes$DateQueryOperatorInput = {|
   eq?: ?$ElementType<Scalars, 'Date'>,
   gt?: ?$ElementType<Scalars, 'Date'>,
   gte?: ?$ElementType<Scalars, 'Date'>,
@@ -58,8 +58,8 @@ declare type DateQueryOperatorInput = {|
   nin?: ?Array<?$ElementType<Scalars, 'Date'>>,
 |};
 
-declare type Directory = {|
-  ...Node,
+declare type GatsbyTypes$Directory = {|
+  ...GatsbyTypes$Node,
   ...{|
     +absolutePath: $ElementType<Scalars, 'String'>,
     +accessTime: $ElementType<Scalars, 'Date'>,
@@ -72,7 +72,7 @@ declare type Directory = {|
     +blksize?: ?$ElementType<Scalars, 'Int'>,
     +blocks?: ?$ElementType<Scalars, 'Int'>,
     +changeTime: $ElementType<Scalars, 'Date'>,
-    +children: Array<Node>,
+    +children: Array<GatsbyTypes$Node>,
     +ctime: $ElementType<Scalars, 'Date'>,
     +ctimeMs: $ElementType<Scalars, 'Float'>,
     +dev: $ElementType<Scalars, 'Int'>,
@@ -82,14 +82,14 @@ declare type Directory = {|
     +gid: $ElementType<Scalars, 'Int'>,
     +id: $ElementType<Scalars, 'ID'>,
     +ino: $ElementType<Scalars, 'Float'>,
-    +internal: Internal,
+    +internal: GatsbyTypes$Internal,
     +mode: $ElementType<Scalars, 'Int'>,
     +modifiedTime: $ElementType<Scalars, 'Date'>,
     +mtime: $ElementType<Scalars, 'Date'>,
     +mtimeMs: $ElementType<Scalars, 'Float'>,
     +name: $ElementType<Scalars, 'String'>,
     +nlink: $ElementType<Scalars, 'Int'>,
-    +parent?: ?Node,
+    +parent?: ?GatsbyTypes$Node,
     +prettySize: $ElementType<Scalars, 'String'>,
     +rdev: $ElementType<Scalars, 'Int'>,
     +relativeDirectory: $ElementType<Scalars, 'String'>,
@@ -102,7 +102,7 @@ declare type Directory = {|
 |};
 
 
-declare type Directory_accessTimeArgs = {|
+declare type GatsbyTypes$Directory_accessTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -110,7 +110,7 @@ declare type Directory_accessTimeArgs = {|
 |};
 
 
-declare type Directory_atimeArgs = {|
+declare type GatsbyTypes$Directory_atimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -118,7 +118,7 @@ declare type Directory_atimeArgs = {|
 |};
 
 
-declare type Directory_birthTimeArgs = {|
+declare type GatsbyTypes$Directory_birthTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -126,7 +126,7 @@ declare type Directory_birthTimeArgs = {|
 |};
 
 
-declare type Directory_changeTimeArgs = {|
+declare type GatsbyTypes$Directory_changeTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -134,7 +134,7 @@ declare type Directory_changeTimeArgs = {|
 |};
 
 
-declare type Directory_ctimeArgs = {|
+declare type GatsbyTypes$Directory_ctimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -142,7 +142,7 @@ declare type Directory_ctimeArgs = {|
 |};
 
 
-declare type Directory_modifiedTimeArgs = {|
+declare type GatsbyTypes$Directory_modifiedTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -150,59 +150,59 @@ declare type Directory_modifiedTimeArgs = {|
 |};
 
 
-declare type Directory_mtimeArgs = {|
+declare type GatsbyTypes$Directory_mtimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
   locale?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type DirectoryConnection = {|
+declare type GatsbyTypes$DirectoryConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<DirectoryEdge>,
-  +group: Array<DirectoryGroupConnection>,
+  +edges: Array<GatsbyTypes$DirectoryEdge>,
+  +group: Array<GatsbyTypes$DirectoryGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<Directory>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$Directory>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type DirectoryConnection_distinctArgs = {|
-  field: DirectoryFieldsEnum,
+declare type GatsbyTypes$DirectoryConnection_distinctArgs = {|
+  field: GatsbyTypes$DirectoryFieldsEnum,
 |};
 
 
-declare type DirectoryConnection_groupArgs = {|
-  field: DirectoryFieldsEnum,
+declare type GatsbyTypes$DirectoryConnection_groupArgs = {|
+  field: GatsbyTypes$DirectoryFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type DirectoryConnection_maxArgs = {|
-  field: DirectoryFieldsEnum,
+declare type GatsbyTypes$DirectoryConnection_maxArgs = {|
+  field: GatsbyTypes$DirectoryFieldsEnum,
 |};
 
 
-declare type DirectoryConnection_minArgs = {|
-  field: DirectoryFieldsEnum,
+declare type GatsbyTypes$DirectoryConnection_minArgs = {|
+  field: GatsbyTypes$DirectoryFieldsEnum,
 |};
 
 
-declare type DirectoryConnection_sumArgs = {|
-  field: DirectoryFieldsEnum,
+declare type GatsbyTypes$DirectoryConnection_sumArgs = {|
+  field: GatsbyTypes$DirectoryFieldsEnum,
 |};
 
-declare type DirectoryEdge = {|
-  +next?: ?Directory,
-  +node: Directory,
-  +previous?: ?Directory,
+declare type GatsbyTypes$DirectoryEdge = {|
+  +next?: ?GatsbyTypes$Directory,
+  +node: GatsbyTypes$Directory,
+  +previous?: ?GatsbyTypes$Directory,
 |};
 
-export const DirectoryFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$DirectoryFieldsEnumValues = Object.freeze({
   absolutePath: 'absolutePath',
   accessTime: 'accessTime',
   atime: 'atime',
@@ -325,70 +325,70 @@ export const DirectoryFieldsEnumValues = Object.freeze({
 });
 
 
-declare type DirectoryFieldsEnum = $Values<typeof DirectoryFieldsEnumValues>;
+declare type GatsbyTypes$DirectoryFieldsEnum = $Values<typeof GatsbyTypes$DirectoryFieldsEnumValues>;
 
-declare type DirectoryFilterInput = {|
-  absolutePath?: ?StringQueryOperatorInput,
-  accessTime?: ?DateQueryOperatorInput,
-  atime?: ?DateQueryOperatorInput,
-  atimeMs?: ?FloatQueryOperatorInput,
-  base?: ?StringQueryOperatorInput,
-  birthTime?: ?DateQueryOperatorInput,
-  birthtime?: ?DateQueryOperatorInput,
-  birthtimeMs?: ?FloatQueryOperatorInput,
-  blksize?: ?IntQueryOperatorInput,
-  blocks?: ?IntQueryOperatorInput,
-  changeTime?: ?DateQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  ctime?: ?DateQueryOperatorInput,
-  ctimeMs?: ?FloatQueryOperatorInput,
-  dev?: ?IntQueryOperatorInput,
-  dir?: ?StringQueryOperatorInput,
-  ext?: ?StringQueryOperatorInput,
-  extension?: ?StringQueryOperatorInput,
-  gid?: ?IntQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  ino?: ?FloatQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  mode?: ?IntQueryOperatorInput,
-  modifiedTime?: ?DateQueryOperatorInput,
-  mtime?: ?DateQueryOperatorInput,
-  mtimeMs?: ?FloatQueryOperatorInput,
-  name?: ?StringQueryOperatorInput,
-  nlink?: ?IntQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  prettySize?: ?StringQueryOperatorInput,
-  rdev?: ?IntQueryOperatorInput,
-  relativeDirectory?: ?StringQueryOperatorInput,
-  relativePath?: ?StringQueryOperatorInput,
-  root?: ?StringQueryOperatorInput,
-  size?: ?IntQueryOperatorInput,
-  sourceInstanceName?: ?StringQueryOperatorInput,
-  uid?: ?IntQueryOperatorInput,
+declare type GatsbyTypes$DirectoryFilterInput = {|
+  absolutePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  accessTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  base?: ?GatsbyTypes$StringQueryOperatorInput,
+  birthTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  blksize?: ?GatsbyTypes$IntQueryOperatorInput,
+  blocks?: ?GatsbyTypes$IntQueryOperatorInput,
+  changeTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  ctime?: ?GatsbyTypes$DateQueryOperatorInput,
+  ctimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  dev?: ?GatsbyTypes$IntQueryOperatorInput,
+  dir?: ?GatsbyTypes$StringQueryOperatorInput,
+  ext?: ?GatsbyTypes$StringQueryOperatorInput,
+  extension?: ?GatsbyTypes$StringQueryOperatorInput,
+  gid?: ?GatsbyTypes$IntQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  ino?: ?GatsbyTypes$FloatQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  mode?: ?GatsbyTypes$IntQueryOperatorInput,
+  modifiedTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  name?: ?GatsbyTypes$StringQueryOperatorInput,
+  nlink?: ?GatsbyTypes$IntQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  prettySize?: ?GatsbyTypes$StringQueryOperatorInput,
+  rdev?: ?GatsbyTypes$IntQueryOperatorInput,
+  relativeDirectory?: ?GatsbyTypes$StringQueryOperatorInput,
+  relativePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  root?: ?GatsbyTypes$StringQueryOperatorInput,
+  size?: ?GatsbyTypes$IntQueryOperatorInput,
+  sourceInstanceName?: ?GatsbyTypes$StringQueryOperatorInput,
+  uid?: ?GatsbyTypes$IntQueryOperatorInput,
 |};
 
-declare type DirectoryGroupConnection = {|
-  +edges: Array<DirectoryEdge>,
+declare type GatsbyTypes$DirectoryGroupConnection = {|
+  +edges: Array<GatsbyTypes$DirectoryEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<Directory>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$Directory>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type DirectorySortInput = {|
-  fields?: ?Array<?DirectoryFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$DirectorySortInput = {|
+  fields?: ?Array<?GatsbyTypes$DirectoryFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-declare type DuotoneGradient = {|
+declare type GatsbyTypes$DuotoneGradient = {|
   highlight: $ElementType<Scalars, 'String'>,
   opacity?: ?$ElementType<Scalars, 'Int'>,
   shadow: $ElementType<Scalars, 'String'>,
 |};
 
-declare type File = {|
-  ...Node,
+declare type GatsbyTypes$File = {|
+  ...GatsbyTypes$Node,
   ...{|
     +absolutePath: $ElementType<Scalars, 'String'>,
     +accessTime: $ElementType<Scalars, 'Date'>,
@@ -401,9 +401,9 @@ declare type File = {|
     +blksize?: ?$ElementType<Scalars, 'Int'>,
     +blocks?: ?$ElementType<Scalars, 'Int'>,
     +changeTime: $ElementType<Scalars, 'Date'>,
-    +childImageSharp?: ?ImageSharp,
-    +children: Array<Node>,
-    +childrenImageSharp?: ?Array<?ImageSharp>,
+    +childImageSharp?: ?GatsbyTypes$ImageSharp,
+    +children: Array<GatsbyTypes$Node>,
+    +childrenImageSharp?: ?Array<?GatsbyTypes$ImageSharp>,
     +ctime: $ElementType<Scalars, 'Date'>,
     +ctimeMs: $ElementType<Scalars, 'Float'>,
     +dev: $ElementType<Scalars, 'Int'>,
@@ -413,14 +413,14 @@ declare type File = {|
     +gid: $ElementType<Scalars, 'Int'>,
     +id: $ElementType<Scalars, 'ID'>,
     +ino: $ElementType<Scalars, 'Float'>,
-    +internal: Internal,
+    +internal: GatsbyTypes$Internal,
     +mode: $ElementType<Scalars, 'Int'>,
     +modifiedTime: $ElementType<Scalars, 'Date'>,
     +mtime: $ElementType<Scalars, 'Date'>,
     +mtimeMs: $ElementType<Scalars, 'Float'>,
     +name: $ElementType<Scalars, 'String'>,
     +nlink: $ElementType<Scalars, 'Int'>,
-    +parent?: ?Node,
+    +parent?: ?GatsbyTypes$Node,
     +prettySize: $ElementType<Scalars, 'String'>,
     +publicURL?: ?$ElementType<Scalars, 'String'>,
     +rdev: $ElementType<Scalars, 'Int'>,
@@ -434,7 +434,7 @@ declare type File = {|
 |};
 
 
-declare type File_accessTimeArgs = {|
+declare type GatsbyTypes$File_accessTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -442,7 +442,7 @@ declare type File_accessTimeArgs = {|
 |};
 
 
-declare type File_atimeArgs = {|
+declare type GatsbyTypes$File_atimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -450,7 +450,7 @@ declare type File_atimeArgs = {|
 |};
 
 
-declare type File_birthTimeArgs = {|
+declare type GatsbyTypes$File_birthTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -458,7 +458,7 @@ declare type File_birthTimeArgs = {|
 |};
 
 
-declare type File_changeTimeArgs = {|
+declare type GatsbyTypes$File_changeTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -466,7 +466,7 @@ declare type File_changeTimeArgs = {|
 |};
 
 
-declare type File_ctimeArgs = {|
+declare type GatsbyTypes$File_ctimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -474,7 +474,7 @@ declare type File_ctimeArgs = {|
 |};
 
 
-declare type File_modifiedTimeArgs = {|
+declare type GatsbyTypes$File_modifiedTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
@@ -482,59 +482,59 @@ declare type File_modifiedTimeArgs = {|
 |};
 
 
-declare type File_mtimeArgs = {|
+declare type GatsbyTypes$File_mtimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
   locale?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type FileConnection = {|
+declare type GatsbyTypes$FileConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<FileEdge>,
-  +group: Array<FileGroupConnection>,
+  +edges: Array<GatsbyTypes$FileEdge>,
+  +group: Array<GatsbyTypes$FileGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<File>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$File>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type FileConnection_distinctArgs = {|
-  field: FileFieldsEnum,
+declare type GatsbyTypes$FileConnection_distinctArgs = {|
+  field: GatsbyTypes$FileFieldsEnum,
 |};
 
 
-declare type FileConnection_groupArgs = {|
-  field: FileFieldsEnum,
+declare type GatsbyTypes$FileConnection_groupArgs = {|
+  field: GatsbyTypes$FileFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type FileConnection_maxArgs = {|
-  field: FileFieldsEnum,
+declare type GatsbyTypes$FileConnection_maxArgs = {|
+  field: GatsbyTypes$FileFieldsEnum,
 |};
 
 
-declare type FileConnection_minArgs = {|
-  field: FileFieldsEnum,
+declare type GatsbyTypes$FileConnection_minArgs = {|
+  field: GatsbyTypes$FileFieldsEnum,
 |};
 
 
-declare type FileConnection_sumArgs = {|
-  field: FileFieldsEnum,
+declare type GatsbyTypes$FileConnection_sumArgs = {|
+  field: GatsbyTypes$FileFieldsEnum,
 |};
 
-declare type FileEdge = {|
-  +next?: ?File,
-  +node: File,
-  +previous?: ?File,
+declare type GatsbyTypes$FileEdge = {|
+  +next?: ?GatsbyTypes$File,
+  +node: GatsbyTypes$File,
+  +previous?: ?GatsbyTypes$File,
 |};
 
-export const FileFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$FileFieldsEnumValues = Object.freeze({
   absolutePath: 'absolutePath',
   accessTime: 'accessTime',
   atime: 'atime',
@@ -799,66 +799,66 @@ export const FileFieldsEnumValues = Object.freeze({
 });
 
 
-declare type FileFieldsEnum = $Values<typeof FileFieldsEnumValues>;
+declare type GatsbyTypes$FileFieldsEnum = $Values<typeof GatsbyTypes$FileFieldsEnumValues>;
 
-declare type FileFilterInput = {|
-  absolutePath?: ?StringQueryOperatorInput,
-  accessTime?: ?DateQueryOperatorInput,
-  atime?: ?DateQueryOperatorInput,
-  atimeMs?: ?FloatQueryOperatorInput,
-  base?: ?StringQueryOperatorInput,
-  birthTime?: ?DateQueryOperatorInput,
-  birthtime?: ?DateQueryOperatorInput,
-  birthtimeMs?: ?FloatQueryOperatorInput,
-  blksize?: ?IntQueryOperatorInput,
-  blocks?: ?IntQueryOperatorInput,
-  changeTime?: ?DateQueryOperatorInput,
-  childImageSharp?: ?ImageSharpFilterInput,
-  children?: ?NodeFilterListInput,
-  childrenImageSharp?: ?ImageSharpFilterListInput,
-  ctime?: ?DateQueryOperatorInput,
-  ctimeMs?: ?FloatQueryOperatorInput,
-  dev?: ?IntQueryOperatorInput,
-  dir?: ?StringQueryOperatorInput,
-  ext?: ?StringQueryOperatorInput,
-  extension?: ?StringQueryOperatorInput,
-  gid?: ?IntQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  ino?: ?FloatQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  mode?: ?IntQueryOperatorInput,
-  modifiedTime?: ?DateQueryOperatorInput,
-  mtime?: ?DateQueryOperatorInput,
-  mtimeMs?: ?FloatQueryOperatorInput,
-  name?: ?StringQueryOperatorInput,
-  nlink?: ?IntQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  prettySize?: ?StringQueryOperatorInput,
-  publicURL?: ?StringQueryOperatorInput,
-  rdev?: ?IntQueryOperatorInput,
-  relativeDirectory?: ?StringQueryOperatorInput,
-  relativePath?: ?StringQueryOperatorInput,
-  root?: ?StringQueryOperatorInput,
-  size?: ?IntQueryOperatorInput,
-  sourceInstanceName?: ?StringQueryOperatorInput,
-  uid?: ?IntQueryOperatorInput,
+declare type GatsbyTypes$FileFilterInput = {|
+  absolutePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  accessTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  base?: ?GatsbyTypes$StringQueryOperatorInput,
+  birthTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  blksize?: ?GatsbyTypes$IntQueryOperatorInput,
+  blocks?: ?GatsbyTypes$IntQueryOperatorInput,
+  changeTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  childImageSharp?: ?GatsbyTypes$ImageSharpFilterInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  childrenImageSharp?: ?GatsbyTypes$ImageSharpFilterListInput,
+  ctime?: ?GatsbyTypes$DateQueryOperatorInput,
+  ctimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  dev?: ?GatsbyTypes$IntQueryOperatorInput,
+  dir?: ?GatsbyTypes$StringQueryOperatorInput,
+  ext?: ?GatsbyTypes$StringQueryOperatorInput,
+  extension?: ?GatsbyTypes$StringQueryOperatorInput,
+  gid?: ?GatsbyTypes$IntQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  ino?: ?GatsbyTypes$FloatQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  mode?: ?GatsbyTypes$IntQueryOperatorInput,
+  modifiedTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  name?: ?GatsbyTypes$StringQueryOperatorInput,
+  nlink?: ?GatsbyTypes$IntQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  prettySize?: ?GatsbyTypes$StringQueryOperatorInput,
+  publicURL?: ?GatsbyTypes$StringQueryOperatorInput,
+  rdev?: ?GatsbyTypes$IntQueryOperatorInput,
+  relativeDirectory?: ?GatsbyTypes$StringQueryOperatorInput,
+  relativePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  root?: ?GatsbyTypes$StringQueryOperatorInput,
+  size?: ?GatsbyTypes$IntQueryOperatorInput,
+  sourceInstanceName?: ?GatsbyTypes$StringQueryOperatorInput,
+  uid?: ?GatsbyTypes$IntQueryOperatorInput,
 |};
 
-declare type FileGroupConnection = {|
-  +edges: Array<FileEdge>,
+declare type GatsbyTypes$FileGroupConnection = {|
+  +edges: Array<GatsbyTypes$FileEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<File>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$File>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type FileSortInput = {|
-  fields?: ?Array<?FileFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$FileSortInput = {|
+  fields?: ?Array<?GatsbyTypes$FileFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-declare type FloatQueryOperatorInput = {|
+declare type GatsbyTypes$FloatQueryOperatorInput = {|
   eq?: ?$ElementType<Scalars, 'Float'>,
   gt?: ?$ElementType<Scalars, 'Float'>,
   gte?: ?$ElementType<Scalars, 'Float'>,
@@ -869,7 +869,7 @@ declare type FloatQueryOperatorInput = {|
   nin?: ?Array<?$ElementType<Scalars, 'Float'>>,
 |};
 
-export const ImageCropFocusValues = Object.freeze({
+export const GatsbyTypes$ImageCropFocusValues = Object.freeze({
   ATTENTION: 'ATTENTION',
   CENTER: 'CENTER',
   EAST: 'EAST',
@@ -884,9 +884,9 @@ export const ImageCropFocusValues = Object.freeze({
 });
 
 
-declare type ImageCropFocus = $Values<typeof ImageCropFocusValues>;
+declare type GatsbyTypes$ImageCropFocus = $Values<typeof GatsbyTypes$ImageCropFocusValues>;
 
-export const ImageFitValues = Object.freeze({
+export const GatsbyTypes$ImageFitValues = Object.freeze({
   CONTAIN: 'CONTAIN',
   COVER: 'COVER',
   FILL: 'FILL',
@@ -895,9 +895,9 @@ export const ImageFitValues = Object.freeze({
 });
 
 
-declare type ImageFit = $Values<typeof ImageFitValues>;
+declare type GatsbyTypes$ImageFit = $Values<typeof GatsbyTypes$ImageFitValues>;
 
-export const ImageFormatValues = Object.freeze({
+export const GatsbyTypes$ImageFormatValues = Object.freeze({
   AUTO: 'AUTO',
   AVIF: 'AVIF',
   JPG: 'JPG',
@@ -907,18 +907,18 @@ export const ImageFormatValues = Object.freeze({
 });
 
 
-declare type ImageFormat = $Values<typeof ImageFormatValues>;
+declare type GatsbyTypes$ImageFormat = $Values<typeof GatsbyTypes$ImageFormatValues>;
 
-export const ImageLayoutValues = Object.freeze({
+export const GatsbyTypes$ImageLayoutValues = Object.freeze({
   CONSTRAINED: 'CONSTRAINED',
   FIXED: 'FIXED',
   FULL_WIDTH: 'FULL_WIDTH'
 });
 
 
-declare type ImageLayout = $Values<typeof ImageLayoutValues>;
+declare type GatsbyTypes$ImageLayout = $Values<typeof GatsbyTypes$ImageLayoutValues>;
 
-export const ImagePlaceholderValues = Object.freeze({
+export const GatsbyTypes$ImagePlaceholderValues = Object.freeze({
   BLURRED: 'BLURRED',
   DOMINANT_COLOR: 'DOMINANT_COLOR',
   NONE: 'NONE',
@@ -926,30 +926,30 @@ export const ImagePlaceholderValues = Object.freeze({
 });
 
 
-declare type ImagePlaceholder = $Values<typeof ImagePlaceholderValues>;
+declare type GatsbyTypes$ImagePlaceholder = $Values<typeof GatsbyTypes$ImagePlaceholderValues>;
 
-declare type ImageSharp = {|
-  ...Node,
+declare type GatsbyTypes$ImageSharp = {|
+  ...GatsbyTypes$Node,
   ...{|
-    +children: Array<Node>,
-    +fixed?: ?ImageSharpFixed,
-    +fluid?: ?ImageSharpFluid,
+    +children: Array<GatsbyTypes$Node>,
+    +fixed?: ?GatsbyTypes$ImageSharpFixed,
+    +fluid?: ?GatsbyTypes$ImageSharpFluid,
     +gatsbyImageData: $ElementType<Scalars, 'JSON'>,
     +id: $ElementType<Scalars, 'ID'>,
-    +internal: Internal,
-    +original?: ?ImageSharpOriginal,
-    +parent?: ?Node,
-    +resize?: ?ImageSharpResize,
+    +internal: GatsbyTypes$Internal,
+    +original?: ?GatsbyTypes$ImageSharpOriginal,
+    +parent?: ?GatsbyTypes$Node,
+    +resize?: ?GatsbyTypes$ImageSharpResize,
   |}
 |};
 
 
-declare type ImageSharp_fixedArgs = {|
+declare type GatsbyTypes$ImageSharp_fixedArgs = {|
   background: $ElementType<Scalars, 'String'>,
   base64Width?: ?$ElementType<Scalars, 'Int'>,
-  cropFocus: ImageCropFocus,
-  duotone?: ?DuotoneGradient,
-  fit: ImageFit,
+  cropFocus: GatsbyTypes$ImageCropFocus,
+  duotone?: ?GatsbyTypes$DuotoneGradient,
+  fit: GatsbyTypes$ImageFit,
   grayscale: $ElementType<Scalars, 'Boolean'>,
   height?: ?$ElementType<Scalars, 'Int'>,
   jpegProgressive: $ElementType<Scalars, 'Boolean'>,
@@ -958,21 +958,21 @@ declare type ImageSharp_fixedArgs = {|
   pngQuality?: ?$ElementType<Scalars, 'Int'>,
   quality?: ?$ElementType<Scalars, 'Int'>,
   rotate: $ElementType<Scalars, 'Int'>,
-  toFormat: ImageFormat,
-  toFormatBase64: ImageFormat,
-  traceSVG?: ?Potrace,
+  toFormat: GatsbyTypes$ImageFormat,
+  toFormatBase64: GatsbyTypes$ImageFormat,
+  traceSVG?: ?GatsbyTypes$Potrace,
   trim: $ElementType<Scalars, 'Float'>,
   webpQuality?: ?$ElementType<Scalars, 'Int'>,
   width?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type ImageSharp_fluidArgs = {|
+declare type GatsbyTypes$ImageSharp_fluidArgs = {|
   background: $ElementType<Scalars, 'String'>,
   base64Width?: ?$ElementType<Scalars, 'Int'>,
-  cropFocus: ImageCropFocus,
-  duotone?: ?DuotoneGradient,
-  fit: ImageFit,
+  cropFocus: GatsbyTypes$ImageCropFocus,
+  duotone?: ?GatsbyTypes$DuotoneGradient,
+  fit: GatsbyTypes$ImageFit,
   grayscale: $ElementType<Scalars, 'Boolean'>,
   jpegProgressive: $ElementType<Scalars, 'Boolean'>,
   jpegQuality?: ?$ElementType<Scalars, 'Int'>,
@@ -984,42 +984,42 @@ declare type ImageSharp_fluidArgs = {|
   rotate: $ElementType<Scalars, 'Int'>,
   sizes: $ElementType<Scalars, 'String'>,
   srcSetBreakpoints: Array<?$ElementType<Scalars, 'Int'>>,
-  toFormat: ImageFormat,
-  toFormatBase64: ImageFormat,
-  traceSVG?: ?Potrace,
+  toFormat: GatsbyTypes$ImageFormat,
+  toFormatBase64: GatsbyTypes$ImageFormat,
+  traceSVG?: ?GatsbyTypes$Potrace,
   trim: $ElementType<Scalars, 'Float'>,
   webpQuality?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type ImageSharp_gatsbyImageDataArgs = {|
+declare type GatsbyTypes$ImageSharp_gatsbyImageDataArgs = {|
   aspectRatio?: ?$ElementType<Scalars, 'Float'>,
-  avifOptions?: ?AVIFOptions,
+  avifOptions?: ?GatsbyTypes$AVIFOptions,
   backgroundColor?: ?$ElementType<Scalars, 'String'>,
-  blurredOptions?: ?BlurredOptions,
+  blurredOptions?: ?GatsbyTypes$BlurredOptions,
   breakpoints?: ?Array<?$ElementType<Scalars, 'Int'>>,
-  formats?: ?Array<?ImageFormat>,
+  formats?: ?Array<?GatsbyTypes$ImageFormat>,
   height?: ?$ElementType<Scalars, 'Int'>,
-  jpgOptions?: ?JPGOptions,
-  layout: ImageLayout,
+  jpgOptions?: ?GatsbyTypes$JPGOptions,
+  layout: GatsbyTypes$ImageLayout,
   outputPixelDensities?: ?Array<?$ElementType<Scalars, 'Float'>>,
-  placeholder?: ?ImagePlaceholder,
-  pngOptions?: ?PNGOptions,
+  placeholder?: ?GatsbyTypes$ImagePlaceholder,
+  pngOptions?: ?GatsbyTypes$PNGOptions,
   quality?: ?$ElementType<Scalars, 'Int'>,
   sizes?: ?$ElementType<Scalars, 'String'>,
-  tracedSVGOptions?: ?Potrace,
-  transformOptions?: ?TransformOptions,
-  webpOptions?: ?WebPOptions,
+  tracedSVGOptions?: ?GatsbyTypes$Potrace,
+  transformOptions?: ?GatsbyTypes$TransformOptions,
+  webpOptions?: ?GatsbyTypes$WebPOptions,
   width?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type ImageSharp_resizeArgs = {|
+declare type GatsbyTypes$ImageSharp_resizeArgs = {|
   background: $ElementType<Scalars, 'String'>,
   base64: $ElementType<Scalars, 'Boolean'>,
-  cropFocus: ImageCropFocus,
-  duotone?: ?DuotoneGradient,
-  fit: ImageFit,
+  cropFocus: GatsbyTypes$ImageCropFocus,
+  duotone?: ?GatsbyTypes$DuotoneGradient,
+  fit: GatsbyTypes$ImageFit,
   grayscale: $ElementType<Scalars, 'Boolean'>,
   height?: ?$ElementType<Scalars, 'Int'>,
   jpegProgressive: $ElementType<Scalars, 'Boolean'>,
@@ -1029,59 +1029,59 @@ declare type ImageSharp_resizeArgs = {|
   pngQuality?: ?$ElementType<Scalars, 'Int'>,
   quality?: ?$ElementType<Scalars, 'Int'>,
   rotate: $ElementType<Scalars, 'Int'>,
-  toFormat: ImageFormat,
-  traceSVG?: ?Potrace,
+  toFormat: GatsbyTypes$ImageFormat,
+  traceSVG?: ?GatsbyTypes$Potrace,
   trim: $ElementType<Scalars, 'Float'>,
   webpQuality?: ?$ElementType<Scalars, 'Int'>,
   width?: ?$ElementType<Scalars, 'Int'>,
 |};
 
-declare type ImageSharpConnection = {|
+declare type GatsbyTypes$ImageSharpConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<ImageSharpEdge>,
-  +group: Array<ImageSharpGroupConnection>,
+  +edges: Array<GatsbyTypes$ImageSharpEdge>,
+  +group: Array<GatsbyTypes$ImageSharpGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<ImageSharp>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$ImageSharp>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type ImageSharpConnection_distinctArgs = {|
-  field: ImageSharpFieldsEnum,
+declare type GatsbyTypes$ImageSharpConnection_distinctArgs = {|
+  field: GatsbyTypes$ImageSharpFieldsEnum,
 |};
 
 
-declare type ImageSharpConnection_groupArgs = {|
-  field: ImageSharpFieldsEnum,
+declare type GatsbyTypes$ImageSharpConnection_groupArgs = {|
+  field: GatsbyTypes$ImageSharpFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type ImageSharpConnection_maxArgs = {|
-  field: ImageSharpFieldsEnum,
+declare type GatsbyTypes$ImageSharpConnection_maxArgs = {|
+  field: GatsbyTypes$ImageSharpFieldsEnum,
 |};
 
 
-declare type ImageSharpConnection_minArgs = {|
-  field: ImageSharpFieldsEnum,
+declare type GatsbyTypes$ImageSharpConnection_minArgs = {|
+  field: GatsbyTypes$ImageSharpFieldsEnum,
 |};
 
 
-declare type ImageSharpConnection_sumArgs = {|
-  field: ImageSharpFieldsEnum,
+declare type GatsbyTypes$ImageSharpConnection_sumArgs = {|
+  field: GatsbyTypes$ImageSharpFieldsEnum,
 |};
 
-declare type ImageSharpEdge = {|
-  +next?: ?ImageSharp,
-  +node: ImageSharp,
-  +previous?: ?ImageSharp,
+declare type GatsbyTypes$ImageSharpEdge = {|
+  +next?: ?GatsbyTypes$ImageSharp,
+  +node: GatsbyTypes$ImageSharp,
+  +previous?: ?GatsbyTypes$ImageSharp,
 |};
 
-export const ImageSharpFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$ImageSharpFieldsEnumValues = Object.freeze({
   children: 'children',
   children___children: 'children___children',
   children___children___children: 'children___children___children',
@@ -1203,25 +1203,25 @@ export const ImageSharpFieldsEnumValues = Object.freeze({
 });
 
 
-declare type ImageSharpFieldsEnum = $Values<typeof ImageSharpFieldsEnumValues>;
+declare type GatsbyTypes$ImageSharpFieldsEnum = $Values<typeof GatsbyTypes$ImageSharpFieldsEnumValues>;
 
-declare type ImageSharpFilterInput = {|
-  children?: ?NodeFilterListInput,
-  fixed?: ?ImageSharpFixedFilterInput,
-  fluid?: ?ImageSharpFluidFilterInput,
-  gatsbyImageData?: ?JSONQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  original?: ?ImageSharpOriginalFilterInput,
-  parent?: ?NodeFilterInput,
-  resize?: ?ImageSharpResizeFilterInput,
+declare type GatsbyTypes$ImageSharpFilterInput = {|
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  fixed?: ?GatsbyTypes$ImageSharpFixedFilterInput,
+  fluid?: ?GatsbyTypes$ImageSharpFluidFilterInput,
+  gatsbyImageData?: ?GatsbyTypes$JSONQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  original?: ?GatsbyTypes$ImageSharpOriginalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  resize?: ?GatsbyTypes$ImageSharpResizeFilterInput,
 |};
 
-declare type ImageSharpFilterListInput = {|
-  elemMatch?: ?ImageSharpFilterInput,
+declare type GatsbyTypes$ImageSharpFilterListInput = {|
+  elemMatch?: ?GatsbyTypes$ImageSharpFilterInput,
 |};
 
-declare type ImageSharpFixed = {|
+declare type GatsbyTypes$ImageSharpFixed = {|
   +aspectRatio?: ?$ElementType<Scalars, 'Float'>,
   +base64?: ?$ElementType<Scalars, 'String'>,
   +height: $ElementType<Scalars, 'Float'>,
@@ -1234,20 +1234,20 @@ declare type ImageSharpFixed = {|
   +width: $ElementType<Scalars, 'Float'>,
 |};
 
-declare type ImageSharpFixedFilterInput = {|
-  aspectRatio?: ?FloatQueryOperatorInput,
-  base64?: ?StringQueryOperatorInput,
-  height?: ?FloatQueryOperatorInput,
-  originalName?: ?StringQueryOperatorInput,
-  src?: ?StringQueryOperatorInput,
-  srcSet?: ?StringQueryOperatorInput,
-  srcSetWebp?: ?StringQueryOperatorInput,
-  srcWebp?: ?StringQueryOperatorInput,
-  tracedSVG?: ?StringQueryOperatorInput,
-  width?: ?FloatQueryOperatorInput,
+declare type GatsbyTypes$ImageSharpFixedFilterInput = {|
+  aspectRatio?: ?GatsbyTypes$FloatQueryOperatorInput,
+  base64?: ?GatsbyTypes$StringQueryOperatorInput,
+  height?: ?GatsbyTypes$FloatQueryOperatorInput,
+  originalName?: ?GatsbyTypes$StringQueryOperatorInput,
+  src?: ?GatsbyTypes$StringQueryOperatorInput,
+  srcSet?: ?GatsbyTypes$StringQueryOperatorInput,
+  srcSetWebp?: ?GatsbyTypes$StringQueryOperatorInput,
+  srcWebp?: ?GatsbyTypes$StringQueryOperatorInput,
+  tracedSVG?: ?GatsbyTypes$StringQueryOperatorInput,
+  width?: ?GatsbyTypes$FloatQueryOperatorInput,
 |};
 
-declare type ImageSharpFluid = {|
+declare type GatsbyTypes$ImageSharpFluid = {|
   +aspectRatio: $ElementType<Scalars, 'Float'>,
   +base64?: ?$ElementType<Scalars, 'String'>,
   +originalImg?: ?$ElementType<Scalars, 'String'>,
@@ -1262,43 +1262,43 @@ declare type ImageSharpFluid = {|
   +tracedSVG?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type ImageSharpFluidFilterInput = {|
-  aspectRatio?: ?FloatQueryOperatorInput,
-  base64?: ?StringQueryOperatorInput,
-  originalImg?: ?StringQueryOperatorInput,
-  originalName?: ?StringQueryOperatorInput,
-  presentationHeight?: ?IntQueryOperatorInput,
-  presentationWidth?: ?IntQueryOperatorInput,
-  sizes?: ?StringQueryOperatorInput,
-  src?: ?StringQueryOperatorInput,
-  srcSet?: ?StringQueryOperatorInput,
-  srcSetWebp?: ?StringQueryOperatorInput,
-  srcWebp?: ?StringQueryOperatorInput,
-  tracedSVG?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$ImageSharpFluidFilterInput = {|
+  aspectRatio?: ?GatsbyTypes$FloatQueryOperatorInput,
+  base64?: ?GatsbyTypes$StringQueryOperatorInput,
+  originalImg?: ?GatsbyTypes$StringQueryOperatorInput,
+  originalName?: ?GatsbyTypes$StringQueryOperatorInput,
+  presentationHeight?: ?GatsbyTypes$IntQueryOperatorInput,
+  presentationWidth?: ?GatsbyTypes$IntQueryOperatorInput,
+  sizes?: ?GatsbyTypes$StringQueryOperatorInput,
+  src?: ?GatsbyTypes$StringQueryOperatorInput,
+  srcSet?: ?GatsbyTypes$StringQueryOperatorInput,
+  srcSetWebp?: ?GatsbyTypes$StringQueryOperatorInput,
+  srcWebp?: ?GatsbyTypes$StringQueryOperatorInput,
+  tracedSVG?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
-declare type ImageSharpGroupConnection = {|
-  +edges: Array<ImageSharpEdge>,
+declare type GatsbyTypes$ImageSharpGroupConnection = {|
+  +edges: Array<GatsbyTypes$ImageSharpEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<ImageSharp>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$ImageSharp>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type ImageSharpOriginal = {|
+declare type GatsbyTypes$ImageSharpOriginal = {|
   +height?: ?$ElementType<Scalars, 'Float'>,
   +src?: ?$ElementType<Scalars, 'String'>,
   +width?: ?$ElementType<Scalars, 'Float'>,
 |};
 
-declare type ImageSharpOriginalFilterInput = {|
-  height?: ?FloatQueryOperatorInput,
-  src?: ?StringQueryOperatorInput,
-  width?: ?FloatQueryOperatorInput,
+declare type GatsbyTypes$ImageSharpOriginalFilterInput = {|
+  height?: ?GatsbyTypes$FloatQueryOperatorInput,
+  src?: ?GatsbyTypes$StringQueryOperatorInput,
+  width?: ?GatsbyTypes$FloatQueryOperatorInput,
 |};
 
-declare type ImageSharpResize = {|
+declare type GatsbyTypes$ImageSharpResize = {|
   +aspectRatio?: ?$ElementType<Scalars, 'Float'>,
   +height?: ?$ElementType<Scalars, 'Int'>,
   +originalName?: ?$ElementType<Scalars, 'String'>,
@@ -1307,21 +1307,21 @@ declare type ImageSharpResize = {|
   +width?: ?$ElementType<Scalars, 'Int'>,
 |};
 
-declare type ImageSharpResizeFilterInput = {|
-  aspectRatio?: ?FloatQueryOperatorInput,
-  height?: ?IntQueryOperatorInput,
-  originalName?: ?StringQueryOperatorInput,
-  src?: ?StringQueryOperatorInput,
-  tracedSVG?: ?StringQueryOperatorInput,
-  width?: ?IntQueryOperatorInput,
+declare type GatsbyTypes$ImageSharpResizeFilterInput = {|
+  aspectRatio?: ?GatsbyTypes$FloatQueryOperatorInput,
+  height?: ?GatsbyTypes$IntQueryOperatorInput,
+  originalName?: ?GatsbyTypes$StringQueryOperatorInput,
+  src?: ?GatsbyTypes$StringQueryOperatorInput,
+  tracedSVG?: ?GatsbyTypes$StringQueryOperatorInput,
+  width?: ?GatsbyTypes$IntQueryOperatorInput,
 |};
 
-declare type ImageSharpSortInput = {|
-  fields?: ?Array<?ImageSharpFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$ImageSharpSortInput = {|
+  fields?: ?Array<?GatsbyTypes$ImageSharpFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-declare type IntQueryOperatorInput = {|
+declare type GatsbyTypes$IntQueryOperatorInput = {|
   eq?: ?$ElementType<Scalars, 'Int'>,
   gt?: ?$ElementType<Scalars, 'Int'>,
   gte?: ?$ElementType<Scalars, 'Int'>,
@@ -1332,7 +1332,7 @@ declare type IntQueryOperatorInput = {|
   nin?: ?Array<?$ElementType<Scalars, 'Int'>>,
 |};
 
-declare type Internal = {|
+declare type GatsbyTypes$Internal = {|
   +content?: ?$ElementType<Scalars, 'String'>,
   +contentDigest: $ElementType<Scalars, 'String'>,
   +description?: ?$ElementType<Scalars, 'String'>,
@@ -1343,24 +1343,24 @@ declare type Internal = {|
   +type: $ElementType<Scalars, 'String'>,
 |};
 
-declare type InternalFilterInput = {|
-  content?: ?StringQueryOperatorInput,
-  contentDigest?: ?StringQueryOperatorInput,
-  description?: ?StringQueryOperatorInput,
-  fieldOwners?: ?StringQueryOperatorInput,
-  ignoreType?: ?BooleanQueryOperatorInput,
-  mediaType?: ?StringQueryOperatorInput,
-  owner?: ?StringQueryOperatorInput,
-  type?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$InternalFilterInput = {|
+  content?: ?GatsbyTypes$StringQueryOperatorInput,
+  contentDigest?: ?GatsbyTypes$StringQueryOperatorInput,
+  description?: ?GatsbyTypes$StringQueryOperatorInput,
+  fieldOwners?: ?GatsbyTypes$StringQueryOperatorInput,
+  ignoreType?: ?GatsbyTypes$BooleanQueryOperatorInput,
+  mediaType?: ?GatsbyTypes$StringQueryOperatorInput,
+  owner?: ?GatsbyTypes$StringQueryOperatorInput,
+  type?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
-declare type JPGOptions = {|
+declare type GatsbyTypes$JPGOptions = {|
   progressive?: ?$ElementType<Scalars, 'Boolean'>,
   quality?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type JSONQueryOperatorInput = {|
+declare type GatsbyTypes$JSONQueryOperatorInput = {|
   eq?: ?$ElementType<Scalars, 'JSON'>,
   glob?: ?$ElementType<Scalars, 'JSON'>,
   in?: ?Array<?$ElementType<Scalars, 'JSON'>>,
@@ -1369,30 +1369,30 @@ declare type JSONQueryOperatorInput = {|
   regex?: ?$ElementType<Scalars, 'JSON'>,
 |};
 
-declare type Node = {|
-  +children: Array<Node>,
+declare type GatsbyTypes$Node = {|
+  +children: Array<GatsbyTypes$Node>,
   +id: $ElementType<Scalars, 'ID'>,
-  +internal: Internal,
-  +parent?: ?Node,
+  +internal: GatsbyTypes$Internal,
+  +parent?: ?GatsbyTypes$Node,
 |};
 
-declare type NodeFilterInput = {|
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  parent?: ?NodeFilterInput,
+declare type GatsbyTypes$NodeFilterInput = {|
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
 |};
 
-declare type NodeFilterListInput = {|
-  elemMatch?: ?NodeFilterInput,
+declare type GatsbyTypes$NodeFilterListInput = {|
+  elemMatch?: ?GatsbyTypes$NodeFilterInput,
 |};
 
-declare type PNGOptions = {|
+declare type GatsbyTypes$PNGOptions = {|
   compressionSpeed?: ?$ElementType<Scalars, 'Int'>,
   quality?: ?$ElementType<Scalars, 'Int'>,
 |};
 
-declare type PageInfo = {|
+declare type GatsbyTypes$PageInfo = {|
   +currentPage: $ElementType<Scalars, 'Int'>,
   +hasNextPage: $ElementType<Scalars, 'Boolean'>,
   +hasPreviousPage: $ElementType<Scalars, 'Boolean'>,
@@ -1402,7 +1402,7 @@ declare type PageInfo = {|
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type Potrace = {|
+declare type GatsbyTypes$Potrace = {|
   alphaMax?: ?$ElementType<Scalars, 'Float'>,
   background?: ?$ElementType<Scalars, 'String'>,
   blackOnWhite?: ?$ElementType<Scalars, 'Boolean'>,
@@ -1411,10 +1411,10 @@ declare type Potrace = {|
   optTolerance?: ?$ElementType<Scalars, 'Float'>,
   threshold?: ?$ElementType<Scalars, 'Int'>,
   turdSize?: ?$ElementType<Scalars, 'Float'>,
-  turnPolicy?: ?PotraceTurnPolicy,
+  turnPolicy?: ?GatsbyTypes$PotraceTurnPolicy,
 |};
 
-export const PotraceTurnPolicyValues = Object.freeze({
+export const GatsbyTypes$PotraceTurnPolicyValues = Object.freeze({
   TURNPOLICY_BLACK: 'TURNPOLICY_BLACK',
   TURNPOLICY_LEFT: 'TURNPOLICY_LEFT',
   TURNPOLICY_MAJORITY: 'TURNPOLICY_MAJORITY',
@@ -1424,315 +1424,315 @@ export const PotraceTurnPolicyValues = Object.freeze({
 });
 
 
-declare type PotraceTurnPolicy = $Values<typeof PotraceTurnPolicyValues>;
+declare type GatsbyTypes$PotraceTurnPolicy = $Values<typeof GatsbyTypes$PotraceTurnPolicyValues>;
 
-declare type Query = {|
-  +allDirectory: DirectoryConnection,
-  +allFile: FileConnection,
-  +allImageSharp: ImageSharpConnection,
-  +allSite: SiteConnection,
-  +allSiteBuildMetadata: SiteBuildMetadataConnection,
-  +allSiteFunction: SiteFunctionConnection,
-  +allSitePage: SitePageConnection,
-  +directory?: ?Directory,
-  +file?: ?File,
-  +imageSharp?: ?ImageSharp,
-  +site?: ?Site,
-  +siteBuildMetadata?: ?SiteBuildMetadata,
-  +siteFunction?: ?SiteFunction,
-  +sitePage?: ?SitePage,
+declare type GatsbyTypes$Query = {|
+  +allDirectory: GatsbyTypes$DirectoryConnection,
+  +allFile: GatsbyTypes$FileConnection,
+  +allImageSharp: GatsbyTypes$ImageSharpConnection,
+  +allSite: GatsbyTypes$SiteConnection,
+  +allSiteBuildMetadata: GatsbyTypes$SiteBuildMetadataConnection,
+  +allSiteFunction: GatsbyTypes$SiteFunctionConnection,
+  +allSitePage: GatsbyTypes$SitePageConnection,
+  +directory?: ?GatsbyTypes$Directory,
+  +file?: ?GatsbyTypes$File,
+  +imageSharp?: ?GatsbyTypes$ImageSharp,
+  +site?: ?GatsbyTypes$Site,
+  +siteBuildMetadata?: ?GatsbyTypes$SiteBuildMetadata,
+  +siteFunction?: ?GatsbyTypes$SiteFunction,
+  +sitePage?: ?GatsbyTypes$SitePage,
 |};
 
 
-declare type Query_allDirectoryArgs = {|
-  filter?: ?DirectoryFilterInput,
+declare type GatsbyTypes$Query_allDirectoryArgs = {|
+  filter?: ?GatsbyTypes$DirectoryFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?DirectorySortInput,
+  sort?: ?GatsbyTypes$DirectorySortInput,
 |};
 
 
-declare type Query_allFileArgs = {|
-  filter?: ?FileFilterInput,
+declare type GatsbyTypes$Query_allFileArgs = {|
+  filter?: ?GatsbyTypes$FileFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?FileSortInput,
+  sort?: ?GatsbyTypes$FileSortInput,
 |};
 
 
-declare type Query_allImageSharpArgs = {|
-  filter?: ?ImageSharpFilterInput,
+declare type GatsbyTypes$Query_allImageSharpArgs = {|
+  filter?: ?GatsbyTypes$ImageSharpFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?ImageSharpSortInput,
+  sort?: ?GatsbyTypes$ImageSharpSortInput,
 |};
 
 
-declare type Query_allSiteArgs = {|
-  filter?: ?SiteFilterInput,
+declare type GatsbyTypes$Query_allSiteArgs = {|
+  filter?: ?GatsbyTypes$SiteFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?SiteSortInput,
+  sort?: ?GatsbyTypes$SiteSortInput,
 |};
 
 
-declare type Query_allSiteBuildMetadataArgs = {|
-  filter?: ?SiteBuildMetadataFilterInput,
+declare type GatsbyTypes$Query_allSiteBuildMetadataArgs = {|
+  filter?: ?GatsbyTypes$SiteBuildMetadataFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?SiteBuildMetadataSortInput,
+  sort?: ?GatsbyTypes$SiteBuildMetadataSortInput,
 |};
 
 
-declare type Query_allSiteFunctionArgs = {|
-  filter?: ?SiteFunctionFilterInput,
+declare type GatsbyTypes$Query_allSiteFunctionArgs = {|
+  filter?: ?GatsbyTypes$SiteFunctionFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?SiteFunctionSortInput,
+  sort?: ?GatsbyTypes$SiteFunctionSortInput,
 |};
 
 
-declare type Query_allSitePageArgs = {|
-  filter?: ?SitePageFilterInput,
+declare type GatsbyTypes$Query_allSitePageArgs = {|
+  filter?: ?GatsbyTypes$SitePageFilterInput,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
-  sort?: ?SitePageSortInput,
+  sort?: ?GatsbyTypes$SitePageSortInput,
 |};
 
 
-declare type Query_directoryArgs = {|
-  absolutePath?: ?StringQueryOperatorInput,
-  accessTime?: ?DateQueryOperatorInput,
-  atime?: ?DateQueryOperatorInput,
-  atimeMs?: ?FloatQueryOperatorInput,
-  base?: ?StringQueryOperatorInput,
-  birthTime?: ?DateQueryOperatorInput,
-  birthtime?: ?DateQueryOperatorInput,
-  birthtimeMs?: ?FloatQueryOperatorInput,
-  blksize?: ?IntQueryOperatorInput,
-  blocks?: ?IntQueryOperatorInput,
-  changeTime?: ?DateQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  ctime?: ?DateQueryOperatorInput,
-  ctimeMs?: ?FloatQueryOperatorInput,
-  dev?: ?IntQueryOperatorInput,
-  dir?: ?StringQueryOperatorInput,
-  ext?: ?StringQueryOperatorInput,
-  extension?: ?StringQueryOperatorInput,
-  gid?: ?IntQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  ino?: ?FloatQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  mode?: ?IntQueryOperatorInput,
-  modifiedTime?: ?DateQueryOperatorInput,
-  mtime?: ?DateQueryOperatorInput,
-  mtimeMs?: ?FloatQueryOperatorInput,
-  name?: ?StringQueryOperatorInput,
-  nlink?: ?IntQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  prettySize?: ?StringQueryOperatorInput,
-  rdev?: ?IntQueryOperatorInput,
-  relativeDirectory?: ?StringQueryOperatorInput,
-  relativePath?: ?StringQueryOperatorInput,
-  root?: ?StringQueryOperatorInput,
-  size?: ?IntQueryOperatorInput,
-  sourceInstanceName?: ?StringQueryOperatorInput,
-  uid?: ?IntQueryOperatorInput,
+declare type GatsbyTypes$Query_directoryArgs = {|
+  absolutePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  accessTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  base?: ?GatsbyTypes$StringQueryOperatorInput,
+  birthTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  blksize?: ?GatsbyTypes$IntQueryOperatorInput,
+  blocks?: ?GatsbyTypes$IntQueryOperatorInput,
+  changeTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  ctime?: ?GatsbyTypes$DateQueryOperatorInput,
+  ctimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  dev?: ?GatsbyTypes$IntQueryOperatorInput,
+  dir?: ?GatsbyTypes$StringQueryOperatorInput,
+  ext?: ?GatsbyTypes$StringQueryOperatorInput,
+  extension?: ?GatsbyTypes$StringQueryOperatorInput,
+  gid?: ?GatsbyTypes$IntQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  ino?: ?GatsbyTypes$FloatQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  mode?: ?GatsbyTypes$IntQueryOperatorInput,
+  modifiedTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  name?: ?GatsbyTypes$StringQueryOperatorInput,
+  nlink?: ?GatsbyTypes$IntQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  prettySize?: ?GatsbyTypes$StringQueryOperatorInput,
+  rdev?: ?GatsbyTypes$IntQueryOperatorInput,
+  relativeDirectory?: ?GatsbyTypes$StringQueryOperatorInput,
+  relativePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  root?: ?GatsbyTypes$StringQueryOperatorInput,
+  size?: ?GatsbyTypes$IntQueryOperatorInput,
+  sourceInstanceName?: ?GatsbyTypes$StringQueryOperatorInput,
+  uid?: ?GatsbyTypes$IntQueryOperatorInput,
 |};
 
 
-declare type Query_fileArgs = {|
-  absolutePath?: ?StringQueryOperatorInput,
-  accessTime?: ?DateQueryOperatorInput,
-  atime?: ?DateQueryOperatorInput,
-  atimeMs?: ?FloatQueryOperatorInput,
-  base?: ?StringQueryOperatorInput,
-  birthTime?: ?DateQueryOperatorInput,
-  birthtime?: ?DateQueryOperatorInput,
-  birthtimeMs?: ?FloatQueryOperatorInput,
-  blksize?: ?IntQueryOperatorInput,
-  blocks?: ?IntQueryOperatorInput,
-  changeTime?: ?DateQueryOperatorInput,
-  childImageSharp?: ?ImageSharpFilterInput,
-  children?: ?NodeFilterListInput,
-  childrenImageSharp?: ?ImageSharpFilterListInput,
-  ctime?: ?DateQueryOperatorInput,
-  ctimeMs?: ?FloatQueryOperatorInput,
-  dev?: ?IntQueryOperatorInput,
-  dir?: ?StringQueryOperatorInput,
-  ext?: ?StringQueryOperatorInput,
-  extension?: ?StringQueryOperatorInput,
-  gid?: ?IntQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  ino?: ?FloatQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  mode?: ?IntQueryOperatorInput,
-  modifiedTime?: ?DateQueryOperatorInput,
-  mtime?: ?DateQueryOperatorInput,
-  mtimeMs?: ?FloatQueryOperatorInput,
-  name?: ?StringQueryOperatorInput,
-  nlink?: ?IntQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  prettySize?: ?StringQueryOperatorInput,
-  publicURL?: ?StringQueryOperatorInput,
-  rdev?: ?IntQueryOperatorInput,
-  relativeDirectory?: ?StringQueryOperatorInput,
-  relativePath?: ?StringQueryOperatorInput,
-  root?: ?StringQueryOperatorInput,
-  size?: ?IntQueryOperatorInput,
-  sourceInstanceName?: ?StringQueryOperatorInput,
-  uid?: ?IntQueryOperatorInput,
+declare type GatsbyTypes$Query_fileArgs = {|
+  absolutePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  accessTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atime?: ?GatsbyTypes$DateQueryOperatorInput,
+  atimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  base?: ?GatsbyTypes$StringQueryOperatorInput,
+  birthTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  birthtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  blksize?: ?GatsbyTypes$IntQueryOperatorInput,
+  blocks?: ?GatsbyTypes$IntQueryOperatorInput,
+  changeTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  childImageSharp?: ?GatsbyTypes$ImageSharpFilterInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  childrenImageSharp?: ?GatsbyTypes$ImageSharpFilterListInput,
+  ctime?: ?GatsbyTypes$DateQueryOperatorInput,
+  ctimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  dev?: ?GatsbyTypes$IntQueryOperatorInput,
+  dir?: ?GatsbyTypes$StringQueryOperatorInput,
+  ext?: ?GatsbyTypes$StringQueryOperatorInput,
+  extension?: ?GatsbyTypes$StringQueryOperatorInput,
+  gid?: ?GatsbyTypes$IntQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  ino?: ?GatsbyTypes$FloatQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  mode?: ?GatsbyTypes$IntQueryOperatorInput,
+  modifiedTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtime?: ?GatsbyTypes$DateQueryOperatorInput,
+  mtimeMs?: ?GatsbyTypes$FloatQueryOperatorInput,
+  name?: ?GatsbyTypes$StringQueryOperatorInput,
+  nlink?: ?GatsbyTypes$IntQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  prettySize?: ?GatsbyTypes$StringQueryOperatorInput,
+  publicURL?: ?GatsbyTypes$StringQueryOperatorInput,
+  rdev?: ?GatsbyTypes$IntQueryOperatorInput,
+  relativeDirectory?: ?GatsbyTypes$StringQueryOperatorInput,
+  relativePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  root?: ?GatsbyTypes$StringQueryOperatorInput,
+  size?: ?GatsbyTypes$IntQueryOperatorInput,
+  sourceInstanceName?: ?GatsbyTypes$StringQueryOperatorInput,
+  uid?: ?GatsbyTypes$IntQueryOperatorInput,
 |};
 
 
-declare type Query_imageSharpArgs = {|
-  children?: ?NodeFilterListInput,
-  fixed?: ?ImageSharpFixedFilterInput,
-  fluid?: ?ImageSharpFluidFilterInput,
-  gatsbyImageData?: ?JSONQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  original?: ?ImageSharpOriginalFilterInput,
-  parent?: ?NodeFilterInput,
-  resize?: ?ImageSharpResizeFilterInput,
+declare type GatsbyTypes$Query_imageSharpArgs = {|
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  fixed?: ?GatsbyTypes$ImageSharpFixedFilterInput,
+  fluid?: ?GatsbyTypes$ImageSharpFluidFilterInput,
+  gatsbyImageData?: ?GatsbyTypes$JSONQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  original?: ?GatsbyTypes$ImageSharpOriginalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  resize?: ?GatsbyTypes$ImageSharpResizeFilterInput,
 |};
 
 
-declare type Query_siteArgs = {|
-  buildTime?: ?DateQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  parent?: ?NodeFilterInput,
-  pathPrefix?: ?StringQueryOperatorInput,
-  polyfill?: ?BooleanQueryOperatorInput,
-  siteMetadata?: ?SiteSiteMetadataFilterInput,
+declare type GatsbyTypes$Query_siteArgs = {|
+  buildTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  pathPrefix?: ?GatsbyTypes$StringQueryOperatorInput,
+  polyfill?: ?GatsbyTypes$BooleanQueryOperatorInput,
+  siteMetadata?: ?GatsbyTypes$SiteSiteMetadataFilterInput,
 |};
 
 
-declare type Query_siteBuildMetadataArgs = {|
-  buildTime?: ?DateQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  parent?: ?NodeFilterInput,
+declare type GatsbyTypes$Query_siteBuildMetadataArgs = {|
+  buildTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
 |};
 
 
-declare type Query_siteFunctionArgs = {|
-  absoluteCompiledFilePath?: ?StringQueryOperatorInput,
-  apiRoute?: ?StringQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  matchPath?: ?StringQueryOperatorInput,
-  originalFilePath?: ?StringQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  relativeCompiledFilePath?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$Query_siteFunctionArgs = {|
+  absoluteCompiledFilePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  apiRoute?: ?GatsbyTypes$StringQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  matchPath?: ?GatsbyTypes$StringQueryOperatorInput,
+  originalFilePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  relativeCompiledFilePath?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
 
-declare type Query_sitePageArgs = {|
-  children?: ?NodeFilterListInput,
-  component?: ?StringQueryOperatorInput,
-  componentChunkName?: ?StringQueryOperatorInput,
-  componentPath?: ?StringQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  internalComponentName?: ?StringQueryOperatorInput,
-  isCreatedByStatefulCreatePages?: ?BooleanQueryOperatorInput,
-  matchPath?: ?StringQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  path?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$Query_sitePageArgs = {|
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  component?: ?GatsbyTypes$StringQueryOperatorInput,
+  componentChunkName?: ?GatsbyTypes$StringQueryOperatorInput,
+  componentPath?: ?GatsbyTypes$StringQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  internalComponentName?: ?GatsbyTypes$StringQueryOperatorInput,
+  isCreatedByStatefulCreatePages?: ?GatsbyTypes$BooleanQueryOperatorInput,
+  matchPath?: ?GatsbyTypes$StringQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  path?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
-declare type Site = {|
-  ...Node,
+declare type GatsbyTypes$Site = {|
+  ...GatsbyTypes$Node,
   ...{|
     +buildTime?: ?$ElementType<Scalars, 'Date'>,
-    +children: Array<Node>,
+    +children: Array<GatsbyTypes$Node>,
     +id: $ElementType<Scalars, 'ID'>,
-    +internal: Internal,
-    +parent?: ?Node,
+    +internal: GatsbyTypes$Internal,
+    +parent?: ?GatsbyTypes$Node,
     +pathPrefix?: ?$ElementType<Scalars, 'String'>,
     +polyfill?: ?$ElementType<Scalars, 'Boolean'>,
-    +siteMetadata?: ?SiteSiteMetadata,
+    +siteMetadata?: ?GatsbyTypes$SiteSiteMetadata,
   |}
 |};
 
 
-declare type Site_buildTimeArgs = {|
+declare type GatsbyTypes$Site_buildTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
   locale?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type SiteBuildMetadata = {|
-  ...Node,
+declare type GatsbyTypes$SiteBuildMetadata = {|
+  ...GatsbyTypes$Node,
   ...{|
     +buildTime?: ?$ElementType<Scalars, 'Date'>,
-    +children: Array<Node>,
+    +children: Array<GatsbyTypes$Node>,
     +id: $ElementType<Scalars, 'ID'>,
-    +internal: Internal,
-    +parent?: ?Node,
+    +internal: GatsbyTypes$Internal,
+    +parent?: ?GatsbyTypes$Node,
   |}
 |};
 
 
-declare type SiteBuildMetadata_buildTimeArgs = {|
+declare type GatsbyTypes$SiteBuildMetadata_buildTimeArgs = {|
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
   locale?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type SiteBuildMetadataConnection = {|
+declare type GatsbyTypes$SiteBuildMetadataConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<SiteBuildMetadataEdge>,
-  +group: Array<SiteBuildMetadataGroupConnection>,
+  +edges: Array<GatsbyTypes$SiteBuildMetadataEdge>,
+  +group: Array<GatsbyTypes$SiteBuildMetadataGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<SiteBuildMetadata>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$SiteBuildMetadata>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SiteBuildMetadataConnection_distinctArgs = {|
-  field: SiteBuildMetadataFieldsEnum,
+declare type GatsbyTypes$SiteBuildMetadataConnection_distinctArgs = {|
+  field: GatsbyTypes$SiteBuildMetadataFieldsEnum,
 |};
 
 
-declare type SiteBuildMetadataConnection_groupArgs = {|
-  field: SiteBuildMetadataFieldsEnum,
+declare type GatsbyTypes$SiteBuildMetadataConnection_groupArgs = {|
+  field: GatsbyTypes$SiteBuildMetadataFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SiteBuildMetadataConnection_maxArgs = {|
-  field: SiteBuildMetadataFieldsEnum,
+declare type GatsbyTypes$SiteBuildMetadataConnection_maxArgs = {|
+  field: GatsbyTypes$SiteBuildMetadataFieldsEnum,
 |};
 
 
-declare type SiteBuildMetadataConnection_minArgs = {|
-  field: SiteBuildMetadataFieldsEnum,
+declare type GatsbyTypes$SiteBuildMetadataConnection_minArgs = {|
+  field: GatsbyTypes$SiteBuildMetadataFieldsEnum,
 |};
 
 
-declare type SiteBuildMetadataConnection_sumArgs = {|
-  field: SiteBuildMetadataFieldsEnum,
+declare type GatsbyTypes$SiteBuildMetadataConnection_sumArgs = {|
+  field: GatsbyTypes$SiteBuildMetadataFieldsEnum,
 |};
 
-declare type SiteBuildMetadataEdge = {|
-  +next?: ?SiteBuildMetadata,
-  +node: SiteBuildMetadata,
-  +previous?: ?SiteBuildMetadata,
+declare type GatsbyTypes$SiteBuildMetadataEdge = {|
+  +next?: ?GatsbyTypes$SiteBuildMetadata,
+  +node: GatsbyTypes$SiteBuildMetadata,
+  +previous?: ?GatsbyTypes$SiteBuildMetadata,
 |};
 
-export const SiteBuildMetadataFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$SiteBuildMetadataFieldsEnumValues = Object.freeze({
   buildTime: 'buildTime',
   children: 'children',
   children___children: 'children___children',
@@ -1823,76 +1823,76 @@ export const SiteBuildMetadataFieldsEnumValues = Object.freeze({
 });
 
 
-declare type SiteBuildMetadataFieldsEnum = $Values<typeof SiteBuildMetadataFieldsEnumValues>;
+declare type GatsbyTypes$SiteBuildMetadataFieldsEnum = $Values<typeof GatsbyTypes$SiteBuildMetadataFieldsEnumValues>;
 
-declare type SiteBuildMetadataFilterInput = {|
-  buildTime?: ?DateQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  parent?: ?NodeFilterInput,
+declare type GatsbyTypes$SiteBuildMetadataFilterInput = {|
+  buildTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
 |};
 
-declare type SiteBuildMetadataGroupConnection = {|
-  +edges: Array<SiteBuildMetadataEdge>,
+declare type GatsbyTypes$SiteBuildMetadataGroupConnection = {|
+  +edges: Array<GatsbyTypes$SiteBuildMetadataEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<SiteBuildMetadata>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$SiteBuildMetadata>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type SiteBuildMetadataSortInput = {|
-  fields?: ?Array<?SiteBuildMetadataFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$SiteBuildMetadataSortInput = {|
+  fields?: ?Array<?GatsbyTypes$SiteBuildMetadataFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-declare type SiteConnection = {|
+declare type GatsbyTypes$SiteConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<SiteEdge>,
-  +group: Array<SiteGroupConnection>,
+  +edges: Array<GatsbyTypes$SiteEdge>,
+  +group: Array<GatsbyTypes$SiteGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<Site>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$Site>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SiteConnection_distinctArgs = {|
-  field: SiteFieldsEnum,
+declare type GatsbyTypes$SiteConnection_distinctArgs = {|
+  field: GatsbyTypes$SiteFieldsEnum,
 |};
 
 
-declare type SiteConnection_groupArgs = {|
-  field: SiteFieldsEnum,
+declare type GatsbyTypes$SiteConnection_groupArgs = {|
+  field: GatsbyTypes$SiteFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SiteConnection_maxArgs = {|
-  field: SiteFieldsEnum,
+declare type GatsbyTypes$SiteConnection_maxArgs = {|
+  field: GatsbyTypes$SiteFieldsEnum,
 |};
 
 
-declare type SiteConnection_minArgs = {|
-  field: SiteFieldsEnum,
+declare type GatsbyTypes$SiteConnection_minArgs = {|
+  field: GatsbyTypes$SiteFieldsEnum,
 |};
 
 
-declare type SiteConnection_sumArgs = {|
-  field: SiteFieldsEnum,
+declare type GatsbyTypes$SiteConnection_sumArgs = {|
+  field: GatsbyTypes$SiteFieldsEnum,
 |};
 
-declare type SiteEdge = {|
-  +next?: ?Site,
-  +node: Site,
-  +previous?: ?Site,
+declare type GatsbyTypes$SiteEdge = {|
+  +next?: ?GatsbyTypes$Site,
+  +node: GatsbyTypes$Site,
+  +previous?: ?GatsbyTypes$Site,
 |};
 
-export const SiteFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$SiteFieldsEnumValues = Object.freeze({
   buildTime: 'buildTime',
   children: 'children',
   children___children: 'children___children',
@@ -1988,80 +1988,80 @@ export const SiteFieldsEnumValues = Object.freeze({
 });
 
 
-declare type SiteFieldsEnum = $Values<typeof SiteFieldsEnumValues>;
+declare type GatsbyTypes$SiteFieldsEnum = $Values<typeof GatsbyTypes$SiteFieldsEnumValues>;
 
-declare type SiteFilterInput = {|
-  buildTime?: ?DateQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  parent?: ?NodeFilterInput,
-  pathPrefix?: ?StringQueryOperatorInput,
-  polyfill?: ?BooleanQueryOperatorInput,
-  siteMetadata?: ?SiteSiteMetadataFilterInput,
+declare type GatsbyTypes$SiteFilterInput = {|
+  buildTime?: ?GatsbyTypes$DateQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  pathPrefix?: ?GatsbyTypes$StringQueryOperatorInput,
+  polyfill?: ?GatsbyTypes$BooleanQueryOperatorInput,
+  siteMetadata?: ?GatsbyTypes$SiteSiteMetadataFilterInput,
 |};
 
-declare type SiteFunction = {|
-  ...Node,
+declare type GatsbyTypes$SiteFunction = {|
+  ...GatsbyTypes$Node,
   ...{|
     +absoluteCompiledFilePath: $ElementType<Scalars, 'String'>,
     +apiRoute: $ElementType<Scalars, 'String'>,
-    +children: Array<Node>,
+    +children: Array<GatsbyTypes$Node>,
     +id: $ElementType<Scalars, 'ID'>,
-    +internal: Internal,
+    +internal: GatsbyTypes$Internal,
     +matchPath?: ?$ElementType<Scalars, 'String'>,
     +originalFilePath: $ElementType<Scalars, 'String'>,
-    +parent?: ?Node,
+    +parent?: ?GatsbyTypes$Node,
     +relativeCompiledFilePath: $ElementType<Scalars, 'String'>,
   |}
 |};
 
-declare type SiteFunctionConnection = {|
+declare type GatsbyTypes$SiteFunctionConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<SiteFunctionEdge>,
-  +group: Array<SiteFunctionGroupConnection>,
+  +edges: Array<GatsbyTypes$SiteFunctionEdge>,
+  +group: Array<GatsbyTypes$SiteFunctionGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<SiteFunction>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$SiteFunction>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SiteFunctionConnection_distinctArgs = {|
-  field: SiteFunctionFieldsEnum,
+declare type GatsbyTypes$SiteFunctionConnection_distinctArgs = {|
+  field: GatsbyTypes$SiteFunctionFieldsEnum,
 |};
 
 
-declare type SiteFunctionConnection_groupArgs = {|
-  field: SiteFunctionFieldsEnum,
+declare type GatsbyTypes$SiteFunctionConnection_groupArgs = {|
+  field: GatsbyTypes$SiteFunctionFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SiteFunctionConnection_maxArgs = {|
-  field: SiteFunctionFieldsEnum,
+declare type GatsbyTypes$SiteFunctionConnection_maxArgs = {|
+  field: GatsbyTypes$SiteFunctionFieldsEnum,
 |};
 
 
-declare type SiteFunctionConnection_minArgs = {|
-  field: SiteFunctionFieldsEnum,
+declare type GatsbyTypes$SiteFunctionConnection_minArgs = {|
+  field: GatsbyTypes$SiteFunctionFieldsEnum,
 |};
 
 
-declare type SiteFunctionConnection_sumArgs = {|
-  field: SiteFunctionFieldsEnum,
+declare type GatsbyTypes$SiteFunctionConnection_sumArgs = {|
+  field: GatsbyTypes$SiteFunctionFieldsEnum,
 |};
 
-declare type SiteFunctionEdge = {|
-  +next?: ?SiteFunction,
-  +node: SiteFunction,
-  +previous?: ?SiteFunction,
+declare type GatsbyTypes$SiteFunctionEdge = {|
+  +next?: ?GatsbyTypes$SiteFunction,
+  +node: GatsbyTypes$SiteFunction,
+  +previous?: ?GatsbyTypes$SiteFunction,
 |};
 
-export const SiteFunctionFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$SiteFunctionFieldsEnumValues = Object.freeze({
   absoluteCompiledFilePath: 'absoluteCompiledFilePath',
   apiRoute: 'apiRoute',
   children: 'children',
@@ -2156,106 +2156,106 @@ export const SiteFunctionFieldsEnumValues = Object.freeze({
 });
 
 
-declare type SiteFunctionFieldsEnum = $Values<typeof SiteFunctionFieldsEnumValues>;
+declare type GatsbyTypes$SiteFunctionFieldsEnum = $Values<typeof GatsbyTypes$SiteFunctionFieldsEnumValues>;
 
-declare type SiteFunctionFilterInput = {|
-  absoluteCompiledFilePath?: ?StringQueryOperatorInput,
-  apiRoute?: ?StringQueryOperatorInput,
-  children?: ?NodeFilterListInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  matchPath?: ?StringQueryOperatorInput,
-  originalFilePath?: ?StringQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  relativeCompiledFilePath?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$SiteFunctionFilterInput = {|
+  absoluteCompiledFilePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  apiRoute?: ?GatsbyTypes$StringQueryOperatorInput,
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  matchPath?: ?GatsbyTypes$StringQueryOperatorInput,
+  originalFilePath?: ?GatsbyTypes$StringQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  relativeCompiledFilePath?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
-declare type SiteFunctionGroupConnection = {|
-  +edges: Array<SiteFunctionEdge>,
+declare type GatsbyTypes$SiteFunctionGroupConnection = {|
+  +edges: Array<GatsbyTypes$SiteFunctionEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<SiteFunction>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$SiteFunction>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type SiteFunctionSortInput = {|
-  fields?: ?Array<?SiteFunctionFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$SiteFunctionSortInput = {|
+  fields?: ?Array<?GatsbyTypes$SiteFunctionFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-declare type SiteGroupConnection = {|
-  +edges: Array<SiteEdge>,
+declare type GatsbyTypes$SiteGroupConnection = {|
+  +edges: Array<GatsbyTypes$SiteEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<Site>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$Site>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type SitePage = {|
-  ...Node,
+declare type GatsbyTypes$SitePage = {|
+  ...GatsbyTypes$Node,
   ...{|
-    +children: Array<Node>,
+    +children: Array<GatsbyTypes$Node>,
     +component: $ElementType<Scalars, 'String'>,
     +componentChunkName: $ElementType<Scalars, 'String'>,
     +componentPath?: ?$ElementType<Scalars, 'String'>,
     +id: $ElementType<Scalars, 'ID'>,
-    +internal: Internal,
+    +internal: GatsbyTypes$Internal,
     +internalComponentName: $ElementType<Scalars, 'String'>,
     +isCreatedByStatefulCreatePages?: ?$ElementType<Scalars, 'Boolean'>,
     +matchPath?: ?$ElementType<Scalars, 'String'>,
-    +parent?: ?Node,
+    +parent?: ?GatsbyTypes$Node,
     +path: $ElementType<Scalars, 'String'>,
   |}
 |};
 
-declare type SitePageConnection = {|
+declare type GatsbyTypes$SitePageConnection = {|
   +distinct: Array<$ElementType<Scalars, 'String'>>,
-  +edges: Array<SitePageEdge>,
-  +group: Array<SitePageGroupConnection>,
+  +edges: Array<GatsbyTypes$SitePageEdge>,
+  +group: Array<GatsbyTypes$SitePageGroupConnection>,
   +max?: ?$ElementType<Scalars, 'Float'>,
   +min?: ?$ElementType<Scalars, 'Float'>,
-  +nodes: Array<SitePage>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$SitePage>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +sum?: ?$ElementType<Scalars, 'Float'>,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SitePageConnection_distinctArgs = {|
-  field: SitePageFieldsEnum,
+declare type GatsbyTypes$SitePageConnection_distinctArgs = {|
+  field: GatsbyTypes$SitePageFieldsEnum,
 |};
 
 
-declare type SitePageConnection_groupArgs = {|
-  field: SitePageFieldsEnum,
+declare type GatsbyTypes$SitePageConnection_groupArgs = {|
+  field: GatsbyTypes$SitePageFieldsEnum,
   limit?: ?$ElementType<Scalars, 'Int'>,
   skip?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 
-declare type SitePageConnection_maxArgs = {|
-  field: SitePageFieldsEnum,
+declare type GatsbyTypes$SitePageConnection_maxArgs = {|
+  field: GatsbyTypes$SitePageFieldsEnum,
 |};
 
 
-declare type SitePageConnection_minArgs = {|
-  field: SitePageFieldsEnum,
+declare type GatsbyTypes$SitePageConnection_minArgs = {|
+  field: GatsbyTypes$SitePageFieldsEnum,
 |};
 
 
-declare type SitePageConnection_sumArgs = {|
-  field: SitePageFieldsEnum,
+declare type GatsbyTypes$SitePageConnection_sumArgs = {|
+  field: GatsbyTypes$SitePageFieldsEnum,
 |};
 
-declare type SitePageEdge = {|
-  +next?: ?SitePage,
-  +node: SitePage,
-  +previous?: ?SitePage,
+declare type GatsbyTypes$SitePageEdge = {|
+  +next?: ?GatsbyTypes$SitePage,
+  +node: GatsbyTypes$SitePage,
+  +previous?: ?GatsbyTypes$SitePage,
 |};
 
-export const SitePageFieldsEnumValues = Object.freeze({
+export const GatsbyTypes$SitePageFieldsEnumValues = Object.freeze({
   children: 'children',
   children___children: 'children___children',
   children___children___children: 'children___children___children',
@@ -2352,62 +2352,62 @@ export const SitePageFieldsEnumValues = Object.freeze({
 });
 
 
-declare type SitePageFieldsEnum = $Values<typeof SitePageFieldsEnumValues>;
+declare type GatsbyTypes$SitePageFieldsEnum = $Values<typeof GatsbyTypes$SitePageFieldsEnumValues>;
 
-declare type SitePageFilterInput = {|
-  children?: ?NodeFilterListInput,
-  component?: ?StringQueryOperatorInput,
-  componentChunkName?: ?StringQueryOperatorInput,
-  componentPath?: ?StringQueryOperatorInput,
-  id?: ?StringQueryOperatorInput,
-  internal?: ?InternalFilterInput,
-  internalComponentName?: ?StringQueryOperatorInput,
-  isCreatedByStatefulCreatePages?: ?BooleanQueryOperatorInput,
-  matchPath?: ?StringQueryOperatorInput,
-  parent?: ?NodeFilterInput,
-  path?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$SitePageFilterInput = {|
+  children?: ?GatsbyTypes$NodeFilterListInput,
+  component?: ?GatsbyTypes$StringQueryOperatorInput,
+  componentChunkName?: ?GatsbyTypes$StringQueryOperatorInput,
+  componentPath?: ?GatsbyTypes$StringQueryOperatorInput,
+  id?: ?GatsbyTypes$StringQueryOperatorInput,
+  internal?: ?GatsbyTypes$InternalFilterInput,
+  internalComponentName?: ?GatsbyTypes$StringQueryOperatorInput,
+  isCreatedByStatefulCreatePages?: ?GatsbyTypes$BooleanQueryOperatorInput,
+  matchPath?: ?GatsbyTypes$StringQueryOperatorInput,
+  parent?: ?GatsbyTypes$NodeFilterInput,
+  path?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
-declare type SitePageGroupConnection = {|
-  +edges: Array<SitePageEdge>,
+declare type GatsbyTypes$SitePageGroupConnection = {|
+  +edges: Array<GatsbyTypes$SitePageEdge>,
   +field: $ElementType<Scalars, 'String'>,
   +fieldValue?: ?$ElementType<Scalars, 'String'>,
-  +nodes: Array<SitePage>,
-  +pageInfo: PageInfo,
+  +nodes: Array<GatsbyTypes$SitePage>,
+  +pageInfo: GatsbyTypes$PageInfo,
   +totalCount: $ElementType<Scalars, 'Int'>,
 |};
 
-declare type SitePageSortInput = {|
-  fields?: ?Array<?SitePageFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$SitePageSortInput = {|
+  fields?: ?Array<?GatsbyTypes$SitePageFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-declare type SiteSiteMetadata = {|
+declare type GatsbyTypes$SiteSiteMetadata = {|
   +author?: ?$ElementType<Scalars, 'String'>,
   +description?: ?$ElementType<Scalars, 'String'>,
   +title?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type SiteSiteMetadataFilterInput = {|
-  author?: ?StringQueryOperatorInput,
-  description?: ?StringQueryOperatorInput,
-  title?: ?StringQueryOperatorInput,
+declare type GatsbyTypes$SiteSiteMetadataFilterInput = {|
+  author?: ?GatsbyTypes$StringQueryOperatorInput,
+  description?: ?GatsbyTypes$StringQueryOperatorInput,
+  title?: ?GatsbyTypes$StringQueryOperatorInput,
 |};
 
-declare type SiteSortInput = {|
-  fields?: ?Array<?SiteFieldsEnum>,
-  order?: ?Array<?SortOrderEnum>,
+declare type GatsbyTypes$SiteSortInput = {|
+  fields?: ?Array<?GatsbyTypes$SiteFieldsEnum>,
+  order?: ?Array<?GatsbyTypes$SortOrderEnum>,
 |};
 
-export const SortOrderEnumValues = Object.freeze({
+export const GatsbyTypes$SortOrderEnumValues = Object.freeze({
   ASC: 'ASC',
   DESC: 'DESC'
 });
 
 
-declare type SortOrderEnum = $Values<typeof SortOrderEnumValues>;
+declare type GatsbyTypes$SortOrderEnum = $Values<typeof GatsbyTypes$SortOrderEnumValues>;
 
-declare type StringQueryOperatorInput = {|
+declare type GatsbyTypes$StringQueryOperatorInput = {|
   eq?: ?$ElementType<Scalars, 'String'>,
   glob?: ?$ElementType<Scalars, 'String'>,
   in?: ?Array<?$ElementType<Scalars, 'String'>>,
@@ -2416,25 +2416,25 @@ declare type StringQueryOperatorInput = {|
   regex?: ?$ElementType<Scalars, 'String'>,
 |};
 
-declare type TransformOptions = {|
-  cropFocus?: ?ImageCropFocus,
-  duotone?: ?DuotoneGradient,
-  fit?: ?ImageFit,
+declare type GatsbyTypes$TransformOptions = {|
+  cropFocus?: ?GatsbyTypes$ImageCropFocus,
+  duotone?: ?GatsbyTypes$DuotoneGradient,
+  fit?: ?GatsbyTypes$ImageFit,
   grayscale?: ?$ElementType<Scalars, 'Boolean'>,
   rotate?: ?$ElementType<Scalars, 'Int'>,
   trim?: ?$ElementType<Scalars, 'Float'>,
 |};
 
-declare type WebPOptions = {|
+declare type GatsbyTypes$WebPOptions = {|
   quality?: ?$ElementType<Scalars, 'Int'>,
 |};
 
 type $Pick<Origin: Object, Keys: Object> = $ObjMapi<Keys, <Key>(k: Key) => $ElementType<Origin, Key>>;
 
-declare type TestQueryVariables = {};
+declare type GatsbyTypes$TestQueryVariables = {};
 
 
-declare type TestQuery = {| +site?: ?{| +siteMetadata?: ?$Pick<SiteSiteMetadata, {| +title?: * |}> |} |};
+declare type GatsbyTypes$TestQuery = {| +site?: ?{| +siteMetadata?: ?$Pick<GatsbyTypes$SiteSiteMetadata, {| +title?: * |}> |} |};
 
 export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
   parent: Parent,
@@ -2496,765 +2496,765 @@ export type DirectiveResolverFn<Result = {}, Parent = {}, Args = {}, Context = {
 declare type ResolverTypeWrapper<T> = Promise<T> | T;
 
 /** Mapping between all available schema types and the resolvers types */
-declare type ResolversTypes = {
-  AVIFOptions: AVIFOptions,
+declare type GatsbyTypes$ResolversTypes = {
+  AVIFOptions: GatsbyTypes$AVIFOptions,
   Boolean: ResolverTypeWrapper<$ElementType<Scalars, 'Boolean'>>,
   Int: ResolverTypeWrapper<$ElementType<Scalars, 'Int'>>,
-  BlurredOptions: BlurredOptions,
-  BooleanQueryOperatorInput: BooleanQueryOperatorInput,
+  BlurredOptions: GatsbyTypes$BlurredOptions,
+  BooleanQueryOperatorInput: GatsbyTypes$BooleanQueryOperatorInput,
   Date: ResolverTypeWrapper<$ElementType<Scalars, 'Date'>>,
-  DateQueryOperatorInput: DateQueryOperatorInput,
-  Directory: ResolverTypeWrapper<Directory>,
+  DateQueryOperatorInput: GatsbyTypes$DateQueryOperatorInput,
+  Directory: ResolverTypeWrapper<GatsbyTypes$Directory>,
   String: ResolverTypeWrapper<$ElementType<Scalars, 'String'>>,
   Float: ResolverTypeWrapper<$ElementType<Scalars, 'Float'>>,
   ID: ResolverTypeWrapper<$ElementType<Scalars, 'ID'>>,
-  DirectoryConnection: ResolverTypeWrapper<DirectoryConnection>,
-  DirectoryEdge: ResolverTypeWrapper<DirectoryEdge>,
-  DirectoryFieldsEnum: DirectoryFieldsEnum,
-  DirectoryFilterInput: DirectoryFilterInput,
-  DirectoryGroupConnection: ResolverTypeWrapper<DirectoryGroupConnection>,
-  DirectorySortInput: DirectorySortInput,
-  DuotoneGradient: DuotoneGradient,
-  File: ResolverTypeWrapper<File>,
-  FileConnection: ResolverTypeWrapper<FileConnection>,
-  FileEdge: ResolverTypeWrapper<FileEdge>,
-  FileFieldsEnum: FileFieldsEnum,
-  FileFilterInput: FileFilterInput,
-  FileGroupConnection: ResolverTypeWrapper<FileGroupConnection>,
-  FileSortInput: FileSortInput,
-  FloatQueryOperatorInput: FloatQueryOperatorInput,
-  ImageCropFocus: ImageCropFocus,
-  ImageFit: ImageFit,
-  ImageFormat: ImageFormat,
-  ImageLayout: ImageLayout,
-  ImagePlaceholder: ImagePlaceholder,
-  ImageSharp: ResolverTypeWrapper<ImageSharp>,
-  ImageSharpConnection: ResolverTypeWrapper<ImageSharpConnection>,
-  ImageSharpEdge: ResolverTypeWrapper<ImageSharpEdge>,
-  ImageSharpFieldsEnum: ImageSharpFieldsEnum,
-  ImageSharpFilterInput: ImageSharpFilterInput,
-  ImageSharpFilterListInput: ImageSharpFilterListInput,
-  ImageSharpFixed: ResolverTypeWrapper<ImageSharpFixed>,
-  ImageSharpFixedFilterInput: ImageSharpFixedFilterInput,
-  ImageSharpFluid: ResolverTypeWrapper<ImageSharpFluid>,
-  ImageSharpFluidFilterInput: ImageSharpFluidFilterInput,
-  ImageSharpGroupConnection: ResolverTypeWrapper<ImageSharpGroupConnection>,
-  ImageSharpOriginal: ResolverTypeWrapper<ImageSharpOriginal>,
-  ImageSharpOriginalFilterInput: ImageSharpOriginalFilterInput,
-  ImageSharpResize: ResolverTypeWrapper<ImageSharpResize>,
-  ImageSharpResizeFilterInput: ImageSharpResizeFilterInput,
-  ImageSharpSortInput: ImageSharpSortInput,
-  IntQueryOperatorInput: IntQueryOperatorInput,
-  Internal: ResolverTypeWrapper<Internal>,
-  InternalFilterInput: InternalFilterInput,
-  JPGOptions: JPGOptions,
+  DirectoryConnection: ResolverTypeWrapper<GatsbyTypes$DirectoryConnection>,
+  DirectoryEdge: ResolverTypeWrapper<GatsbyTypes$DirectoryEdge>,
+  DirectoryFieldsEnum: GatsbyTypes$DirectoryFieldsEnum,
+  DirectoryFilterInput: GatsbyTypes$DirectoryFilterInput,
+  DirectoryGroupConnection: ResolverTypeWrapper<GatsbyTypes$DirectoryGroupConnection>,
+  DirectorySortInput: GatsbyTypes$DirectorySortInput,
+  DuotoneGradient: GatsbyTypes$DuotoneGradient,
+  File: ResolverTypeWrapper<GatsbyTypes$File>,
+  FileConnection: ResolverTypeWrapper<GatsbyTypes$FileConnection>,
+  FileEdge: ResolverTypeWrapper<GatsbyTypes$FileEdge>,
+  FileFieldsEnum: GatsbyTypes$FileFieldsEnum,
+  FileFilterInput: GatsbyTypes$FileFilterInput,
+  FileGroupConnection: ResolverTypeWrapper<GatsbyTypes$FileGroupConnection>,
+  FileSortInput: GatsbyTypes$FileSortInput,
+  FloatQueryOperatorInput: GatsbyTypes$FloatQueryOperatorInput,
+  ImageCropFocus: GatsbyTypes$ImageCropFocus,
+  ImageFit: GatsbyTypes$ImageFit,
+  ImageFormat: GatsbyTypes$ImageFormat,
+  ImageLayout: GatsbyTypes$ImageLayout,
+  ImagePlaceholder: GatsbyTypes$ImagePlaceholder,
+  ImageSharp: ResolverTypeWrapper<GatsbyTypes$ImageSharp>,
+  ImageSharpConnection: ResolverTypeWrapper<GatsbyTypes$ImageSharpConnection>,
+  ImageSharpEdge: ResolverTypeWrapper<GatsbyTypes$ImageSharpEdge>,
+  ImageSharpFieldsEnum: GatsbyTypes$ImageSharpFieldsEnum,
+  ImageSharpFilterInput: GatsbyTypes$ImageSharpFilterInput,
+  ImageSharpFilterListInput: GatsbyTypes$ImageSharpFilterListInput,
+  ImageSharpFixed: ResolverTypeWrapper<GatsbyTypes$ImageSharpFixed>,
+  ImageSharpFixedFilterInput: GatsbyTypes$ImageSharpFixedFilterInput,
+  ImageSharpFluid: ResolverTypeWrapper<GatsbyTypes$ImageSharpFluid>,
+  ImageSharpFluidFilterInput: GatsbyTypes$ImageSharpFluidFilterInput,
+  ImageSharpGroupConnection: ResolverTypeWrapper<GatsbyTypes$ImageSharpGroupConnection>,
+  ImageSharpOriginal: ResolverTypeWrapper<GatsbyTypes$ImageSharpOriginal>,
+  ImageSharpOriginalFilterInput: GatsbyTypes$ImageSharpOriginalFilterInput,
+  ImageSharpResize: ResolverTypeWrapper<GatsbyTypes$ImageSharpResize>,
+  ImageSharpResizeFilterInput: GatsbyTypes$ImageSharpResizeFilterInput,
+  ImageSharpSortInput: GatsbyTypes$ImageSharpSortInput,
+  IntQueryOperatorInput: GatsbyTypes$IntQueryOperatorInput,
+  Internal: ResolverTypeWrapper<GatsbyTypes$Internal>,
+  InternalFilterInput: GatsbyTypes$InternalFilterInput,
+  JPGOptions: GatsbyTypes$JPGOptions,
   JSON: ResolverTypeWrapper<$ElementType<Scalars, 'JSON'>>,
-  JSONQueryOperatorInput: JSONQueryOperatorInput,
-  Node: $ElementType<ResolversTypes, 'Directory'> | $ElementType<ResolversTypes, 'File'> | $ElementType<ResolversTypes, 'ImageSharp'> | $ElementType<ResolversTypes, 'Site'> | $ElementType<ResolversTypes, 'SiteBuildMetadata'> | $ElementType<ResolversTypes, 'SiteFunction'> | $ElementType<ResolversTypes, 'SitePage'>,
-  NodeFilterInput: NodeFilterInput,
-  NodeFilterListInput: NodeFilterListInput,
-  PNGOptions: PNGOptions,
-  PageInfo: ResolverTypeWrapper<PageInfo>,
-  Potrace: Potrace,
-  PotraceTurnPolicy: PotraceTurnPolicy,
+  JSONQueryOperatorInput: GatsbyTypes$JSONQueryOperatorInput,
+  Node: $ElementType<GatsbyTypes$ResolversTypes, 'Directory'> | $ElementType<GatsbyTypes$ResolversTypes, 'File'> | $ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'> | $ElementType<GatsbyTypes$ResolversTypes, 'Site'> | $ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'> | $ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'> | $ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>,
+  NodeFilterInput: GatsbyTypes$NodeFilterInput,
+  NodeFilterListInput: GatsbyTypes$NodeFilterListInput,
+  PNGOptions: GatsbyTypes$PNGOptions,
+  PageInfo: ResolverTypeWrapper<GatsbyTypes$PageInfo>,
+  Potrace: GatsbyTypes$Potrace,
+  PotraceTurnPolicy: GatsbyTypes$PotraceTurnPolicy,
   Query: ResolverTypeWrapper<{}>,
-  Site: ResolverTypeWrapper<Site>,
-  SiteBuildMetadata: ResolverTypeWrapper<SiteBuildMetadata>,
-  SiteBuildMetadataConnection: ResolverTypeWrapper<SiteBuildMetadataConnection>,
-  SiteBuildMetadataEdge: ResolverTypeWrapper<SiteBuildMetadataEdge>,
-  SiteBuildMetadataFieldsEnum: SiteBuildMetadataFieldsEnum,
-  SiteBuildMetadataFilterInput: SiteBuildMetadataFilterInput,
-  SiteBuildMetadataGroupConnection: ResolverTypeWrapper<SiteBuildMetadataGroupConnection>,
-  SiteBuildMetadataSortInput: SiteBuildMetadataSortInput,
-  SiteConnection: ResolverTypeWrapper<SiteConnection>,
-  SiteEdge: ResolverTypeWrapper<SiteEdge>,
-  SiteFieldsEnum: SiteFieldsEnum,
-  SiteFilterInput: SiteFilterInput,
-  SiteFunction: ResolverTypeWrapper<SiteFunction>,
-  SiteFunctionConnection: ResolverTypeWrapper<SiteFunctionConnection>,
-  SiteFunctionEdge: ResolverTypeWrapper<SiteFunctionEdge>,
-  SiteFunctionFieldsEnum: SiteFunctionFieldsEnum,
-  SiteFunctionFilterInput: SiteFunctionFilterInput,
-  SiteFunctionGroupConnection: ResolverTypeWrapper<SiteFunctionGroupConnection>,
-  SiteFunctionSortInput: SiteFunctionSortInput,
-  SiteGroupConnection: ResolverTypeWrapper<SiteGroupConnection>,
-  SitePage: ResolverTypeWrapper<SitePage>,
-  SitePageConnection: ResolverTypeWrapper<SitePageConnection>,
-  SitePageEdge: ResolverTypeWrapper<SitePageEdge>,
-  SitePageFieldsEnum: SitePageFieldsEnum,
-  SitePageFilterInput: SitePageFilterInput,
-  SitePageGroupConnection: ResolverTypeWrapper<SitePageGroupConnection>,
-  SitePageSortInput: SitePageSortInput,
-  SiteSiteMetadata: ResolverTypeWrapper<SiteSiteMetadata>,
-  SiteSiteMetadataFilterInput: SiteSiteMetadataFilterInput,
-  SiteSortInput: SiteSortInput,
-  SortOrderEnum: SortOrderEnum,
-  StringQueryOperatorInput: StringQueryOperatorInput,
-  TransformOptions: TransformOptions,
-  WebPOptions: WebPOptions,
+  Site: ResolverTypeWrapper<GatsbyTypes$Site>,
+  SiteBuildMetadata: ResolverTypeWrapper<GatsbyTypes$SiteBuildMetadata>,
+  SiteBuildMetadataConnection: ResolverTypeWrapper<GatsbyTypes$SiteBuildMetadataConnection>,
+  SiteBuildMetadataEdge: ResolverTypeWrapper<GatsbyTypes$SiteBuildMetadataEdge>,
+  SiteBuildMetadataFieldsEnum: GatsbyTypes$SiteBuildMetadataFieldsEnum,
+  SiteBuildMetadataFilterInput: GatsbyTypes$SiteBuildMetadataFilterInput,
+  SiteBuildMetadataGroupConnection: ResolverTypeWrapper<GatsbyTypes$SiteBuildMetadataGroupConnection>,
+  SiteBuildMetadataSortInput: GatsbyTypes$SiteBuildMetadataSortInput,
+  SiteConnection: ResolverTypeWrapper<GatsbyTypes$SiteConnection>,
+  SiteEdge: ResolverTypeWrapper<GatsbyTypes$SiteEdge>,
+  SiteFieldsEnum: GatsbyTypes$SiteFieldsEnum,
+  SiteFilterInput: GatsbyTypes$SiteFilterInput,
+  SiteFunction: ResolverTypeWrapper<GatsbyTypes$SiteFunction>,
+  SiteFunctionConnection: ResolverTypeWrapper<GatsbyTypes$SiteFunctionConnection>,
+  SiteFunctionEdge: ResolverTypeWrapper<GatsbyTypes$SiteFunctionEdge>,
+  SiteFunctionFieldsEnum: GatsbyTypes$SiteFunctionFieldsEnum,
+  SiteFunctionFilterInput: GatsbyTypes$SiteFunctionFilterInput,
+  SiteFunctionGroupConnection: ResolverTypeWrapper<GatsbyTypes$SiteFunctionGroupConnection>,
+  SiteFunctionSortInput: GatsbyTypes$SiteFunctionSortInput,
+  SiteGroupConnection: ResolverTypeWrapper<GatsbyTypes$SiteGroupConnection>,
+  SitePage: ResolverTypeWrapper<GatsbyTypes$SitePage>,
+  SitePageConnection: ResolverTypeWrapper<GatsbyTypes$SitePageConnection>,
+  SitePageEdge: ResolverTypeWrapper<GatsbyTypes$SitePageEdge>,
+  SitePageFieldsEnum: GatsbyTypes$SitePageFieldsEnum,
+  SitePageFilterInput: GatsbyTypes$SitePageFilterInput,
+  SitePageGroupConnection: ResolverTypeWrapper<GatsbyTypes$SitePageGroupConnection>,
+  SitePageSortInput: GatsbyTypes$SitePageSortInput,
+  SiteSiteMetadata: ResolverTypeWrapper<GatsbyTypes$SiteSiteMetadata>,
+  SiteSiteMetadataFilterInput: GatsbyTypes$SiteSiteMetadataFilterInput,
+  SiteSortInput: GatsbyTypes$SiteSortInput,
+  SortOrderEnum: GatsbyTypes$SortOrderEnum,
+  StringQueryOperatorInput: GatsbyTypes$StringQueryOperatorInput,
+  TransformOptions: GatsbyTypes$TransformOptions,
+  WebPOptions: GatsbyTypes$WebPOptions,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
-declare type ResolversParentTypes = {
-  AVIFOptions: AVIFOptions,
+declare type GatsbyTypes$ResolversParentTypes = {
+  AVIFOptions: GatsbyTypes$AVIFOptions,
   Boolean: $ElementType<Scalars, 'Boolean'>,
   Int: $ElementType<Scalars, 'Int'>,
-  BlurredOptions: BlurredOptions,
-  BooleanQueryOperatorInput: BooleanQueryOperatorInput,
+  BlurredOptions: GatsbyTypes$BlurredOptions,
+  BooleanQueryOperatorInput: GatsbyTypes$BooleanQueryOperatorInput,
   Date: $ElementType<Scalars, 'Date'>,
-  DateQueryOperatorInput: DateQueryOperatorInput,
-  Directory: Directory,
+  DateQueryOperatorInput: GatsbyTypes$DateQueryOperatorInput,
+  Directory: GatsbyTypes$Directory,
   String: $ElementType<Scalars, 'String'>,
   Float: $ElementType<Scalars, 'Float'>,
   ID: $ElementType<Scalars, 'ID'>,
-  DirectoryConnection: DirectoryConnection,
-  DirectoryEdge: DirectoryEdge,
-  DirectoryFilterInput: DirectoryFilterInput,
-  DirectoryGroupConnection: DirectoryGroupConnection,
-  DirectorySortInput: DirectorySortInput,
-  DuotoneGradient: DuotoneGradient,
-  File: File,
-  FileConnection: FileConnection,
-  FileEdge: FileEdge,
-  FileFilterInput: FileFilterInput,
-  FileGroupConnection: FileGroupConnection,
-  FileSortInput: FileSortInput,
-  FloatQueryOperatorInput: FloatQueryOperatorInput,
-  ImageSharp: ImageSharp,
-  ImageSharpConnection: ImageSharpConnection,
-  ImageSharpEdge: ImageSharpEdge,
-  ImageSharpFilterInput: ImageSharpFilterInput,
-  ImageSharpFilterListInput: ImageSharpFilterListInput,
-  ImageSharpFixed: ImageSharpFixed,
-  ImageSharpFixedFilterInput: ImageSharpFixedFilterInput,
-  ImageSharpFluid: ImageSharpFluid,
-  ImageSharpFluidFilterInput: ImageSharpFluidFilterInput,
-  ImageSharpGroupConnection: ImageSharpGroupConnection,
-  ImageSharpOriginal: ImageSharpOriginal,
-  ImageSharpOriginalFilterInput: ImageSharpOriginalFilterInput,
-  ImageSharpResize: ImageSharpResize,
-  ImageSharpResizeFilterInput: ImageSharpResizeFilterInput,
-  ImageSharpSortInput: ImageSharpSortInput,
-  IntQueryOperatorInput: IntQueryOperatorInput,
-  Internal: Internal,
-  InternalFilterInput: InternalFilterInput,
-  JPGOptions: JPGOptions,
+  DirectoryConnection: GatsbyTypes$DirectoryConnection,
+  DirectoryEdge: GatsbyTypes$DirectoryEdge,
+  DirectoryFilterInput: GatsbyTypes$DirectoryFilterInput,
+  DirectoryGroupConnection: GatsbyTypes$DirectoryGroupConnection,
+  DirectorySortInput: GatsbyTypes$DirectorySortInput,
+  DuotoneGradient: GatsbyTypes$DuotoneGradient,
+  File: GatsbyTypes$File,
+  FileConnection: GatsbyTypes$FileConnection,
+  FileEdge: GatsbyTypes$FileEdge,
+  FileFilterInput: GatsbyTypes$FileFilterInput,
+  FileGroupConnection: GatsbyTypes$FileGroupConnection,
+  FileSortInput: GatsbyTypes$FileSortInput,
+  FloatQueryOperatorInput: GatsbyTypes$FloatQueryOperatorInput,
+  ImageSharp: GatsbyTypes$ImageSharp,
+  ImageSharpConnection: GatsbyTypes$ImageSharpConnection,
+  ImageSharpEdge: GatsbyTypes$ImageSharpEdge,
+  ImageSharpFilterInput: GatsbyTypes$ImageSharpFilterInput,
+  ImageSharpFilterListInput: GatsbyTypes$ImageSharpFilterListInput,
+  ImageSharpFixed: GatsbyTypes$ImageSharpFixed,
+  ImageSharpFixedFilterInput: GatsbyTypes$ImageSharpFixedFilterInput,
+  ImageSharpFluid: GatsbyTypes$ImageSharpFluid,
+  ImageSharpFluidFilterInput: GatsbyTypes$ImageSharpFluidFilterInput,
+  ImageSharpGroupConnection: GatsbyTypes$ImageSharpGroupConnection,
+  ImageSharpOriginal: GatsbyTypes$ImageSharpOriginal,
+  ImageSharpOriginalFilterInput: GatsbyTypes$ImageSharpOriginalFilterInput,
+  ImageSharpResize: GatsbyTypes$ImageSharpResize,
+  ImageSharpResizeFilterInput: GatsbyTypes$ImageSharpResizeFilterInput,
+  ImageSharpSortInput: GatsbyTypes$ImageSharpSortInput,
+  IntQueryOperatorInput: GatsbyTypes$IntQueryOperatorInput,
+  Internal: GatsbyTypes$Internal,
+  InternalFilterInput: GatsbyTypes$InternalFilterInput,
+  JPGOptions: GatsbyTypes$JPGOptions,
   JSON: $ElementType<Scalars, 'JSON'>,
-  JSONQueryOperatorInput: JSONQueryOperatorInput,
-  Node: $ElementType<ResolversParentTypes, 'Directory'> | $ElementType<ResolversParentTypes, 'File'> | $ElementType<ResolversParentTypes, 'ImageSharp'> | $ElementType<ResolversParentTypes, 'Site'> | $ElementType<ResolversParentTypes, 'SiteBuildMetadata'> | $ElementType<ResolversParentTypes, 'SiteFunction'> | $ElementType<ResolversParentTypes, 'SitePage'>,
-  NodeFilterInput: NodeFilterInput,
-  NodeFilterListInput: NodeFilterListInput,
-  PNGOptions: PNGOptions,
-  PageInfo: PageInfo,
-  Potrace: Potrace,
+  JSONQueryOperatorInput: GatsbyTypes$JSONQueryOperatorInput,
+  Node: $ElementType<GatsbyTypes$ResolversParentTypes, 'Directory'> | $ElementType<GatsbyTypes$ResolversParentTypes, 'File'> | $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharp'> | $ElementType<GatsbyTypes$ResolversParentTypes, 'Site'> | $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteBuildMetadata'> | $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteFunction'> | $ElementType<GatsbyTypes$ResolversParentTypes, 'SitePage'>,
+  NodeFilterInput: GatsbyTypes$NodeFilterInput,
+  NodeFilterListInput: GatsbyTypes$NodeFilterListInput,
+  PNGOptions: GatsbyTypes$PNGOptions,
+  PageInfo: GatsbyTypes$PageInfo,
+  Potrace: GatsbyTypes$Potrace,
   Query: {},
-  Site: Site,
-  SiteBuildMetadata: SiteBuildMetadata,
-  SiteBuildMetadataConnection: SiteBuildMetadataConnection,
-  SiteBuildMetadataEdge: SiteBuildMetadataEdge,
-  SiteBuildMetadataFilterInput: SiteBuildMetadataFilterInput,
-  SiteBuildMetadataGroupConnection: SiteBuildMetadataGroupConnection,
-  SiteBuildMetadataSortInput: SiteBuildMetadataSortInput,
-  SiteConnection: SiteConnection,
-  SiteEdge: SiteEdge,
-  SiteFilterInput: SiteFilterInput,
-  SiteFunction: SiteFunction,
-  SiteFunctionConnection: SiteFunctionConnection,
-  SiteFunctionEdge: SiteFunctionEdge,
-  SiteFunctionFilterInput: SiteFunctionFilterInput,
-  SiteFunctionGroupConnection: SiteFunctionGroupConnection,
-  SiteFunctionSortInput: SiteFunctionSortInput,
-  SiteGroupConnection: SiteGroupConnection,
-  SitePage: SitePage,
-  SitePageConnection: SitePageConnection,
-  SitePageEdge: SitePageEdge,
-  SitePageFilterInput: SitePageFilterInput,
-  SitePageGroupConnection: SitePageGroupConnection,
-  SitePageSortInput: SitePageSortInput,
-  SiteSiteMetadata: SiteSiteMetadata,
-  SiteSiteMetadataFilterInput: SiteSiteMetadataFilterInput,
-  SiteSortInput: SiteSortInput,
-  StringQueryOperatorInput: StringQueryOperatorInput,
-  TransformOptions: TransformOptions,
-  WebPOptions: WebPOptions,
+  Site: GatsbyTypes$Site,
+  SiteBuildMetadata: GatsbyTypes$SiteBuildMetadata,
+  SiteBuildMetadataConnection: GatsbyTypes$SiteBuildMetadataConnection,
+  SiteBuildMetadataEdge: GatsbyTypes$SiteBuildMetadataEdge,
+  SiteBuildMetadataFilterInput: GatsbyTypes$SiteBuildMetadataFilterInput,
+  SiteBuildMetadataGroupConnection: GatsbyTypes$SiteBuildMetadataGroupConnection,
+  SiteBuildMetadataSortInput: GatsbyTypes$SiteBuildMetadataSortInput,
+  SiteConnection: GatsbyTypes$SiteConnection,
+  SiteEdge: GatsbyTypes$SiteEdge,
+  SiteFilterInput: GatsbyTypes$SiteFilterInput,
+  SiteFunction: GatsbyTypes$SiteFunction,
+  SiteFunctionConnection: GatsbyTypes$SiteFunctionConnection,
+  SiteFunctionEdge: GatsbyTypes$SiteFunctionEdge,
+  SiteFunctionFilterInput: GatsbyTypes$SiteFunctionFilterInput,
+  SiteFunctionGroupConnection: GatsbyTypes$SiteFunctionGroupConnection,
+  SiteFunctionSortInput: GatsbyTypes$SiteFunctionSortInput,
+  SiteGroupConnection: GatsbyTypes$SiteGroupConnection,
+  SitePage: GatsbyTypes$SitePage,
+  SitePageConnection: GatsbyTypes$SitePageConnection,
+  SitePageEdge: GatsbyTypes$SitePageEdge,
+  SitePageFilterInput: GatsbyTypes$SitePageFilterInput,
+  SitePageGroupConnection: GatsbyTypes$SitePageGroupConnection,
+  SitePageSortInput: GatsbyTypes$SitePageSortInput,
+  SiteSiteMetadata: GatsbyTypes$SiteSiteMetadata,
+  SiteSiteMetadataFilterInput: GatsbyTypes$SiteSiteMetadataFilterInput,
+  SiteSortInput: GatsbyTypes$SiteSortInput,
+  StringQueryOperatorInput: GatsbyTypes$StringQueryOperatorInput,
+  TransformOptions: GatsbyTypes$TransformOptions,
+  WebPOptions: GatsbyTypes$WebPOptions,
 };
 
-declare type childOfDirectiveArgs = {
+declare type GatsbyTypes$childOfDirectiveArgs = {
   mimeTypes: Array<$ElementType<Scalars, 'String'>>,
   types: Array<$ElementType<Scalars, 'String'>>,
 };
 
-declare type childOfDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = childOfDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$childOfDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$childOfDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type dateformatDirectiveArgs = {
+declare type GatsbyTypes$dateformatDirectiveArgs = {
   difference?: ?$ElementType<Scalars, 'String'>,
   formatString?: ?$ElementType<Scalars, 'String'>,
   fromNow?: ?$ElementType<Scalars, 'Boolean'>,
   locale?: ?$ElementType<Scalars, 'String'>,
 };
 
-declare type dateformatDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = dateformatDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$dateformatDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$dateformatDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type dontInferDirectiveArgs = { };
+declare type GatsbyTypes$dontInferDirectiveArgs = { };
 
-declare type dontInferDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = dontInferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$dontInferDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$dontInferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type fileByRelativePathDirectiveArgs = {
+declare type GatsbyTypes$fileByRelativePathDirectiveArgs = {
   from?: ?$ElementType<Scalars, 'String'>,
 };
 
-declare type fileByRelativePathDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = fileByRelativePathDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$fileByRelativePathDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$fileByRelativePathDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type inferDirectiveArgs = { };
+declare type GatsbyTypes$inferDirectiveArgs = { };
 
-declare type inferDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = inferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$inferDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$inferDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type linkDirectiveArgs = {
+declare type GatsbyTypes$linkDirectiveArgs = {
   by: $ElementType<Scalars, 'String'>,
   from?: ?$ElementType<Scalars, 'String'>,
   on?: ?$ElementType<Scalars, 'String'>,
 };
 
-declare type linkDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = linkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$linkDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$linkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type mimeTypesDirectiveArgs = {
+declare type GatsbyTypes$mimeTypesDirectiveArgs = {
   types: Array<$ElementType<Scalars, 'String'>>,
 };
 
-declare type mimeTypesDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = mimeTypesDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$mimeTypesDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$mimeTypesDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type nodeInterfaceDirectiveArgs = { };
+declare type GatsbyTypes$nodeInterfaceDirectiveArgs = { };
 
-declare type nodeInterfaceDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = nodeInterfaceDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$nodeInterfaceDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$nodeInterfaceDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type proxyDirectiveArgs = {
+declare type GatsbyTypes$proxyDirectiveArgs = {
   from: $ElementType<Scalars, 'String'>,
   fromNode: $ElementType<Scalars, 'Boolean'>,
 };
 
-declare type proxyDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = proxyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+declare type GatsbyTypes$proxyDirectiveResolver<Result, Parent, ContextType = type GatsbyResolverContext, Args = GatsbyTypes$proxyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-declare type DateScalarConfig = {
-  ...GraphQLScalarTypeConfig<$ElementType<ResolversTypes, 'Date'>, any>,
+declare type GatsbyTypes$DateScalarConfig = {
+  ...GraphQLScalarTypeConfig<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, any>,
   name: 'Date'
 };
 
-declare type DirectoryResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Directory'>> = {
-  absolutePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  accessTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_accessTimeArgs>,
-  atime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_atimeArgs>,
-  atimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  base?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  birthTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_birthTimeArgs>,
-  birthtime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType>,
-  birthtimeMs?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  blksize?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  blocks?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  changeTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_changeTimeArgs>,
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  ctime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_ctimeArgs>,
-  ctimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  dev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  dir?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  ext?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  extension?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  gid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  ino?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  mode?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  modifiedTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_modifiedTimeArgs>,
-  mtime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Directory_mtimeArgs>,
-  mtimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  name?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nlink?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
-  prettySize?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  rdev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  relativeDirectory?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  relativePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  root?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  size?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  sourceInstanceName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  uid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$DirectoryResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'Directory'>> = {
+  absolutePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  accessTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_accessTimeArgs>,
+  atime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_atimeArgs>,
+  atimeMs?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  birthTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_birthTimeArgs>,
+  birthtime?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType>,
+  birthtimeMs?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  blksize?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  blocks?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  changeTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_changeTimeArgs>,
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  ctime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_ctimeArgs>,
+  ctimeMs?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  dev?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  dir?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  ext?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  extension?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  gid?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  ino?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  mode?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  modifiedTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_modifiedTimeArgs>,
+  mtime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Directory_mtimeArgs>,
+  mtimeMs?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  name?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nlink?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
+  prettySize?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  rdev?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  relativeDirectory?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  relativePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  root?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  size?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  sourceInstanceName?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  uid?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type DirectoryConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'DirectoryConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<DirectoryConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'DirectoryEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'DirectoryGroupConnection'>>, ParentType, ContextType, $RequireFields<DirectoryConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<DirectoryConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<DirectoryConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Directory'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<DirectoryConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$DirectoryConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'DirectoryConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$DirectoryConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'DirectoryEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'DirectoryGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$DirectoryConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$DirectoryConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$DirectoryConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Directory'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$DirectoryConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type DirectoryEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'DirectoryEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType>,
+declare type GatsbyTypes$DirectoryEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'DirectoryEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Directory'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Directory'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Directory'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type DirectoryGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'DirectoryGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'DirectoryEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Directory'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$DirectoryGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'DirectoryGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'DirectoryEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Directory'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type FileResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'File'>> = {
-  absolutePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  accessTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_accessTimeArgs>,
-  atime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_atimeArgs>,
-  atimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  base?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  birthTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_birthTimeArgs>,
-  birthtime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType>,
-  birthtimeMs?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  blksize?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  blocks?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  changeTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_changeTimeArgs>,
-  childImageSharp?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  childrenImageSharp?: Resolver<?Array<?$ElementType<ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
-  ctime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_ctimeArgs>,
-  ctimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  dev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  dir?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  ext?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  extension?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  gid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  ino?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  mode?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  modifiedTime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_modifiedTimeArgs>,
-  mtime?: Resolver<$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, File_mtimeArgs>,
-  mtimeMs?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  name?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nlink?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
-  prettySize?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  publicURL?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  rdev?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  relativeDirectory?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  relativePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  root?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  size?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  sourceInstanceName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  uid?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$FileResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'File'>> = {
+  absolutePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  accessTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_accessTimeArgs>,
+  atime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_atimeArgs>,
+  atimeMs?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  birthTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_birthTimeArgs>,
+  birthtime?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType>,
+  birthtimeMs?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  blksize?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  blocks?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  changeTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_changeTimeArgs>,
+  childImageSharp?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  childrenImageSharp?: Resolver<?Array<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
+  ctime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_ctimeArgs>,
+  ctimeMs?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  dev?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  dir?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  ext?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  extension?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  gid?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  ino?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  mode?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  modifiedTime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_modifiedTimeArgs>,
+  mtime?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$File_mtimeArgs>,
+  mtimeMs?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  name?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nlink?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
+  prettySize?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  publicURL?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  rdev?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  relativeDirectory?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  relativePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  root?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  size?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  sourceInstanceName?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  uid?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type FileConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'FileConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<FileConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'FileEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'FileGroupConnection'>>, ParentType, ContextType, $RequireFields<FileConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<FileConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<FileConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'File'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<FileConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$FileConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'FileConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$FileConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'FileEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'FileGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$FileConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$FileConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$FileConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'File'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$FileConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type FileEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'FileEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'File'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'File'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'File'>, ParentType, ContextType>,
+declare type GatsbyTypes$FileEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'FileEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'File'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'File'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'File'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type FileGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'FileGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'FileEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'File'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$FileGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'FileGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'FileEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'File'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharp'>> = {
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  fixed?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpFixed'>, ParentType, ContextType, $RequireFields<ImageSharp_fixedArgs, { background: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionSpeed: *, rotate: *, toFormat: *, toFormatBase64: *, trim: * }>>,
-  fluid?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpFluid'>, ParentType, ContextType, $RequireFields<ImageSharp_fluidArgs, { background: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionSpeed: *, rotate: *, sizes: *, srcSetBreakpoints: *, toFormat: *, toFormatBase64: *, trim: * }>>,
-  gatsbyImageData?: Resolver<$ElementType<ResolversTypes, 'JSON'>, ParentType, ContextType, $RequireFields<ImageSharp_gatsbyImageDataArgs, { layout: * }>>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  original?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpOriginal'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
-  resize?: Resolver<?$ElementType<ResolversTypes, 'ImageSharpResize'>, ParentType, ContextType, $RequireFields<ImageSharp_resizeArgs, { background: *, base64: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionLevel: *, pngCompressionSpeed: *, rotate: *, toFormat: *, trim: * }>>,
+declare type GatsbyTypes$ImageSharpResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharp'>> = {
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  fixed?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpFixed'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharp_fixedArgs, { background: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionSpeed: *, rotate: *, toFormat: *, toFormatBase64: *, trim: * }>>,
+  fluid?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpFluid'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharp_fluidArgs, { background: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionSpeed: *, rotate: *, sizes: *, srcSetBreakpoints: *, toFormat: *, toFormatBase64: *, trim: * }>>,
+  gatsbyImageData?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'JSON'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharp_gatsbyImageDataArgs, { layout: * }>>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  original?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpOriginal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
+  resize?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpResize'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharp_resizeArgs, { background: *, base64: *, cropFocus: *, fit: *, grayscale: *, jpegProgressive: *, pngCompressionLevel: *, pngCompressionSpeed: *, rotate: *, toFormat: *, trim: * }>>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<ImageSharpConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharpEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharpGroupConnection'>>, ParentType, ContextType, $RequireFields<ImageSharpConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<ImageSharpConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<ImageSharpConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<ImageSharpConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharpConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharpConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharpConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharpConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$ImageSharpConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpFixedResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpFixed'>> = {
-  aspectRatio?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  base64?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  height?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  originalName?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  src?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  srcSet?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  srcSetWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  srcWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  tracedSVG?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  width?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpFixedResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpFixed'>> = {
+  aspectRatio?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base64?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  height?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  originalName?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  src?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSet?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSetWebp?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcWebp?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  tracedSVG?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  width?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpFluidResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpFluid'>> = {
-  aspectRatio?: Resolver<$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  base64?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  originalImg?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  originalName?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  presentationHeight?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  presentationWidth?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  sizes?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  src?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  srcSet?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  srcSetWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  srcWebp?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  tracedSVG?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpFluidResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpFluid'>> = {
+  aspectRatio?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  base64?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  originalImg?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  originalName?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  presentationHeight?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  presentationWidth?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  sizes?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  src?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSet?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcSetWebp?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  srcWebp?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  tracedSVG?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharpEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpOriginalResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpOriginal'>> = {
-  height?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  src?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  width?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpOriginalResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpOriginal'>> = {
+  height?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  src?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  width?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type ImageSharpResizeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'ImageSharpResize'>> = {
-  aspectRatio?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType>,
-  height?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  originalName?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  src?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  tracedSVG?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  width?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$ImageSharpResizeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'ImageSharpResize'>> = {
+  aspectRatio?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType>,
+  height?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  originalName?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  src?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  tracedSVG?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  width?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type InternalResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Internal'>> = {
-  content?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  contentDigest?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  description?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldOwners?: Resolver<?Array<?$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType>,
-  ignoreType?: Resolver<?$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
-  mediaType?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  owner?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  type?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+declare type GatsbyTypes$InternalResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'Internal'>> = {
+  content?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  contentDigest?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  description?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldOwners?: Resolver<?Array<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType>,
+  ignoreType?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  mediaType?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  owner?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  type?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type JSONScalarConfig = {
-  ...GraphQLScalarTypeConfig<$ElementType<ResolversTypes, 'JSON'>, any>,
+declare type GatsbyTypes$JSONScalarConfig = {
+  ...GraphQLScalarTypeConfig<$ElementType<GatsbyTypes$ResolversTypes, 'JSON'>, any>,
   name: 'JSON'
 };
 
-declare type NodeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Node'>> = {
+declare type GatsbyTypes$NodeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'Node'>> = {
   __resolveType: TypeResolveFn<'Directory' | 'File' | 'ImageSharp' | 'Site' | 'SiteBuildMetadata' | 'SiteFunction' | 'SitePage', ParentType, ContextType>,
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
 };
 
-declare type PageInfoResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'PageInfo'>> = {
-  currentPage?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  hasNextPage?: Resolver<$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
-  hasPreviousPage?: Resolver<$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
-  itemCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  pageCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  perPage?: Resolver<?$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$PageInfoResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'PageInfo'>> = {
+  currentPage?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  hasNextPage?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  hasPreviousPage?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  itemCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  pageCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  perPage?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type QueryResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Query'>> = {
-  allDirectory?: Resolver<$ElementType<ResolversTypes, 'DirectoryConnection'>, ParentType, ContextType, Query_allDirectoryArgs>,
-  allFile?: Resolver<$ElementType<ResolversTypes, 'FileConnection'>, ParentType, ContextType, Query_allFileArgs>,
-  allImageSharp?: Resolver<$ElementType<ResolversTypes, 'ImageSharpConnection'>, ParentType, ContextType, Query_allImageSharpArgs>,
-  allSite?: Resolver<$ElementType<ResolversTypes, 'SiteConnection'>, ParentType, ContextType, Query_allSiteArgs>,
-  allSiteBuildMetadata?: Resolver<$ElementType<ResolversTypes, 'SiteBuildMetadataConnection'>, ParentType, ContextType, Query_allSiteBuildMetadataArgs>,
-  allSiteFunction?: Resolver<$ElementType<ResolversTypes, 'SiteFunctionConnection'>, ParentType, ContextType, Query_allSiteFunctionArgs>,
-  allSitePage?: Resolver<$ElementType<ResolversTypes, 'SitePageConnection'>, ParentType, ContextType, Query_allSitePageArgs>,
-  directory?: Resolver<?$ElementType<ResolversTypes, 'Directory'>, ParentType, ContextType, Query_directoryArgs>,
-  file?: Resolver<?$ElementType<ResolversTypes, 'File'>, ParentType, ContextType, Query_fileArgs>,
-  imageSharp?: Resolver<?$ElementType<ResolversTypes, 'ImageSharp'>, ParentType, ContextType, Query_imageSharpArgs>,
-  site?: Resolver<?$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType, Query_siteArgs>,
-  siteBuildMetadata?: Resolver<?$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType, Query_siteBuildMetadataArgs>,
-  siteFunction?: Resolver<?$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType, Query_siteFunctionArgs>,
-  sitePage?: Resolver<?$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType, Query_sitePageArgs>,
+declare type GatsbyTypes$QueryResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'Query'>> = {
+  allDirectory?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'DirectoryConnection'>, ParentType, ContextType, GatsbyTypes$Query_allDirectoryArgs>,
+  allFile?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'FileConnection'>, ParentType, ContextType, GatsbyTypes$Query_allFileArgs>,
+  allImageSharp?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharpConnection'>, ParentType, ContextType, GatsbyTypes$Query_allImageSharpArgs>,
+  allSite?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SiteConnection'>, ParentType, ContextType, GatsbyTypes$Query_allSiteArgs>,
+  allSiteBuildMetadata?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadataConnection'>, ParentType, ContextType, GatsbyTypes$Query_allSiteBuildMetadataArgs>,
+  allSiteFunction?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunctionConnection'>, ParentType, ContextType, GatsbyTypes$Query_allSiteFunctionArgs>,
+  allSitePage?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SitePageConnection'>, ParentType, ContextType, GatsbyTypes$Query_allSitePageArgs>,
+  directory?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Directory'>, ParentType, ContextType, GatsbyTypes$Query_directoryArgs>,
+  file?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'File'>, ParentType, ContextType, GatsbyTypes$Query_fileArgs>,
+  imageSharp?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'ImageSharp'>, ParentType, ContextType, GatsbyTypes$Query_imageSharpArgs>,
+  site?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Site'>, ParentType, ContextType, GatsbyTypes$Query_siteArgs>,
+  siteBuildMetadata?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType, GatsbyTypes$Query_siteBuildMetadataArgs>,
+  siteFunction?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'>, ParentType, ContextType, GatsbyTypes$Query_siteFunctionArgs>,
+  sitePage?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>, ParentType, ContextType, GatsbyTypes$Query_sitePageArgs>,
 };
 
-declare type SiteResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'Site'>> = {
-  buildTime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, Site_buildTimeArgs>,
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
-  pathPrefix?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  polyfill?: Resolver<?$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
-  siteMetadata?: Resolver<?$ElementType<ResolversTypes, 'SiteSiteMetadata'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'Site'>> = {
+  buildTime?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$Site_buildTimeArgs>,
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
+  pathPrefix?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  polyfill?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  siteMetadata?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteSiteMetadata'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteBuildMetadataResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadata'>> = {
-  buildTime?: Resolver<?$ElementType<ResolversTypes, 'Date'>, ParentType, ContextType, SiteBuildMetadata_buildTimeArgs>,
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteBuildMetadataResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteBuildMetadata'>> = {
+  buildTime?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Date'>, ParentType, ContextType, GatsbyTypes$SiteBuildMetadata_buildTimeArgs>,
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteBuildMetadataConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadataConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadataEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadataGroupConnection'>>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadata'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteBuildMetadataConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteBuildMetadataConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteBuildMetadataConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteBuildMetadataConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadataEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadataGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteBuildMetadataConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteBuildMetadataConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteBuildMetadataConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteBuildMetadataConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteBuildMetadataEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadataEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteBuildMetadataEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteBuildMetadataEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteBuildMetadataGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteBuildMetadataGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadataEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteBuildMetadata'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteBuildMetadataGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteBuildMetadataGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadataEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteBuildMetadata'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SiteConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'SiteGroupConnection'>>, ParentType, ContextType, $RequireFields<SiteConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Site'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Site'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'Site'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Site'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Site'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Site'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteFunctionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunction'>> = {
-  absoluteCompiledFilePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  apiRoute?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  matchPath?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  originalFilePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
-  relativeCompiledFilePath?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteFunctionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteFunction'>> = {
+  absoluteCompiledFilePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  apiRoute?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  matchPath?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  originalFilePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
+  relativeCompiledFilePath?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteFunctionConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunctionConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunctionEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunctionGroupConnection'>>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunction'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SiteFunctionConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteFunctionConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteFunctionConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteFunctionConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunctionEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunctionGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteFunctionConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteFunctionConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteFunctionConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SiteFunctionConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteFunctionEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunctionEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteFunctionEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteFunctionEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteFunctionGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteFunctionGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunctionEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SiteFunction'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteFunctionGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteFunctionGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunctionEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteFunction'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SiteEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'Site'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SiteEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Site'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SitePageResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePage'>> = {
-  children?: Resolver<Array<$ElementType<ResolversTypes, 'Node'>>, ParentType, ContextType>,
-  component?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  componentChunkName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  componentPath?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  id?: Resolver<$ElementType<ResolversTypes, 'ID'>, ParentType, ContextType>,
-  internal?: Resolver<$ElementType<ResolversTypes, 'Internal'>, ParentType, ContextType>,
-  internalComponentName?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  isCreatedByStatefulCreatePages?: Resolver<?$ElementType<ResolversTypes, 'Boolean'>, ParentType, ContextType>,
-  matchPath?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  parent?: Resolver<?$ElementType<ResolversTypes, 'Node'>, ParentType, ContextType>,
-  path?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+declare type GatsbyTypes$SitePageResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SitePage'>> = {
+  children?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'Node'>>, ParentType, ContextType>,
+  component?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  componentChunkName?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  componentPath?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  id?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'ID'>, ParentType, ContextType>,
+  internal?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Internal'>, ParentType, ContextType>,
+  internalComponentName?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  isCreatedByStatefulCreatePages?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Boolean'>, ParentType, ContextType>,
+  matchPath?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  parent?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Node'>, ParentType, ContextType>,
+  path?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SitePageConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePageConnection'>> = {
-  distinct?: Resolver<Array<$ElementType<ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<SitePageConnection_distinctArgs, { field: * }>>,
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SitePageEdge'>>, ParentType, ContextType>,
-  group?: Resolver<Array<$ElementType<ResolversTypes, 'SitePageGroupConnection'>>, ParentType, ContextType, $RequireFields<SitePageConnection_groupArgs, { field: * }>>,
-  max?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SitePageConnection_maxArgs, { field: * }>>,
-  min?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SitePageConnection_minArgs, { field: * }>>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SitePage'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  sum?: Resolver<?$ElementType<ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<SitePageConnection_sumArgs, { field: * }>>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SitePageConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SitePageConnection'>> = {
+  distinct?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'String'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SitePageConnection_distinctArgs, { field: * }>>,
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SitePageEdge'>>, ParentType, ContextType>,
+  group?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SitePageGroupConnection'>>, ParentType, ContextType, $RequireFields<GatsbyTypes$SitePageConnection_groupArgs, { field: * }>>,
+  max?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SitePageConnection_maxArgs, { field: * }>>,
+  min?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SitePageConnection_minArgs, { field: * }>>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  sum?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'Float'>, ParentType, ContextType, $RequireFields<GatsbyTypes$SitePageConnection_sumArgs, { field: * }>>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SitePageEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePageEdge'>> = {
-  next?: Resolver<?$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType>,
-  node?: Resolver<$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType>,
-  previous?: Resolver<?$ElementType<ResolversTypes, 'SitePage'>, ParentType, ContextType>,
+declare type GatsbyTypes$SitePageEdgeResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SitePageEdge'>> = {
+  next?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>, ParentType, ContextType>,
+  node?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>, ParentType, ContextType>,
+  previous?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SitePageGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SitePageGroupConnection'>> = {
-  edges?: Resolver<Array<$ElementType<ResolversTypes, 'SitePageEdge'>>, ParentType, ContextType>,
-  field?: Resolver<$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  fieldValue?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  nodes?: Resolver<Array<$ElementType<ResolversTypes, 'SitePage'>>, ParentType, ContextType>,
-  pageInfo?: Resolver<$ElementType<ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
-  totalCount?: Resolver<$ElementType<ResolversTypes, 'Int'>, ParentType, ContextType>,
+declare type GatsbyTypes$SitePageGroupConnectionResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SitePageGroupConnection'>> = {
+  edges?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SitePageEdge'>>, ParentType, ContextType>,
+  field?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  fieldValue?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  nodes?: Resolver<Array<$ElementType<GatsbyTypes$ResolversTypes, 'SitePage'>>, ParentType, ContextType>,
+  pageInfo?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'PageInfo'>, ParentType, ContextType>,
+  totalCount?: Resolver<$ElementType<GatsbyTypes$ResolversTypes, 'Int'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type SiteSiteMetadataResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<ResolversParentTypes, 'SiteSiteMetadata'>> = {
-  author?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  description?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
-  title?: Resolver<?$ElementType<ResolversTypes, 'String'>, ParentType, ContextType>,
+declare type GatsbyTypes$SiteSiteMetadataResolvers<ContextType = type GatsbyResolverContext, ParentType = $ElementType<GatsbyTypes$ResolversParentTypes, 'SiteSiteMetadata'>> = {
+  author?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  description?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
+  title?: Resolver<?$ElementType<GatsbyTypes$ResolversTypes, 'String'>, ParentType, ContextType>,
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>,
 };
 
-declare type Resolvers<ContextType = type GatsbyResolverContext> = {
+declare type GatsbyTypes$Resolvers<ContextType = type GatsbyResolverContext> = {
   Date?: GraphQLScalarType,
-  Directory?: DirectoryResolvers<ContextType>,
-  DirectoryConnection?: DirectoryConnectionResolvers<ContextType>,
-  DirectoryEdge?: DirectoryEdgeResolvers<ContextType>,
-  DirectoryGroupConnection?: DirectoryGroupConnectionResolvers<ContextType>,
-  File?: FileResolvers<ContextType>,
-  FileConnection?: FileConnectionResolvers<ContextType>,
-  FileEdge?: FileEdgeResolvers<ContextType>,
-  FileGroupConnection?: FileGroupConnectionResolvers<ContextType>,
-  ImageSharp?: ImageSharpResolvers<ContextType>,
-  ImageSharpConnection?: ImageSharpConnectionResolvers<ContextType>,
-  ImageSharpEdge?: ImageSharpEdgeResolvers<ContextType>,
-  ImageSharpFixed?: ImageSharpFixedResolvers<ContextType>,
-  ImageSharpFluid?: ImageSharpFluidResolvers<ContextType>,
-  ImageSharpGroupConnection?: ImageSharpGroupConnectionResolvers<ContextType>,
-  ImageSharpOriginal?: ImageSharpOriginalResolvers<ContextType>,
-  ImageSharpResize?: ImageSharpResizeResolvers<ContextType>,
-  Internal?: InternalResolvers<ContextType>,
+  Directory?: GatsbyTypes$DirectoryResolvers<ContextType>,
+  DirectoryConnection?: GatsbyTypes$DirectoryConnectionResolvers<ContextType>,
+  DirectoryEdge?: GatsbyTypes$DirectoryEdgeResolvers<ContextType>,
+  DirectoryGroupConnection?: GatsbyTypes$DirectoryGroupConnectionResolvers<ContextType>,
+  File?: GatsbyTypes$FileResolvers<ContextType>,
+  FileConnection?: GatsbyTypes$FileConnectionResolvers<ContextType>,
+  FileEdge?: GatsbyTypes$FileEdgeResolvers<ContextType>,
+  FileGroupConnection?: GatsbyTypes$FileGroupConnectionResolvers<ContextType>,
+  ImageSharp?: GatsbyTypes$ImageSharpResolvers<ContextType>,
+  ImageSharpConnection?: GatsbyTypes$ImageSharpConnectionResolvers<ContextType>,
+  ImageSharpEdge?: GatsbyTypes$ImageSharpEdgeResolvers<ContextType>,
+  ImageSharpFixed?: GatsbyTypes$ImageSharpFixedResolvers<ContextType>,
+  ImageSharpFluid?: GatsbyTypes$ImageSharpFluidResolvers<ContextType>,
+  ImageSharpGroupConnection?: GatsbyTypes$ImageSharpGroupConnectionResolvers<ContextType>,
+  ImageSharpOriginal?: GatsbyTypes$ImageSharpOriginalResolvers<ContextType>,
+  ImageSharpResize?: GatsbyTypes$ImageSharpResizeResolvers<ContextType>,
+  Internal?: GatsbyTypes$InternalResolvers<ContextType>,
   JSON?: GraphQLScalarType,
-  Node?: NodeResolvers<ContextType>,
-  PageInfo?: PageInfoResolvers<ContextType>,
-  Query?: QueryResolvers<ContextType>,
-  Site?: SiteResolvers<ContextType>,
-  SiteBuildMetadata?: SiteBuildMetadataResolvers<ContextType>,
-  SiteBuildMetadataConnection?: SiteBuildMetadataConnectionResolvers<ContextType>,
-  SiteBuildMetadataEdge?: SiteBuildMetadataEdgeResolvers<ContextType>,
-  SiteBuildMetadataGroupConnection?: SiteBuildMetadataGroupConnectionResolvers<ContextType>,
-  SiteConnection?: SiteConnectionResolvers<ContextType>,
-  SiteEdge?: SiteEdgeResolvers<ContextType>,
-  SiteFunction?: SiteFunctionResolvers<ContextType>,
-  SiteFunctionConnection?: SiteFunctionConnectionResolvers<ContextType>,
-  SiteFunctionEdge?: SiteFunctionEdgeResolvers<ContextType>,
-  SiteFunctionGroupConnection?: SiteFunctionGroupConnectionResolvers<ContextType>,
-  SiteGroupConnection?: SiteGroupConnectionResolvers<ContextType>,
-  SitePage?: SitePageResolvers<ContextType>,
-  SitePageConnection?: SitePageConnectionResolvers<ContextType>,
-  SitePageEdge?: SitePageEdgeResolvers<ContextType>,
-  SitePageGroupConnection?: SitePageGroupConnectionResolvers<ContextType>,
-  SiteSiteMetadata?: SiteSiteMetadataResolvers<ContextType>,
+  Node?: GatsbyTypes$NodeResolvers<ContextType>,
+  PageInfo?: GatsbyTypes$PageInfoResolvers<ContextType>,
+  Query?: GatsbyTypes$QueryResolvers<ContextType>,
+  Site?: GatsbyTypes$SiteResolvers<ContextType>,
+  SiteBuildMetadata?: GatsbyTypes$SiteBuildMetadataResolvers<ContextType>,
+  SiteBuildMetadataConnection?: GatsbyTypes$SiteBuildMetadataConnectionResolvers<ContextType>,
+  SiteBuildMetadataEdge?: GatsbyTypes$SiteBuildMetadataEdgeResolvers<ContextType>,
+  SiteBuildMetadataGroupConnection?: GatsbyTypes$SiteBuildMetadataGroupConnectionResolvers<ContextType>,
+  SiteConnection?: GatsbyTypes$SiteConnectionResolvers<ContextType>,
+  SiteEdge?: GatsbyTypes$SiteEdgeResolvers<ContextType>,
+  SiteFunction?: GatsbyTypes$SiteFunctionResolvers<ContextType>,
+  SiteFunctionConnection?: GatsbyTypes$SiteFunctionConnectionResolvers<ContextType>,
+  SiteFunctionEdge?: GatsbyTypes$SiteFunctionEdgeResolvers<ContextType>,
+  SiteFunctionGroupConnection?: GatsbyTypes$SiteFunctionGroupConnectionResolvers<ContextType>,
+  SiteGroupConnection?: GatsbyTypes$SiteGroupConnectionResolvers<ContextType>,
+  SitePage?: GatsbyTypes$SitePageResolvers<ContextType>,
+  SitePageConnection?: GatsbyTypes$SitePageConnectionResolvers<ContextType>,
+  SitePageEdge?: GatsbyTypes$SitePageEdgeResolvers<ContextType>,
+  SitePageGroupConnection?: GatsbyTypes$SitePageGroupConnectionResolvers<ContextType>,
+  SiteSiteMetadata?: GatsbyTypes$SiteSiteMetadataResolvers<ContextType>,
 };
 
-declare type DirectiveResolvers<ContextType = type GatsbyResolverContext> = {
-  childOf?: childOfDirectiveResolver<any, any, ContextType>,
-  dateformat?: dateformatDirectiveResolver<any, any, ContextType>,
-  dontInfer?: dontInferDirectiveResolver<any, any, ContextType>,
-  fileByRelativePath?: fileByRelativePathDirectiveResolver<any, any, ContextType>,
-  infer?: inferDirectiveResolver<any, any, ContextType>,
-  link?: linkDirectiveResolver<any, any, ContextType>,
-  mimeTypes?: mimeTypesDirectiveResolver<any, any, ContextType>,
-  nodeInterface?: nodeInterfaceDirectiveResolver<any, any, ContextType>,
-  proxy?: proxyDirectiveResolver<any, any, ContextType>,
+declare type GatsbyTypes$DirectiveResolvers<ContextType = type GatsbyResolverContext> = {
+  childOf?: GatsbyTypes$childOfDirectiveResolver<any, any, ContextType>,
+  dateformat?: GatsbyTypes$dateformatDirectiveResolver<any, any, ContextType>,
+  dontInfer?: GatsbyTypes$dontInferDirectiveResolver<any, any, ContextType>,
+  fileByRelativePath?: GatsbyTypes$fileByRelativePathDirectiveResolver<any, any, ContextType>,
+  infer?: GatsbyTypes$inferDirectiveResolver<any, any, ContextType>,
+  link?: GatsbyTypes$linkDirectiveResolver<any, any, ContextType>,
+  mimeTypes?: GatsbyTypes$mimeTypesDirectiveResolver<any, any, ContextType>,
+  nodeInterface?: GatsbyTypes$nodeInterfaceDirectiveResolver<any, any, ContextType>,
+  proxy?: GatsbyTypes$proxyDirectiveResolver<any, any, ContextType>,
 };
 "
 `;

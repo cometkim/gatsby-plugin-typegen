@@ -2,6 +2,7 @@ import { when } from 'jest-when';
 import { stripIndent } from 'common-tags';
 
 import { makeAutofixService } from '../src/services/autofix';
+import { testReporter } from '../test/reporter';
 
 describe('autofix service', () => {
   it('should insert type argument automatically for TypeScript files', async () => {
@@ -11,6 +12,7 @@ describe('autofix service', () => {
     const autofix = makeAutofixService({
       language: 'typescript',
       namespace: 'GatsbyTypes',
+      reporter: testReporter,
       readFileContent,
       writeFileContent,
     });
@@ -42,18 +44,9 @@ describe('autofix service', () => {
         );
       `);
 
-    await expect(autofix([
+    await autofix([
       'use-static-query.ts',
       'static-query-component.tsx',
-    ])).resolves.toEqual([
-      {
-        status: 'fulfilled',
-        value: 'use-static-query.ts',
-      },
-      {
-        status: 'fulfilled',
-        value: 'static-query-component.tsx',
-      },
     ]);
 
     expect(writeFileContent).toBeCalledWith('use-static-query.ts', stripIndent`

@@ -8,8 +8,8 @@ import type { GatsbyResolverContext } from 'gatsby-plugin-typegen/types';
 
 declare namespace GatsbyTypes {
 
-type Maybe<T> = T | undefined;
-type InputMaybe<T> = T | undefined;
+type Maybe<T> = T | null;
+type InputMaybe<T> = T | null;
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -2354,7 +2354,7 @@ type WebPOptions = {
 type TestQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TestQuery = { readonly site: { readonly siteMetadata: { readonly title: string | undefined } | undefined } | undefined };
+type TestQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
 
 
 
