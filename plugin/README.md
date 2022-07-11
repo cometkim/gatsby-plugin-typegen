@@ -30,7 +30,7 @@ I strongly recommend to use the official feature instead of this plugin. If you 
 ## Install
 
 ```bash
-yarn add gatsby-plugin-typegen@rc
+yarn add gatsby-plugin-typegen
 
 # or
 # npm install --save gatsby-plugin-typegen
