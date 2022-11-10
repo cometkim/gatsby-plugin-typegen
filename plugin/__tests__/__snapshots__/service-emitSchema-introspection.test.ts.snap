@@ -14,7 +14,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"AVIFOptions\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -62,7 +62,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"BlurredOptions\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -98,7 +98,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"Boolean\\",
         \\"description\\": \\"The \`Boolean\` scalar type represents \`true\` or \`false\`.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -109,7 +109,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"BooleanQueryOperatorInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -177,7 +177,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"Date\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -188,7 +188,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"DateQueryOperatorInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -304,7 +304,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"Directory\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"absolutePath\\",
@@ -1245,7 +1245,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"DirectoryConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -1530,7 +1530,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"DirectoryEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -1582,7 +1582,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"DirectoryFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -2308,7 +2308,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"DirectoryFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -2764,7 +2764,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"DirectoryGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -2884,7 +2884,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"DirectorySortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -2928,7 +2928,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"DuotoneGradient\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -2984,7 +2984,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"File\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"absolutePath\\",
@@ -3965,7 +3965,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"FileConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -4250,7 +4250,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"FileEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -4302,7 +4302,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"FileFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -5880,7 +5880,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"FileFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -6372,7 +6372,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"FileGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -6492,7 +6492,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"FileSortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -6536,7 +6536,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"Float\\",
         \\"description\\": \\"The \`Float\` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6547,7 +6547,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"FloatQueryOperatorInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -6663,7 +6663,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"ID\\",
         \\"description\\": \\"The \`ID\` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as \`\\\\\\"4\\\\\\"\`) or integer (such as \`4\`) input value will be accepted as an ID.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6674,7 +6674,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"ImageCropFocus\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6752,7 +6752,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"ImageFit\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6794,7 +6794,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"ImageFormat\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6842,7 +6842,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"ImageLayout\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6872,7 +6872,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"ImagePlaceholder\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -6908,7 +6908,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharp\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"children\\",
@@ -8002,7 +8002,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -8287,7 +8287,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -8339,7 +8339,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"ImageSharpFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -9059,7 +9059,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -9179,7 +9179,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpFilterListInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -9203,7 +9203,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpFixed\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"aspectRatio\\",
@@ -9351,7 +9351,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpFixedFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -9483,7 +9483,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpFluid\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"aspectRatio\\",
@@ -9663,7 +9663,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpFluidFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -9819,7 +9819,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -9939,7 +9939,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpOriginal\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"height\\",
@@ -9987,7 +9987,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpOriginalFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10035,7 +10035,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"ImageSharpResize\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"aspectRatio\\",
@@ -10119,7 +10119,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpResizeFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10203,7 +10203,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"ImageSharpSortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10247,7 +10247,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"Int\\",
         \\"description\\": \\"The \`Int\` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -10258,7 +10258,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"IntQueryOperatorInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10374,7 +10374,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"Internal\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"content\\",
@@ -10498,7 +10498,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"InternalFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10606,7 +10606,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"JPGOptions\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10642,7 +10642,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"JSON\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": \\"http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf\\",
+        \\"specifiedByURL\\": \\"http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf\\",
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -10653,7 +10653,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"JSONQueryOperatorInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10745,7 +10745,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INTERFACE\\",
         \\"name\\": \\"Node\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"children\\",
@@ -10861,7 +10861,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"NodeFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10921,7 +10921,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"NodeFilterListInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10945,7 +10945,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"PNGOptions\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -10981,7 +10981,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"PageInfo\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"currentPage\\",
@@ -11101,7 +11101,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"Potrace\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -11221,7 +11221,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"PotraceTurnPolicy\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -11269,7 +11269,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"Query\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"allDirectory\\",
@@ -13255,7 +13255,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"Site\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"buildTime\\",
@@ -13438,7 +13438,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteBuildMetadata\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"buildTime\\",
@@ -13585,7 +13585,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteBuildMetadataConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -13870,7 +13870,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteBuildMetadataEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -13922,7 +13922,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"SiteBuildMetadataFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -14456,7 +14456,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteBuildMetadataFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -14528,7 +14528,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteBuildMetadataGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -14648,7 +14648,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteBuildMetadataSortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -14692,7 +14692,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -14977,7 +14977,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -15029,7 +15029,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"SiteFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -15593,7 +15593,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -15701,7 +15701,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteFunction\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"absoluteCompiledFilePath\\",
@@ -15863,7 +15863,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteFunctionConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -16148,7 +16148,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteFunctionEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -16200,7 +16200,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"SiteFunctionFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -16758,7 +16758,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteFunctionFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -16878,7 +16878,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteFunctionGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -16998,7 +16998,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteFunctionSortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -17042,7 +17042,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -17162,7 +17162,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SitePage\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"children\\",
@@ -17348,7 +17348,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SitePageConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"distinct\\",
@@ -17633,7 +17633,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SitePageEdge\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"next\\",
@@ -17685,7 +17685,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"SitePageFieldsEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -18255,7 +18255,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SitePageFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18399,7 +18399,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SitePageGroupConnection\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"edges\\",
@@ -18519,7 +18519,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SitePageSortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18563,7 +18563,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"SiteSiteMetadata\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"author\\",
@@ -18611,7 +18611,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteSiteMetadataFilterInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18659,7 +18659,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"SiteSortInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18703,7 +18703,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"SortOrderEnum\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -18727,7 +18727,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"SCALAR\\",
         \\"name\\": \\"String\\",
         \\"description\\": \\"The \`String\` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -18738,7 +18738,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"StringQueryOperatorInput\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18830,7 +18830,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"TransformOptions\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18914,7 +18914,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"INPUT_OBJECT\\",
         \\"name\\": \\"WebPOptions\\",
         \\"description\\": null,
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": [
           {
@@ -18938,7 +18938,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"__Schema\\",
         \\"description\\": \\"A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"description\\",
@@ -19049,8 +19049,8 @@ exports[`emitSchema service should emits schema to configured paths in configuir
       {
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"__Type\\",
-        \\"description\\": \\"The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the \`__TypeKind\` enum.\\\\n\\\\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional \`specifiedByUrl\`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.\\",
-        \\"specifiedByUrl\\": null,
+        \\"description\\": \\"The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the \`__TypeKind\` enum.\\\\n\\\\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional \`specifiedByURL\`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.\\",
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"kind\\",
@@ -19093,7 +19093,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
             \\"deprecationReason\\": null
           },
           {
-            \\"name\\": \\"specifiedByUrl\\",
+            \\"name\\": \\"specifiedByURL\\",
             \\"description\\": null,
             \\"args\\": [],
             \\"type\\": {
@@ -19265,7 +19265,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"__TypeKind\\",
         \\"description\\": \\"An enum describing what kind of type a given \`__Type\` is.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -19325,7 +19325,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"__Field\\",
         \\"description\\": \\"Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"name\\",
@@ -19446,7 +19446,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"__InputValue\\",
         \\"description\\": \\"Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"name\\",
@@ -19542,7 +19542,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"__EnumValue\\",
         \\"description\\": \\"One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"name\\",
@@ -19610,7 +19610,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"OBJECT\\",
         \\"name\\": \\"__Directive\\",
         \\"description\\": \\"A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\\\\n\\\\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": [
           {
             \\"name\\": \\"name\\",
@@ -19727,7 +19727,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"kind\\": \\"ENUM\\",
         \\"name\\": \\"__DirectiveLocation\\",
         \\"description\\": \\"A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.\\",
-        \\"specifiedByUrl\\": null,
+        \\"specifiedByURL\\": null,
         \\"fields\\": null,
         \\"inputFields\\": null,
         \\"interfaces\\": null,
@@ -20225,7 +20225,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
       },
       {
         \\"name\\": \\"specifiedBy\\",
-        \\"description\\": \\"Exposes a URL that specifies the behaviour of this scalar.\\",
+        \\"description\\": \\"Exposes a URL that specifies the behavior of this scalar.\\",
         \\"isRepeatable\\": false,
         \\"locations\\": [
           \\"SCALAR\\"
@@ -20233,7 +20233,7 @@ exports[`emitSchema service should emits schema to configured paths in configuir
         \\"args\\": [
           {
             \\"name\\": \\"url\\",
-            \\"description\\": \\"The URL that specifies the behaviour of this scalar.\\",
+            \\"description\\": \\"The URL that specifies the behavior of this scalar.\\",
             \\"type\\": {
               \\"kind\\": \\"NON_NULL\\",
               \\"name\\": null,

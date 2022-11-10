@@ -1744,6 +1744,5 @@ input TransformOptions {
 
 input WebPOptions {
   quality: Int
-}
-"
+}"
 `;
