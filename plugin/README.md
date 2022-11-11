@@ -19,9 +19,9 @@ TypeScript/Flow code generation for GatsbyJS queries.
 - Auto-fixing `<StaticQuery>` and `useStaticQuery()` in code with generated type name.
 - Integrates GatsbyJS project with GraphQL & TypeScript ecosystem.
 
-However, GatsbyJS provides builtin typegen feature since v4.15+. See [discussion](https://github.com/gatsbyjs/gatsby/discussions/35420).
+However, GatsbyJS provides [builtin typegen feature](https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/) since v4.15+. See [discussion](https://github.com/gatsbyjs/gatsby/discussions/35420).
 
-I strongly recommend to use the official feature instead of this plugin. If you would like to experiment with other typegen use cases with this plugin, please [leave your idea](https://github.com/cometkim/gatsby-plugin-typegen/issues/174)!
+**I strongly recommend to use the official feature instead of this plugin.** If you would like to experiment with other typegen use cases with this plugin, please [leave your idea](https://github.com/cometkim/gatsby-plugin-typegen/issues/174)!
 
 ## Demo
 
