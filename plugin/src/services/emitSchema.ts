@@ -38,7 +38,6 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
 
         const {
           format,
-          commentDescriptions,
           omitPluginMetadata,
         } = config;
 
@@ -51,7 +50,7 @@ export const makeEmitSchemaService: MakeEmitSchemaService = ({
             case 'sdl': {
               await writeFileContent(
                 filePath,
-                printSchema(outputSchema, { commentDescriptions }),
+                printSchema(outputSchema),
               );
               break;
             }

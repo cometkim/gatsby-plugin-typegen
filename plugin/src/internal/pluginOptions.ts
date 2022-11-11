@@ -149,6 +149,7 @@ export type SchemaOutputOptions = {
    * Use preceding comments as the description.
    *
    * @default true
+   * @deprecated since GraphQL-JS v16
    */
   commentDescriptions?: boolean,
 
