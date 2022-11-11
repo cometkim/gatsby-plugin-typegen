@@ -240,6 +240,11 @@ If you wanna use codegen with other plugins (e.g. React Apollo), you can use [`@
 
 ## Changelog
 
+### v3.1.0
+
+- Added Gatsby v5 to the `peerDependencies` range.
+- Deprecated `commentDescriptions` option in `emitSchema` in favor of GraphQL.js v16.
+
 ### v3.0.0
 
 - Added support for `GatsbyImageData` scalar. (See [gatsbyjs/gatsby#35683](https://github.com/gatsbyjs/gatsby/pull/35683))
